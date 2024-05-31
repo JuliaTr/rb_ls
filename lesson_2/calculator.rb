@@ -50,7 +50,15 @@ loop do # main loop
     end
   end
 
-  prompt("What operation would you like to perform? 1) add 2) subtract 3) multiply 4) divide")
+  operator_prompt = <<-MSG
+    What operation would you like to perform?
+    1) add 
+    2) subtract 
+    3) multiply 
+    4) divide
+  MSG
+  
+  prompt(operator_prompt)
   
   operator = ''
   loop do
