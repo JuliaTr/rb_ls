@@ -9,3 +9,18 @@ Within the method:
 
 Print the returned saved value of the sum.
 =end
+
+
+
+# Formal pseudo-code
+=begin
+START
+
+# Diven two integers called "number1" and "number2"
+
+SET sum = number1 + number2
+
+PRINT sum
+
+END
+=end

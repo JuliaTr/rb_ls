@@ -14,3 +14,24 @@ Within the method iterate through the collection one by one:
 
 After iterating through the collection, return the saved value. 
 =end
+
+
+# TO FINISH FORMAL PSEUDO_CODE
+# Formal pseudo-code
+=begin
+START
+
+# Given an array of integers called "array_of_integers"
+
+SET iterator = 0
+SET saved_value = value withing integers collection at space 0
+
+WHILE
+  IF
+  ELSE
+iterator = iterator + 1
+
+PRINT saved_array
+
+END
+=end
