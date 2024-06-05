@@ -16,7 +16,7 @@ After iterating through the collection, return the saved value.
 =end
 
 
-# TO FINISH FORMAL PSEUDO_CODE
+
 # Formal pseudo-code
 =begin
 START
@@ -26,12 +26,16 @@ START
 SET iterator = 0
 SET saved_value = value withing integers collection at space 0
 
-WHILE
-  IF
+WHILE iterator <= length of numbers
+  SET current_number = value within numbers of array at space "iterator"
+  IF saved_number == current_number
+    go to the next iteration
   ELSE
-iterator = iterator + 1
+    saved_number = current_number
 
-PRINT saved_array
+  iterator = iterator + 1
+
+PRINT saved_number
 
 END
 =end

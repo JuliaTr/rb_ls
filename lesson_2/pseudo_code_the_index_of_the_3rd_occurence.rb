@@ -17,3 +17,28 @@ Iterate through the collection one by one:
 
 After iterating through the collection, return the saved value.
 =end
+
+
+
+# Formal pseudo-code
+=begin
+START
+
+# Given a string of letters called "letters"
+
+SET string_as_array = convert the string into array
+
+SET iterator = 0
+
+WHILE iterator <= length of strings
+  IF the third occurence is not the given character
+    return nil
+  ELSE
+    iterator
+
+  iterator = iterator + 1
+
+PRINT saved_value
+
+END
+=end
