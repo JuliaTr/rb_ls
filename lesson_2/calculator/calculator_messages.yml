@@ -1,19 +1,38 @@
-
-welcome: "Welcome to Calculator! Enter your name:"
-valid_name: "Make sure to use a valid name."
-greeting: "Hi " 
-first_number: "What's the first number?"
-invalid_number: "Hmm... that doesn't look like a valid number"
-second_number: "What's the second number?"
-operation_options: "What operation would you like to perform?\n
-    1) add\n
-    2) subtract\n
-    3) multiply\n
-    4) divide"
-operation_options_error: "Must choose 1, 2, 3 or 4"
-operation_performing_information: " the two numbers..."
-result: "The result is "
-question_to_perform_another_operation: "Do you want to perform another calculation? (Y to calculate again)"
-thank_you: "Thank you for using the calculator. Good bye!"
-
-
+en:
+  welcome: "Welcome to Calculator! Enter your name:"
+  valid_name: "Make sure to use a valid name."
+  greeting: "Hi " 
+  first_number: "What's the first number?"
+  invalid_number: "Hmm... that doesn't look like a valid number."
+  second_number: "What's the second number?"
+  operation_options: "What operation would you like to perform?\n
+      1) add\n
+      2) subtract\n
+      3) multiply\n
+      4) divide"
+  operation_options_error: "Must choose 1, 2, 3 or 4."
+  adding_operation: "Adding "
+  subtracting_operation: "Subtracting "
+  multiplying_operation: "Multiplying "
+  dividing_operaion: "Dividing "
+  operation_performing_information: "the two numbers..."
+  result: "The result is "
+  question_to_perform_another_operation: "Do you want to perform another calculation? (Y to calculate again)"
+  thank_you: "Thank you for using the calculator. Good bye!"
+ukr:
+  welcome: "Вітаємо в програмі Калькулятор! Напиши своє ім'я:"
+  valid_name: "Впевнись, що використовується дійсне ім'я."
+  greeting: "Привіт, "
+  first_number: "Яке перше число?"
+  invalid_number: "Хмм... це не схоже на дійсне число."
+  second_number: "Яке друге число?"
+  operation_options: "Яку операцію хочеш зробити?\n
+      1) додати\n
+      2) відняти\n
+      3) помножити\n
+      4) поділити"
+  operation_options_error: "Потрібно вибрати 1, 2, 3 або 4."
+  operation_performing_information: " двох чисел..."
+  result: "Результат: "
+  question_to_perform_another_operation: "Чи хочеш виконати іншу операцію? ('Y' щоб порахувати знову)"
+  thank_you: "Дякую за використання калькулятора. До зустрічі!"

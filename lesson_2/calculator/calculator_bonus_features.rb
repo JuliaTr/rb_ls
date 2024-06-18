@@ -1,5 +1,11 @@
+LANGUAGE = 'en'
+
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
+
+def messages(message, lang ='en')
+  MESSAGES[lang][message]
+end
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -20,59 +26,59 @@ end
 def operation_to_message(operation)
   word = case operation
           when '1'
-            'Adding'
+            prompt(messages('adding_operation', LANGUAGE))
           when '2'
-            'Subtracting'
+            prompt(messages('subtracting', LANGUAGE))
           when '3'
-            'Multiplying'
+            prompt(messages('multiplying', LANGUAGE))
           when '4'
-            'Dividing'
+            prompt(messages('dividing', LANGUAGE))
         end
 
   word
 end
 
-prompt(MESSAGES['welcome'])
+prompt(messages('welcome', LANGUAGE))
 
 name = ''
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(MESSAGES['valid_name'])
+    prompt(messages('valid_name', LANGUAGE))
   else
     break
   end
 end
 
-prompt(MESSAGES['greeting'] + name + '!')
+prompt(messages('greeting', LANGUAGE) + "#{name}!")
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt(MESSAGES['first_number'])
+    prompt(messages('first_number', LANGUAGE))
     number1 = Kernel.gets().chomp()
 
     if number?(number1)
       break
     else
-      prompt(MESSAGES['invalid_number'])
+      prompt(messages('invalid_number', LANGUAGE))
     end
   end
 
   number2 = ''
   loop do
-    prompt(MESSAGES['second_number'])
+    prompt(messages('second_number', LANGUAGE))
     number2 = Kernel.gets().chomp()
 
     if number?(number2)
       break
     else
-      prompt(MESSAGES['invalid_number'])
+      prompt(messages('invalid_number', LANGUAGE))
     end
   end
 
-  prompt(MESSAGES['operation_options'])
+  prompt(messages('operation_options', LANGUAGE))
 
   operator = ''
   loop do
@@ -81,11 +87,11 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt(MESSAGES['operation_options_error'])
+      prompt(messages('operation_options_error', LANGUAGE))
     end
   end
 
-  prompt(operation_to_message(operator) + MESSAGES['operation_performing_information'])
+  prompt(operation_to_message(operator) + (messages('operation_performing_information', LANGUAGE)))
 
   result = case operator
            when '1'
@@ -98,11 +104,11 @@ loop do # main loop
              number1.to_f() / number2.to_f()
            end
 
-  prompt(MESSAGES['result'] + result.to_s)
+  prompt(messages('result', LANGUAGE) + "#{result}!")
 
-  prompt(MESSAGES['question_to_perform_another_operation'])
+  prompt(messages('question_to_perform_another_operation', LANGUAGE))
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt(MESSAGES['thank_you'])
+prompt(messages('thank_you', LANGUAGE))
