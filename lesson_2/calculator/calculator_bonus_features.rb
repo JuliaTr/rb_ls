@@ -1,4 +1,4 @@
-LANGUAGE = 'en'
+LANGUAGE = 'ukr'
 
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
@@ -21,21 +21,6 @@ end
 
 def float?(input)
   /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
-end
-
-def operation_to_message(operation)
-  word = case operation
-          when '1'
-            prompt(messages('adding_operation', LANGUAGE))
-          when '2'
-            prompt(messages('subtracting', LANGUAGE))
-          when '3'
-            prompt(messages('multiplying', LANGUAGE))
-          when '4'
-            prompt(messages('dividing', LANGUAGE))
-        end
-
-  word
 end
 
 prompt(messages('welcome', LANGUAGE))
@@ -91,7 +76,16 @@ loop do # main loop
     end
   end
 
-  prompt(operation_to_message(operator) + (messages('operation_performing_information', LANGUAGE)))
+  case operator
+  when '1'
+    prompt(messages('adding_operation', LANGUAGE))
+  when '2'
+    prompt(messages('subtracting_operation', LANGUAGE))
+  when '3'
+    prompt(messages('multiplying_operation', LANGUAGE))
+  when '4'
+    prompt(messages('dividing_operation', LANGUAGE))
+  end
 
   result = case operator
            when '1'
