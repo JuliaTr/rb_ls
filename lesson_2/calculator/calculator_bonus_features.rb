@@ -1,4 +1,4 @@
-LANGUAGE = 'ukr'
+LANGUAGE = 'en'
 
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
@@ -37,6 +37,8 @@ loop do
 end
 
 prompt(messages('greeting', LANGUAGE) + "#{name}!")
+
+sleep 2
 
 loop do # main loop
   number1 = ''
@@ -87,6 +89,8 @@ loop do # main loop
     prompt(messages('dividing_operation', LANGUAGE))
   end
 
+  sleep 2
+
   result = case operator
            when '1'
              number1.to_i() + number2.to_i()
@@ -99,6 +103,8 @@ loop do # main loop
            end
 
   prompt(messages('result', LANGUAGE) + "#{result}!")
+
+  sleep 1
 
   prompt(messages('question_to_perform_another_operation', LANGUAGE))
   answer = Kernel.gets().chomp()
