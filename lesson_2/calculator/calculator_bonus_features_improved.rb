@@ -3,8 +3,8 @@ LANGUAGE = 'en'
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
 
-def messages(message, lang ='en')
-  MESSAGES[lang][message]
+def messages(message)
+  MESSAGES[LANGUAGE][message]
 end
 
 def prompt(message)
@@ -30,14 +30,14 @@ end
 # Calculator itself
 clear
 
-prompt(messages('welcome', LANGUAGE))
+prompt(messages('welcome'))
 
 name = ''
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt(messages('valid_name', LANGUAGE))
+    prompt(messages('valid_name'))
   else
     break
   end
@@ -45,7 +45,7 @@ end
 
 clear
 
-prompt(messages('greeting', LANGUAGE) + "#{name}!")
+prompt(messages('greeting') + "#{name}!")
 
 sleep 2
 
@@ -55,29 +55,29 @@ clear
 loop do
   number1 = ''
   loop do
-    prompt(messages('first_number', LANGUAGE))
+    prompt(messages('first_number'))
     number1 = Kernel.gets().chomp()
 
     if number?(number1)
       break
     else
-      prompt(messages('invalid_number', LANGUAGE))
+      prompt(messages('invalid_number'))
     end
   end
 
   number2 = ''
   loop do
-    prompt(messages('second_number', LANGUAGE))
+    prompt(messages('second_number'))
     number2 = Kernel.gets().chomp()
 
     if number?(number2)
       break
     else
-      prompt(messages('invalid_number', LANGUAGE))
+      prompt(messages('invalid_number'))
     end
   end
 
-  prompt(messages('operation_options', LANGUAGE))
+  prompt(messages('operation_options'))
 
   operator = ''
   loop do
@@ -86,7 +86,7 @@ loop do
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt(messages('operation_options_error', LANGUAGE))
+      prompt(messages('operation_options_error'))
     end
   end
 
@@ -97,7 +97,7 @@ loop do
                       when '4' then 'dividing_operation'
                       end
 
-  prompt(messages(operation_message, LANGUAGE))
+  prompt(messages(operation_message))
 
   sleep 2
 
@@ -112,13 +112,13 @@ loop do
              number1.to_f() / number2.to_f()
            end
 
-  prompt(messages('result', LANGUAGE) + "#{result}!")
+  prompt(messages('result') + "#{result}!")
 
   sleep 4
 
   clear
 
-  prompt(messages('question_to_perform_another_operation', LANGUAGE))
+  prompt(messages('question_to_perform_another_operation'))
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 
@@ -127,4 +127,4 @@ end
 
 clear
 
-prompt(messages('thank_you', LANGUAGE))
+prompt(messages('thank_you'))
