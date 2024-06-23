@@ -27,7 +27,7 @@ def float?(input)
   /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
 end
 
-# Calculator itself
+# Calculator starts
 clear
 
 prompt(messages('welcome'))
