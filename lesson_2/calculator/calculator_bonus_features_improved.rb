@@ -90,16 +90,14 @@ loop do
     end
   end
 
-  case operator
-  when '1'
-    prompt(messages('adding_operation', LANGUAGE))
-  when '2'
-    prompt(messages('subtracting_operation', LANGUAGE))
-  when '3'
-    prompt(messages('multiplying_operation', LANGUAGE))
-  when '4'
-    prompt(messages('dividing_operation', LANGUAGE))
-  end
+  operation_message = case operator
+                      when '1' then 'adding_operation'
+                      when '2' then 'subtracting_operation'
+                      when '3' then 'multiplying_operation'
+                      when '4' then 'dividing_operation'
+                      end
+
+  prompt(messages(operation_message, LANGUAGE))
 
   sleep 2
 
