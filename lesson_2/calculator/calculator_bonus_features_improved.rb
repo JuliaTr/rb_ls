@@ -27,10 +27,10 @@ def float?(input)
   /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
 end
 
-def what_number(number)
+def what_number(number, number_message)
   number = ''
   loop do
-    prompt(messages('number'))
+    number_message
     number = Kernel.gets().chomp()
 
     break if number?(number)
@@ -80,10 +80,10 @@ clear
 # Main loop for calculation
 loop do
   number1 = ''
-  first_number = what_number(number1)
+  first_number = what_number(number1, prompt(messages('first_number')))
 
   number2 = ''
-  second_number = what_number(number2)
+  second_number = what_number(number2, prompt(messages('second_number')))
 
   prompt(messages('operation_options'))
 
