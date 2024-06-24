@@ -2,9 +2,9 @@ en:
   welcome: "Welcome to Calculator! Enter your name:"
   valid_name: "Make sure to use a valid name."
   greeting: "Hi " 
-  first_number: "What's the first number?"
+  number: "What's the number?"
   invalid_number: "Hmm... that doesn't look like a valid number."
-  second_number: "What's the second number?"
+  # second_number: "What's the second number?"
   operation_options: "What operation would you like to perform?\n
       1) add\n
       2) subtract\n
@@ -22,9 +22,9 @@ ukr:
   welcome: "Вітаємо в програмі Калькулятор! Напиши своє ім'я:"
   valid_name: "Впевнись, що використовується дійсне ім'я."
   greeting: "Привіт, "
-  first_number: "Яке перше число?"
+  number: "Яке число?"
   invalid_number: "Хмм... це не схоже на дійсне число."
-  second_number: "Яке друге число?"
+  # second_number: "Яке друге число?"
   operation_options: "Яку операцію хочеш зробити?\n
       1) додати\n
       2) відняти\n

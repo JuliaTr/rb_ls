@@ -27,6 +27,32 @@ def float?(input)
   /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
 end
 
+def what_number(number)
+  number = ''
+  loop do
+    prompt(messages('number'))
+    number = Kernel.gets().chomp()
+
+    break if number?(number)
+    prompt(messages('invalid_number'))
+  end
+
+  number
+end
+
+def calculate_result(operator, first_number, second_number)
+  case operator
+  when '1'
+    first_number.to_f + second_number.to_f
+  when '2'
+    first_number.to_f - second_number.to_f
+  when '3'
+    first_number.to_f * second_number.to_f
+  when '4'
+    first_number.to_f / second_number.to_f
+  end
+end
+
 # Calculator starts
 clear
 
@@ -54,28 +80,10 @@ clear
 # Main loop for calculation
 loop do
   number1 = ''
-  loop do
-    prompt(messages('first_number'))
-    number1 = Kernel.gets().chomp()
-
-    if number?(number1)
-      break
-    else
-      prompt(messages('invalid_number'))
-    end
-  end
+  first_number = what_number(number1)
 
   number2 = ''
-  loop do
-    prompt(messages('second_number'))
-    number2 = Kernel.gets().chomp()
-
-    if number?(number2)
-      break
-    else
-      prompt(messages('invalid_number'))
-    end
-  end
+  second_number = what_number(number2)
 
   prompt(messages('operation_options'))
 
@@ -101,18 +109,7 @@ loop do
 
   sleep 2
 
-  result = case operator
-           when '1'
-             number1.to_f() + number2.to_f()
-           when '2'
-             number1.to_f() - number2.to_f()
-           when '3'
-             number1.to_f() * number2.to_f()
-           when '4'
-             number1.to_f() / number2.to_f()
-           end
-
-  prompt(messages('result') + "#{result}!")
+  prompt(messages('result') + "#{calculate_result(operator, first_number, second_number)}!")
 
   sleep 4
 
