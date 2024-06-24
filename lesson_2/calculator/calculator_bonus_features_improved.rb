@@ -28,7 +28,6 @@ def float?(input)
 end
 
 def what_number(number, number_message)
-  number = ''
   loop do
     number_message
     number = Kernel.gets().chomp()
