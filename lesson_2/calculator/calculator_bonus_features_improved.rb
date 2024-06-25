@@ -27,6 +27,10 @@ def float?(input)
   /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
 end
 
+def zero?(input)
+  input.to_i().to_s() != "0"
+end
+
 def what_number(number, number_message)
   loop do
     number_message
@@ -82,7 +86,13 @@ loop do
   first_number = what_number(number1, prompt(messages('first_number')))
 
   number2 = ''
-  second_number = what_number(number2, prompt(messages('second_number')))
+  second_number = ''
+  loop do
+    second_number = what_number(number2, prompt(messages('second_number')))
+
+    break if zero?(second_number)
+    puts "0 can not be used. Please type another number."
+  end
 
   prompt(messages('operation_options'))
 
