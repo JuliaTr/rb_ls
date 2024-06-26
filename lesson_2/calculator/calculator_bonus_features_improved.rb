@@ -108,7 +108,7 @@ clear
 
 prompt(messages('greeting') + "#{name}!")
 
-sleep 2
+sleep 1
 
 clear
 
@@ -135,11 +135,11 @@ loop do
   operator = what_operation(operator)
   prompt(messages(choose_operation_message(operator)))
 
-  sleep 2
+  sleep 1
 
   prompt(messages('result') + "#{calculate_result(operator, first_number_converted, second_number_converted)}!")
 
-  sleep 4
+  sleep 2
 
   clear
 
