@@ -5,6 +5,7 @@ en:
   first_number: "What's the first number?"
   invalid_number: "Hmm... that doesn't look like a valid number."
   second_number: "What's the second number?"
+  zero_error: "0 can not be used for the second number."
   operation_options: "What operation would you like to perform?\n
       1) add\n
       2) subtract\n
@@ -25,6 +26,7 @@ ukr:
   first_number: "Яке перше число?"
   invalid_number: "Хмм... це не схоже на дійсне число."
   second_number: "Яке друге число?"
+  zero_error: "Не можливо використати 0 для другого числа."
   operation_options: "Яку операцію хочеш зробити?\n
       1) додати\n
       2) відняти\n
@@ -37,4 +39,4 @@ ukr:
   dividing_operation: "Ділення двох чисел..."
   result: "Результат: "
   question_to_perform_another_operation: "Чи хочеш виконати іншу операцію? ('Y' щоб порахувати знову)"
-  thank_you: "Дякую за використання калькулятора. До зустрічі!"
+  thank_you: "Дякуємо за використання програми Калькулятор. До зустрічі!"

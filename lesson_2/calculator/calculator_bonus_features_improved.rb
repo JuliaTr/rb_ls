@@ -91,7 +91,7 @@ loop do
     second_number = what_number(number2, prompt(messages('second_number')))
 
     break if zero?(second_number)
-    puts "0 can not be used. Please type another number."
+    prompt(messages('zero_error'))
   end
 
   prompt(messages('operation_options'))
