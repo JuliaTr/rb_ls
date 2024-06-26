@@ -31,6 +31,17 @@ def zero?(input)
   input.to_i().to_s() != "0"
 end
 
+def what_name(name)
+  loop do
+    name = Kernel.gets().chomp()
+  
+    break unless name.empty?()
+    prompt(messages('valid_name'))
+  end
+
+  name
+end
+
 def what_number(number, number_message)
   loop do
     number_message
@@ -41,6 +52,26 @@ def what_number(number, number_message)
   end
 
   number
+end
+
+def what_operation(operator)
+  loop do
+    operator = Kernel.gets().chomp()
+
+    break if %w(1 2 3 4).include?(operator)
+    prompt(messages('operation_options_error'))
+  end
+
+  operator
+end
+
+def choose_operation_message(operator)
+  case operator
+  when '1' then 'adding_operation'
+  when '2' then 'subtracting_operation'
+  when '3' then 'multiplying_operation'
+  when '4' then 'dividing_operation'
+  end
 end
 
 def calculate_result(operator, first_number, second_number)
@@ -62,15 +93,7 @@ clear
 prompt(messages('welcome'))
 
 name = ''
-loop do
-  name = Kernel.gets().chomp()
-
-  if name.empty?()
-    prompt(messages('valid_name'))
-  else
-    break
-  end
-end
+name = what_name(name)
 
 clear
 
@@ -97,24 +120,9 @@ loop do
   prompt(messages('operation_options'))
 
   operator = ''
-  loop do
-    operator = Kernel.gets().chomp()
+  operator = what_operation(operator)
 
-    if %w(1 2 3 4).include?(operator)
-      break
-    else
-      prompt(messages('operation_options_error'))
-    end
-  end
-
-  operation_message = case operator
-                      when '1' then 'adding_operation'
-                      when '2' then 'subtracting_operation'
-                      when '3' then 'multiplying_operation'
-                      when '4' then 'dividing_operation'
-                      end
-
-  prompt(messages(operation_message))
+  prompt(messages(choose_operation_message(operator)))
 
   sleep 2
 
