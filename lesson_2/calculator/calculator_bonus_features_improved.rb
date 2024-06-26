@@ -24,7 +24,7 @@ def integer?(input)
 end
 
 def float?(input)
-  /\d/.match(input) && /^-?\d*\.?\d*$/.match(input)
+  input.to_f.to_s == input
 end
 
 def zero?(input)
@@ -54,6 +54,14 @@ def what_number(number, number_message)
   number
 end
 
+def number_integer_or_float(number)
+  if float?(number)
+    number.to_f
+  else
+    number.to_i
+  end
+end
+
 def what_operation(operator)
   loop do
     operator = Kernel.gets().chomp()
@@ -74,18 +82,19 @@ def choose_operation_message(operator)
   end
 end
 
-def calculate_result(operator, first_number, second_number)
+def calculate_result(operator, first_number_converted, second_number_converted)
   case operator
   when '1'
-    first_number.to_f + second_number.to_f
+    first_number_converted + second_number_converted
   when '2'
-    first_number.to_f - second_number.to_f
+    first_number_converted - second_number_converted
   when '3'
-    first_number.to_f * second_number.to_f
+    first_number_converted * second_number_converted
   when '4'
-    first_number.to_f / second_number.to_f
+    first_number_converted.to_f / second_number_converted.to_f
   end
 end
+
 
 # Calculator starts
 clear
@@ -107,6 +116,7 @@ clear
 loop do
   number1 = ''
   first_number = what_number(number1, prompt(messages('first_number')))
+  first_number_converted = number_integer_or_float(first_number)
 
   number2 = ''
   second_number = ''
@@ -117,16 +127,17 @@ loop do
     prompt(messages('zero_error'))
   end
 
+  second_number_converted = number_integer_or_float(second_number)
+
   prompt(messages('operation_options'))
 
   operator = ''
   operator = what_operation(operator)
-
   prompt(messages(choose_operation_message(operator)))
 
   sleep 2
 
-  prompt(messages('result') + "#{calculate_result(operator, first_number, second_number)}!")
+  prompt(messages('result') + "#{calculate_result(operator, first_number_converted, second_number_converted)}!")
 
   sleep 4
 
