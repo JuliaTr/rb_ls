@@ -3,7 +3,7 @@ en:
   valid_name: "Make sure to use a valid name."
   greeting: "Hi " 
   first_number: "What's the first number?"
-  invalid_number: "Hmm... that doesn't look like a valid number."
+  invalid_number: "Hmm... that doesn't look like a valid number. Type a valid number."
   second_number: "What's the second number?"
   zero_error: "0 can not be used for the second number."
   operation_options: "What operation would you like to perform?\n
@@ -24,7 +24,7 @@ ukr:
   valid_name: "Впевнись, що використовується дійсне ім'я."
   greeting: "Привіт, "
   first_number: "Яке перше число?"
-  invalid_number: "Хмм... це не схоже на дійсне число."
+  invalid_number: "Хмм... це не схоже на дійсне число. Використай дійсне число."
   second_number: "Яке друге число?"
   zero_error: "Не можливо використати 0 для другого числа."
   operation_options: "Яку операцію хочеш зробити?\n
