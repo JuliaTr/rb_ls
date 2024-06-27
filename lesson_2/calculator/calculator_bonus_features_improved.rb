@@ -24,7 +24,7 @@ def integer?(input)
 end
 
 def float?(input)
-  input.to_f.to_s == input
+  input.to_f().to_s() == input
 end
 
 def zero?(input)
@@ -56,9 +56,9 @@ end
 
 def number_integer_or_float(number)
   if float?(number)
-    number.to_f
+    number.to_f()
   else
-    number.to_i
+    number.to_i()
   end
 end
 
@@ -91,7 +91,7 @@ def calculate_result(operator, first_number_converted, second_number_converted)
   when '3'
     first_number_converted * second_number_converted
   when '4'
-    first_number_converted.to_f / second_number_converted.to_f
+    first_number_converted.to_f() / second_number_converted.to_f()
   end
 end
 
