@@ -95,22 +95,28 @@ def calculate_result(operator, first_number_converted, second_number_converted)
   end
 end
 
+def another_operation
+  prompt(messages('question_to_perform_another_operation'))
+  answer = Kernel.gets().chomp()
+  answer.downcase().start_with?('y')
+end
+
 
 # Calculator starts
-clear
+clear()
 
 prompt(messages('welcome'))
 
 name = ''
 name = what_name(name)
 
-clear
+clear()
 
 prompt(messages('greeting') + "#{name}!")
 
 sleep 1
 
-clear
+clear()
 
 # Main loop for calculation
 loop do
@@ -146,15 +152,13 @@ loop do
 
   sleep 2
 
-  clear
+  clear()
 
-  prompt(messages('question_to_perform_another_operation'))
-  answer = Kernel.gets().chomp()
-  break unless answer.downcase().start_with?('y')
+  break unless another_operation()
 
-  clear
+  clear()
 end
 
-clear
+clear()
 
 prompt(messages('thank_you'))
