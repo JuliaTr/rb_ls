@@ -28,7 +28,7 @@ def float?(input)
 end
 
 def zero?(input)
-  input.to_i().to_s() != "0"
+  input.to_i() == 0
 end
 
 def what_name(name)
@@ -118,26 +118,31 @@ loop do
   first_number = what_number(number1, prompt(messages('first_number')))
   first_number_converted = number_integer_or_float(first_number)
 
-  number2 = ''
-  second_number = ''
-  loop do
-    second_number = what_number(number2, prompt(messages('second_number')))
+  chosen_operator = ''
+  second_number_converted = ''
 
-    break if zero?(second_number)
-    prompt(messages('zero_error'))
-  end
+    loop do
+      number2 = ''
+      second_number = ''
+      second_number = what_number(number2, prompt(messages('second_number')))
+      second_number_converted = number_integer_or_float(second_number)
 
-  second_number_converted = number_integer_or_float(second_number)
+      prompt(messages('operation_options'))
+      operator = ''
+      chosen_operator = what_operation(operator)
 
-  prompt(messages('operation_options'))
+      break if second_number_converted != 0 
+      
+      if chosen_operator == '4' && zero?(second_number_converted)
+        prompt(messages('zero_error'))
+      end
+    end
 
-  operator = ''
-  operator = what_operation(operator)
-  prompt(messages(choose_operation_message(operator)))
+  prompt(messages(choose_operation_message(chosen_operator)))
 
   sleep 1
 
-  prompt(messages('result') + "#{calculate_result(operator, first_number_converted, second_number_converted)}!")
+  prompt(messages('result') + "#{calculate_result(chosen_operator, first_number_converted, second_number_converted)}!")
 
   sleep 2
 
