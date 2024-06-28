@@ -138,7 +138,7 @@ loop do
       chosen_operator = what_operation(operator)
 
       break if second_number_converted != 0 
-      
+
       if chosen_operator == '4' && zero?(second_number_converted)
         prompt(messages('zero_error'))
       end
@@ -147,8 +147,9 @@ loop do
   prompt(messages(choose_operation_message(chosen_operator)))
 
   sleep 1
-
-  prompt(messages('result') + "#{calculate_result(chosen_operator, first_number_converted, second_number_converted)}!")
+  
+  result = calculate_result(chosen_operator, first_number_converted, second_number_converted)
+  prompt(messages('result') + "#{result}!")
 
   sleep 2
 
