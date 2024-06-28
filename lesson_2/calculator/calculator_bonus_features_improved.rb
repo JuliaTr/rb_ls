@@ -74,7 +74,7 @@ def what_operation(operator)
   operator
 end
 
-def choose_operation_message(operator)
+def operation_message(operator)
   case operator
   when '1' then 'adding_operation'
   when '2' then 'subtracting_operation'
@@ -142,7 +142,7 @@ loop do
       end
     end
 
-  prompt(choose_operation_message(chosen_operator))
+  prompt(operation_message(chosen_operator))
 
   sleep 1
   
