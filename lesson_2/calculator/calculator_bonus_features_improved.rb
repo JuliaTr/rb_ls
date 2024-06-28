@@ -28,10 +28,6 @@ def float?(input)
   input.to_f().to_s() == input
 end
 
-def zero?(input)
-  input.to_i() == 0
-end
-
 def number_integer_or_float(number)
   if float?(number)
     number.to_f()
@@ -135,7 +131,7 @@ loop do
       operator = ''
       chosen_operator = what_operation(operator)
 
-      break unless chosen_operator == '4' && zero?(second_number)
+      break unless chosen_operator == '4' && second_number.zero?
       prompt('zero_error')
     end
 
