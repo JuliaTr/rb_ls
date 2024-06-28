@@ -7,7 +7,8 @@ def messages(message)
   MESSAGES[LANGUAGE][message]
 end
 
-def prompt(message)
+def prompt(key, *args)
+  message = messages(key) % args
   Kernel.puts("=> #{message}")
 end
 
@@ -44,7 +45,7 @@ def what_name(name)
     name = Kernel.gets().chomp()
   
     break unless name.empty?()
-    prompt(messages('valid_name'))
+    prompt('valid_name')
   end
 
   name
@@ -56,7 +57,7 @@ def what_number(number, number_message)
     number = Kernel.gets().chomp()
 
     break if number?(number)
-    prompt(messages('invalid_number'))
+    prompt('invalid_number')
   end
 
   number_integer_or_float(number)
@@ -67,7 +68,7 @@ def what_operation(operator)
     operator = Kernel.gets().chomp()
 
     break if %w(1 2 3 4).include?(operator)
-    prompt(messages('operation_options_error'))
+    prompt('operation_options_error')
   end
 
   operator
@@ -96,7 +97,7 @@ def calculate_result(operator, first_number, second_number)
 end
 
 def another_operation
-  prompt(messages('question_to_perform_another_operation'))
+  prompt('question_to_perform_another_operation')
   answer = Kernel.gets().chomp()
   answer.downcase().start_with?('y')
 end
@@ -105,14 +106,14 @@ end
 # Calculator starts
 clear()
 
-prompt(messages('welcome'))
+prompt('welcome')
 
 name = ''
 name = what_name(name)
 
 clear()
 
-prompt(messages('greeting') + "#{name}!")
+prompt('greeting', name)
 
 sleep 1
 
@@ -121,32 +122,32 @@ clear()
 # Main loop for calculation
 loop do
   number1 = ''
-  first_number = what_number(number1, prompt(messages('first_number')))
+  first_number = what_number(number1, prompt('first_number'))
 
   chosen_operator = ''
   second_number = ''
 
     loop do
       number2 = ''
-      second_number = what_number(number2, prompt(messages('second_number')))
+      second_number = what_number(number2, prompt('second_number'))
 
-      prompt(messages('operation_options'))
+      prompt('operation_options')
       operator = ''
       chosen_operator = what_operation(operator)
 
       break if second_number != 0 
 
       if chosen_operator == '4' && zero?(second_number)
-        prompt(messages('zero_error'))
+        prompt('zero_error')
       end
     end
 
-  prompt(messages(choose_operation_message(chosen_operator)))
+  prompt(choose_operation_message(chosen_operator))
 
   sleep 1
   
   result = calculate_result(chosen_operator, first_number, second_number)
-  prompt(messages('result') + "#{result}!")
+  prompt('result', result)
 
   sleep 2
 
@@ -159,4 +160,4 @@ end
 
 clear()
 
-prompt(messages('thank_you'))
+prompt('thank_you')
