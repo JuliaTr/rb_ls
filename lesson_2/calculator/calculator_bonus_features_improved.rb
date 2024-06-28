@@ -31,6 +31,14 @@ def zero?(input)
   input.to_i() == 0
 end
 
+def number_integer_or_float(number)
+  if float?(number)
+    number.to_f()
+  else
+    number.to_i()
+  end
+end
+
 def what_name(name)
   loop do
     name = Kernel.gets().chomp()
@@ -51,15 +59,7 @@ def what_number(number, number_message)
     prompt(messages('invalid_number'))
   end
 
-  number
-end
-
-def number_integer_or_float(number)
-  if float?(number)
-    number.to_f()
-  else
-    number.to_i()
-  end
+  number_integer_or_float(number)
 end
 
 def what_operation(operator)
@@ -82,16 +82,16 @@ def choose_operation_message(operator)
   end
 end
 
-def calculate_result(operator, first_number_converted, second_number_converted)
+def calculate_result(operator, first_number, second_number)
   case operator
   when '1'
-    first_number_converted + second_number_converted
+    first_number + second_number
   when '2'
-    first_number_converted - second_number_converted
+    first_number - second_number
   when '3'
-    first_number_converted * second_number_converted
+    first_number * second_number
   when '4'
-    first_number_converted.to_f() / second_number_converted.to_f()
+    first_number.to_f() / second_number.to_f()
   end
 end
 
@@ -122,22 +122,19 @@ clear()
 loop do
   number1 = ''
   first_number = what_number(number1, prompt(messages('first_number')))
-  first_number_converted = number_integer_or_float(first_number)
 
   chosen_operator = ''
-  second_number_converted = ''
+  second_number = ''
 
     loop do
       number2 = ''
-      second_number = ''
       second_number = what_number(number2, prompt(messages('second_number')))
-      second_number_converted = number_integer_or_float(second_number)
 
       prompt(messages('operation_options'))
       operator = ''
       chosen_operator = what_operation(operator)
 
-      break if second_number_converted != 0 
+      break if second_number != 0 
 
       if chosen_operator == '4' && zero?(second_number_converted)
         prompt(messages('zero_error'))
@@ -148,7 +145,7 @@ loop do
 
   sleep 1
   
-  result = calculate_result(chosen_operator, first_number_converted, second_number_converted)
+  result = calculate_result(chosen_operator, first_number, second_number)
   prompt(messages('result') + "#{result}!")
 
   sleep 2
