@@ -136,7 +136,7 @@ loop do
 
       break if second_number != 0 
 
-      if chosen_operator == '4' && zero?(second_number_converted)
+      if chosen_operator == '4' && zero?(second_number)
         prompt(messages('zero_error'))
       end
     end
