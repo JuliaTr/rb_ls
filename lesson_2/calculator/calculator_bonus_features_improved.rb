@@ -135,11 +135,8 @@ loop do
       operator = ''
       chosen_operator = what_operation(operator)
 
-      break if second_number != 0 
-
-      if chosen_operator == '4' && zero?(second_number)
-        prompt('zero_error')
-      end
+      break unless chosen_operator == '4' && zero?(second_number)
+      prompt('zero_error')
     end
 
   prompt(operation_message(chosen_operator))
