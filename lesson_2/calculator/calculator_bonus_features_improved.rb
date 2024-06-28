@@ -48,7 +48,7 @@ def what_name(name)
     prompt('valid_name')
   end
 
-  name
+  name.upcase()
 end
 
 def what_number(number, number_message)
