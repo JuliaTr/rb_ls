@@ -143,7 +143,7 @@ loop do
 
   sleep 1
   
-  result = calculate_result(chosen_operator, first_number, second_number)
+  result = calculate_result(chosen_operator, first_number, second_number).round(2)
   prompt('result', result)
 
   sleep 2
