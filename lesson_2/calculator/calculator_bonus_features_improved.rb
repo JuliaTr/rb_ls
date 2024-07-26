@@ -16,24 +16,16 @@ def clear
   system('clear')
 end
 
-def number?(input)
-  integer?(input) || float?(input)
+def valid_number?(input)
+  valid_integer?(input) || valid_float?(input)
 end
 
-def integer?(input)
-  input.to_i().to_s() == input
+def valid_integer?(input)
+  input.to_i if input.to_i().to_s() == input
 end
 
-def float?(input)
-  input.to_f().to_s() == input
-end
-
-def number_integer_or_float(number)
-  if float?(number)
-    number.to_f()
-  else
-    number.to_i()
-  end
+def valid_float?(input)
+  input.to_f if input.to_f().to_s() == input
 end
 
 def what_name(name)
@@ -48,15 +40,17 @@ def what_name(name)
 end
 
 def what_number(number, number_message)
+  converted_number = nil
   loop do
     number_message
     number = Kernel.gets().chomp()
 
-    break if number?(number)
+    converted_number = valid_number?(number)
+    break if converted_number
     prompt('invalid_number')
   end
 
-  number_integer_or_float(number)
+  converted_number
 end
 
 def what_operation(operator)
@@ -81,14 +75,18 @@ end
 
 def calculate_result(operator, first_number, second_number)
   case operator
-  when '1'
+  when '1' 
     first_number + second_number
-  when '2'
+  when '2' 
     first_number - second_number
-  when '3'
+  when '3' 
     first_number * second_number
   when '4'
-    first_number.to_f() / second_number.to_f()
+    if first_number % second_number == 0
+      first_number / second_number
+    else
+      first_number.to_f / second_number.to_f
+    end
   end
 end
 
@@ -131,7 +129,7 @@ loop do
       operator = ''
       chosen_operator = what_operation(operator)
 
-      break unless chosen_operator == '4' && second_number.zero?
+      break unless chosen_operator == '4' && second_number.zero?()
       prompt('zero_error')
     end
 
@@ -140,6 +138,7 @@ loop do
   sleep 1
   
   result = calculate_result(chosen_operator, first_number, second_number).round(2)
+ 
   prompt('result', result)
 
   sleep 2
