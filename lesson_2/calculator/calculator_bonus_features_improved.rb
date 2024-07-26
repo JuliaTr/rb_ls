@@ -21,11 +21,11 @@ def valid_number?(input)
 end
 
 def valid_integer?(input)
-  input.to_i if input.to_i().to_s() == input
+  input.to_i() if input.to_i().to_s() == input
 end
 
 def valid_float?(input)
-  input.to_f if input.to_f().to_s() == input
+  input.to_f() if input.to_f().to_s() == input
 end
 
 def what_name(name)
@@ -85,7 +85,7 @@ def calculate_result(operator, first_number, second_number)
     if first_number % second_number == 0
       first_number / second_number
     else
-      first_number.to_f / second_number.to_f
+      first_number.to_f() / second_number.to_f()
     end
   end
 end
@@ -137,7 +137,7 @@ loop do
 
   sleep 1
   
-  result = calculate_result(chosen_operator, first_number, second_number).round(2)
+  result = calculate_result(chosen_operator, first_number, second_number)
  
   prompt('result', result)
 
