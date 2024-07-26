@@ -31,7 +31,7 @@ end
 def what_name(name)
   loop do
     name = Kernel.gets().chomp()
-  
+
     break unless name.empty?()
     prompt('valid_name')
   end
@@ -42,7 +42,7 @@ end
 def what_number(number, number_message)
   converted_number = nil
   loop do
-    number_message
+    prompt(number_message)
     number = Kernel.gets().chomp()
 
     converted_number = valid_number?(number)
@@ -64,22 +64,20 @@ def what_operation(operator)
   operator
 end
 
-def operation_message(operator)
-  case operator
-  when '1' then 'adding_operation'
-  when '2' then 'subtracting_operation'
-  when '3' then 'multiplying_operation'
-  when '4' then 'dividing_operation'
-  end
-end
+operation_message = {
+  '1' => 'adding_operation',
+  '2' => 'subtracting_operation',
+  '3' => 'multiplying_operation',
+  '4' => 'dividing_operation'
+}
 
 def calculate_result(operator, first_number, second_number)
   case operator
-  when '1' 
+  when '1'
     first_number + second_number
-  when '2' 
+  when '2'
     first_number - second_number
-  when '3' 
+  when '3'
     first_number * second_number
   when '4'
     if first_number % second_number == 0
@@ -95,7 +93,6 @@ def another_operation
   answer = Kernel.gets().chomp()
   answer.downcase().start_with?('y')
 end
-
 
 # Calculator starts
 clear()
@@ -116,29 +113,29 @@ clear()
 # Main loop for calculation
 loop do
   number1 = ''
-  first_number = what_number(number1, prompt('first_number'))
+  first_number = what_number(number1, 'first_number')
 
   chosen_operator = ''
   second_number = ''
+  operator = ''
 
-    loop do
-      number2 = ''
-      second_number = what_number(number2, prompt('second_number'))
+  loop do
+    number2 = ''
+    second_number = what_number(number2, 'second_number')
 
-      prompt('operation_options')
-      operator = ''
-      chosen_operator = what_operation(operator)
+    prompt('operation_options')
+    chosen_operator = what_operation(operator)
 
-      break unless chosen_operator == '4' && second_number.zero?()
-      prompt('zero_error')
-    end
+    break unless chosen_operator == '4' && second_number.zero?()
+    prompt('zero_error')
+  end
 
-  prompt(operation_message(chosen_operator))
+  prompt(operation_message[chosen_operator])
 
   sleep 1
-  
+
   result = calculate_result(chosen_operator, first_number, second_number)
- 
+
   prompt('result', result)
 
   sleep 2
