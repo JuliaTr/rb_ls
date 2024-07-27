@@ -96,18 +96,15 @@ end
 
 # Calculator starts
 clear()
-
 prompt('welcome')
 
 name = ''
 name = what_name(name)
 
 clear()
-
 prompt('greeting', name)
 
 sleep 1
-
 clear()
 
 # Main loop for calculation
@@ -135,18 +132,14 @@ loop do
   sleep 1
 
   result = calculate_result(chosen_operator, first_number, second_number)
-
   prompt('result', result)
 
   sleep 2
-
   clear()
 
   break unless another_operation()
-
   clear()
 end
 
 clear()
-
 prompt('thank_you')
