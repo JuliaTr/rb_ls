@@ -1,8 +1,10 @@
 # What the code below will print out?
+
 numbers = [1, 2, 2, 3]
 numbers.uniq
 
 puts numbers
+
 # Output:
 # 1
 # 2
