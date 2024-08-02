@@ -19,11 +19,15 @@ munsters.object_id
 # => {"Herman"=>{"age"=>74, "gender"=>"other"}, "Lily"=>{"age"=>72, "gender"=>"other"}, 
 # "Grandpa"=>{"age"=>444, "gender"=>"other"}, "Eddie"=>{"age"=>52, "gender"=>"other"}, "Marilyn"=>{"age"=>65, "gender"=>"other"}}
 
+=begin
+`family_member["age"] += 42` and `family_member["gender"] = "other"`, on lines 11 through 12, illustrates a reassignment.
+However, `Hash#[]=` is a destructive method, wich returns a new value of the object. 
+The 'key' retrieved in the curly braces and being assigned with a new value, a new value is returned and stored in a modified original hash.
 
-# `family_member["age"] += 42` and `family_member["gender"] = "other"`, on lines 11 through 12, illustrates a reassignment.
-# An `object_id` of each argument is passed to the method.
-# The method uses these object_id in the variables within its local scope. 
-# These variables are parameters of the method.
-# The `demo_hash` parameter points to the `munsters` hash.
-# The existed hash is used, without creaing a new one.
-# The `munsters` hash is altered inside of the method.
+An `object_id` of each argument is passed to the method.
+The method uses these object_id in the variables within its local scope. 
+These variables are parameters of the method.
+The `demo_hash` parameter points to the `munsters` hash.
+The existed hash is used, without creaing a new one.
+The `munsters` hash is altered inside the method.
+=end
