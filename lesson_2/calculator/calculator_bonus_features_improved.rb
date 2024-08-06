@@ -73,12 +73,9 @@ operation_message = {
 
 def calculate_result(operator, first_number, second_number)
   case operator
-  when '1'
-    first_number + second_number
-  when '2'
-    first_number - second_number
-  when '3'
-    first_number * second_number
+  when '1' then first_number + second_number
+  when '2' then first_number - second_number
+  when '3' then first_number * second_number
   when '4'
     if first_number % second_number == 0
       first_number / second_number
