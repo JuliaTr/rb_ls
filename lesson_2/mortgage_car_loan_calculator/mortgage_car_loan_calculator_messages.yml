@@ -1,0 +1,21 @@
+en:
+  welcome: "Welcome in Mortgage / Car Loan Calculator! Enter your name:"
+  invalid_name: "Please enter your valid name."
+  greeting: "Hi, %!"
+  loan_amount: "What amount of loan do you need?"
+  invalid_loan_amount: "Please provide a valid amount of loan."
+  monthly_inerest_rate: "What monthly interest rate are you looking for?"
+  invalid_monthly_interst_rate: "Please provide a valid monthly interest rate."
+  loan_duration_in_months: "What is loan duration in months?"
+  invalid_loan_duration_in_months: "Please provide a valid loan duration in months."
+ukr:
+  welcome:
+  invalid_name:
+  greeting:
+  loan_amount:
+  invalid_loan_amount:
+  monthly_inerest_rate:
+  invalid_monthly_interst_rate:
+  loan_duration_in_months:
+  invalid_loan_duration_in_months:
+
