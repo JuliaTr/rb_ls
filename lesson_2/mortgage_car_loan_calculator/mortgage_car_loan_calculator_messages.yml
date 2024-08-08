@@ -1,7 +1,7 @@
 en:
   welcome: "Welcome in Mortgage / Car Loan Calculator! Enter your name:"
   invalid_name: "Please enter your valid name."
-  greeting: "Hi, %!"
+  greeting: "Hi, %s!"
   loan_amount: "What amount of loan do you need?"
   invalid_loan_amount: "Please provide a valid amount of loan."
   monthly_inerest_rate: "What monthly interest rate are you looking for?"
