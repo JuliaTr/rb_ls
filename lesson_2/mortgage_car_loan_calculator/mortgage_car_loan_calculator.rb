@@ -8,7 +8,12 @@ def messages(message)
 end
 
 def prompt(key, *args)
-  message = messages(key) % args
+  if args.empty?
+    message = messages(key)
+  else
+    message = messages(key) % args
+  end
+
   Kernel.puts("=> #{message}")
 end
 
@@ -25,7 +30,9 @@ def valid_float?(input)
 end 
 
 def how_much_to_pay(loan_amount, monthly_interest_rate, loan_duration_in_months)
-  monthly_payment = loan_amount * (monthly_interest_rate / (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
+  monthly_payment = loan_amount * 
+                    (monthly_interest_rate / 
+                    (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
 end
 
 def get_loan
@@ -36,7 +43,7 @@ def get_loan
     loan_amount = Kernel.gets().chomp()
 
     converted_loan_amount = valid_integer?(loan_amount)
-    break if converted_loan_amount
+    break if converted_loan_amount > 0
     prompt('invalid_loan_amount')
   end
 
@@ -51,7 +58,7 @@ def get_interest_rate
     monthly_interest_rate = Kernel.gets().chomp()
 
     converted_monthly_interest_rate = valid_number?(monthly_interest_rate)  
-    break if converted_monthly_interest_rate
+    break if converted_monthly_interest_rate > 0
     prompt('invalid_monthly_interest_rate')
   end
 
@@ -85,12 +92,18 @@ def get_name
   name.upcase()
 end
 
+def another_calculation
+  prompt('question_to_perform_another_calculation')
+  answer = Kernel.gets().chomp()
+  answer.downcase().start_with?('y')
+end
+
 # Greeting
 prompt('welcome')
 name = get_name
 prompt('greeting', name)
 
-# Mortgage car / loan calculator starts
+# Mortgage Car/Loan Calculator starts
 amount_of_loan = get_loan()
 puts amount_of_loan
 
@@ -100,10 +113,15 @@ puts amount_of_monthly_interest_rate
 amount_of_loan_duration_in_months = get_loan_duration()
 puts amount_of_loan_duration_in_months
 
-monthly_payment = how_much_to_pay(amount_of_loan, amount_of_monthly_interest_rate, amount_of_loan_duration_in_months)
-puts monthly_payment
+# monthly_payment = how_much_to_pay(amount_of_loan, amount_of_monthly_interest_rate, amount_of_loan_duration_in_months)
+# puts monthly_payment
 
 # prompt('your_monthly_payment', monthly_payment}
+
+# another_calculation()
+
+# prompt('thank you', name)
+
 
 
 
@@ -111,12 +129,17 @@ puts monthly_payment
 # loan_amount = 1000000 == true
 # loan_amount = 100 000 == false
 # loan_amount = 100,000 == false
+# loan_amount = 0 == false
+# loan_amount = 1 == true
 
 # monthly_interest_rate = 5 == true
 # monthly_interest_rate = 0.5 == true
 # monthly_interest_rate = 0.05 == true
 # monthly_interest_rate = .5 == false
 # monthly_interest_rate = 00000000000005 == false
+# monthly_interest_rate = 0 == false
+# monthly_interest_rate = 0.00001 == false
+
 
 # loan_duration_in_months = 10 == true
 # loan_duration_in_months = 10.2 == true
