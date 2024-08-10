@@ -8,7 +8,7 @@ en:
   Please provide the amount in US dollars ($) without spaces, commas, dots (e.g. 1000000):"
   invalid_loan_amount: "Looks like the provided amount of loan is not valid."
   monthly_interest_rate: "What monthly interest rate are you looking for?\n
-  Please provide a monthly inrerest rate without spaces (e.g 5 for 5% or 1.2 for 1.2%):"
+  Please provide a monthly inrerest rate without spaces (e.g 5 for %d%% or 1.2 for %f%%):"
   invalid_monthly_interest_rate: "Looks like the provided monthly interest rate is not valid."
   loan_duration_in_years: "What is a loan duration in years?\n
   Please provide the loan duration in years spaces without space and commas (e.g. 10 or 10.2):"
