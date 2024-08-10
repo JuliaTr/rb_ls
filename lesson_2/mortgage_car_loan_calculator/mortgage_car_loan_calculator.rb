@@ -8,13 +8,8 @@ def messages(message)
 end
 
 def prompt(key, *args)
-  if args.empty?
-    message = messages(key)
-  else
-    message = messages(key) % args
-  end
-
-  Kernel.puts("=> #{message}")
+  message = messages(key) % args
+  Kernel.puts("=>#{message}")
 end
 
 def valid_number?(input)
@@ -54,7 +49,7 @@ def get_interest_rate
   monthly_interest_rate = ''
   converted_monthly_interest_rate = nil
   loop do
-    prompt('monthly_interest_rate')
+    prompt('monthly_interest_rate', 5, 1.2)
     monthly_interest_rate = Kernel.gets().chomp()
 
     converted_monthly_interest_rate = valid_number?(monthly_interest_rate)  
@@ -99,19 +94,19 @@ def another_calculation
 end
 
 # Greeting
-prompt('welcome')
-name = get_name
-prompt('greeting', name)
+# prompt('welcome')
+# name = get_name
+# prompt('greeting', name)
 
-# Mortgage Car/Loan Calculator starts
-amount_of_loan = get_loan()
-puts amount_of_loan
+# # Mortgage Car/Loan Calculator starts
+# amount_of_loan = get_loan()
+# puts amount_of_loan
 
 amount_of_monthly_interest_rate = get_interest_rate()
 puts amount_of_monthly_interest_rate
 
-amount_of_loan_duration_in_months = get_loan_duration()
-puts amount_of_loan_duration_in_months
+# amount_of_loan_duration_in_months = get_loan_duration()
+# puts amount_of_loan_duration_in_months
 
 # monthly_payment = how_much_to_pay(amount_of_loan, amount_of_monthly_interest_rate, amount_of_loan_duration_in_months)
 # puts monthly_payment
