@@ -1,10 +1,8 @@
-LANGUAGE = 'en'
-
 require 'yaml'
 MESSAGES = YAML.load_file('mortgage_car_loan_calculator_messages.yml')
 
 def messages(message)
-  MESSAGES[LANGUAGE][message]
+  MESSAGES[message]
 end
 
 def prompt(key, *args)
@@ -97,7 +95,7 @@ end
 
 # Greeting
 prompt('welcome')
-sleep 0.7
+sleep 0.8
 clear()
 
 name = get_name
@@ -110,7 +108,7 @@ loop do
   amount_of_loan = get_loan()            
 
   annual_interest_rate = get_interest_rate()
-  converted_interest_rate_in_percentage = annual_interest_rate / 100.0
+  converted_interest_rate_in_percentage = annual_interest_rate / 100
   monthly_interest_rate = converted_interest_rate_in_percentage / 12
 
   amount_of_loan_duration_in_years = get_loan_duration()
@@ -125,7 +123,6 @@ end
 
 clear()
 prompt('thank_you', name)
-
 
 
 
