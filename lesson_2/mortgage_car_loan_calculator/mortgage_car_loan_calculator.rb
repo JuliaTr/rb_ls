@@ -26,18 +26,35 @@ def valid_float?(input)
   input.to_f().to_s() == input
 end 
 
-def how_much_to_pay(loan_amount, monthly_interest_rate, loan_duration_in_months)
-  monthly_payment = loan_amount * 
-                    (monthly_interest_rate / 
-                    (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
+def get_name
+  clear()
+  prompt('welcome')
+  sleep 0.8
+  clear()
+
+  name = ''
+  loop do
+    prompt('name')
+    name = Kernel.gets().chomp().strip().upcase()
+    clear()
+
+    break unless name.empty?()
+    prompt('invalid_name')
+  end
+  
+  prompt('greeting', name)
+  sleep 1
+  name
 end
 
-def get_loan              
+def get_loan
+  clear()              
   loan_amount = ''
   converted_loan_amount = nil
   loop do
     prompt('loan_amount', '$')
     loan_amount = Kernel.gets().chomp().strip()
+    clear()
 
     break unless loan_amount.empty?() || valid_integer?(loan_amount) == false || loan_amount.to_i() <= 0
     prompt('invalid_loan_amount')
@@ -52,12 +69,15 @@ def get_interest_rate
   loop do
     prompt('interest_rate', 5, 1.2, '%')
     interest_rate = Kernel.gets().chomp().strip()
+    clear()
 
     break unless interest_rate.empty?() || valid_number?(interest_rate) == false || interest_rate.to_f() <= 0
     prompt('invalid_interest_rate')
   end
 
   converted_interest_rate = interest_rate.to_f()
+  converted_interest_rate_in_percentage = converted_interest_rate / 100
+  monthly_interest_rate = converted_interest_rate_in_percentage / 12
 end
 
 def get_loan_duration
@@ -66,63 +86,52 @@ def get_loan_duration
   loop do
     prompt('loan_duration_in_years')
     loan_duration_in_years = Kernel.gets().chomp().strip()
+    clear()
   
     break unless loan_duration_in_years.empty?() || valid_number?(loan_duration_in_years) == false || loan_duration_in_years.to_f() <= 0
     prompt('invalid_loan_duration_in_years')
   end
 
   converted_loan_duration_in_years = loan_duration_in_years.to_f()
+  amount_of_loan_duration_in_months = converted_loan_duration_in_years * 12
 end
 
-def get_name
-  name = ''
-  loop do
-    prompt('name')
-    name = Kernel.gets().chomp().strip()
-
-    break unless name.empty?()
-    prompt('invalid_name')
-  end
-
-  name = name.upcase()
+def how_much_to_pay(loan_amount, monthly_interest_rate, loan_duration_in_months)
+  monthly_payment = loan_amount * 
+                    (monthly_interest_rate / 
+                    (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
 end
 
-def another_calculation
-  prompt('question_to_perform_another_calculation')
-  answer = Kernel.gets().chomp()
-  answer.downcase().start_with?('y')
-end
-
-# Greeting
-prompt('welcome')
-sleep 0.8
-clear()
-
-name = get_name
-prompt('greeting', name)
-sleep 1
-clear()
-
-# Mortgage Car/Loan Calculator starts
-loop do
-  amount_of_loan = get_loan()            
-
-  annual_interest_rate = get_interest_rate()
-  converted_interest_rate_in_percentage = annual_interest_rate / 100
-  monthly_interest_rate = converted_interest_rate_in_percentage / 12
-
-  amount_of_loan_duration_in_years = get_loan_duration()
-  amount_of_loan_duration_in_months = amount_of_loan_duration_in_years * 12
-
-  monthly_payment = how_much_to_pay(amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months)
-  prompt('your_monthly_payment','$', monthly_payment, '$', amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months)
-
-  break unless another_calculation()
+def calculation_messages(amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months, monthly_payment)
+  prompt('summary', '$', amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months)
+  prompt('calculation')
+  sleep 2
+  clear()
+  prompt('your_monthly_payment','$', monthly_payment)
+  sleep 2
   clear()
 end
 
-clear()
+def another_calculation
+
+  prompt('question_to_perform_another_calculation')
+  answer = Kernel.gets().chomp()
+  clear()
+  answer.downcase().start_with?('y')
+end
+
+name = get_name
+loop do
+  amount_of_loan = get_loan()            
+  monthly_interest_rate = get_interest_rate()
+  amount_of_loan_duration_in_months = get_loan_duration()
+  monthly_payment = how_much_to_pay(amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months)
+  calculation_messages(amount_of_loan, monthly_interest_rate, amount_of_loan_duration_in_months, monthly_payment)
+  break unless another_calculation()
+end
 prompt('thank_you', name)
+
+
 
 
 
@@ -147,6 +156,7 @@ name = ""                       == false
 name = "     "                  == false           # white space will be stripped
 
 
+
 ### LOAN AMOUNT
 
 loan_amount = "1000000"         == true
@@ -164,7 +174,7 @@ loan_amount = "$10000"          == false
 loan_amount = "$ 10000"         == false            
 
 loam_amount = "     "           == false            # white space will be stripped  
-loan_amount = ""                == false            # if empty
+loan_amount = ""                == false            
 loan_amount = "n"               == false            # any letter
 loan_amount = "n    "           == false             
 loan_amount = "!@#$%^&*())_+""  == false            # any symbol or symbol with integer/float/letter/white space
@@ -185,7 +195,7 @@ interest_rate = "0"                == false
 interest_rate = "0.00001"          == false
 
 interest_rate = "     "            == false            # white space will be stripped
-interest_rate = ""                 == false            # if empty
+interest_rate = ""                 == false            
 interest_rate = "n"                == false            # any letter
 interest_rate = "n    "            == false            
 interest_rate = "-1"               == false            # any negative integer
@@ -205,7 +215,7 @@ loan_duration_in_years = "00000000000005"   == false
 loan_duration_in_years = "0"                == false
 
 loan_duration_in_years = "     "            == false            # white space will be stripped
-loan_duration_in_years = ""                 == false            # if empty
+loan_duration_in_years = ""                 == false            
 loan_duration_in_years = "n"                == false            # any letter
 loan_duration_in_years = "n    "            == false            
 loan_duration_in_years = "-1"               == false            # any negative integer
