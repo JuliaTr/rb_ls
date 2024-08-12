@@ -1,34 +1,24 @@
-en:
-  welcome: "Welcome in Mortgage/Car Loan Calculator!"
-  name: "Enter your name: (letters, numbers and symbols are acceptable)"
-  invalid_name: "Looks like the name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable."
-  greeting: "Hi, %s!"
-  loan_amount: |
-    What amount of loan do you need (e.g. 1000000 for $ 10 000)?
-    %c:
-  invalid_loan_amount: "Looks like the amount of loan is not valid."
-  interest_rate: |
-    What interest rate are you looking for (e.g 5 for %d%% or 1.2 for %.1f%%)?
-    %c:
-  invalid_interest_rate: "Looks like the interest rate is not valid."
-  loan_duration_in_years: "What is a loan duration (in years)(e.g. 10 for 10 years or 10.2 for 10 years 2 months)?"
-  invalid_loan_duration_in_years: "Looks like the loan duration is not valid."
-  your_monthly_payment: |
-    Your monthly payment is:     %c %.2f
-        Amount of loan:            %c %s
-        Monthly interest rate:     %.4f%%
-        Loan duration (in months): %s
-  question_to_perform_another_calculation: "Do you want to perform another calculation? (Press Y to calculate again)"
-  thank_you: "Thank you for using Mortgage/Car Loan Calculator! Good bye, %s!"
-
-ukr:
-  welcome:
-  invalid_name:
-  greeting:
-  loan_amount:
-  invalid_loan_amount:
-  monthly_inerest_rate:
-  invalid_monthly_interst_rate:
-  loan_duration_in_months:
-  invalid_loan_duration_in_months:
+welcome: "Welcome in Mortgage/Car Loan Calculator!"
+name: "Enter your name: (letters, numbers and symbols are acceptable)"
+invalid_name: "Looks like the name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable."
+greeting: "Hi, %s!"
+loan_amount: |
+  What amount of loan do you need (e.g. 1000000 for $ 10 000)?
+  %c:
+invalid_loan_amount: "Looks like the amount of loan is not valid."
+interest_rate: |
+  What interest rate are you looking for (e.g 5 for %d%% or 1.2 for %.1f%%)?
+  %c:
+invalid_interest_rate: "Looks like the interest rate is not valid."
+loan_duration_in_years: "What is a loan duration (in years)(e.g. 10 for 10 years or 10.2 for 10 years 2 months)?"
+invalid_loan_duration_in_years: "Looks like the loan duration is not valid."
+summary: | 
+  Your data for the calculation:
+    Amount of loan:            %c %s
+    Monthly interest rate:     %.4f%%
+    Loan duration (in months): %d
+calculation: "Calculating..."
+your_monthly_payment: "Your monthly payment is:  %c %.2f"
+question_to_perform_another_calculation: "Do you want to perform another calculation? (Press Y to calculate again)"
+thank_you: "Thank you for using Mortgage/Car Loan Calculator! Good bye, %s!"
 
