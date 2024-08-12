@@ -1,24 +1,25 @@
 en:
-  welcome: "Welcome in Mortgage / Car Loan Calculator! \n\n 
-  Enter your name: \n
-  (Letters, numbers and symbols are acceptable.)"
-  invalid_name: "Looks like the provided name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable."
+  welcome: "Welcome in Mortgage/Car Loan Calculator!"
+  name: "Enter your name: (letters, numbers and symbols are acceptable)"
+  invalid_name: "Looks like the name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable."
   greeting: "Hi, %s!"
-  loan_amount: "What amount of loan do you need? \n
-  Please provide the amount in US dollars ($) without spaces, commas, dots (e.g. 1000000):"
-  invalid_loan_amount: "Looks like the provided amount of loan is not valid."
-  monthly_interest_rate: "What monthly interest rate are you looking for?\n
-  Please provide a monthly inrerest rate without spaces (e.g 5 for %d%% or 1.2 for %f%%):"
-  invalid_monthly_interest_rate: "Looks like the provided monthly interest rate is not valid."
-  loan_duration_in_years: "What is a loan duration in years?\n
-  Please provide the loan duration in years spaces without space and commas (e.g. 10 or 10.2):"
-  invalid_loan_duration_in_years: "Please provide a valid loan duration in years."
-  your_monthly_payment: "Amount of loan: %s\n
-  Monthly interest rate in percentage: %s\n
-  Loan duration in months: %s\n
-  Monthly payment: %s"
+  loan_amount: |
+    What amount of loan do you need (e.g. 1000000 for $ 10 000)?
+    %c:
+  invalid_loan_amount: "Looks like the amount of loan is not valid."
+  interest_rate: |
+    What interest rate are you looking for (e.g 5 for %d%% or 1.2 for %.1f%%)?
+    %c:
+  invalid_interest_rate: "Looks like the interest rate is not valid."
+  loan_duration_in_years: "What is a loan duration (in years)(e.g. 10 for 10 years or 10.2 for 10 years 2 months)?"
+  invalid_loan_duration_in_years: "Looks like the loan duration is not valid."
+  your_monthly_payment: |
+    Your monthly payment is:     %c %.2f
+        Amount of loan:            %c %s
+        Monthly interest rate:     %.4f%%
+        Loan duration (in months): %s
   question_to_perform_another_calculation: "Do you want to perform another calculation? (Press Y to calculate again)"
-  thank_you: "Thank you for using Mortgage / Car Loan Calculator! Good bye, %s!"
+  thank_you: "Thank you for using Mortgage/Car Loan Calculator! Good bye, %s!"
 
 ukr:
   welcome:
