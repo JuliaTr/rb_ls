@@ -5,17 +5,17 @@ name: |
 invalid_name: "Looks like the name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable."
 greeting: "Hi, %s!"
 loan_amount: |
-  What amount of loan do you need? (e.g. 10000 for $ 10 000 / 10,000 / 10.000)
+  What amount of loan do you need? (e.g. 10000 for $ 10 000 / 10,000)
   %c:
 invalid_loan_amount: "Looks like the amount of loan is not valid."
 interest_rate: |
   What interest rate are you looking for? (e.g 5 for %d%% or 1.2 for %.1f%%)
-  Please note the provided interest rate will be calculated in monthly interest rate.
+  Please note the provided interest rate will be used to calculate monthly interest rate.
   %c:
 invalid_interest_rate: "Looks like the interest rate is not valid."
 loan_duration_in_years: |
   What is a loan duration (in years)? (e.g. 10 for 10 years or 10.2 for 10 years 2 months)
-  Please note that the provided loan duration will be calculated in loan duration in months.
+  Please note that the provided loan duration will be used to calculate loan duration in months.
 invalid_loan_duration_in_years: "Looks like the loan duration is not valid."
 summary: | 
   Based on the data you provided for the calculation:
