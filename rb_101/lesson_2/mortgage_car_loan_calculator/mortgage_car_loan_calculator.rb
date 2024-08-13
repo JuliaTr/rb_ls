@@ -130,7 +130,7 @@ def another_calculation
   answer.downcase().start_with?('y')
 end
 
-name = get_name
+name = get_name()
 loop do
   amount_of_loan = get_loan()
   monthly_interest_rate = get_interest_rate()
