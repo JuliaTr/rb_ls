@@ -7,7 +7,7 @@ end
 
 def prompt(key, *args)
   message = messages(key) % args
-  Kernel.puts("=>#{message}")
+  Kernel.puts("=> #{message}")
 end
 
 def clear
