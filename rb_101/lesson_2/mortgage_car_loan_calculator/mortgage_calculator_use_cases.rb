@@ -49,9 +49,9 @@ loan_amount = "!@#$%^&*())_+""             == false            # any symbol or s
 interest_rate = "5"                         == true
 interest_rate = "0.5"                       == true
 interest_rate = "0.05"                      == true             
+interest_rate = "%5"                        == true          
+interest_rate = "% 5"                       == true          
 
-interest_rate = "%5"                        == false          
-interest_rate = "% 5"                       == false          
 interest_rate = ".5"                        == false
 interest_rate = "00000000000005"            == false
 interest_rate = "0"                         == false
