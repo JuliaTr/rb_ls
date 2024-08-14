@@ -28,12 +28,14 @@ def valid_float?(input)
   input.to_f().to_s() == input
 end
 
-def get_name
+def display_welcome_message
   clear()
   prompt('welcome')
   sleep 0.8
   clear()
+end
 
+def get_name
   name = ''
   loop do
     prompt('name')
@@ -132,6 +134,7 @@ def another_calculation
   answer.downcase().start_with?('y')
 end
 
+display_welcome_message()
 name = get_name()
 loop do
   amount_of_loan = get_loan()
