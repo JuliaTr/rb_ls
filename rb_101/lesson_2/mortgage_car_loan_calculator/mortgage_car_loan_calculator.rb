@@ -1,4 +1,5 @@
 require 'yaml'
+
 MESSAGES = YAML.load_file('mortgage_car_loan_calculator_messages.yml')
 
 def messages(message)
@@ -137,7 +138,6 @@ loop do
   amount_of_loan_duration_in_months = get_loan_duration()
   monthly_payment = how_much_to_pay(amount_of_loan, monthly_interest_rate,
                                     amount_of_loan_duration_in_months)
-
   calculation_messages(amount_of_loan, monthly_interest_rate,
                        amount_of_loan_duration_in_months, monthly_payment)
   break unless another_calculation()
