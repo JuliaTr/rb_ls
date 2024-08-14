@@ -1,6 +1,7 @@
 require 'yaml'
 
 MESSAGES = YAML.load_file('mortgage_car_loan_calculator_messages.yml')
+MONTHS_IN_YEAR = 12
 
 def messages(message)
   MESSAGES[message]
@@ -80,7 +81,7 @@ def get_interest_rate
 
   converted_interest_rate = interest_rate.to_f()
   converted_interest_rate_in_percentage = converted_interest_rate / 100
-  converted_interest_rate_in_percentage / 12
+  converted_interest_rate_in_percentage / MONTHS_IN_YEAR
 end
 
 def get_loan_duration
@@ -97,7 +98,7 @@ def get_loan_duration
   end
 
   converted_loan_duration_in_years = loan_duration_in_years.to_f()
-  converted_loan_duration_in_years * 12
+  converted_loan_duration_in_years * MONTHS_IN_YEAR
 end
 
 def how_much_to_pay(loan_amount, monthly_interest_rate, loan_duration_in_months)
