@@ -134,7 +134,7 @@ def another_calculation
   prompt('question_to_perform_another_calculation')
   answer = Kernel.gets().chomp()
   clear()
-  answer.downcase().start_with?('y')
+  answer.downcase().start_with?('y') || answer == ""
 end
 
 display_welcome_message()
