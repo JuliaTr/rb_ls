@@ -121,15 +121,12 @@ def display_messages(amount_of_loan, monthly_interest_rate,
 
   prompt('continue_calculation')
   answer_for_calculation = Kernel.gets().chomp()
-  clear()
 
-  if answer_for_calculation.downcase().start_with?('y')
+  if answer_for_calculation.downcase().start_with?('y') ||
+    answer_for_calculation == ""
     prompt('calculation')
     sleep 1
-    clear()
     prompt('your_monthly_payment', '$', monthly_payment)
-    sleep 2.5
-    clear()
   end
 end
 
