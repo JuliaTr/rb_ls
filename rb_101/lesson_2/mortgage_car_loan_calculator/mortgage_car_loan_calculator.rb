@@ -3,10 +3,6 @@ require 'yaml'
 MESSAGES = YAML.load_file('mortgage_car_loan_calculator_messages.yml')
 MONTHS_IN_YEAR = 12
 
-def cursor
-  print "\033[1A\033[1C"
-end
-
 def messages(message)
   MESSAGES[message]
 end
@@ -14,6 +10,10 @@ end
 def prompt(key, *args)
   message = messages(key) % args
   Kernel.puts("=> #{message}")
+end
+
+def cursor(column)
+  print "\033[1A\033[#{column}C"
 end
 
 def clear
@@ -60,7 +60,7 @@ def get_loan
   loan_amount = ''
   loop do
     prompt('loan_amount', '$')
-    cursor()
+    cursor(1)
     loan_amount = Kernel.gets().chomp().delete("$").strip()
     clear()
 
@@ -77,7 +77,7 @@ def get_interest_rate
   interest_rate = ''
   loop do
     prompt('interest_rate', 5, 1.2, '%')
-    cursor()
+    cursor(-1)
     interest_rate = Kernel.gets().chomp().delete("%").strip()
     clear()
 
