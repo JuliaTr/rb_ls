@@ -101,12 +101,12 @@ def get_loan_duration
   converted_loan_duration_in_years * MONTHS_IN_YEAR
 end
 
-def how_much_to_pay(loan_amount, monthly_interest_rate, loan_duration_in_months)
+def calculate_monthly_payment(loan_amount, monthly_interest_rate, loan_duration_in_months)
   loan_amount * (monthly_interest_rate / (1 -
   ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
 end
 
-def calculation_messages(amount_of_loan, monthly_interest_rate,
+def display_messages(amount_of_loan, monthly_interest_rate,
                          amount_of_loan_duration_in_months, monthly_payment)
   prompt('summary', '$', amount_of_loan, monthly_interest_rate,
          amount_of_loan_duration_in_months)
@@ -137,9 +137,9 @@ loop do
   amount_of_loan = get_loan()
   monthly_interest_rate = get_interest_rate()
   amount_of_loan_duration_in_months = get_loan_duration()
-  monthly_payment = how_much_to_pay(amount_of_loan, monthly_interest_rate,
+  monthly_payment = calculate_monthly_payment(amount_of_loan, monthly_interest_rate,
                                     amount_of_loan_duration_in_months)
-  calculation_messages(amount_of_loan, monthly_interest_rate,
+  display_messages(amount_of_loan, monthly_interest_rate,
                        amount_of_loan_duration_in_months, monthly_payment)
   break unless another_calculation()
 end
