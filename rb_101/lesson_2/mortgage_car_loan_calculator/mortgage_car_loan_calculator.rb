@@ -83,7 +83,7 @@ def get_interest_rate
 
     break unless interest_rate.empty?() ||
                  valid_number?(interest_rate) == false ||
-                 interest_rate.to_f() <= 0
+                 interest_rate.to_f() < 0
     prompt('invalid_interest_rate')
   end
 
