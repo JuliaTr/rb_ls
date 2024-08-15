@@ -109,17 +109,18 @@ def get_loan_duration
   converted_loan_duration_in_years * MONTHS_IN_YEAR
 end
 
-def calculate_monthly_payment(loan_amount, monthly_interest_rate, loan_duration_in_months)
+def calculate_monthly_payment(loan_amount, monthly_interest_rate,
+                              loan_duration_in_months)
   if monthly_interest_rate == 0.0
     loan_amount / loan_duration_in_months
   else
     loan_amount * (monthly_interest_rate / (1 -
     ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
-  end 
+  end
 end
 
 def display_messages(amount_of_loan, monthly_interest_rate,
-                         amount_of_loan_duration_in_months, monthly_payment)
+                     amount_of_loan_duration_in_months, monthly_payment)
   prompt('summary', '$', amount_of_loan, monthly_interest_rate,
          amount_of_loan_duration_in_months)
 
@@ -127,7 +128,7 @@ def display_messages(amount_of_loan, monthly_interest_rate,
   answer_for_calculation = Kernel.gets().chomp()
 
   if answer_for_calculation.downcase().start_with?('y') ||
-    answer_for_calculation == ""
+     answer_for_calculation == ""
     prompt('calculation')
     sleep 1
     prompt('your_monthly_payment', '$', monthly_payment)
@@ -143,14 +144,17 @@ end
 
 display_welcome_message()
 name = get_name()
+
 loop do
   amount_of_loan = get_loan()
   monthly_interest_rate = get_interest_rate()
   amount_of_loan_duration_in_months = get_loan_duration()
-  monthly_payment = calculate_monthly_payment(amount_of_loan, monthly_interest_rate,
-                                    amount_of_loan_duration_in_months)
+  monthly_payment =
+    calculate_monthly_payment(amount_of_loan, monthly_interest_rate,
+                              amount_of_loan_duration_in_months)
   display_messages(amount_of_loan, monthly_interest_rate,
-                       amount_of_loan_duration_in_months, monthly_payment)
+                   amount_of_loan_duration_in_months, monthly_payment)
   break unless another_calculation()
 end
+
 prompt('thank_you', name)
