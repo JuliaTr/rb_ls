@@ -2,7 +2,7 @@ welcome: Welcome in Mortgage/Car Loan Calculator!
 name: |
   Enter your name: 
   Letters, numbers and symbols are acceptable.
-invalid_name: Looks like the name is not valid. Please enter your valid name. Letters, numbers and symbols are acceptable.
+invalid_name: Looks like the name is not valid.
 greeting: Hi, %s!
 loan_amount: |
   What amount of loan do you need? (e.g. 10000 for $ 10 000 / 10,000) 
@@ -22,9 +22,9 @@ summary: |
       Amount of loan:            %c %.2f
       (Monthly) interest rate:   %.4f%%
       Loan duration (in months): %d
-continue_calculation: Do you want to calculate the result? (Press Y to continue)
+continue_calculation: Do you want to calculate the result? (Press Y / Enter key to continue or any other key to exit)
 calculation: Calculating...
 your_monthly_payment: "Your monthly payment is:  %c %.2f"
-question_to_perform_another_calculation: Do you want to perform another calculation? (Press Y to calculate again)
+question_to_perform_another_calculation: Do you want to perform another calculation? (Press Y / Enter key to calculate again or any other key to exit)
 thank_you: Thank you for using Mortgage/Car Loan Calculator! Good bye, %s!
 
