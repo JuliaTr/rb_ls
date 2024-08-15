@@ -110,10 +110,12 @@ def get_loan_duration
 end
 
 def calculate_monthly_payment(loan_amount, monthly_interest_rate, loan_duration_in_months)
-  loan_amount * (monthly_interest_rate / (1 -
-  ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
-
-  loan_amount / loan_duration_in_months if monthly_interest_rate == 0.0
+  if monthly_interest_rate == 0.0
+    loan_amount / loan_duration_in_months
+  else
+    loan_amount * (monthly_interest_rate / (1 -
+    ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
+  end 
 end
 
 def display_messages(amount_of_loan, monthly_interest_rate,
