@@ -16,10 +16,6 @@ def cursor(column)
   print "\033[1A\033[#{column}C"
 end
 
-def clear
-  system('clear')
-end
-
 def valid_number?(input)
   valid_integer?(input) || valid_float?(input)
 end
@@ -33,10 +29,10 @@ def valid_float?(input)
 end
 
 def display_welcome_message
-  clear()
+  system('clear')
   prompt('welcome')
   sleep 0.8
-  clear()
+  system('clear')
 end
 
 def get_name
@@ -44,7 +40,7 @@ def get_name
   loop do
     prompt('name')
     name = Kernel.gets().chomp().strip().upcase()
-    clear()
+    system('clear')
 
     break unless name.empty?()
     prompt('invalid_name')
@@ -56,13 +52,13 @@ def get_name
 end
 
 def get_loan
-  clear()
+  system('clear')
   loan_amount = ''
   loop do
     prompt('loan_amount', '$')
-    cursor(1)
+    cursor(2)
     loan_amount = Kernel.gets().chomp().delete("$").strip()
-    clear()
+    system('clear')
 
     break unless loan_amount.empty?() ||
                  valid_number?(loan_amount) == false ||
@@ -79,7 +75,7 @@ def get_interest_rate
     prompt('interest_rate', 5, 1.2, '%')
     cursor(-1)
     interest_rate = Kernel.gets().chomp().delete("%").strip()
-    clear()
+    system('clear')
 
     break unless interest_rate.empty?() ||
                  valid_number?(interest_rate) == false ||
@@ -87,9 +83,7 @@ def get_interest_rate
     prompt('invalid_interest_rate')
   end
 
-  converted_interest_rate = interest_rate.to_f()
-  converted_interest_rate_in_percentage = converted_interest_rate / 100
-  converted_interest_rate_in_percentage / MONTHS_IN_YEAR
+  interest_rate
 end
 
 def get_loan_duration
@@ -97,7 +91,7 @@ def get_loan_duration
   loop do
     prompt('loan_duration_in_years')
     loan_duration_in_years = Kernel.gets().chomp().strip()
-    clear()
+    system('clear')
 
     break unless loan_duration_in_years.empty?() ||
                  valid_number?(loan_duration_in_years) == false ||
@@ -105,25 +99,49 @@ def get_loan_duration
     prompt('invalid_loan_duration_in_years')
   end
 
-  converted_loan_duration_in_years = loan_duration_in_years.to_f()
-  converted_loan_duration_in_years * MONTHS_IN_YEAR
+  loan_duration_in_years.to_f()
 end
 
-def calculate_monthly_payment(loan_amount, monthly_interest_rate,
-                              loan_duration_in_months)
-  if monthly_interest_rate == 0.0
-    loan_amount / loan_duration_in_months
+def calculate_interest_rate(annual_interest_rate)
+  if annual_interest_rate == "0"
+    converted_0_interest_rate = annual_interest_rate.to_i()
   else
-    loan_amount * (monthly_interest_rate / (1 -
-    ((1 + monthly_interest_rate)**(-loan_duration_in_months))))
+    converted_interest_rate = annual_interest_rate.to_f()
+    interest_rate_in_percentage = converted_interest_rate / 100
+    monthly_interest_rate_in_percentage = interest_rate_in_percentage /
+                                          MONTHS_IN_YEAR
+  end
+
+  return converted_0_interest_rate, monthly_interest_rate_in_percentage
+end
+
+def calculate_loan_duration(loan_duration_in_years)
+  loan_duration_in_years * MONTHS_IN_YEAR
+end
+
+def calculate_monthly_payment(loan, monthly_interest_rate,
+                              loan_duration_in_months)
+  if monthly_interest_rate[0] == 0
+    monthly_payment_0_interest_rate = loan / loan_duration_in_months
+  else
+    monthly_payment = loan * (monthly_interest_rate[1] / (1 -
+    ((1 + monthly_interest_rate[1])**(-loan_duration_in_months))))
+  end
+
+  return monthly_payment_0_interest_rate, monthly_payment
+end
+
+def display_summary(loan, monthly_interest_rate, loan_duration_in_months)
+  if monthly_interest_rate[0]
+    prompt('summary', '$', loan, monthly_interest_rate[0],
+           loan_duration_in_months)
+  else
+    prompt('summary', '$', loan, monthly_interest_rate[1],
+           loan_duration_in_months)
   end
 end
 
-def display_messages(amount_of_loan, monthly_interest_rate,
-                     amount_of_loan_duration_in_months, monthly_payment)
-  prompt('summary', '$', amount_of_loan, monthly_interest_rate,
-         amount_of_loan_duration_in_months)
-
+def display_continue_calculation
   prompt('continue_calculation')
   answer_for_calculation = Kernel.gets().chomp()
 
@@ -131,14 +149,21 @@ def display_messages(amount_of_loan, monthly_interest_rate,
      answer_for_calculation == ""
     prompt('calculation')
     sleep 1
-    prompt('your_monthly_payment', '$', monthly_payment)
   end
 end
 
-def another_calculation
+def display_monthly_payment(monthly_payment)
+  if monthly_payment[0]
+    prompt('your_monthly_payment', '$', monthly_payment[0])
+  else
+    prompt('your_monthly_payment', '$', monthly_payment[1])
+  end
+end
+
+def display_another_calculation
   prompt('question_to_perform_another_calculation')
   answer = Kernel.gets().chomp()
-  clear()
+  system('clear')
   answer.downcase().start_with?('y') || answer == ""
 end
 
@@ -146,15 +171,19 @@ display_welcome_message()
 name = get_name()
 
 loop do
-  amount_of_loan = get_loan()
-  monthly_interest_rate = get_interest_rate()
-  amount_of_loan_duration_in_months = get_loan_duration()
-  monthly_payment =
-    calculate_monthly_payment(amount_of_loan, monthly_interest_rate,
-                              amount_of_loan_duration_in_months)
-  display_messages(amount_of_loan, monthly_interest_rate,
-                   amount_of_loan_duration_in_months, monthly_payment)
-  break unless another_calculation()
+  loan = get_loan()
+  annual_interest_rate = get_interest_rate()
+  loan_duration_in_years = get_loan_duration()
+
+  monthly_interest_rate = calculate_interest_rate(annual_interest_rate)
+  loan_duration_in_months = calculate_loan_duration(loan_duration_in_years)
+  monthly_payment = calculate_monthly_payment(loan, monthly_interest_rate,
+                                              loan_duration_in_months)
+
+  display_summary(loan, monthly_interest_rate, loan_duration_in_months)
+  display_continue_calculation()
+  display_monthly_payment(monthly_payment)
+  break unless display_another_calculation()
 end
 
 prompt('thank_you', name)
