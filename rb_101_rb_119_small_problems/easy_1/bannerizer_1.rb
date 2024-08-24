@@ -11,7 +11,7 @@ def print_in_box(string)
   puts horizontal_rule
   puts empty_line
   puts "| #{string[0..75]} |"
-  puts "| #{string[76..136]}#{' ' * (string[0..75].size - string[76..136].size)} |"
+  puts "| #{string[76..131]}#{' ' * (string[0..75].size - string[76..131].size)} |"
   puts empty_line
   puts horizontal_rule
 end
