@@ -41,7 +41,7 @@ Algorithm:
   - Define a method `triangle_upside_down` that takes one argument 'stars'
   - Print the number of stars `n` number of times starting from the base of the triangle
     - Decrement the number of stars every next iteration, 
-      justifying the stars to the perpendicular side of the triangle
+      justifying the stars to the perpendicular of the triangle
 =end
 
 def triangle_upside_down(number_stars)
