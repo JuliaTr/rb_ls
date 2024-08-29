@@ -60,8 +60,8 @@ Algorithm:
       - Return their name (return: string).
     - If the user left the INPUT empty:                                           # DONE
       - Return a default value of the parameer `name = Teddy` (return: string).
-  - Generate an age (`age = rand(20..200)`) (return: integer).
-  - Output a string with the interpolated:
+  - Generate an age (`age = rand(20..200)`) (return: integer).                    # DONE
+  - Output a string with the interpolated:                                        # DONE
       - returned String object referenced by `get_name` method invocation.
       - returned Integer object referenced by `age`.
 =end
