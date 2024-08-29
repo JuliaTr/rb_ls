@@ -41,7 +41,7 @@ Examples and Test Cases:
 Data Structure:
   - Array
 
-Algorithm:
+Algorithm: (!!!!This algoritnm needs improvement)
   - Define a method called `converted_alphabet` that takes one argument `letter`.
   - Convert the alphabetical letters to an array.
   - Create an array of numbers of that number of letters in an alphabet.
@@ -57,7 +57,6 @@ def convert_alphabet(letter)
   alphabet = 'abcdefghijklmnopqrstuvwxyz'.chars
   index = 0
   loop do
-    alphabet.index(alphabet[index])
     break if letter.downcase == alphabet[index]
 
     index += 1
@@ -71,6 +70,26 @@ p convert_alphabet('b')  # 2
 p convert_alphabet('B')  # 2
 p convert_alphabet('c')  # 3
 p convert_alphabet('')   # nil
+
+=begin
+# To understand the code and why algorithm needs improvement
+
+irb(main):049:0> letter = 'b'
+=> "b"
+irb(main):050:0> alphabet = 'abcdefghijklmnopqrstuvwxyz'.chars
+=> 
+["a",                                                              
+...                                                                
+irb(main):051:0> index = 0
+=> 0
+irb(main):052:1* loop do
+irb(main):053:1*   break if letter.downcase == alphabet[index]
+irb(main):054:1*   index += 1
+irb(main):055:0> end
+=> nil
+irb(main):056:0> index
+=> 1
+=end
 
 
 # The following use cases are not covered for input validation
