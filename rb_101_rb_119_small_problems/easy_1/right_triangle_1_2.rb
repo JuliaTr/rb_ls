@@ -51,7 +51,7 @@ Data Structure:
   - (?)
 
 Algorithm:
-  - Define a method called `triangle_grid` that takes 2 arguments `number` and `angle`
+  - Define a method called `triangle_grid` that takes 2 parameters `number` and `angle`
   - Create a flow control for positioning the triangle
     - Build a triangle in each in branch for 4 angles
 =end
