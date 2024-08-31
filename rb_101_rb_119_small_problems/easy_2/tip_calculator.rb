@@ -18,10 +18,10 @@ ____________________________________________________________
 PEDAC
 
 Problem:
-  - Input: An integer object
+  - Input: An integer object.
   - Output: 
     - 2 strings with interpolated the returned integer
-      objects for the tip ans the total
+      objects for the tip and the total.
 
   - Rules:
     - Explicit:
