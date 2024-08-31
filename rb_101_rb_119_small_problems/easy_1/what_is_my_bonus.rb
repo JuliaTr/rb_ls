@@ -39,7 +39,7 @@ Data Structure:
   - No
 
 Algorithm:
-  - Define a method called `calculate_bonus` that has two arguments `salary` and `positive_bool`
+  - Define a method called `calculate_bonus` that has two parameters `salary` and `positive_bool`
   - Use a flow control to calculate a bonus:
     - If the boolean is `true`, the bonus should be half of the salary
     - If the boolean is `false`, the bonus should be `0`
