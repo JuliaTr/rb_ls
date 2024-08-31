@@ -58,12 +58,12 @@ The base of the triagle should be the length of the number of stars passed in as
 ___________________________________________________________________________________________________
 
 Algorithm:
-  - Define a method called `triangle` that takes one argument `n`.
+  - Define a method called `triangle` that takes one parameter `n`.
   - Build triangle from its top, justifying the first star on the right side of `n` stars colunm
   - Each next line should contain + 1 star till the `n` stars in the base.
 =end
 
-# Define a method called `triangle` that takes one argument `n`.
+# Define a method called `triangle` that takes one parameter `n`.
 def triangle(n)
   # Build triangle from its top, justifying the first star on the right side of the colunm
   star = '*'
