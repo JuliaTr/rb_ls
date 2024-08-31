@@ -54,7 +54,7 @@ Data Structure:
   - No
   
 Algorithm:
-    - Define a method called `get_name` without arguments                         # DONE
+    - Define a method called `get_name` without parameters                        # DONE
     - Prompt the user to input their name                                         # DONE
     - If the user has provided their name:                                        # DONE
       - Return their name (return: string).
