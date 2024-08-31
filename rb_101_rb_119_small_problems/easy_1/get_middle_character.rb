@@ -42,7 +42,7 @@ Data Structure:
   - Array
 
 Algorithm:
-  - Define a method called `center_of` that takes one argument 'string'.                          # DONE
+  - Define a method called `center_of` that takes one parameter 'string'.                          # DONE
   - Convert string to array `array` (should return: array).                                       # DONE
   - Count the length of `array` by `array_length = array.length / 2` (should return: integer).    # DONE
   - Return an integer by finding the middle of the array by
