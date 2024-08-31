@@ -38,7 +38,7 @@ Data Structure:
   - No
 
 Algorithm:
-  - Define a method `triangle_upside_down` that takes one argument 'stars'
+  - Define a method `triangle_upside_down` that takes one parameter 'stars'
   - Print the number of stars `n` number of times starting from the base of the triangle
     - Decrement the number of stars every next iteration, 
       justifying the stars to the perpendicular of the triangle
