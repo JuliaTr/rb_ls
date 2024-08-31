@@ -51,13 +51,13 @@ Algorithm:
   - Ask the user "Enter the width of the room in feet:"                                             # DONE                  
   - Assign the INPUT answer to the variable `width` (return: string)                                # DONE        
   - Convert the INPUT to float (return: float)                                                      # DONE                           
-  - Calculate the area of the room in square feet
+  - Calculate the area of the room in square feet                                                   # DONE
     `square_feet = length * width` (return: float)                          
-  - Calculate the area in square inches `squre_inches = square_feet * SQINCHES`
+  - Calculate the area in square inches `squre_inches = square_feet * SQINCHES`                     # DONE
     (return: float)
-  - Calculate the area in square centimeters 
+  - Calculate the area in square centimeters                                                        # DONE
     `square_centimeters = square_feet * SQCENTIMETERS` (return: float)                                                           
-  - Interpolate the return value of `square_feet`, `square_inches` and
+  - Interpolate the return value of `square_feet`, `square_inches` and                              # DONE
     `square_centimeters` into the string given in the example.                                      
 =end
 
