@@ -41,7 +41,7 @@ Data Structure:
   - Array
 
 Algorithm:
-  - Define a method called `reversed_number` that takes one argument `number`.
+  - Define a method called `reversed_number` that takes one parameter `number`.
   - Return an array of digits in a reversed order.
   - Join the array elements to a string
   - Convert a string to integer.
