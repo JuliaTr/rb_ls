@@ -46,8 +46,8 @@ Data Structure:
   - No
 
 Algorithm:
-  - Initialize a `TIMENOW` constant            # DONE
-  - Initialize a `YEARNOW` constant            # DONE
+  - Initialize a `TIMENOW` constant            
+  - Initialize a `YEARNOW` constant            
   - Ask the user "What is your age?"                                                              
   - Assign the INPUT answer to the variable `age` (return: string).
   - Ask the user "At what age would you like to retire?".
