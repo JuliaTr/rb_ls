@@ -56,10 +56,40 @@ if name.include?('!')
 else
   puts "Hello #{name}."
 end
+=begin
+$ ruby greeting_a_user.rb
+What is your name? Bob
+Hello Bob.
+$ ruby greeting_a_user.rb
+What is your name? Bob!
+HELLO BOB. WHY ARE WE SCREAMING?
+=end
 
 
 
-## From the exercise solution:
+## Further exploration:
+# Use `String#chomp!` and `String#chop!`
+
+print "What is your name? "
+name = gets.chomp!
+
+if name[-1] == ('!')
+  puts "HELLO #{name.upcase.chop!}. WHY ARE WE SCREAMING?"
+else
+  puts "Hello #{name}."
+end
+=begin
+$ ruby greeting_a_user.rb
+What is your name? Bob
+Hello Bob.
+$ ruby greeting_a_user.rb
+What is your name? Bob!
+HELLO BOB. WHY ARE WE SCREAMING?
+=end
+
+
+
+# From the exercise solution:
 
 if name[-1] == '!'
   name = name.chop
@@ -67,4 +97,3 @@ if name[-1] == '!'
 else
   puts "Hello #{name}."
 end
-
