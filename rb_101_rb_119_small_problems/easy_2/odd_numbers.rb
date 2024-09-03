@@ -11,6 +11,7 @@ PEDAC
 Problem:
   - Input: No
   - Output: integer objects
+
   - Rules:
     - Explicit:
        - Print odd numbers from 1 to 99, inclusive.
@@ -21,6 +22,7 @@ Problem:
 
   - Assumptions:
     - No
+    
 Examples an Test Cases:
   - No
 
