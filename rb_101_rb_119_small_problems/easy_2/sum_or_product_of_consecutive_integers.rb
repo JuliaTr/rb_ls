@@ -121,3 +121,21 @@ The sum of the integers between 1 and 5 is 15.
 p
 The product of the integers between 1 and 6 is 720.
 =end
+
+
+
+## Further exploration:
+
+# To compute sum with `Enumerable#inject`:
+puts ">> Please enter an integer greater than 0:"
+answer = gets.to_i
+
+sum = (1..answer).inject(:+)
+p sum
+
+# To compute product with `Enumerable#inject`:
+puts ">> Please enter an integer greater than 0:"
+answer = gets.to_i
+
+product = (1..answer).inject(:*)
+p product
