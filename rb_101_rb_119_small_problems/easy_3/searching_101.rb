@@ -73,17 +73,15 @@ Algorithm:
 =end
 
 array = []
-counter = 1
+counter = 0
 array_for_text = ['1st', '2nd', '3rd', '4th', '5th', 'last']
-counter_for_text = 0
 loop do
-  puts "==> Enter the #{array_for_text[counter_for_text]} number:"
+  puts "==> Enter the #{array_for_text[counter]} number:"
   number = gets.chomp.to_i
 
   array <<  number
   counter += 1
-  counter_for_text += 1
-  break if counter == 7
+  break if counter == 6
 end
 
 popped_element = array.pop
