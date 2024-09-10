@@ -84,6 +84,30 @@ loop do
   break if counter == 6
 end
 
+
+## Optional: for looping
+
+# `Integer#times`
+# array = []
+# array_for_text = ['1st', '2nd', '3rd', '4th', '5th', 'last']
+# 6.times do |iteration_number|
+#   puts "==> Enter the #{array_for_text[iteration_number]} number:"
+#   number = gets.chomp.to_i
+
+#   array << number
+# end
+
+# `Array#each`
+# array = []
+# array_for_text = ['1st', '2nd', '3rd', '4th', '5th', 'last']
+# [1, 2, 3, 4, 5, 6].each do |iteration_number|
+#   puts "==> Enter the #{array_for_text[iteration_number]} number:"
+#   number = gets.chomp.to_i
+
+#   array << number
+# end
+
+
 popped_element = array.pop
 
 result = array.any?(popped_element)
