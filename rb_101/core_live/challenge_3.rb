@@ -23,17 +23,17 @@ random_greeting(name)
 What will this code output and why?
 The output is `undefined local variable or method greetings' 
 for main:Object (NameError)` message. A local variable `names`
-is initialised on line 1 referencing an Array object with two 
-string objects `['hello', 'howdy']`. On line 2, `greetings` is initialised 
+is initialised on line 2 referencing an Array object with two 
+string objects `['hello', 'howdy']`. On line 3, `greetings` is initialised 
 referencing an Array object with two string objects `['homer', 'marge']`. 
-Then, on line 10, an `Array#sample` method is invoked on `names`, 
+Then, on line 11, an `Array#sample` method is invoked on `names`, 
 returning random elements from self. The return value of `names.sample` 
-is assigned to a new local variable `name`. When, on line 11, 
+is assigned to a new local variable `name`. When, on line 12, 
 an object referenced by `name` is passed as an argument in a 
 `random_greeting` method invocation, the `random_greeting` method 
-definition on lines 4 through 8 can access only the object, being 
+definition on lines 5 through 9 can access only the object, being 
 passed to it. This is because the method definition’s parameter 
-`name` is bound with the argument `name`. So, on line 7, `random_greeting` 
+`name` is bound with the argument `name`. So, on line 8, `random_greeting` 
 cannot access `greetings`, as it’s object wasn’t passed as an argument.
 =end
 
@@ -43,20 +43,26 @@ cannot access `greetings`, as it’s object wasn’t passed as an argument.
 =begin
 1. How many `name` variables exist in this code? How are they related?
 
-There are 3 variables `name` in the presented code snippet. 
-On line 10, a local variable `name` is initialised and references 
+There are 2 variables `name` in the presented code snippet. 
+On line 11, a local variable `name` is initialised and references 
 a return value from `Array#sample` method invocation on 
-`['homer', 'marge']` referenced by`names`. Then, on line 11, 
+`['homer', 'marge']` referenced by`names`. Then, on line 12, 
 an object referenced by `name` is passed as an argument in 
 `random_greeting` invocation, being bound with the parameter 
 `name`, which is the second `name` variable, of the `random_greeting` 
-method definition on lines 4 through 8. The parameter `name` 
+method definition on lines 5 through 9. The parameter `name` 
 is an initialised local to the method definition variable. 
 Inside the method’s body a non-distructive `String#capitalize` 
 method is invoked on `['homer', 'marge']` referenced by `name`. 
-Its return value is assigned to a new local variable `name`, 
-which is the third `name` in the code snippet. On line 7, `name` 
+Its return value is reassigned to the same `name`. On line 8, `name` 
 references `['Homer', 'Marge']`.
+
+Optional explanation of the local to the method variable:
+There is 1 `name` variable within `random_greeting` method 
+definition. As a parameter `name` points to the return 
+value of `names.sample`. Then, on line 6, the same `name` 
+points to the return value of `name.capitalize`. 
+This demonstrates reassignment.
 =end
 
 # 2. Fix this code.
@@ -84,18 +90,6 @@ $ ruby challenge_3.rb
 "howdy Marge"
 $ ruby challenge_3.rb
 "hello Marge"
-$ ruby challenge_3.rb
-"hello Marge"
-$ ruby challenge_3.rb
-"howdy Marge"
-$ ruby challenge_3.rb
-"hello Homer"
-$ ruby challenge_3.rb
-"hello Marge"
-$ ruby challenge_3.rb
-"howdy Marge"
-$ ruby challenge_3.rb
-"howdy Homer"
 =end
 
 # 3. After fixing the code, update it so that we don't ever repeat names or greetings.
@@ -115,7 +109,7 @@ end
 
 
 
-# ## Experiments:
+## Experiments:
 greetings = ['hello', 'howdy']
 names = ['homer', 'marge']
 
