@@ -154,10 +154,6 @@ loop do
   names.delete(name)
   greetings.delete(greeting)
 
-  # To delete `nil` from the array
-  names.compact!
-  greetings.compact!
-
   if names.empty? || greetings.empty?
     multiline_message = <<~MSG.strip
       I have used all names or greetings.
@@ -184,6 +180,36 @@ $ ruby challenge_3.rb
 I have used all names or greetings.
 Thanks for using the program! Hope, it was fun!
 =end
+
+
+
+# Using a setter method `Array#[]=` and `Array#index`:
+greetings = ['hello', 'howdy']
+names = ['homer', 'marge']
+
+loop do
+  name = names.sample.capitalize!
+  greeting = greetings.sample.capitalize!
+  p "#{greeting} #{name}"
+
+  name_index = names.index(name)
+  greeting_index = greetings.index(greeting)
+
+  names[name_index] = nil
+  greetings[greeting_index] = nil
+ 
+  names.compact!
+  greetings.compact!
+
+  if names.empty? || greetings.empty?
+    multiline_message = <<~MSG.strip
+      I have used all names or greetings.
+      Thanks for using the program! Hope, it was fun!
+    MSG
+    puts multiline_message
+    break
+  end
+end
 
 
 
