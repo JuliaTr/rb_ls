@@ -155,7 +155,7 @@ loop do
   greetings.delete(greeting)
 
   if names.empty? || greetings.empty?
-    multiline_message = <<~MSG.strip
+    multiline_message = <<~MSG
       I have used all names or greetings.
       Thanks for using the program! Hope, it was fun!
     MSG
@@ -202,7 +202,7 @@ loop do
   greetings.compact!
 
   if names.empty? || greetings.empty?
-    multiline_message = <<~MSG.strip
+    multiline_message = <<~MSG
       I have used all names or greetings.
       Thanks for using the program! Hope, it was fun!
     MSG
