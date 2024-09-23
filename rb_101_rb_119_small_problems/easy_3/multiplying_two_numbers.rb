@@ -32,7 +32,7 @@ Data Structure:
   - The work will bw done with integers.
 
 Algorithm:
-  - Define a method called `multiply` which takes two arguments.
+  - Define a method called `multiply` which takes two parameters.
   - Multiply two arguments and return the result.
 =end
 
