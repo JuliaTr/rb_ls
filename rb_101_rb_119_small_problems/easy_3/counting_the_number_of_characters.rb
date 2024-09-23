@@ -43,7 +43,7 @@ Examples and Test Case:
   - All examples conform to the rules.
 
 Data Structure:
-  - The work will be conducted with strings (?)
+  - Array
 
 Algorithm:
   - Prompt the user to write a word or multiple words.
