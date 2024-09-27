@@ -43,7 +43,7 @@ Data Structure:
 Algorithm:
   - Define a method called `xor` which takes two parameters.
   - If only one of the arguments truthy, return `true`.
-  - if not, return `false`.
+  - If not, return `false`.
 =end
 
 def xor?(arg1, arg2)
@@ -76,11 +76,32 @@ def xor?(arg1, arg2)
   end
 end
 
-p xor?(5.even?, 4.even?) == true  # DONE
-p xor?(5.odd?, 4.odd?) == true    # DONE
-p xor?(5.odd?, 4.even?) == false  # DONE
-p xor?(5.even?, 4.odd?) == false  # DONE
-# p xor?('abc', nil) == true         
-p xor?(nil, 'abc') == true        # DONE
-# p xor?('abc', 'abc') == false    
-p xor?(nil, nil) == false         # DONE  
+p xor?(5.even?, 4.even?) == true  # true
+p xor?(5.odd?, 4.odd?) == true    # true
+p xor?(5.odd?, 4.even?) == false  # true
+p xor?(5.even?, 4.odd?) == false  # true
+# p xor?('abc', nil) == true      # false     
+p xor?(nil, 'abc') == true        # true
+# p xor?('abc', 'abc') == false   # false
+p xor?(nil, nil) == false         # true
+
+
+
+## Further exploration
+=begin
+Does the `xor` method perform short-circuit evaluation of its operands? 
+Why or why not? Does short-circuit evaluation in xor operations even make 
+sense?
+
+There are `&&` and `||` operators in the method `xor` body. These operator short-circuit if
+the first operand of `&&` operator is a falsy value, if the first operand of `||` operator 
+is a truthy value.
+In the solution above on lines 50 through 52 the short-circuiting happens when:
+on lines 50 and 51, the first operands of `((arg1 == true) && (arg2 == true))`, 
+`((arg1 == false) && (arg2 == false))`, `(arg1 && arg2)`, `(!arg1 && !arg2)` 
+expressions evaluate to false.
+
+Also, when Ruby encounters the first truthy value in the expression
+with `||` operator, the short-circuiting happens.
+=end
+
