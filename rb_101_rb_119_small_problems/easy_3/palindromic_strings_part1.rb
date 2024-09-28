@@ -37,8 +37,8 @@ Data Structure:
   - The work will be done with strings.
 
 Algorithm:
-  - Define a method `palindrome?` which takes an argument 'str'.                 # DONE
-  - If the first character of a string is not the same as the last one,          # DONE
+  - Define a method `palindrome?` which takes an argument 'str'.
+  - If the first character of a string is not the same as the last one,
     return `false`.                                               
   - If all characters of a string are the same as counting from the last one:
     - return `true`.
@@ -138,5 +138,3 @@ def palindrome?(str)
 end
 
 p palindrome?('Madam') == false              # true
-
-
