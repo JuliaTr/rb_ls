@@ -57,3 +57,9 @@ p uppercase?('Four Score') == false      # true
 p uppercase?('FOUR SCORE') == true       # true
 p uppercase?('4SCORE!') == true          # true
 p uppercase?('') == true                 # true
+
+
+## Further exploration:
+# If the argument is an empty string, it would make sense to return 
+# `false` and cosider it as an invalid input. An empty string may lead
+# to an unpredictable program behaviour. 
