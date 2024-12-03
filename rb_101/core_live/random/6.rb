@@ -7,18 +7,26 @@ def my_method(a)
 end
 
 b = [1]
-p b.object_id  # 60
+p my_method(b) 
+p b  
+
+
+# Answer:
+def my_method(a)
+  a << 5
+  a = [2, 3]
+  a
+end
+
+b = [1]
 p my_method(b)  
 # [2, 3]
 # => [2, 3] (if we check in irb)
 p b             
 # [1, 5]
 # => [1, 5] (if we check in irb)
-p b.object_id  # 60
 
 =begin
-Explanation:
-
 On line 7, a local variable `b` is initialized, references, and points to 
 an Array object `[1]`. On line 8, the object referenced by `b` is passed
 as an argument to the `my_method` invocation. 
@@ -35,12 +43,11 @@ referred to as "pass by value of the reference" or "call by sharing".
 
 On line 2, a mutating `Array#<<` method is invoked on the object referenced
 by `a`, appending an Integer object `5` to `[1]`, mutating the original 
-object in place in the outer scope. Now, `b` points to `[1, 5]`, which 
-is the same object with the same `object_id`, but the value is mutated.
+object in place in the outer scope. Now, `b` points to `[1, 5]`.
 
-On line 3, `[2, 3]` is reassigned to `a` with a new `object_id`. Now,
-`a` points to `[2, 3]` and no longer points `[1, 5]`. On line 4, the object
-referenced by `a` is returned by the method invocation.
+On line 3, `[2, 3]` is reassigned to `a`. Now, `a` points to `[2, 3]` and 
+no longer points `[1, 5]`. On line 4, the object referenced by `a` is 
+returned by the method invocation.
 
 In Ruby, the assignment (`=`) operator is used for reassignment, assigning
 a new object to the existing variable without mutating the original object
