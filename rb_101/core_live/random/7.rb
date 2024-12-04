@@ -57,6 +57,6 @@ invoked on an integer will return a new object without mutating the caller.
 
 The provided code snippet demonstrates the following concepts: local 
 variable scope regarding method definitions, an object passing strategy 
-through arguments and parameters, immutable method invocation on the 
-immutable objects, and variables as pointers.
+through arguments and parameters, method invocation on the immutable 
+objects, and variables as pointers.
 =end
