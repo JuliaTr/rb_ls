@@ -29,24 +29,3 @@ console.
 The `#puts` method returns `nil`, but the return value isn't used and 
 doesn't affect the output and the behavior of the code.
 =end
-
-=begin
-Innitial explanation:
-
-The code snippet outputs `hello world`.
-
-It illustrates the variables ss pointers concept.
-
-On line 1, a local variable is initialized and references a String object 
-with a value `"hello"`. On line 2, a local variable `b` is initialized 
-and references the same object as `a`. Now, `a` and `b` point to the 
-same object. On line 3, the mutating `String#<<` method is invoked on 
-the object referenced by `a`, appending `" world"` to it and mutating it.
-
-Since `a` and `b` point to the same object, the `Kernel#puts` method 
-invocation, and the object referenced by `b` is passed to it as an 
-argument that will output `hello world` to the console. 
-
-The `#puts` method returns `nil`, but the return value isn't used in this 
-code snippet.
-=end
