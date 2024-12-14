@@ -93,10 +93,10 @@ puts logical_12  # true
 
 =begin
 
-Expressions are evaluated regarding the hierarchy of precedence from highest
+Expressions are evaluated regarding the order of precedence from highest
 to lowest in Ruby.
 
-Hierarch of operators' precedence in the expressions above:
+Order of precedence in the expressions above:
 !
 **
 /
