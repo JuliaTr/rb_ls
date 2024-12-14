@@ -48,6 +48,7 @@ puts logical_6  # false
 
 
 ### The logical NOT (`!`) operator:
+
 logical_7 = !true
 logical_8 = !true && !true
 # false && false
@@ -62,10 +63,32 @@ logical_9 = !(700 / 10 == 70)
 # that `!` has the highest precedence in Ruby. 
 # The arithmetic division (`/`) operator has higher precedence than `==`.
 
-
 puts logical_7  # false
 puts logical_8  # false
 puts logical_9  # false
+
+
+
+logical_10 = (3 < 4 || false) && (false || true)
+# (true || false) && (false || true)
+# true && true
+# true
+
+logical_11 = !true && (!true || 100 != 5**2)
+# false && (false || 100 != 5**2)
+# false && (false || 100 != 25)
+# false && (false || true)
+# false && true
+# false
+
+logical_12 = true || !(true || false)
+# true || !true
+# true || false
+# true
+
+puts logical_10  # true
+puts logical_11  # false
+puts logical_12  # true
 
 # Expressions are evaluated regarding the hierarchy of precedence from highest
 # to lowest in Ruby.
