@@ -5,3 +5,5 @@ unless hungry
 else
   puts "Time to eat!"
 end
+
+# Output: I'm writing Ruby programs!
