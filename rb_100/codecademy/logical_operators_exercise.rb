@@ -91,6 +91,26 @@ puts logical_11  # false
 puts logical_12  # true
 
 
+
+logical_13 = 0 <= 5 && true
+# true && true
+# true
+
+logical_14 = false || 10 / 2 == 5
+# false || 5 == 5
+# false || true
+# true
+
+logical_15 = !!false
+# !true
+# false
+
+puts logical_13  # true
+puts logical_14  # true
+puts logical_15  # false
+
+
+
 =begin
 
 Expressions are evaluated regarding the order of precedence from highest
