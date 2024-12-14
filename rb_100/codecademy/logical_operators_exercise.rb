@@ -90,5 +90,20 @@ puts logical_10  # true
 puts logical_11  # false
 puts logical_12  # true
 
-# Expressions are evaluated regarding the hierarchy of precedence from highest
-# to lowest in Ruby.
+
+=begin
+
+Expressions are evaluated regarding the hierarchy of precedence from highest
+to lowest in Ruby.
+
+Hierarch of operators' precedence in the expressions above:
+!
+**
+/
+<, >, >=
+==, !=
+&&
+||
+=
+
+=end
