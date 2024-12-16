@@ -49,3 +49,14 @@ end
 # 17
 # 18
 # 19
+
+
+
+# Use an `for` loop to print out the numbers 1 through 50, inclusive. 
+# You will want to count up.
+for number in 1..50
+  print number
+end
+
+# Output:
+# 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950
