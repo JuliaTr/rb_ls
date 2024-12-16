@@ -18,7 +18,7 @@ end
 # You will want to count up.
 number = 1
 
-while number < 50
+while number <= 50
   print number
   number += 1
 end
