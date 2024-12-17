@@ -18,3 +18,17 @@ end
 # 4
 # 2
 # 0
+
+
+
+# Use the `loop` iterator to `print` out the string "Ruby!" 30 times.
+counter = 1
+
+loop do
+  print "#{counter}: Ruby! "
+  break if counter == 10
+  counter += 1
+end
+
+# Output:
+# 1: Ruby! 2: Ruby! 3: Ruby! 4: Ruby! 5: Ruby! 6: Ruby! 7: Ruby! 8: Ruby! 9: Ruby! 10: Ruby!
