@@ -22,6 +22,7 @@ end
 
 
 # Use the `loop` iterator to `print` out the string "Ruby!" 30 times.
+# I'll print 10 times as the output is very long.
 counter = 1
 
 loop do
