@@ -7,3 +7,12 @@ my_2d_array.each { |array_inside| puts "#{array_inside}" }
 
 
 
+languages = ["HTML", "CSS", "JavaScript", "Python", "Ruby"]
+languages.each { |language| puts language }
+
+# Output:
+# HTML
+# CSS
+# JavaScript
+# Python
+# Ruby
