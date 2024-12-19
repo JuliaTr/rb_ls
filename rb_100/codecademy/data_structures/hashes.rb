@@ -13,3 +13,23 @@ puts pets["cat"]
 # {}
 # Lada
 # Timon
+
+
+
+# Exercise:
+secret_idetities = {
+  "The Batman" => "Bruce Wayne",
+  "Superman" => "Clark Kent",
+  "Wonder Woman" => "Diana Prince",
+  "Freakazoid" => "Dexter Douglas"
+}
+
+secret_idetities.each do |character, name|
+  puts "#{character}: #{name}"
+end
+
+# Output:
+# The Batman: Bruce Wayne
+# Superman: Clark Kent
+# Wonder Woman: Diana Prince
+# Freakazoid: Dexter Douglas
