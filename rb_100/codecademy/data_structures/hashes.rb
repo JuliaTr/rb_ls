@@ -66,3 +66,15 @@ p hash["hi"]
 # Output:
 # {}
 # "nothing"
+
+
+
+# Exercise:
+colors = { "pink" => 1, "purple" => 2 }
+puts colors["purple"]
+colors["purple"] += 1    # colors["purple"] = colors["purple"] + 1
+puts colors["purple"]
+
+# Output:
+# 2
+# 3
