@@ -82,3 +82,22 @@ puts colors["purple"]
 # Output:
 # 2
 # 3
+
+
+
+# Exercise:
+colors = {
+  "pink" => 4,
+  "purple" => 2,
+  "yellow" => 3
+}
+
+colors = colors.sort_by { |_, count| count }
+p colors
+
+colors.reverse!
+p colors
+
+# # Output: 
+# [["purple", 2], ["yellow", 3], ["pink", 4]]
+# [["pink", 4], ["yellow", 3], ["purple", 2]]
