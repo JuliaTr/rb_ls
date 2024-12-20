@@ -62,10 +62,14 @@ end
 hash = Hash.new("nothing")
 p hash
 p hash["hi"]
+p hash["hi"] = 1
+p hash
 
 # Output:
 # {}
 # "nothing"
+# 1
+# {"hi"=>1}
 
 
 
