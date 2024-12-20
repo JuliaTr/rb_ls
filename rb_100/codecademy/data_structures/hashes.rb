@@ -55,3 +55,14 @@ end
 # sandwich
 # salad
 # taco
+
+
+
+# Exercise:
+hash = Hash.new("nothing")
+p hash
+p hash["hi"]
+
+# Output:
+# {}
+# "nothing"
