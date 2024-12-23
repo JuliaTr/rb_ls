@@ -95,3 +95,18 @@ end
 puts greeter("Jessica")
 
 # Output: Hey, Jessica!
+
+
+
+# Exercise:
+def by_three?(number)
+  if number % 3 == 0
+    return true
+  else
+    return false
+  end
+end
+
+puts by_three?(3)  # true
+puts by_three?(8)  # false
+puts by_three?(9)  # true
