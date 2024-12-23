@@ -23,3 +23,5 @@ def greeting
 end
 
 greeting
+
+# Output: Hello there, Rubyist!
