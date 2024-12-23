@@ -50,7 +50,7 @@ array_of_10
 
 
 
-# Exercise:
+# Exercise (arguments, parameters):
 def cubertino(n)
   puts n**3
 end
@@ -58,3 +58,18 @@ end
 cubertino(8)
 
 # Output: 512
+
+
+
+# Exercise (splat arguments):
+def what_up(greeting, *friends)
+  friends.each { |friend| puts "#{greeting}, #{friend}!" }
+end
+
+what_up("What up", "Ian", "Zoe", "Zenas", "Eleanor")
+
+# Output:
+# What up, Ian!
+# What up, Zoe!
+# What up, Zenas!
+# What up, Eleanor!
