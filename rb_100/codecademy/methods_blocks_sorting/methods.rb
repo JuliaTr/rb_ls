@@ -84,3 +84,14 @@ end
 p add(1, 2)
 
 # Output: 3
+
+
+
+# Exercise:
+def greeter(name)
+  return "Hey, #{name}!"
+end
+
+puts greeter("Jessica")
+
+# Output: Hey, Jessica!
