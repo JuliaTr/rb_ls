@@ -73,3 +73,14 @@ what_up("What up", "Ian", "Zoe", "Zenas", "Eleanor")
 # What up, Zoe!
 # What up, Zenas!
 # What up, Eleanor!
+
+
+
+# Exercise (`return` keyword):
+def add(num1, num2)
+  return num1 + num2
+end
+
+p add(1, 2)
+
+# Output: 3
