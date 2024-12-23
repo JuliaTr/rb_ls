@@ -18,6 +18,7 @@ puts_1_to_10
 
 
 
+# Exercise:
 def greeting
   puts "Hello there, Rubyist!"
 end
@@ -28,6 +29,7 @@ greeting
 
 
 
+# Exercise:
 def array_of_10
   puts (1..10).to_a
 end
@@ -45,3 +47,14 @@ array_of_10
 # 8
 # 9
 # 10
+
+
+
+# Exercise:
+def cubertino(n)
+  puts n**3
+end
+
+cubertino(8)
+
+# Output: 512
