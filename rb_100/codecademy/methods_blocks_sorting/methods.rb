@@ -25,3 +25,23 @@ end
 greeting
 
 # Output: Hello there, Rubyist!
+
+
+
+def array_of_10
+  puts (1..10).to_a
+end
+
+array_of_10
+
+# Output: 
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
