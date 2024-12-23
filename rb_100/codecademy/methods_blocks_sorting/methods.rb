@@ -110,3 +110,15 @@ end
 puts by_three?(3)  # true
 puts by_three?(8)  # false
 puts by_three?(9)  # true
+
+
+
+# Experiments:
+def by_three?(number)
+  return true if number % 3 == 0
+  return false
+end
+
+puts by_three?(3)  # true
+puts by_three?(8)  # false
+puts by_three?(9)  # true
