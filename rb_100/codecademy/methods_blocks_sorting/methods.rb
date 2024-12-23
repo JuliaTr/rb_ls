@@ -16,3 +16,10 @@ puts_1_to_10
 # 9
 # 10
 
+
+
+def greeting
+  puts "Hello there, Rubyist!"
+end
+
+greeting
