@@ -85,3 +85,16 @@ end
 
 puts good_movies
 # {:primer=>3.5, :the_matrix=>5, :truman_show=>4, :skyfall=>4, :lion_king=>3.5}
+
+movie_ratings.each_key { |key| puts key }
+
+# Output:
+# memento
+# primer
+# the_matrix
+# truman_show
+# red_down
+# skyfall
+# alex_cross
+# uhf
+# lion_king
