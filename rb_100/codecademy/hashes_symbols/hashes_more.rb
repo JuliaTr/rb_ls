@@ -32,3 +32,9 @@ creatures = {
 }
 
 p creatures["dogs"]  # nil
+
+
+
+# Exercise:
+no_nil_hash = Hash.new("Yuliia")
+p no_nil_hash   # {}
