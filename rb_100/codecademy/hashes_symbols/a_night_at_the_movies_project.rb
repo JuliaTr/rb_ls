@@ -20,7 +20,7 @@ when 'add'
   movies[title] = rating
   puts ">> A movie with a title '#{title.capitalize}' and a rating of #{rating} was added."
 when 'update'
-  puts ">> What movie would you like to update?"
+  puts '>> What movie would you like to update?'
   title = gets.chomp.to_sym
 
   if movies[title].nil?
@@ -36,7 +36,7 @@ when 'display'
     puts "#{movie}: #{rating}"
   end
 when 'delete'
-  puts ">> What movie would you like to delete?"
+  puts '>> What movie would you like to delete?'
   title = gets.chomp.to_sym
   if movies[title].nil?
     puts ">> This movie doesn't exist."
