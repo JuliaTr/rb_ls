@@ -49,15 +49,13 @@ books.sort! do |first_book, second_book|
   first_book <=> second_book
 end
 p books
+# ["A Brief History of Time", "A Wrinkle in Time", 
+# "Charlie and the Chocolate Factory", "Utopia", "War and Peace"]
 
 # Sort the books in descending order, in-place
 books.sort! do |first_book, second_book| 
   second_book <=> first_book
 end
 p books
-
-# Output:
-# ["A Brief History of Time", "A Wrinkle in Time", 
-# "Charlie and the Chocolate Factory", "Utopia", "War and Peace"]
 # ["War and Peace", "Utopia", "Charlie and the Chocolate Factory", 
 # "A Wrinkle in Time", "A Brief History of Time"]
