@@ -46,3 +46,20 @@ strings.each do |s|
 end
 
 p symbols   # [:HTML, :CSS, :JavaScript, :Python, :Ruby]
+
+
+
+# Exercise:
+movies = {
+  inside_out_2: "for kids and adults",
+  paw_patrol: "for kids"
+}
+
+puts movies
+
+movies.each { |key, value| puts "'#{key.capitalize}': #{value}" }
+
+# Output:
+# {:inside_out_2=>"for kids and adults", :paw_patrol=>"for kids"}
+# 'Inside_out_2': for kids and adults
+# 'Paw_patrol': for kids
