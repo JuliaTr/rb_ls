@@ -15,3 +15,18 @@ Hello there! What's your language?
 Finnish
 Haloo
 =end
+
+
+
+# Exercise:
+puts "What's your favorite programming language?"
+language = gets.chomp.upcase
+
+case language
+when 'RUBY'       then puts 'Ruby is great for web apps!'
+when 'PYTHON'     then puts 'Python is great for science.'
+when 'JAVASCRIPT' then puts 'JavaScript makes websites awesome.'
+when 'HTML'       then puts 'HTML is what websites are made of!'
+when 'CSS'        then puts 'CSS makes websites pretty.'
+else                   puts "I don't know that language!"
+end
