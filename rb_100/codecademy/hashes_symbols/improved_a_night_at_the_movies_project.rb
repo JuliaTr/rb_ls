@@ -24,22 +24,16 @@ What would you like to do?
   -- Type 'delete' a movie.
 MSG
 
-# Main program
-movies = {inside_out: 4}
-
-prompt(options)
-choice = gets.chomp
-
-case choice
-when 'add'
+def add_choice(movies)
   recieved_title = get_title('What movie would you like to add?')
   recieved_rating = get_rating('What rating does this movie have?')
 
   movies[recieved_title] = recieved_rating
   prompt("A movie with a title '#{recieved_title.capitalize}' and
   a rating of #{recieved_rating} was added.")
+end
 
-when 'update'
+def update_choice(movies)
   recieved_title = get_title('What movie would you like to update?')
 
   if movies[recieved_title].nil?
@@ -51,13 +45,15 @@ when 'update'
     prompt("A movie with a title '#{recieved_title.capitalize}' 
     was updated. It's new rating is #{recieved_rating}.")
   end
+end
 
-when 'display'
+def display_choice(movies)
   movies.each do |movie, rating|
     puts "#{movie}: #{rating}"
   end
+end
 
-when 'delete'
+def delete_choice(movies)
   recieved_title = get_title('What movie would you like to delete?')
 
   if movies[recieved_title].nil?
@@ -66,7 +62,19 @@ when 'delete'
     movies.delete(recieved_title)
     prompt("The movie '#{recieved_title.capitalize}' was deleted.")
   end
+end
 
+# Main program
+movies = {inside_out: 4}
+
+prompt(options)
+choice = gets.chomp
+
+case choice
+when 'add'     then add_choice(movies)
+when 'update'  then update_choice(movies)
+when 'display' then display_choice(movies)
+when 'delete'  then delete_choice(movies)
 else
   prompt("I don't understand you. Run the program again to make a choice.")
 end
