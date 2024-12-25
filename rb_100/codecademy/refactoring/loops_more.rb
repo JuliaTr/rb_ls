@@ -9,3 +9,15 @@ my_array.each { |num| puts num unless num % 2 != 0 }
 # 6
 # 8
 # 10
+
+
+
+# Exercise:
+'L'.upto('P') { |letter| puts letter }
+
+# Output:
+# L
+# M
+# N
+# O
+# P
