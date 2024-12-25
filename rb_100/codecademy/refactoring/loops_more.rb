@@ -21,3 +21,24 @@ my_array.each { |num| puts num unless num % 2 != 0 }
 # N
 # O
 # P
+
+
+
+# Exercise:
+# Refactor `for` loop:
+for i in (1..3)
+  puts "I'm a refactoring master"
+end
+
+# Output:
+# I'm a refactoring master
+# I'm a refactoring master
+# I'm a refactoring master
+
+# Refactored:
+3.times { puts "I'm a refactering master" }
+
+# Output:
+# I'm a refactering master
+# I'm a refactering master
+# I'm a refactering master
