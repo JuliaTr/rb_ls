@@ -10,3 +10,10 @@ end
 guests_came ? greeting : wait_for_the_guests
 
 # Output: Hi, friends!
+
+
+
+# Exercise:
+puts 1 < 2 ? 'One is less than two!' : 'One is not less than two.'
+
+# Output: One is less than two!
