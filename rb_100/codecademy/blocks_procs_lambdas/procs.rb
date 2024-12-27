@@ -76,3 +76,15 @@ puts can_ride_3
 # 5.1
 # 4.3
 # 4.9
+
+
+
+# Exercise:
+def greeter
+  yield
+end
+
+phrase = Proc.new { puts "Hello there!" }
+greeter(&phrase)
+
+# Output: Hello there!
