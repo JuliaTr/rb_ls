@@ -88,3 +88,11 @@ phrase = Proc.new { puts "Hello there!" }
 greeter(&phrase)
 
 # Output: Hello there!
+
+
+
+# Exercise:
+hi = Proc.new { puts "Hello" }
+hi.call
+
+# Output: Hello
