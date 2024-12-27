@@ -21,3 +21,23 @@ symbols = my_array.select(&symbol_filter)
 
 p symbols
 # [:kettles, :mittens, :packages]
+
+
+
+# Exercise:
+crew = {
+  captain: "Picard",
+  first_officer: "Riker",
+  lt_cdr: "Data",
+  lt: "Worf",
+  ensign: "Ro",
+  counselor: "Troi",
+  chief_engineer: "LaForge",
+  doctor: "Crusher"
+}
+
+first_half = lambda { |_, value| value < "M" }
+a_to_m = crew.select(&first_half)
+
+p a_to_m
+# {:lt_cdr=>"Data", :chief_engineer=>"LaForge", :doctor=>"Crusher"}
