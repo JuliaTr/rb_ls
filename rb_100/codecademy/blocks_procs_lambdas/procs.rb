@@ -104,3 +104,11 @@ numbers_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 strings_array = numbers_array.map(&:to_s)
 p strings_array
 # ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+
+
+# Exercise:
+odds_n_ends = [:weezard, 42, "Trady Blix", 3, true, 19, 12.345]
+ints = odds_n_ends.select { |x| x.is_a? Integer }
+p ints
+# [42, 3, 19]
