@@ -21,7 +21,7 @@ On line 4, the objects referenced by `fist_name` and
 `last_name` are concatenated due to the `#+` method 
 invocation. The object referenced by `first_name`, an empty 
 string`' '`, the object referenced by `last_name` are concatenated  
-in one operation, returning a new string `"Yuliia Tryhubniak"`, 
+in two operations, returning a new string `"Yuliia Tryhubniak"``, 
 which is assigned to an initialized local variable `full_name`.
 
 The `#+` method always returns a new String object, which is 
