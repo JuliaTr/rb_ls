@@ -50,3 +50,16 @@ last_name = 'Tryhubniak'
 puts "#{first_name} #{last_name}"
 
 # Output: Yuliia Tryhubniak
+
+=begin
+Description:
+On lines 47 and 48, local variables `first_name` and `last_name`
+are initialized and reference String objects with values of 
+`'Yuliia'` and `'Tryhubniak'`, respectively.
+
+On line 50, the objects referenced by `first_name` and `last_name`
+are interpolated into a string passed as an argument to the 
+`puts` method invocation, which outputs `Yuliia Tryhubniak` 
+to the console. The `puts` method returns `nil`, which isn't 
+used in this code snippet.
+=end
