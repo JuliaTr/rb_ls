@@ -52,6 +52,27 @@ puts "#{first_name} #{last_name}"
 # Output: Yuliia Tryhubniak
 
 =begin
+Improved description (recommended by LSBot):
+On lines 47 and 48, local variables `fist_name` and `last_name`
+are initialized and reference String objects with value of
+`'Yuliia'` and `'Tryhubniak'`, respectively.
+
+On line 50, the objects referenced by `'first_name'` and 
+`'last_name'` are interpolated into a string passed as an argument
+to the `puts` method invocation, which outputs `Yuliia Truhybniak`
+to the console. 
+
+The string interpolation (`#{}`) calls to the `to_s` method on 
+the objects inside `#{}` being interpolated, which is applyied to
+not only strings, but to another data types like integers, floats,
+`nil`, booleans, symbols, arrays, hashes.
+
+The `puts` method returns `nil`, which isn't used in this code 
+snippet.
+=end
+
+
+=begin
 Description:
 On lines 47 and 48, local variables `first_name` and `last_name`
 are initialized and reference String objects with values of 
