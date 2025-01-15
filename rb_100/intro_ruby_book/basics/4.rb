@@ -45,3 +45,28 @@ dates.each { |date| puts date }
 # 2013
 # 2001
 # 1981
+
+=begin
+On line 39, a local variable `dates` is initialized and references
+an Array object with a collection of Integer objects.
+
+On line 41, a block inclosed in `{}` is passed as an argument
+to the `#each` method called on the array referenced by `dates`.
+The block is executed one for each element in the array, in 
+order from first to last.
+
+The block's local variable `date` is a parameter to the block. On 
+each iteration a value from the array is assigned to it. On
+each iteration, an object referenced by `date` is passed as an 
+argument to the `#puts` method invocation and output `1975`,
+`2004`, `2013`, `2001`, and `1981` on each line, separately,
+to the console.
+
+The `#each` method iterates over the collection of an ordered 
+list of objects of `dates`. The `#each` method returns the original 
+array referenced by `dates`, and the `#puts` method returns 
+`nil`, but these return values aren't used in this code snippet. 
+
+The use of `{}` for the block suggests a single-line block,
+which is a common Ruby style for short blocks.
+=end
