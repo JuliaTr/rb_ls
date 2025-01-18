@@ -6,6 +6,7 @@ and 40 years. Below is the output for someone 20 years old.
 =end
 
 # Solution:
+# age.rb
 puts 'How old are you?'
 age = gets.chomp.to_i
 
