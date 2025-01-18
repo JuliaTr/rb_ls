@@ -24,3 +24,32 @@ What's your last name?
 Tryhubniak
 Welcome, Yuliia Tryhubniak!
 =end
+
+=begin
+Description:
+On lines 11 and 14, String objects are passed as arguments to 
+the `puts` method call, outputting `What's your first name?`
+and `What's your last name?` as prompts to the user to the console.
+
+On lines 12 and 15, local variables `first_name` and `last_name`
+are initialilized and reference the return values of `gets.chomp` 
+methods invocations, respectively.
+
+The `gets` method stands for "get string". It returns the user's
+input as a string with a trailing "newline" character (`\n`).
+
+The `chomp` method, chained with `gets`, is invoked on
+the return value of `gets`. It eliminates `\n`, returning
+a string by `gets` without it.
+
+On line 17, the objects referenced by `first_name` and `last_name`
+are interpolated into a string passed as an argument to the
+`puts` method call.
+
+The string interpolation `#{}` converts the object into a string 
+calling the `to_s` method on the objects inside being interpolated.
+This ia applied to not only strings, but to another data types,
+like integers, floats, `nil`, booleans, symbols, arrays, hashes. 
+
+The `puts` method returns `nil`, which isn't used here.
+=end
