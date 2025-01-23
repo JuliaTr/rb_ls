@@ -36,7 +36,7 @@ concept.
 
 
 # Experiments:
-def greeting(name='stranger')
+def greeting(name = 'stranger')
   "Welcome, #{name}!"
 end
 
@@ -46,3 +46,30 @@ puts greeting
 # Output: 
 # Welcome, Yuliia!
 # Welcome, stranger!
+
+=begin
+Description:
+On line 43, a String object with a value of `'Yuliia'` is 
+passed as an argument to the `greeting` method invocation.
+On line 44, `greeting` is invoked without an argument.
+
+On lines 39 - 41, there's a method definition with a parameter
+`name`. `name` is the method's local variable, which references 
+a default String object with a value of `stranger`. In the
+method's body, the object referenced by `name` is interpolated
+into the string, which is returned implicitly upon the method's
+invocation. 
+
+On lines 43-44, the return value of the method invocations are
+passed as arguments to the `puts` method, outputting 
+`Welcome, Yuliia!` and `Welcome, stranger!` on separate lines,
+respectively, to the console.
+
+Here, the default parameter `name` provides a backup value
+in case no arguments are passed to the method invocation.
+That's why we see the output, showcasing the use of the argument
+and the default parameter. Ruby allows nethods to have optional
+parameters.
+
+This demonstates the default parameters concept.
+=end
