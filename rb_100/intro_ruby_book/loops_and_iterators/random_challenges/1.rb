@@ -38,3 +38,41 @@ puts word_transformer("hELLO")
 
 puts word_transformer("WORLD")
 # Output: world
+
+
+
+# Snippet 3:
+def number_game(limit)
+  current = 0
+  loop do
+    current += 1
+    if current % 3 == 0 && current % 5 == 0
+      puts "FizzBuzz"
+    elsif current % 3 == 0
+      puts "Fizz"
+    elsif current % 5 == 0
+      puts "Buzz"
+    else
+      puts current
+    end
+    break if current == limit
+  end
+end
+
+number_game(15)
+# Output: 
+# 1
+# 2
+# "Fizz"
+# 4
+# "Buzz"
+# "Fizz"
+# 7
+# 8
+# "Fizz"
+# "Buzz"
+# 11
+# "Fizz"
+# 13
+# 14
+# "FizzBuzz"
