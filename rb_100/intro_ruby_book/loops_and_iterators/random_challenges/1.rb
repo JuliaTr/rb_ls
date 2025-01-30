@@ -17,3 +17,24 @@ puts mystery_math(5)
 
 puts mystery_math(2)
 # Output: 3
+
+
+
+# Snippet 2:
+def word_transformer(word)
+  result = ""
+  index = 0
+  loop do
+    break if index >= word.length
+    char = word[index]
+    result << (char.upcase == char ? char.downcase : char.upcase)
+    index += 1
+  end
+  result
+end
+
+puts word_transformer("hELLO")
+# Output: Hello
+
+puts word_transformer("WORLD")
+# Output: world
