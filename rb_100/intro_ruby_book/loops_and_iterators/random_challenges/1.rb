@@ -1,5 +1,8 @@
-# `loop` method, method definitions, and flow control without 
-# other loop constructs.
+=begin
+These challenges are medium level compleity to identify the 
+output before running the program. The contain `loop` method, 
+method definitions, and flow control without other loop constructs.
+=end
 
 # Snippet 1:
 def mystery_math(num)
