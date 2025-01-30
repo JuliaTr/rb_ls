@@ -76,3 +76,35 @@ else
 end
 
 # Output: Alright now!
+
+=begin
+Snippet 3 prints `Alright now!`.
+
+On lines 1 - 2, two local variables are initialized and reference
+two Integer objects `9` and `10`, respectively.
+
+On lines 4 - 12, in the `if/elsif/else` statement, Ruby evaluates 
+every condition from the top. The first conditonal comparison 
+expression `(x + 1) <= (y)` evaluates to a boolean `false` 
+value, which is falsy. The next `(x + 1) >= (y)` evaluates 
+to a boolean `true` value, which is truthy. So, the code block 
+inside this `elsif` branch is executed, outputing `Alright now!`
+to the console.
+
+It demonstrates the truthines concept, particularly in the
+`if/elsif/else` statement.
+=end
+
+=begin
+Concise version:
+
+Snippet 3 prints `Alright now!`.
+
+On lines 1 - 2, two local variables are initialized and reference
+two Integer objects `9` and `10`, respectively.
+
+On lines 4 - 12, in the `if/elsif/else` statement, the second 
+condition (first `elsif`), `(x + 1) >= (y)`, which 
+is (`11 >= (9)`), evaluates to a boolean `true` value, which 
+is the first truthy value. So, `puts "Alright now!"` is executed.
+=end
