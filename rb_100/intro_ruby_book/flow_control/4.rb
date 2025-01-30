@@ -42,6 +42,24 @@ end
 
 # Output: Did you get it right?
 
+=begin
+Snippet 2 prints `Did you get it right?`.
+
+On line 1 a local variable `x` is initialized and references
+an Integer object with a value of `2`.
+
+On lines 3 - 7, there's an `if/else` statement. If the condition,
+on line 3, is truthy, the code block inside the `if` branch
+is executed, otherwise the `else` clause is executed.
+
+The conditional comparison expression `((x * 3) / 2) == (4 + 4 - x - 3)`
+is evaluated to a boolean `true` value, which is truthy, as it 
+evaluates to `3` and `3` in two sides of the `==` operator, 
+which are equal in type and value. So, the call to 
+`puts "Did you get it right?"` is executed, outputting
+`Did you get it right?` to the console.
+=end
+
 
 # Snippet 3:
 y = 9
