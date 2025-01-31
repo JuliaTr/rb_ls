@@ -36,3 +36,81 @@ p result.join(', ')
 
 puts result.join(', ')
 # 2, 4, 6, 10, 16, 26, 42, 68
+
+
+
+# Snippet 2:
+def word_play(sentence)
+  words = sentence.split        # ["Hello", "World", "Ruby", "Programming"]
+  result = []
+
+  words.each do |word|
+    modified_word = ''          # "HeLlO" 
+    index = 0
+
+    loop do
+      break if index >= word.length
+
+      if index.even?
+        modified_word << word[index].upcase 
+      else
+        modified_word << word[index].downcase
+      end
+
+      index += 1
+
+      p modified_word         # "HeLlO"
+    end
+
+    result << modified_word.reverse
+  end
+
+  p result
+
+  result.join(' ')
+end
+
+puts word_play("Hello World Ruby Programming")
+
+=begin
+$ ruby 2.rb
+"H"
+"He"
+"HeL"
+"HeLl"
+"HeLlO"
+"W"
+"Wo"
+"WoR"
+"WoRl"
+"WoRlD"
+"R"
+"Ru"
+"RuB"
+"RuBy"
+"P"
+"Pr"
+"PrO"
+"PrOg"
+"PrOgR"
+"PrOgRa"
+"PrOgRaM"
+"PrOgRaMm"
+"PrOgRaMmI"
+"PrOgRaMmIn"
+"PrOgRaMmInG"
+["OlLeH", "DlRoW", "yBuR", "GnImMaRgOrP"]
+OlLeH DlRoW yBuR GnImMaRgOrP
+=end
+
+  
+# Experiments:
+words = ["Hello", "World", "Ruby", "Programming"]
+index = 0
+modified_word = ''
+
+words.each do |word|
+  modified_word << word[index].downcase
+end
+
+p modified_word  # "hwrp"
