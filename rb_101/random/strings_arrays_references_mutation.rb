@@ -43,3 +43,22 @@ puts str.object_id     # 60; the same as `arr[0]`
 new_str = str[0] + str[-1]
 puts new_str                 # "Ho"
 puts new_str.object_id       # 80
+
+
+
+# Snippet 3;
+def manipulate(a, b)
+  a << b       # ["ab", "cd", "ef"]
+  b[0] = a[1]  # ["ab", "cd", "cdf"]
+end
+
+x = ["ab", "cd"]
+y = "ef"
+p y.object_id        # 60
+
+manipulate(x, y)     # ["ab", "cd", "cdf"]
+
+puts x.inspect       # ["ab", "cd", "cdf"]
+puts y               # cdf
+puts x[1].object_id  # 80
+puts y.object_id     # 60
