@@ -113,3 +113,14 @@ Any mutations performed on this new string character don’t influence
 the whole string unless the return value is assigned to `c[0]` for 
 example.
 =end
+
+
+
+a = ["foo", "bar", "baz"]
+b = a
+c = b[0]
+c[0].downcase! # "f"
+a[0].upcase!
+
+p c  # "FOO"
+p b  # ["FOO", "bar", "baz"]
