@@ -62,3 +62,22 @@ puts x.inspect       # ["ab", "cd", "cdf"]
 puts y               # cdf
 puts x[1].object_id  # 80
 puts y.object_id     # 60
+
+
+
+# Snippet 4:
+def modify_array(arr)
+  arr.map! do |word|  # arr = ["HELLO", "WORLD"]
+    word.upcase
+  end
+  arr << "NEW"        # arr = ["HELLO", "WORLD", "NEW"]
+end
+
+words = ["hello", "world"]
+p words.object_id    # 60
+
+modify_array(words)  # ["HELLO", "WORLD", "NEW"]
+
+p words              # ["HELLO", "WORLD", "NEW"]
+p words.object_id    # 60
+p words[0]           # "HELLO"
