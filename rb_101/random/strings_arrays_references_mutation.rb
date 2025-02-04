@@ -25,3 +25,21 @@ puts text              # Jubyava
 puts new_text          # Ju
 
 # In `text[0, 2]` `2` is length.
+
+
+
+# Snippet 2:
+arr = ['hello', 'world']
+str = arr[0]   # arr = [str, 'world']
+
+arr[0][0] = 'H'  # arr = ['Hello', 'world']
+str[1] = 'A'     # arr = ['HAllo', 'world']
+
+puts arr.inspect       # ['HAllo', 'world']
+puts str               # HAllo
+puts arr[0].object_id  # 60
+puts str.object_id     # 60; the same as `arr[0]`
+
+new_str = str[0] + str[-1]
+puts new_str                 # "Ho"
+puts new_str.object_id       # 80
