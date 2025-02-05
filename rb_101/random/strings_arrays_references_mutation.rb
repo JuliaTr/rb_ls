@@ -109,3 +109,21 @@ p str2            # "helHo world"
 
 p str1.object_id  # 60
 p str2.object_id  # 60
+
+
+
+# Snippet 7:
+arr1 = ['ang', 'bhj', 'com']
+arr2 = arr1
+
+arr1 << 'd'
+p arr1             # ["ang", "bhj", "com", "d"]
+
+arr2[0].upcase!    
+p arr1             # ["ANG", "bhj", "com", "d"]
+
+arr1[0].downcase!
+p arr1             # ["ang", "bhj", "com", "d"]
+
+arr2[2] = arr2[2] * 2  
+p arr1            # ["ang", "bhj", "comcom", "d"]
