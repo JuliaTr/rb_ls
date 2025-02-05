@@ -159,3 +159,17 @@ puts greeting             # "Hello world"
 puts farewell             # "Hello world"
 puts greeting[0, 5]       # "Hello"
 puts farewell[-5, 5]      # "world"
+
+
+
+# Snippet 9:
+numbers = [1, 2, 3]
+letters = ['a', 'b', 'c']
+combined = [numbers, letters]  # [[1, 2, 3], ["a", "b", "c"]]
+
+combined[0][1] = 4            # [[1, 4, 3], ["a", "b", "c"]]
+letters[2] = 'd'              # [[1, 4, 3], ["a", "b", "d"]]
+
+puts numbers.inspect          # [1, 4, 3]
+puts letters.inspect          # ["a", "b", "d"]
+puts combined.inspect         # [[1, 4, 3], ["a", "b", "d"]]
