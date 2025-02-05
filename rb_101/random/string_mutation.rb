@@ -26,3 +26,8 @@ p str.object_id      # 60
 str = 'Ruby'
 str[1] = str[1] * 2
 p str               # "Ruuby"
+
+
+str = 'Ruby'
+str[1] * 2    # the return value isn't assigned
+p str                # Ruby (no changes)
