@@ -127,3 +127,35 @@ p arr1             # ["ang", "bhj", "com", "d"]
 
 arr2[2] = arr2[2] * 2  
 p arr1            # ["ang", "bhj", "comcom", "d"]
+
+
+
+# Snippet 8:
+def modify_array(arr)
+  arr << "new"      # fruits = ["apple", "banana", "cherry", "new"]
+  arr[0].upcase!    # fruits = ["APPLE", "banana", "cherry", "new"]
+end
+
+fruits = ["apple", "banana", "cherry"]
+vegetables = fruits
+modify_array(fruits)  # ["APPLE", "banana", "cherry", "new"]
+
+p fruits              # ["APPLE", "banana", "cherry", "new"]
+p vegetables          # ["APPLE", "banana", "cherry", "new"]
+
+
+
+# Snippet 9:
+def change_string(str)
+  str << " world"       # greeting = "hello world"
+  str[0] = str[0].swapcase   # greeting = "Hello world"
+end
+
+greeting = "hello"
+farewell = greeting
+change_string(greeting)   # "Hello world"
+
+puts greeting             # "Hello world"
+puts farewell             # "Hello world"
+puts greeting[0, 5]       # "Hello"
+puts farewell[-5, 5]      # "world"
