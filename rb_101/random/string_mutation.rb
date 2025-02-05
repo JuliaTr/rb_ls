@@ -1,7 +1,7 @@
 ### String mutation
 
 # Example 1:
-# String character reference assignmennt (mutation):
+# String character assignmennt (mutation):
 str = 'Ruby'
 p str.object_id     # 60
 
@@ -21,3 +21,8 @@ str << 'ava'
 
 p str                # Rubyava
 p str.object_id      # 60 
+
+
+str = 'Ruby'
+str[1] = str[1] * 2
+p str               # "Ruuby"
