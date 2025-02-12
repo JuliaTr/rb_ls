@@ -22,7 +22,7 @@ arr.each do |num|
   end
 end
 
-Output: 3 is in the array.
+# Output: 3 is in the array.
 
 
 arr = [1, 3, 5, 7, 9, 11]
