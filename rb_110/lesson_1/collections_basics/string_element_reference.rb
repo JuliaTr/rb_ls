@@ -5,7 +5,7 @@ p str[2]   # "c"
 On line 1, a local variable `str` is initialized and references
 a String object with a value of `'abcdefghi'`.
 
-On line 2, the string element reference `[]`, which is a
+On line 2, the string element reference `[]` is a
 method invoked on the object referenced by `str`. Inside the
 `[]`, `2` is an integer-based index that represents the third 
 character (`c`) in the string. 
@@ -18,3 +18,19 @@ to output `"c"` to the console.
 
 So, `c` is a specific character referenced by using the index.
 =end
+
+
+str = 'abcdefghi'
+p str[2, 3]  # "cde"
+
+=begin
+On line 24, Inside the `[]`, `2` is an integer-based index
+that represents the third chaaracter (`c`) in the string.
+`3` represents the length of the substring to reference and the
+number of characters tto return.
+=end
+
+
+# Exercise: reference `gress` from within the string.
+s = 'The grass is green'
+p str[4, 5]       # "grass"
