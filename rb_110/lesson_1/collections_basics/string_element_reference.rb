@@ -34,3 +34,24 @@ number of characters tto return.
 # Exercise: reference `gress` from within the string.
 s = 'The grass is green'
 p str[4, 5]       # "grass"
+
+
+
+str = 'abcdefghi'
+char1 = str[2]
+char2 = str[2]
+
+p char1   # "c"
+p char2   # "c"
+
+p char1.object_id   # 60
+p char2.object_id   # 80
+
+p char1.object_id == char2.object_id  # false
+
+# Every time the a substring is referenced, it has a brand
+# new object ID, even if its value is the same.
+
+
+# Experiments:
+p char1 == char2    # true; (because the value is the same)
