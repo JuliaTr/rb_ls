@@ -22,7 +22,19 @@ duplicated and overwritten on line 13
 =end
 
 
+
 hsh = { 'apple' => 'fruit', 'carrot' => 'vegetable', 'pear' => 'fruit' }
 p hsh  # {"apple"=>"fruit", "carrot"=>"vegetable", "pear"=>"fruit"}
 
 
+
+country_capitals { uk: 'London', france: 'Paris', germany: 'Berlin' }
+p country_capitals.keys       # [:uk, :france, :germany]
+p country_capitals.values     # ["London", "Paris", "Berlin"]
+p country_capitals.values[0]  # "London"
+
+=begin
+On line 34, the element at index `0`, which is `"London"` of the 
+array `["London", "Paris", "Berlin"]` returned by `country_capitals.values`, 
+is referenced by `[0]`.
+=end
