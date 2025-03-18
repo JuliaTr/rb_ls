@@ -20,3 +20,9 @@ hash_element_reference.rb:13: warning: key "fruit" is
 duplicated and overwritten on line 13
 {"vegetable"=>"carrot", "fruit"=>"pear"}
 =end
+
+
+hsh = { 'apple' => 'fruit', 'carrot' => 'vegetable', 'pear' => 'fruit' }
+p hsh  # {"apple"=>"fruit", "carrot"=>"vegetable", "pear"=>"fruit"}
+
+
