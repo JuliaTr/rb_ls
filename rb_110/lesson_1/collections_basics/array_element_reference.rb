@@ -14,3 +14,16 @@ arr = [1, 'two', :three, '4']
 p arr.slice(3, 1)   # ["4"]
 p arr.slice(3..3)   # ["4"]
 p arr.slice(3)      # "4"
+
+
+# Experiments:
+arr = [1, 'two', :three, '4']
+
+p arr[3, 1]          # ["4"]
+p arr[3..3]          # ["4"]
+p arr[3]             # "4"
+
+=begin
+The `#[]` invoked on a string or array is a syntactical suger to 
+`String#slice` or `Array#slice`.
+=end
