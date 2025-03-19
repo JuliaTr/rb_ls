@@ -10,6 +10,12 @@ which is `"apple"`. The `hsh['fruit'][0]` returns `"a"`.
 =end
 
 
+# Experiment:
+hsh1 = { 'fruit' => 'apple', 'vegetable' => 'carrot', 'nut' => 'peanut' }
+p hsh1.slice('nut', 'fruit')  # {"nut"=>"peanut", "fruit"=>"apple"}
+
+
+
 
 hsh = { 'fruit' => 'apple', 'vegetable' => 'carrot', 'fruit' => 'pear' }
 p hsh
