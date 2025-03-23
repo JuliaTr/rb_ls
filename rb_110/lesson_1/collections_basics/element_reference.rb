@@ -53,3 +53,21 @@ to the `#[]` method invoked on the objects `'abcde'` and
 `['a', 'b', 'c', 'd', 'e']` referenced by `str` and `arr`, which are local
 variables inittialized on lines 44, 45.
 =end
+
+
+
+str = 'ghijk'
+arr = ['g', 'h', 'i', 'j', 'k']
+
+p str[-6]  # nil
+p arr[-6]  # nil
+
+p arr.fetch(-6)
+# index -6 outside of array bounds: -5...5 (IndexError)
+
+=begin
+The element at indice `-6` is out-of-bounds. That's why the `str[-6]`
+and `arr[-6]` calls return `nil`. And, on line 65, the `#fetch` method 
+is invoked on `['g', 'h', 'i', 'j', 'k']` referenced by `arr` 
+returns an `IndexError`. 
+=end
