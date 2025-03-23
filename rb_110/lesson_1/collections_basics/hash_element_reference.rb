@@ -47,7 +47,7 @@ p country_capitals.values     # ["London", "Paris", "Berlin"]
 p country_capitals.values[0]  # "London"
 
 =begin
-On line 34, the element at index `0`, which is `"London"` of the 
+On line 47, the element at index `0`, which is `"London"` of the 
 array `["London", "Paris", "Berlin"]` returned by `country_capitals.values`, 
 is referenced by `[0]`.
 =end
