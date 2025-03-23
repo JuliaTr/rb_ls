@@ -51,3 +51,24 @@ On line 47, the element at index `0`, which is `"London"` of the
 array `["London", "Paris", "Berlin"]` returned by `country_capitals.values`, 
 is referenced by `[0]`.
 =end
+
+
+
+hsh = { :a => 1, 'b' => 'two', :c => nil }
+
+p hsh['b']            # "two"
+p hsh[:c]             # nil
+p hsh['c']            # nil
+p hsh[:d]             # nil
+
+p hsh.fetch(:c)       # nil
+# p hsh.fetch('c')      # key not found: "c" (KeyError)
+p hsh.fetch(:d)       # key not found: :d (KeyError)
+
+=begin
+The string `'b'` and the symbol `:c` are valid keys. Their values 
+`"two"` and `nil` are objects in the key-value pairs. 
+
+Howeveer, `'c'` and `:d` are invalid keys. There're no key-value 
+pairs with these keys in the hash.
+=end
