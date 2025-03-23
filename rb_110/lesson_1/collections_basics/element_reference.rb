@@ -38,3 +38,18 @@ p arr.fetch(3)
 # Output:
 # nil
 # index 3 outside of array bounds: -3...3 (IndexError)
+
+
+
+str = 'abcde'
+arr = ['a', 'b', 'c', 'd', 'e']
+
+p str[-2]   # "d"
+p arr[-2]   # "d"
+
+=begin
+On lines 47, 48, the negative indice (`-2`) is passed as an argument
+to the `#[]` method invoked on the objects `'abcde'` and 
+`['a', 'b', 'c', 'd', 'e']` referenced by `str` and `arr`, which are local
+variables inittialized on lines 44, 45.
+=end
