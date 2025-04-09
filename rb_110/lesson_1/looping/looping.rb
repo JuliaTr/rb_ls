@@ -49,3 +49,28 @@ p arr
 # 4
 # 5
 # [2, 3, 4, 5, 6]
+
+
+
+#### To control a loop:
+
+# Infinite loop
+loop do
+  puts 'Hello!'
+end
+
+
+# To exit the nearest loop:
+loop do
+  puts 'Hello!'
+  break
+end
+
+# Output: Hello!
+
+=begin
+There's only 1 iteration:
+
+`'Hello!'` is output
+`break` is executed which ends the loop
+=end
