@@ -21,3 +21,31 @@ loop do
 end
 
 p arr            # [2, 3, 4, 5, 6]
+
+
+# Experiment:
+arr = [1, 2, 3, 4, 5]
+counter = 0
+
+loop do
+  p counter
+  arr[counter] += 1
+  counter += 1
+  p counter
+  break if counter == arr.size
+end
+
+p arr
+
+# Output:
+# 0
+# 1
+# 1
+# 2
+# 2
+# 3
+# 3
+# 4
+# 4
+# 5
+# [2, 3, 4, 5, 6]
