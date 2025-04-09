@@ -119,3 +119,20 @@ end
 # 0
 # 1
 # 2
+
+
+
+counter = 0
+
+loop do
+  puts 'Hello!'
+  counter += 1
+  break if counter == 5
+end
+
+# Output: 
+# Hello!
+# Hello!
+# Hello!
+# Hello!
+# Hello!
