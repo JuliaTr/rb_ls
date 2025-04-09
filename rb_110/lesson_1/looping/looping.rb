@@ -136,3 +136,12 @@ end
 # Hello!
 # Hello!
 # Hello!
+
+
+# Experiment:
+# Infinite loop:
+loop do 
+  counter = 0     # reasignment on each iteration
+  puts 'Hello!'
+  break if counter == 5
+end
