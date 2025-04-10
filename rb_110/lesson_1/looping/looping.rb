@@ -162,3 +162,46 @@ an Integer object with a value of `0`. Inside the `do...end` block
 (lines 153-156) passed to the `loop` method, the code below `break` 
 (line 154) is not executed because of the condition `counter == 0`.
 =end
+
+
+
+counter = 0
+
+loop do
+  counter += 1
+  next if counter.odd?
+  puts counter
+  break if counter > 5
+end
+
+# Output:
+# 2
+# 4
+# 6
+
+
+# Experiments:
+counter = 0
+
+loop do
+  next if counter.odd?
+  counter += 1
+  puts counter
+  break if counter > 5
+end
+
+# Output:
+# 1
+# infinite loop...
+
+
+counter = 0
+
+loop do
+  counter += 1
+  next if counter.odd?
+  puts counter
+  break if counter == 5 
+end
+
+# Output: infinite loop 
