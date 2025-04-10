@@ -145,3 +145,20 @@ loop do
   puts 'Hello!'
   break if counter == 5
 end
+
+
+
+counter = 0
+
+loop do
+  break if counter == 0
+  puts 'Hello!'
+  counter += 1
+end
+
+=begin
+On line 151, a local variable `counter` is initialized and references 
+an Integer object with a value of `0`. Inside the `do...end` block 
+(lines 153-156) passed to the `loop` method, the code below `break` 
+(line 154) is not executed because of the condition `counter == 0`.
+=end
