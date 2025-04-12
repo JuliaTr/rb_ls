@@ -52,3 +52,29 @@ loop do
 end
 
 # Output: (breaks on the first iteration)
+
+
+
+# Starting with a counter that equals the string size
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+counter = alphabet.size
+
+loop do
+  break if counter == alphabet.size
+  puts alphabet[counter]
+  counter += 1
+end
+
+# Output: (breaks on the first iteration)
+
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+counter = alphabet.size
+
+loop do
+  break if counter >= alphabet.size
+  puts alphabet[counter]
+  counter += 1
+end
+
+# Output: (breaks on the first iteration)
