@@ -162,6 +162,29 @@ end
 # Output: (breaks on the first iteration)
 
 
+empty_string = ''
+counter = 0
+
+loop do
+  puts empty_string[counter]
+  counter += 1
+  break if counter == empty_string.size
+end
+
+# Output: infinite loop
+
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+counter = alphabet.size
+
+loop do
+  counter += 1
+  break if counter == alphabet.size
+  puts alphabet[counter]
+end
+
+# Output: infinite loop
+
 
 # Starting with a counter that equals the string size
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
