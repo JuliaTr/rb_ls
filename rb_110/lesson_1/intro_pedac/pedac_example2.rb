@@ -134,3 +134,17 @@ end
 # Output:
 # "al"
 # "alo"
+
+
+str = 'halo'
+starting_counter = 2
+number_of_characters = 2
+
+loop do
+  p str[starting_counter, number_of_characters]
+  number_of_characters += 1
+  break if str[number_of_characters + 1].nil?
+end
+
+# Output:
+# "lo"
