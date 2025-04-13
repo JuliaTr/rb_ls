@@ -61,7 +61,9 @@ def palindrome_substrings(str)
 end
 
 
-# Experiment:
+
+
+# Experiments:
 
 # for each starting index from 0 through the next to last index position.
   # for each substring length from 2 until there are no substrings of that length.
@@ -117,3 +119,18 @@ end
 # "ha"
 # "hal"
 # "halo"
+
+
+str = 'halo'
+starting_counter = 1
+number_of_characters = 2
+
+loop do
+  p str[starting_counter, number_of_characters]
+  number_of_characters += 1
+  break if str[number_of_characters].nil?
+end
+
+# Output:
+# "al"
+# "alo"
