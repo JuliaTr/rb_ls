@@ -101,3 +101,19 @@ end
 # "al"
 # "lo"
 # "o"
+
+
+str = 'halo'
+starting_counter = 0
+number_of_characters = 2
+
+loop do
+  p str[starting_counter, number_of_characters]
+  number_of_characters += 1
+  break if number_of_characters > str.size
+end
+
+# Output:
+# "ha"
+# "hal"
+# "halo"
