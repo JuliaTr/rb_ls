@@ -1,4 +1,7 @@
 =begin
+
+Example 2:
+
 Step 1:
 PROBLEM:
 
