@@ -39,4 +39,18 @@ Examples and Test Cases:
   Row number: 1 -> Sum of integers in row: 2
   Row number: 2 -> Sum of integers in row: 10
   Row number: 4 -> Sum of integers in row: 68  
+
+Data Structures:
+  - Sequence of rows
+  - Order of rows is important
+  - Rows contain integers
+  - Order of integers is important
+
+  [
+    [2],
+    [4, 6],
+    [8, 10, 12],
+    [14, 16, 18, 20],
+    ...
+  ]
 =end
