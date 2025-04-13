@@ -84,3 +84,20 @@ end
 # "a"
 # "l"
 # "o"
+
+
+str = 'halo'
+counter = 0
+
+
+loop do
+  p str[counter, 2]
+  counter += 1
+  break if counter >= str.length
+end
+
+# Output:
+# "ha"
+# "al"
+# "lo"
+# "o"
