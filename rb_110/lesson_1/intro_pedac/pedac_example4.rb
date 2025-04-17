@@ -57,9 +57,35 @@ Data Structures:
 Algorithms:
   - 1. Create an empty 'rows' array to hold all of our rows.
   - 2. Create a `row` array and add it to the overall `rows` array.
-    - A (substep): do a thing
-    - B (substep): do the next thing
   - 3. Repeat step 2 until all the necessary rows have been created.
   - 4. Sum the final row.
   - 5. Return the sum.
+
+  - (Step 2. of Algorithms) Problem: Create a row
+
+  - Rules:
+    - Row is an array.
+    - Array contains integers.
+    - Integers are consecutive even numbers.
+    - Integers in each row forms part of a larger overall sequence.
+    - Rows are of different lengths.
+
+    - Input:
+      - Length of the row
+      - The starting integer
+    - Output: The row itself --> [8, 10, 12]
+
+  - Example:
+    - start: 2, length: 1 --> [2]
+    - start: 4, length: 2 --> [4, 6]
+    - start: 8, length: 3 --> [8, 10, 12]
+
+  - Data Structure: array
+
+  - Algorithm: 
+    - 1. Create an empty `raw` array to contain the integers
+    - 2. Add the starting integer
+    - 3. Increment the starting integer by 2 to get the next integer in the sequence
+    - 4. Repeat steps 2 and 3 until the array has reached the correct length
+    - 5. Return the `row` array
 =end
