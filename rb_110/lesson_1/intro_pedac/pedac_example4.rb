@@ -92,19 +92,6 @@ Algorithms:
     - 5. Return the `row` array
 =end
 
-def sum_even_number_row(row_number)
-
-end
-
-# # Row number: 1 -> Sum of integers in row: 2
-# # Row number: 2 -> Sum of integers in row: 10
-# # Row number: 4 -> Sum of integers in row: 68 
-
-# p sum_even_number_row(1) == 2 # true
-# p sum_even_number_row(2) == 10 # true
-# p sum_even_number_row(2) == 68 # true
-
-
 # - 1. Create an empty `raw` array to contain the integers
 # - 2. Add the starting integer
 # - 3. Increment the starting integer by 2 to get the next integer in the sequence
@@ -137,3 +124,47 @@ end
 p create_row(2, 1) == [2] # true
 p create_row(4, 2) == [4, 6] # true
 p create_row(8, 3) == [8, 10, 12] # true
+
+
+# - 1. Create an empty `rows` array to hold all of our rows.
+# - 2. Create a `row` array and add it to the overall `rows` array.
+# - 3. Repeat step 2 until all the necessary rows have been created.
+#   - (note) All the rows have been created when the length of the 
+#     `raws` array is equal to the input.
+# - 4. Sum the final row.
+# - 5. Return the sum.
+
+# [
+#   [2],
+#   [4, 6],
+#   [8, 10, 12],
+#   [14, 16, 18, 20],
+#   ...
+# ]
+
+# Calculating the start integer:
+# Rule: First integer of row == last integer of preceding row + 2
+# Algorithm:
+#   - get the last row of the rows array
+#   - get the last integer of that row
+#   - add 2
+
+def sum_even_number_row(row_number)
+  rows = []
+  start_integer = 2
+  
+  (1..row_number).each do |current_row_number|
+    rows << create_row(start_integer, current_row_number)
+    start_integer = rows.last.last + 2
+  end
+
+  return rows.last.sum
+end
+
+# Row number: 1 -> Sum of integers in row: 2
+# Row number: 2 -> Sum of integers in row: 10
+# Row number: 4 -> Sum of integers in row: 68 
+
+p sum_even_number_row(1) == 2 # true
+p sum_even_number_row(2) == 10 # true
+p sum_even_number_row(2) == 68 # true
