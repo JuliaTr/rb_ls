@@ -58,6 +58,8 @@ Algorithms:
   - 1. Create an empty 'rows' array to hold all of our rows.
   - 2. Create a `row` array and add it to the overall `rows` array.
   - 3. Repeat step 2 until all the necessary rows have been created.
+    - (note) All the rows have been created when the length of the 
+      `raws` array is equal to the input.
   - 4. Sum the final row.
   - 5. Return the sum.
 
