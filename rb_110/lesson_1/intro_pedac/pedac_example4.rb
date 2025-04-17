@@ -53,4 +53,13 @@ Data Structures:
     [14, 16, 18, 20],
     ...
   ]
+
+Algorithms:
+  - 1. Create an empty 'rows' array to hold all of our rows.
+  - 2. Create a `row` array and add it to the overall `rows` array.
+    - A (substep): do a thing
+    - B (substep): do the next thing
+  - 3. Repeat step 2 until all the necessary rows have been created.
+  - 4. Sum the final row.
+  - 5. Return the sum.
 =end
