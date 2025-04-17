@@ -91,3 +91,49 @@ Algorithms:
     - 4. Repeat steps 2 and 3 until the array has reached the correct length
     - 5. Return the `row` array
 =end
+
+def sum_even_number_row(row_number)
+
+end
+
+# # Row number: 1 -> Sum of integers in row: 2
+# # Row number: 2 -> Sum of integers in row: 10
+# # Row number: 4 -> Sum of integers in row: 68 
+
+# p sum_even_number_row(1) == 2 # true
+# p sum_even_number_row(2) == 10 # true
+# p sum_even_number_row(2) == 68 # true
+
+
+# - 1. Create an empty `raw` array to contain the integers
+# - 2. Add the starting integer
+# - 3. Increment the starting integer by 2 to get the next integer in the sequence
+# - 4. Repeat steps 2 and 3 until the array has reached the correct length
+# - 5. Return the `row` array
+
+# (note for Step 4.):
+# Start the loop
+#   - Add start_integer to row
+#   - Increment start_integer by 2
+#   - Break out of the loop if length of row equals row_length
+
+def create_row(start_integer, row_length)
+  row = []
+  current_integer = start_integer 
+  
+  loop do
+    row << current_integer
+    current_integer += 2
+    break if row.length == row_length
+  end
+
+  return row
+end
+
+# start: 2, length: 1 --> [2]
+# start: 4, length: 2 --> [4, 6]
+# start: 8, length: 3 --> [8, 10, 12]
+
+p create_row(2, 1) == [2] # true
+p create_row(4, 2) == [4, 6] # true
+p create_row(8, 3) == [8, 10, 12] # true
