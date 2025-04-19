@@ -18,8 +18,9 @@ complex_hash = {
   }
 }
 
-# a) Access the value 'high':
+# # a) Access the value 'high':
 # p complex_hash[:settings][:user][:profile][:priority]  # "high"
+
 
 
 # b) Add a new key-value pair `:mood => 'happy'` to the hash where the 
@@ -36,7 +37,7 @@ p complex_hash[:settings][:user][:preferences]
 # [[:status, "busy"], [:sound, "off"], {:mood=>"happy"}]
 
 =begin
-The `Hash#to_a` returns a new array, which doesn't mutate the original one.
+The `Hash#to_a` returns a new array, which doesn't mutate the original hash.
 
 irb(main):001:0> h = { :name => 'Yuliia' }
 => {:name=>"Yuliia"}
@@ -46,8 +47,22 @@ irb(main):003:0> h
 => {:name=>"Yuliia"}
 =end
 
+p complex_hash[:settings][:user][:preferences][2] = {:mood => 'happy'}.to_a[0]
+# [[:status, "busy"], [:sound, "off"], [:mood, "happy"]]
+p complex_hash[:settings][:user][:preferences]
+# [[:status, "busy"], [:sound, "off"], [:mood, "happy"]]
+
 
 # Experiments:
 arr = [[1, 2], [3, 4]]
 p arr[2] = [5, 6]  # [5, 6]
 p arr              # [[1, 2], [3, 4], [5, 6]]
+
+
+
+# c) Change the value of 'busy' to 'available'
+p complex_hash[:settings][:user][:preferences][0][1] = 'available'
+# "available"
+
+p complex_hash[:settings][:user][:preferences]
+# [[:status, "available"], [:sound, "off"], [:mood, "happy"]]
