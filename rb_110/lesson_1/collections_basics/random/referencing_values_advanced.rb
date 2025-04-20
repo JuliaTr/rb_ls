@@ -51,8 +51,8 @@ Data Structure: Nested array
 Algorithm:
   - 1. Iterate over each element of the outer loop
     - (substep 1.1) Access each element of the outer loop
-    - (substep 1.2) Find a string
-    - (substep 1.3) If a string has a letter `a` -> upcase it (`A`)
+    - (substep 1.2) Identify if an element is a string
+    - (substep 1.3) Upcase letter 'a' -> (`A`) in the string
   - 2. Return the same array 
 
 =end
@@ -62,7 +62,7 @@ Algorithm:
 
 # Start a loop:
 #   reference each element indexed with `counter`
-#   increment `counter`
+#   increment `counter` by `1`
 #   `break` the loop if `counter` greater or equal `data` length
 
 counter = 0
@@ -82,9 +82,9 @@ end
 # (Note for Step 1.2):
 # Start loop
   # if `data[counter]` is a string
-  #   return the string
+  #   output its class
   # if not
-  #   return data type
+  #   output its class
   # `break` the loop
 
 counter = 0
@@ -92,7 +92,7 @@ counter = 0
 loop do
   p data[counter]
 
-  loop do
+  loop do # Extract in helper method (?)
     if data[counter].class == String
       p data[counter].class
     else
@@ -112,3 +112,7 @@ end
 # Hash
 # [["math", "science"], {:subjects=>["art", {:primary=>"drama", :elective=>"music"}]}]
 # Array
+
+# TODO:
+# - finish with algorithm
+# - define how deep in multi-dimentional arrays to go (?)
