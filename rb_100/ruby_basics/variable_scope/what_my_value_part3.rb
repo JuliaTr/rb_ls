@@ -20,6 +20,8 @@ Lines 4-6 contain `my_value` method definition with a parameter
 local variable `a` is initialized and references the same object
 as `b`, which is `7`. `a` and `b` point to the same object.
 
+Methods are self-contained with own local variable scope.
+
 The `=` operator (line 5) and the `+` method (line 8) don't
 mutate the object referenced by `a` (line 2). That's why the
 call to `puts a` outputs `7` to the console.
