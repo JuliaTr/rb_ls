@@ -85,6 +85,8 @@ def select_fruit(hsh)
   p fruits # ["apple", "carrot", "pear", "broccoli"]
 
   loop do
+    break if counter >= hsh.size
+
     p current_fruit = fruits[counter]
     p current_item = hsh[current_fruit]
 
@@ -93,7 +95,6 @@ def select_fruit(hsh)
     end
 
     counter += 1
-    break if counter >= hsh.size
   end
 
   new_hsh
