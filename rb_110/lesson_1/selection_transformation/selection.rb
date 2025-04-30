@@ -101,16 +101,19 @@ def select_fruit(hsh)
 end
 
 p select_fruit(produce) # {"apple" => "Fruit", "pear" => "Fruit"}
+p produce
 
 # Output:
-# ["apple", "carrot", "pear", "broccoli"]
-# "apple"
-# "Fruit"
-# "carrot"
-# "Vegetable"
-# "pear"
-# "Fruit"
-# "broccoli"
-# "Vegetable"
+# ["apple", "carrot", "pear", "broccoli"] (to test)
+# "apple"                                 (to test)
+# "Fruit"                                 (to test)
+# "carrot"                                (to test)
+# "Vegetable"                             (to test)
+# "pear"                                  (to test)
+# "Fruit"                                 (to test)
+# "broccoli"                              (to test)
+# "Vegetable"                             (to test)
 
 # {"apple"=>"Fruit", "pear"=>"Fruit"}
+
+# {"apple"=>"Fruit", "carrot"=>"Vegetable", "pear"=>"Fruit", "broccoli"=>"Vegetable"}
