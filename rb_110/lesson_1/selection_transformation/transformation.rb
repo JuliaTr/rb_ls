@@ -146,3 +146,28 @@ p my_numbers
 # Output:
 # [1, 8, 3, 14, 2, 12]
 # [1, 4, 3, 7, 2, 6]
+
+
+
+# Multiply by any number.
+# Non-mutating
+def multiply(arr, transformation_criteria)
+  multiplied_numbers = []
+  counter = 0
+
+  loop do
+    break if counter == arr.size
+
+    current_number = arr[counter]
+    current_number *= transformation_criteria
+    multiplied_numbers << current_number
+
+    counter += 1
+  end
+
+  multiplied_numbers
+end
+
+my_numbers = [1, 4, 3, 7, 2, 6]
+p multiply(my_numbers, 3) # [3, 12, 9, 21, 6, 18]
+p my_numbers              # [1, 4, 3, 7, 2, 6]
