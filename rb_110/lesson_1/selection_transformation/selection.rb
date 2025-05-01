@@ -162,7 +162,7 @@ p general_select(produce, 'Meat')
 # that we specified.
 question = 'How many times does a particular character appear in this sentence?'
 
-def select_leter(sentence, character)
+def select_letter(sentence, character)
   selected_chars = ''
   counter = 0
 
@@ -181,10 +181,10 @@ def select_leter(sentence, character)
   selected_chars
 end
 
-p select_leter(question, 'a')  # "aaaaaaaa"
-p select_leter(question, 't')  # "ttttt"
-p select_leter(question, 'z')  # ""
+p select_letter(question, 'a')  # "aaaaaaaa"
+p select_letter(question, 't')  # "ttttt"
+p select_letter(question, 'z')  # ""
 
-p select_leter(question, 'a').size  # 8
-p select_leter(question, 't').size  # 5
-p select_leter(question, 'z').size  # 0
+p select_letter(question, 'a').size  # 8
+p select_letter(question, 't').size  # 5
+p select_letter(question, 'z').size  # 0
