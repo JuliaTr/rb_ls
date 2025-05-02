@@ -54,3 +54,22 @@ p a_method
 # 4
 # 6
 # [1, 2, 3]
+
+
+
+def a_method
+  [1, 2, 3].each do |num|
+    puts num * 2
+  end
+
+  puts 'hi'
+end
+
+p a_method
+
+# Output:
+# 2
+# 4
+# 6
+# hi
+# nil
