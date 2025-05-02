@@ -38,3 +38,19 @@ end
 # The key is a and the value is 1
 # The key is b and the value is 2
 # The key is c and the value is 3
+
+
+
+def a_method
+  [1, 2, 3].each do |num|
+    puts num * 2
+  end
+end
+
+p a_method
+
+# Output:
+# 2
+# 4
+# 6
+# [1, 2, 3]
