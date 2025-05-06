@@ -25,3 +25,21 @@ result = ['apple', 'banana', 'cherry', 'date'].select do |fruit|
 end
 
 p result  # ['apple', 'banana', 'cherry', 'date']
+
+
+
+# Exercise: advanced
+result = [1, 2, 3, 4, 5].select do |num|
+  puts num
+  num > 3
+end
+
+p result
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+# [4, 5]
