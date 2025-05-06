@@ -11,4 +11,4 @@ result = { a: "ant", b: "bear", c: "cat" }. any? do |key, value|
   value.size > 4
 end
 
-p result 
+p result # false
