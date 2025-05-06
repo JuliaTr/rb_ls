@@ -23,3 +23,17 @@ end
 
 p hash    # {a=>1, b=>2, c=>3, d=>4}
 p result  # {c=>6, d=>8}
+
+
+
+# Exercise (advanced): What will the following code output? 
+arr = [[1, 2], [3, 4], [5, 6]]
+
+transformed = arr.map do |sub_arr|
+  sub_arr.select do |num|
+    num.odd?
+  end
+end
+
+p arr          # [[1, 2], [3, 4], [5, 6]]
+p transformed  # [[1], [3], [5]]
