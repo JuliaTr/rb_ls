@@ -28,3 +28,11 @@ p result
 # 2
 # 3
 # [nil, nil, nil]
+
+
+
+result = [1, 2, 3].map do |num|
+  'hi'
+end
+
+p result   # ["hi", "hi", "hi"]
