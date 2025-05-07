@@ -29,3 +29,12 @@ puts total
 # Output: 40
 
 
+
+# Exercise (advanced):
+array = [1, 2, 3, 4, 5]
+
+array.each_with_index do |num, idx|
+  array[idx] = num * 2 if idx > 1
+end
+
+p array   # [1, 2, 6, 8, 10]
