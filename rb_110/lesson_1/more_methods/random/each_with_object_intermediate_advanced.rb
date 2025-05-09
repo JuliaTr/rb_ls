@@ -18,3 +18,15 @@ new_arr = nested_arr.each_with_object([]) do |arr, result|
 end
 
 p new_arr   # [1, 2, 3, 4, 5, 6]
+
+
+
+# Exercise (advanced): What does this nested each_with_object return?
+nested_arr = [['a', 1], ['b', 2], ['c', 3]]
+
+result = nested_arr.each_with_object({}) do |(letter, num), hash|
+  hash[letter] = num
+  hash[num] = letter if num.odd?
+end
+
+p result   # {"a"=>1, 1=>"a", "b"=>2, "c"=>3, 3=>"c"}
