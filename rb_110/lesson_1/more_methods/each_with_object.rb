@@ -4,3 +4,13 @@ result = [1, 2, 3].each_with_object([]) do |num, array|
 end
 
 p result   # [1, 3]
+
+
+
+h = { a: "ant", b: "bear", c: "cat" }
+
+result = h.each_with_object([]) do |pair, array|
+  array << pair.last
+end
+
+p result  # ["ant", "bear", "cat"]
