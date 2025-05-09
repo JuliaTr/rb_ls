@@ -14,3 +14,13 @@ result = h.each_with_object([]) do |pair, array|
 end
 
 p result  # ["ant", "bear", "cat"]
+
+
+
+h = { a: "ant", b: "bear", c: "cat" }
+
+result = h.each_with_object({}) do |(key, value), hash|
+  hash[value] = key
+end
+
+p result   # {"ant"=>:a, "bear"=>:b, "cat"=>:c}
