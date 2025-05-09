@@ -27,4 +27,21 @@ result = hash.each_with_object([]) do |(key, value), array|
   array << value if value.odd?
 end
 
-p result  # [1, 'b', 3, 'd']
+p result  # [1, "b", 3, "d"]
+
+
+
+# Exercise (advanced): What will this nested each_with_object return?
+nested_h = [['a', 1], ['b', 2], ['c', 3]]
+
+result = nested_h.each_with_object({}) do |sub_arr, hash|
+  key, value = sub_arr
+  # p sub_arr   # to understand
+  # p key       # to understand
+  # p value     # to understand
+  hash[key] = value * 2
+  hash[value] = key
+end
+
+p result 
+# {"a"=>2, 1=>"a", "b"=>4, 2=>"b", "c"=>6, 3=>"c"}
