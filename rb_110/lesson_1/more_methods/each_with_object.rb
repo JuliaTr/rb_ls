@@ -10,10 +10,21 @@ p result   # [1, 3]
 h = { a: "ant", b: "bear", c: "cat" }
 
 result = h.each_with_object([]) do |pair, array|
+  p pair       # add for understanding
+  p pair.last  # add for understanding
   array << pair.last
 end
 
-p result  # ["ant", "bear", "cat"]
+p result  
+
+# Output:
+# [:a, "ant"]
+# "ant"
+# [:b, "bear"]
+# "bear"
+# [:c, "cat"]
+# "cat"
+# ["ant", "bear", "cat"]
 
 
 
