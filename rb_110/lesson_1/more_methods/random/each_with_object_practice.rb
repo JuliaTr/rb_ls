@@ -16,3 +16,15 @@ result = (1..5).each_with_object([]) do |num, array|
 end
 
 p result # [2, 2, 6, 4, 10]
+
+
+
+# Exercise (intermediate): Determine the output of this code.
+hash = { a: 1, b: 2, c: 3, d: 4 }
+
+result = hash.each_with_object([]) do |(key, value), array|
+  array << key.to_s if value.even?
+  array << value if value.odd?
+end
+
+p result  # [1, 'b', 3, 'd']
