@@ -18,3 +18,9 @@ So, `count` counts an element if the block's return value evaluates
 as true. `count` considers the truthiness of the block's return 
 value.
 =end
+
+
+
+# Experiments:
+result = [1, 2, 3, 4, 5].count { |num| num.odd? }
+p result   # 3
