@@ -22,3 +22,16 @@ result = h.partition do |key, value|
 end
 
 p result   # [[[:b, "bear"]], [[:a, "ant"], [:c, "cat"]]]
+
+
+
+h = { a: "ant", b: "bear", c: "cat" }
+long, short = h.partition do |key, value|
+  value.size > 3
+end
+
+p long           # [[:b, "bear"]]
+p short          # [[:a, "ant"], [:c, "cat"]]
+
+p long.to_h      # {:b=>"bear"}
+p short.to_h     # {:a=>"ant", :c=>"cat"}
