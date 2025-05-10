@@ -13,3 +13,12 @@ end
 
 p odd     # [1, 3]
 p even    # [2]
+
+
+
+h = { a: "ant", b: "bear", c: "cat" }
+result = h.partition do |key, value|
+  value.size > 3
+end
+
+p result   # [[[:b, "bear"]], [[:a, "ant"], [:c, "cat"]]]
