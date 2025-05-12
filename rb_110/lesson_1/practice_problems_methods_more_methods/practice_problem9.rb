@@ -24,7 +24,7 @@ to true, then line 4 (`value`) is executed and returned by the
 The `Enumerable#map` method returns a new Array object, even if 
 invoked on a hash. The return value of the `#map` 
 method has the same number of objects as the original collection 
-returned by the block. 
+considering the returned value by the block. 
 
 On the first iteration, the block returns `nil`, as the `if` 
 statement's condition is evaluated to false (`'ant'`'s size is 
