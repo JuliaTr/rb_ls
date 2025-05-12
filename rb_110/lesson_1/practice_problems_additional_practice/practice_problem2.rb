@@ -17,9 +17,16 @@ ages.each { |_, age| total_ages += age }
 p total_ages    # 6174
 
 
-
 # Option 2
 ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, 
         "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
 result = ages.values.inject(:+)
 p result          # 6174
+
+
+
+
+# Experiments:
+ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, 
+        "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
+p ages.values.sum   # 6174
