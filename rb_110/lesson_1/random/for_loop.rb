@@ -44,3 +44,37 @@ for key, value in hash
 end
 
 p result  # [:b, :d]
+
+
+
+# Exercise (​advanced)​: Determine the output of this code that uses 
+# a `for` loop with range modification:
+range = (1..5)
+
+for i in range
+  p range
+  puts i
+  range = (1..3) if i == 2
+  p range
+end
+
+# Output:
+# 1..5
+# 1
+# 1..5
+
+# 1..5
+# 2
+# 1..3
+
+# 1..3
+# 3
+# 1..3
+
+# 1..3
+# 4
+# 1..3
+
+# 1..3
+# 5
+# 1..3
