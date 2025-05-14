@@ -7,3 +7,26 @@ for num in array
 end
 
 puts sum  # 9
+
+
+
+# Exercise (intermediate)​: Predict the output of this nested loop structure.
+outer_array = [1, 2, 3]
+inner_array = ['a', 'b', 'c']
+
+for i in outer_array     # [1, 2, 3]
+  for j in inner_array   # ['a', 'b', 'c']
+    puts "#{i}-#{j}"
+    break if j == 'b'
+  end
+end
+
+# Output:
+# 1-a
+# 1-b
+
+# 2-a
+# 2-b
+
+# 3-a
+# 3-b
