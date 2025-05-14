@@ -78,3 +78,36 @@ end
 # 1..3
 # 5
 # 1..3
+
+
+
+# Exercise:
+array = [1, 2, 3, 4, 5]
+
+for num in array
+  p array
+  puts num
+  array = [10, 20] if num == 2
+  puts "array is now: #{array.inspect}"
+end
+
+# Output:
+# [1, 2, 3, 4, 5]
+# 1
+# array is now: [1, 2, 3, 4, 5]
+
+# [1, 2, 3, 4, 5]
+# 2
+# array is now: [10, 20]
+
+# [10, 20]
+# 3
+# array is now: [10, 20]
+
+# [10, 20]
+# 4
+# array is now: [10, 20]
+
+# [10, 20]
+# 5
+# array is now: [10, 20]
