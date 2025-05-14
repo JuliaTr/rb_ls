@@ -111,3 +111,21 @@ end
 # [10, 20]
 # 5
 # array is now: [10, 20]
+
+
+
+# Exercise with `while` to compare variable reassignment 
+# during iteration:
+i = 1
+range = (1..5)
+
+while i <= range.end
+  puts i
+  range = (1..3) if i == 2
+  i += 1
+end
+
+# Output:
+# 1
+# 2
+# 3
