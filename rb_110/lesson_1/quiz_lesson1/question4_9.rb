@@ -23,6 +23,7 @@ def change_case(sentence, new_case)
   end
 end
 
+
 # `snake(sentence)` method
 def snake(str)
   words = str.split
@@ -40,3 +41,39 @@ end
 
 sentence = 'The sky was blue'
 p snake(sentence) == 'the_sky_was_blue'  # true
+
+
+# `camel(sentence)` method
+def camel(str)
+  words = str.split(' ')
+  counter = 0
+
+  while counter < words.size # debugged; was `counter > words.size`
+    words[counter] = words[counter].capitalize
+
+    counter = counter + 1
+  end
+
+  words.join
+end
+
+sentence = 'The sky was blue'
+p camel(sentence) == 'TheSkyWasBlue'   # true
+
+
+### Experiment:
+def camel(str)
+  words = str.split(' ')
+  counter = 0
+
+  until counter >= words.size
+    words[counter] = words[counter].capitalize
+
+    counter = counter + 1
+  end
+
+  words.join
+end
+
+sentence = 'The sky was blue'
+p camel(sentence) == 'TheSkyWasBlue'   # true
