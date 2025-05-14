@@ -140,3 +140,55 @@ end
 # 2
 # 3
 # 4
+
+
+# Solution 4:
+numbers = [7, 3, 5, 2, 1, 8, 4]
+
+numbers.each do |number|
+  counter = 0
+
+  number.times do
+    counter += 1
+    puts counter
+  end
+
+end
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+
+# 1
+# 2
+# 3
+
+# 1
+# 2
+# 3
+# 4
+# 5
+
+# 1
+# 2
+
+# 1
+
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+
+# 1
+# 2
+# 3
+# 4
