@@ -1,21 +1,21 @@
-# # Question 1: What happens if we try to initialize a Hash that 
-# # contains duplicate keys?
+# Question 1: What happens if we try to initialize a Hash that 
+# contains duplicate keys?
 
-# hsh = { a: 100, b: 200, c: 300, a: 400 }
-# p hsh
+hsh = { a: 100, b: 200, c: 300, a: 400 }
+p hsh
 
-# =begin
-# Output:
-# warning: key :a is duplicated and overwritten on line 4
-# {:b=>200, :c=>300, :a=>400}
+=begin
+Output:
+warning: key :a is duplicated and overwritten on line 4
+{:b=>200, :c=>300, :a=>400}
 
-# The value for the second occurrence of the duplicate key 
-# overrites the value of the first occurrence.
-# =end
+The value for the second occurrence of the duplicate key 
+overrites the value of the first occurrence.
+=end
 
 
 
-# # ---------------------------------------------------------
+# ---------------------------------------------------------
 
 =begin
 Question 2:
@@ -56,3 +56,20 @@ for number in numbers
 end
 
 p odd_numbers  # ["3", "5", "7", "11", "13", "15"]
+
+
+# Solution 3:
+numbers = ['2', '3', '5', '7', '8', '11', '13', '15', '18']
+odd_numners = []
+counter = 0
+
+loop do
+  number = numbers[counter].to_i
+
+  odd_numners << numbers[counter] unless number.even?
+
+  counter += 1
+  break if counter == numbers.size
+end
+
+p odd_numners   # ["3", "5", "7", "11", "13", "15"]
