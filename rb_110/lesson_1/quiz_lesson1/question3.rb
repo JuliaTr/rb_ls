@@ -86,3 +86,57 @@ end
 # 5
 # 6
 # 7
+
+
+# Solution 3:
+numbers = [7, 3, 5, 2, 1, 8, 4]
+
+for number in numbers
+  counter = 0
+  
+  loop do
+    counter += 1
+    puts counter
+
+    break if counter >= number
+  end
+
+end
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+
+# 1
+# 2
+# 3
+
+# 1
+# 2
+# 3
+# 4
+# 5
+
+# 1
+# 2
+
+# 1
+
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+
+# 1
+# 2
+# 3
+# 4
