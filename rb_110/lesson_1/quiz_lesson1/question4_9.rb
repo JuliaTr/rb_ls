@@ -24,6 +24,7 @@ def change_case(sentence, new_case)
 end
 
 
+
 # `snake(sentence)` method
 def snake(str)
   words = str.split
@@ -41,6 +42,7 @@ end
 
 sentence = 'The sky was blue'
 p snake(sentence) == 'the_sky_was_blue'  # true
+
 
 
 # `camel(sentence)` method
@@ -77,3 +79,23 @@ end
 
 sentence = 'The sky was blue'
 p camel(sentence) == 'TheSkyWasBlue'   # true
+
+
+
+# `upper_snake(sentence)` method
+def upper_snake(str)
+  words = str.split
+  current_word = 0
+
+  loop do
+    break if current_word == words.size
+
+    words[current_word].upcase!
+    current_word += 1 # debugged; was on line before `break if` condition
+  end
+
+  words.join('_')
+end
+
+sentence = 'The sky was blue'
+p upper_snake(sentence) # == 'THE_SKY_WAS_BLUE'
