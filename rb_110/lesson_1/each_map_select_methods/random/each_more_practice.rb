@@ -1,5 +1,5 @@
 # Fewer executions if:
-## 1. Modifying the array during iteration:
+## 1. Modifying the array during iteration (NOT recommended):
 arr = [1, 2, 3, 4, 5]
 
 arr.each do |num|
@@ -36,8 +36,9 @@ end
 
 
 
+
 # More executions:
-## 1. Adding elements to the beginning
+## 1. Adding elements to the beginning (NOT recommended):
 arr = [1, 2, 3, 4, 5]
 
 arr.each do |num|
@@ -46,3 +47,17 @@ arr.each do |num|
 end
 
 # Output: (infinite loop)
+
+
+
+## 2. Using `next` with a condition:
+count = 0
+
+[1, 2, 3, 4, 5].each do |num|
+  count += 1
+  next if count < 10
+  puts num
+end
+
+# Output: nothing to output
+# The `next if count < 10` was executed on each iteration.
