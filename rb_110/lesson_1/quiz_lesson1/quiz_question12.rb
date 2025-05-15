@@ -1,30 +1,30 @@
-# # Question 12:
-# result = ['a', 'b', 'c'].select do |item|
-#   puts item  # => nil
-# end
+# Question 12:
+result = ['a', 'b', 'c'].select do |item|
+  puts item  # => nil
+end
 
-# p result 
+p result 
 
-# # Output:
-# # a
-# # b
-# # c
-# # []
+# Output:
+# a
+# b
+# c
+# []
 
 
 
-# ## Experiments:
-# result = ['a', 'b', 'c'].each do |item|
-#   puts item
-# end
+## Experiments:
+result = ['a', 'b', 'c'].each do |item|
+  puts item
+end
 
-# p result
+p result
 
-# # Output:
-# # a
-# # b
-# # c
-# # ["a", "b", "c"]
+# Output:
+# a
+# b
+# c
+# ["a", "b", "c"]
 
 
 result = ['a', 'b', 'c'].map do |item|
