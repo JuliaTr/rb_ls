@@ -74,3 +74,26 @@ stars_2 = star_method(stars_1)
 
 p stars_1   # ["Sirius", "Rigel", "Vega", "Polaris", "Altair"]
 p stars_2   # ["Sirius", "Rigel", "Vega", "Polaris", "Altair"]
+
+
+
+### Experiments:
+stars_1 = ['Sirius', 'Rigel', 'Vega', 'Polaris', 'Altair']
+
+ret_val = for star in stars_1
+  star.downcase
+end
+
+p stars_1   # ["Sirius", "Rigel", "Vega", "Polaris", "Altair"]
+p ret_val   # ["Sirius", "Rigel", "Vega", "Polaris", "Altair"]
+
+
+
+stars_1 = ['Sirius', 'Rigel', 'Vega', 'Polaris', 'Altair']
+
+ret_val = for star in stars_1
+  star.downcase!
+end
+
+p stars_1   # ["sirius", "rigel", "vega", "polaris", "altair"]
+p ret_val   # ["sirius", "rigel", "vega", "polaris", "altair"]
