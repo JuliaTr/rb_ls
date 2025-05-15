@@ -10,3 +10,17 @@ p result
 # b
 # c
 # []
+
+
+## Experiments:
+result = ['a', 'b', 'c'].each do |item|
+  puts item
+end
+
+p result
+
+# Output:
+# a
+# b
+# c
+# ["a", "b", "c"]
