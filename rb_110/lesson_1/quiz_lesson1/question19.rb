@@ -78,6 +78,10 @@ p result
 # [["Belgium", "Brussels"], ["Barbados", "Bridgetown"], 
 # ["Bolivia", "La Paz"], ["Brazil", "Brazilia"]]
 
+p result.to_h
+# {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown", 
+# "Bolivia"=>"La Paz", "Brazil"=>"Brazilia"}
+
 
 # Experiment to debug:
 def begins_with_b(string)
