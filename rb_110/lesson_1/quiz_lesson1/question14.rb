@@ -194,7 +194,7 @@ puts "Final array: #{numbers.inspect}"
 numbers = [1, 2, 3, 4, 5]
 counter = 0
 
-numbers.each_with_index do |number, idx|
+numbers.each do |number|
   puts "Iteration #{counter += 1}"
   puts "Before mutation: #{numbers.inspect}"
   numbers[number - 1] *= 10 if number < 4
@@ -242,3 +242,51 @@ puts "Final array: #{numbers.inspect}"
 numbers = [1, 2, 3, 4, 5]
 counter = 0
 p numbers[counter - 1] # 5
+
+
+numbers = [1, 2, 3, 4, 5]
+counter = 0
+
+numbers.map do |number|
+  puts "Iteration #{counter += 1}"
+  puts "Before mutation: #{numbers.inspect}"
+  numbers[number - 1] *= 10 if number < 4
+  puts "After mutation: #{numbers.inspect}"
+  puts "Current element being processed: #{number}"
+  puts "---"
+end
+
+puts "Final array: #{numbers.inspect}"
+
+# Output:
+# Iteration 1
+# Before mutation: [1, 2, 3, 4, 5]
+# After mutation: [10, 2, 3, 4, 5]
+# Current element being processed: 1
+# ---
+# Final array: [10, 2, 3, 4, 5]
+
+# Iteration 2
+# Before mutation: [10, 2, 3, 4, 5]
+# After mutation: [10, 20, 3, 4, 5]
+# Current element being processed: 2
+# ---
+
+# Iteration 3
+# Before mutation: [10, 20, 3, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 3
+# ---
+
+# Iteration 4
+# Before mutation: [10, 20, 30, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 4
+# ---
+
+# Iteration 5
+# Before mutation: [10, 20, 30, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 5
+# ---
+# Final array: [10, 20, 30, 4, 5]
