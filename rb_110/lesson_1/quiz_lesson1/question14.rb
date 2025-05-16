@@ -16,6 +16,7 @@ p arr
 
 
 
+
 ## Experiments:
 arr = ['green', 'blue', 'red']
 result = arr.map do |word|
@@ -128,3 +129,116 @@ p arr
 # After: ["GREEN", "BLUE", "RED"]
 
 # ["GREEN", "BLUE", "RED"]
+
+
+numbers = [1, 2, 3, 4, 5]
+counter = 0
+
+numbers.each_with_index do |number, idx|
+  puts "Iteration #{counter += 1}"
+  puts "Before mutation: #{numbers.inspect}"
+  p number
+  p numbers[number - 1]  # 1 - 1 = 0; numbers[0] is `1` 
+  numbers[number - 1] *= 10 if number < 4
+  p number
+  puts "After mutation: #{numbers.inspect}"
+  puts "Current element being processed: #{number}"
+  puts "---"
+  break if idx == 0
+end
+
+puts "Final array: #{numbers.inspect}"
+
+# Output:
+# Iteration 1
+# Before mutation: [1, 2, 3, 4, 5]
+# 1
+# 1
+# 1
+# After mutation: [10, 2, 3, 4, 5]
+# Current element being processed: 1
+# ---
+# Final array: [10, 2, 3, 4, 5]
+
+
+numbers = [0, 2, 3, 4, 5]
+counter = 0
+
+numbers.each_with_index do |number, idx|
+  puts "Iteration #{counter += 1}"
+  puts "Before mutation: #{numbers.inspect}"
+  p number
+  p numbers[number - 1]  # 0 - 1 = -1; numbers[-1] is `5` 
+  numbers[number - 1] *= 10 if number < 4
+  p number
+  puts "After mutation: #{numbers.inspect}"
+  puts "Current element being processed: #{number}"
+  puts "---"
+  break if idx == 0
+end
+
+puts "Final array: #{numbers.inspect}"
+
+# Output:
+# Iteration 1
+# Before mutation: [0, 2, 3, 4, 5]
+# 0
+# 5
+# 0
+# After mutation: [0, 2, 3, 4, 5]
+# Current element being processed: 0
+# ---
+# Final array: [0, 2, 3, 4, 5]
+
+
+numbers = [1, 2, 3, 4, 5]
+counter = 0
+
+numbers.each_with_index do |number, idx|
+  puts "Iteration #{counter += 1}"
+  puts "Before mutation: #{numbers.inspect}"
+  numbers[number - 1] *= 10 if number < 4
+  puts "After mutation: #{numbers.inspect}"
+  puts "Current element being processed: #{number}"
+  puts "---"
+end
+
+puts "Final array: #{numbers.inspect}"
+
+# Output:
+# Iteration 1
+# Before mutation: [1, 2, 3, 4, 5]
+# After mutation: [10, 2, 3, 4, 5]
+# Current element being processed: 1
+# ---
+# Final array: [10, 2, 3, 4, 5]
+
+# Iteration 2
+# Before mutation: [10, 2, 3, 4, 5]
+# After mutation: [10, 20, 3, 4, 5]
+# Current element being processed: 2
+# ---
+
+# Iteration 3
+# Before mutation: [10, 20, 3, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 3
+# ---
+
+# Iteration 4
+# Before mutation: [10, 20, 30, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 4
+# ---
+
+# Iteration 5
+# Before mutation: [10, 20, 30, 4, 5]
+# After mutation: [10, 20, 30, 4, 5]
+# Current element being processed: 5
+# ---
+# Final array: [10, 20, 30, 4, 5]
+
+
+numbers = [1, 2, 3, 4, 5]
+counter = 0
+p numbers[counter - 1] # 5
