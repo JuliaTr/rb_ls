@@ -50,3 +50,25 @@ p arr
 # RED
 # ["GREEN", "BLUE", "RED"]
 # ["GREEN", "BLUE", "RED"]
+
+
+arr = ['green', 'blue', 'red']
+arr.each do |word|
+  puts "Before: #{arr.inspect}"
+  word.upcase!
+  puts "After: #{arr.inspect}"
+end
+
+p arr
+
+# Output:
+# Before: ["green", "blue", "red"]
+# After: ["GREEN", "blue", "red"]
+
+# Before: ["GREEN", "blue", "red"]
+# After: ["GREEN", "BLUE", "red"]
+
+# Before: ["GREEN", "BLUE", "red"]
+# After: ["GREEN", "BLUE", "RED"]
+
+# ["GREEN", "BLUE", "RED"]
