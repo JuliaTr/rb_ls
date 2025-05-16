@@ -40,3 +40,24 @@ end
 p select_countries(countries_and_capitals)
 # {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown",
 # "Bolivia"=>"La Paz", "Brazil"=>"Brazilia"}
+
+
+
+# Doesn't solve the problem:
+# Solution 1:
+result = countries_and_capitals.select do |_, country| 
+          country[0] == 'B'
+        end
+p result
+# {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown", 
+# "Brazil"=>"Brazilia"}
+
+
+# Experiment:
+result = countries_and_capitals.select do |key, _|
+          key[0] == 'B'
+        end
+
+p result
+# {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown", 
+# "Bolivia"=>"La Paz", "Brazil"=>"Brazilia"}
