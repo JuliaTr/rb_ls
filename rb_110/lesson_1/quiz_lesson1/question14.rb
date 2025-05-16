@@ -1,3 +1,4 @@
+# `map`:
 arr = ['green', 'blue', 'red']
 result = arr.map do |word|
   puts word
@@ -13,6 +14,27 @@ p arr
 # red
 # ["GREEN", "BLUE", "RED"]
 # ["green", "blue", "red"]
+
+
+# `each`:
+arr = ['green', 'blue', 'red']
+result = arr.each do |word|
+  puts word
+  word.upcase
+end
+
+p result
+p arr
+
+# Output:
+# green
+# blue
+# red
+# ["green", "blue", "red"]
+# ["green", "blue", "red"]
+
+
+# `select`:
 
 
 
