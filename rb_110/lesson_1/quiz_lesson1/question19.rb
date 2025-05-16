@@ -24,3 +24,19 @@ result = countries_and_capitals.each_with_object({}) do |(k, v), obj|
 p result
 # {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown",
 # "Bolivia"=>"La Paz", "Brazil"=>"Brazilia"}
+
+
+# Solution 2:
+def select_countries(hsh)
+  sub_set = {}
+  hsh.each_key do |country|
+    if country[0] == 'B'
+      sub_set[country] = hsh[country]
+    end
+  end
+  sub_set
+end
+
+p select_countries(countries_and_capitals)
+# {"Belgium"=>"Brussels", "Barbados"=>"Bridgetown",
+# "Bolivia"=>"La Paz", "Brazil"=>"Brazilia"}
