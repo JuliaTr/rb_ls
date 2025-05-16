@@ -1,43 +1,52 @@
-result = ['green', 'blue', 'red'].map do |word|
+arr = ['green', 'blue', 'red']
+result = arr.map do |word|
   puts word
   word.upcase
 end
 
 p result
+p arr
 
 # Output:
 # green
 # blue
 # red
 # ["GREEN", "BLUE", "RED"]
+# ["green", "blue", "red"]
 
 
 
 ## Experiments:
-result = ['green', 'blue', 'red'].map do |word|
+arr = ['green', 'blue', 'red']
+result = arr.map do |word|
   puts word
   word.upcase!
 end
 
 p result
+p arr
 
 # Output:
 # green
 # blue
 # red
 # ["GREEN", "BLUE", "RED"]
+# ["GREEN", "BLUE", "RED"]
 
 
-result = ['green', 'blue', 'red'].map do |word|
+arr = ['green', 'blue', 'red']
+result = arr.map do |word|
   word.upcase!
   puts word
   word
 end
 
 p result
+p arr
 
 # Output:
 # GREEN
 # BLUE
 # RED
+# ["GREEN", "BLUE", "RED"]
 # ["GREEN", "BLUE", "RED"]
