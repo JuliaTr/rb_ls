@@ -35,6 +35,21 @@ p arr
 
 
 # `select`:
+arr = ['green', 'blue', 'red']
+result = arr.select do |word|
+  puts word
+  word.upcase
+end
+
+p result
+p arr
+
+# Output:
+# green
+# blue
+# red
+# ["green", "blue", "red"]
+# ["green", "blue", "red"]
 
 
 
