@@ -290,3 +290,24 @@ puts "Final array: #{numbers.inspect}"
 # Current element being processed: 5
 # ---
 # Final array: [10, 20, 30, 4, 5]
+
+
+array = [1, 2, 3, 4, 5]
+
+array.each do |num|
+  puts "Current num: #{num}"
+  array[0] = 100
+  puts "Array is now: #{array.inspect}"
+end
+
+# Output:
+# Current num: 1
+# Array is now: [100, 2, 3, 4, 5]
+# Current num: 2
+# Array is now: [100, 2, 3, 4, 5]
+# Current num: 3
+# Array is now: [100, 2, 3, 4, 5]
+# Current num: 4
+# Array is now: [100, 2, 3, 4, 5]
+# Current num: 5
+# Array is now: [100, 2, 3, 4, 5]
