@@ -19,6 +19,34 @@ p arr
 ## Experiments:
 arr = ['green', 'blue', 'red']
 result = arr.map do |word|
+  puts "Before: #{arr.inspect}"
+  puts word
+  word.upcase
+  puts "After: #{arr.inspect}"
+end
+
+p result
+p arr
+
+# Output:
+# Before: ["green", "blue", "red"]
+# green
+# After: ["green", "blue", "red"]
+
+# Before: ["green", "blue", "red"]
+# blue
+# After: ["green", "blue", "red"]
+
+# Before: ["green", "blue", "red"]
+# red
+# After: ["green", "blue", "red"]
+
+# [nil, nil, nil]
+# ["green", "blue", "red"]
+
+
+arr = ['green', 'blue', 'red']
+result = arr.map do |word|
   puts word
   word.upcase!
 end
