@@ -111,3 +111,24 @@ p mailing_campaign_leads
 # {:name=>"Ash Patel", :email=>"ash_patel@my_mail.com", :days_since_login=>22, :mailing_list=>true}]
 
 # Mutates the original object.
+
+
+mailing_campaign_leads.each do |lead|
+  names = lead[:name].split
+  names.map! { |name| name.capitalize }
+  lead[:name] = names.join(' ')
+end
+
+usable_leads = mailing_campaign_leads.keep_if do |lead|
+  lead[:days_since_login] <= 60 && lead[:mailing_list]
+end
+
+p mailing_campaign_leads
+# [{:name=>"Jane Williams", :email=>"jane_w95@my_mail.com", :days_since_login=>16, :mailing_list=>true}, 
+# {:name=>"Ash Patel", :email=>"ash_patel@my_mail.com", :days_since_login=>22, :mailing_list=>true}]
+
+p usable_leads
+# [{:name=>"Jane Williams", :email=>"jane_w95@my_mail.com", :days_since_login=>16, :mailing_list=>true}, 
+# {:name=>"Ash Patel", :email=>"ash_patel@my_mail.com", :days_since_login=>22, :mailing_list=>true}]
+
+# Mutates the original object.
