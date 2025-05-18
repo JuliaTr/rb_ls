@@ -67,6 +67,26 @@ def extract_elements(str, arr, h)
   [str[2], arr.first, arr.last, h[:name]]
 end
 
+# concise and common pattern in Ruby
+
+p extract_elements("programming", [1, 2, 3, 4, 5], {name: "Ruby", year: 1995}) == ["o", 1, 5, "Ruby"]
+# true
+p extract_elements("launch", ["a", "b", "c"], {name: "school", type: "coding"}) == ["u", "a", "c", "school"]
+# true
+p extract_elements("hello", [], {language: "Ruby"}) == ["l", nil, nil, nil]
+# true
+
+
+# Option 4 (using splat operator (`*`)):
+def extract_elements(str, arr, h)
+  new_arr = []
+  elements = [str[2], arr.first, arr.last, h[:name]]
+  new_arr.push(*elements)
+  new_arr
+end
+
+# elements in a separate array and being added individually
+
 p extract_elements("programming", [1, 2, 3, 4, 5], {name: "Ruby", year: 1995}) == ["o", 1, 5, "Ruby"]
 # true
 p extract_elements("launch", ["a", "b", "c"], {name: "school", type: "coding"}) == ["u", "a", "c", "school"]
