@@ -49,3 +49,25 @@ p numbers  # [1, 2, "three", 5]
 numbers = [1, 2, 3, 4, 5]
 numbers[2..2] = 'three'
 p numbers  # [1, 2, "three", 4, 5]
+
+
+
+
+# Exercise 3:
+user_data = { name: "John", age: 30 }
+user_data[:email] = "john@example.com"
+puts user_data[:phone]  # (empty line)
+
+
+## Debug
+# Option 1:
+user_data = { name: "John", age: 30 }
+user_data[:email] = "john@example.com"
+user_data.fetch(:phone)    # key not found: :phone (KeyError)
+puts user_data[:phone]             # (empty line)
+
+# Option 2:
+user_data = { name: "John", age: 30 }
+user_data[:email] = "john@example.com"
+user_data[:phone] = "(234) 564 - 9876"
+puts user[:phone]      # (234) 564 - 9876
