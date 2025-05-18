@@ -35,3 +35,17 @@ words_array[1] = "can be"
 p words_array  # ["programming", "can be", "fun"]
 
 p words_array.join(' ')   # "programming can be fun"
+
+
+
+
+# Exercise 2:
+numbers = [1, 2, 3, 4, 5]
+numbers[2, 2] = 'three'
+p numbers  # [1, 2, "three", 5]
+
+
+## Degug
+numbers = [1, 2, 3, 4, 5]
+numbers[2..2] = 'three'
+p numbers  # [1, 2, "three", 4, 5]
