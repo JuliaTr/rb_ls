@@ -63,8 +63,12 @@ puts user_data[:phone]  # (empty line)
 # Option 1:
 user_data = { name: "John", age: 30 }
 user_data[:email] = "john@example.com"
-user_data.fetch(:phone)    # key not found: :phone (KeyError)
+# user_data.fetch(:phone)    # key not found: :phone (KeyError)
 puts user_data[:phone]             # (empty line)
+
+# Using `Hash#fetch` with a default message
+puts user_data.fetch(:phone, "Phone number not found")
+
 
 # Option 2:
 user_data = { name: "John", age: 30 }
