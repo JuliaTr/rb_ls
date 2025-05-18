@@ -60,3 +60,16 @@ p extract_elements("launch", ["a", "b", "c"], {name: "school", type: "coding"}) 
 # true
 p extract_elements("hello", [], {language: "Ruby"}) == ["l", nil, nil, nil]
 # true
+
+
+# Option 3 (initialize the array with all elements at once):
+def extract_elements(str, arr, h)
+  [str[2], arr.first, arr.last, h[:name]]
+end
+
+p extract_elements("programming", [1, 2, 3, 4, 5], {name: "Ruby", year: 1995}) == ["o", 1, 5, "Ruby"]
+# true
+p extract_elements("launch", ["a", "b", "c"], {name: "school", type: "coding"}) == ["u", "a", "c", "school"]
+# true
+p extract_elements("hello", [], {language: "Ruby"}) == ["l", nil, nil, nil]
+# true
