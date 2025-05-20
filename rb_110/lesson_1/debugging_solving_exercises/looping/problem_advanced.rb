@@ -19,3 +19,4 @@ loop do
 end
 
 p new_hash # {"red"=>"apple", "yellow"=>"banana", "purple"=>"grape"}
+# Works as expected.
