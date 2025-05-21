@@ -80,3 +80,94 @@ p unique_values(arr3)        # []
 p count_unique_values(arr3)  # []
 p count_occurences(arr3)     # {}
 # Expected: {}
+
+
+
+# Ways to optimize the code:
+# With buit-in methods:
+def count_occurences(arr)
+  new_hash = {}
+
+  arr.each do |element|
+    new_hash[element] = arr.count(element)
+  end
+
+  new_hash
+end
+
+p count_occurences(['car', 'car', 'truck', 'car', 'SUV', 'truck'])     # {"car"=>3, "truck"=>2, "SUV"=>1}
+# Expected: {"car"=>3, "truck"=>2, "SUV"=>1}
+
+p count_occurences(['ruby', 'python', 'ruby', 'javascript'])     # {"ruby"=>2, "python"=>1, "javascript"=>1}
+# Expected: {"ruby"=>2, "python"=>1, "javascript"=>1}
+
+p count_occurences([])     # {}
+# Expected: {}
+
+
+
+# Iterates over unique elements
+def count_occurences(arr)
+  new_hash = {}
+
+  arr.uniq.each do |element|
+    new_hash[element] = arr.count(element)
+  end
+
+  new_hash
+end
+
+p count_occurences(['car', 'car', 'truck', 'car', 'SUV', 'truck'])     # {"car"=>3, "truck"=>2, "SUV"=>1}
+# Expected: {"car"=>3, "truck"=>2, "SUV"=>1}
+
+p count_occurences(['ruby', 'python', 'ruby', 'javascript'])     # {"ruby"=>2, "python"=>1, "javascript"=>1}
+# Expected: {"ruby"=>2, "python"=>1, "javascript"=>1}
+
+p count_occurences([])     # {}
+# Expected: {}
+
+
+
+# Counts while iterating:
+def count_occurences(arr)
+  new_hash = {}
+
+  arr.uniq.each do |element|
+    new_hash[element] = new_hash[element].to_i + 1
+  end
+
+  new_hash
+end
+
+p count_occurences(['car', 'car', 'truck', 'car', 'SUV', 'truck'])     # {"car"=>3, "truck"=>2, "SUV"=>1}
+# Expected: {"car"=>3, "truck"=>2, "SUV"=>1}
+
+p count_occurences(['ruby', 'python', 'ruby', 'javascript'])     # {"ruby"=>2, "python"=>1, "javascript"=>1}
+# Expected: {"ruby"=>2, "python"=>1, "javascript"=>1}
+
+p count_occurences([])     # {}
+# Expected: {}
+
+
+
+def count_occurences(arr)
+  new_hash = {}
+
+  arr.each do |element|
+    new_hash[element] = new_hash[element].to_i + 1
+  end
+
+  new_hash
+end
+
+p count_occurences(['car', 'car', 'truck', 'car', 'SUV', 'truck'])     # {"car"=>3, "truck"=>2, "SUV"=>1}
+# Expected: {"car"=>3, "truck"=>2, "SUV"=>1}
+
+p count_occurences(['ruby', 'python', 'ruby', 'javascript'])     # {"ruby"=>2, "python"=>1, "javascript"=>1}
+# Expected: {"ruby"=>2, "python"=>1, "javascript"=>1}
+
+p count_occurences([])     # {}
+# Expected: {}
+
+# # Experiments:
+# p "hello".to_i  # => 0
