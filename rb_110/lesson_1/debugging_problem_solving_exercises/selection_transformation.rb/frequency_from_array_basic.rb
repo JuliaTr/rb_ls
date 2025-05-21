@@ -4,14 +4,14 @@ an array as an argument and returns a hash that contains the
 count of each element in the array.
 
 Steps:
-- Define a method to build a hash
-- Select unique values to use them as keys
+- Define a method `count_occurences` which takes an arra to 
+  build a hash (main method)
+- Select unique values to use them as keys (helper method)
   Return: array of unique values
-  - Use each array value as a key
-  - Build hash
-- Count how many of each values are there in the array
-  - Count and push to the array of counted values
-- Build a hash
+- Count how many of each values are there in the original array 
+  (helper method)
+  - Count and push to a new array of counted values
+- Build a hash (main method)
 
 
 p count_occurences(['car', 'car', 'truck', 'car', 'SUV', 'truck'])
