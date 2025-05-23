@@ -107,7 +107,7 @@ occurence = count_occurence(new_arr, arr_unique_values, alphabet)
 p occurence # [2, 1, 1, 1, 2, 2, 1, 2]
 
 p letter_count(arr_unique_values, occurence, alphabet)
-# Expected: {"l"=>1, "a"=>1, "u"=>1, "n"=>1, "c"=>1, "h"=>1, "s"=>1, "o"=>2}
+# Expected: {"l"=>2, "a"=>1, "u"=>1, "n"=>1, "c"=>2, "h"=>2, "s"=>1, "o"=>2}
 # {"l"=>2, "a"=>1, "u"=>1, "n"=>1, "c"=>2, "h"=>2, "s"=>1, "o"=>2}
 
 
