@@ -126,3 +126,31 @@ p occurence # []
 
 p letter_count(arr_unique_values, occurence, alphabet) # {}
 # Expected: {}
+
+
+
+## Optimal ways
+# Option 1:
+def letter_count(str)
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  hash = {}
+
+  downcased_str = str.downcase # => string downcased elements 
+  
+  downcased_str.chars.uniq.keep_if do |element| # => array with unique downcased elements without white spaces and symbols
+    alphabet.include?(element)
+  end.each do |element|    # => array with unique downcased elements without white spaces and symbols
+    hash[element] = downcased_str.count(element)
+  end
+
+  hash
+end
+
+p letter_count("Hello World!") == {"h"=>1, "e"=>1, "l"=>3, "o"=>2, "w"=>1, "r"=>1, "d"=>1}
+p letter_count("Launch School") == {"l"=>2, "a"=>1, "u"=>1, "n"=>1, "c"=>2, "h"=>2, "s"=>1, "o"=>2}
+p letter_count("123") == {}
+
+# Output:
+# true
+# true
+# true
