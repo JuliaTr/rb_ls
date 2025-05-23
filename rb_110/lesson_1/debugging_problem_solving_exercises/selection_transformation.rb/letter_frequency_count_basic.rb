@@ -129,6 +129,7 @@ p letter_count(arr_unique_values, occurence, alphabet) # {}
 
 
 
+
 ## Optimal ways
 # Option 1:
 def letter_count(str)
@@ -149,6 +150,29 @@ end
 p letter_count("Hello World!") == {"h"=>1, "e"=>1, "l"=>3, "o"=>2, "w"=>1, "r"=>1, "d"=>1}
 p letter_count("Launch School") == {"l"=>2, "a"=>1, "u"=>1, "n"=>1, "c"=>2, "h"=>2, "s"=>1, "o"=>2}
 p letter_count("123") == {}
+
+# Output:
+# true
+# true
+# true
+
+
+
+# Option 2:
+def letter_count(str)
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  downcased_str = str.downcase
+
+  downcased_str.chars.each_with_object({}) do |char, hash|
+    if alphabet.include?(char)
+      hash[char] = hash[char].to_i + 1
+    end
+  end
+end
+
+p letter_count("Hello World!") == {"h"=>1, "e"=>1, "l"=>3, "o"=>2, "w"=>1, "r"=>1, "d"=>1}
+# p letter_count("Launch School") == {"l"=>2, "a"=>1, "u"=>1, "n"=>1, "c"=>2, "h"=>2, "s"=>1, "o"=>2}
+# p letter_count("123") == {}
 
 # Output:
 # true
