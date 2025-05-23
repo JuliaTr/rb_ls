@@ -33,7 +33,27 @@ p select_duplicates(['a', 'b', 'c', 'a', 'b', 'd']) == ['a', 'b']
 p select_duplicates([1, 2, 3, 4]) == []
 p select_duplicates([]) == []
 
-# Ouput:
+# Output:
+# true
+# true
+# true
+# true
+
+
+
+## Optimal ways
+def select_duplicates(arr)
+  arr.uniq.each_with_object({}) do |element, hash|
+    hash[element] = arr.count(element)
+  end.select { |_, value| value > 1 }.keys
+end
+
+p select_duplicates([1, 2, 3, 1, 2, 4]) == [1, 2]
+p select_duplicates(['a', 'b', 'c', 'a', 'b', 'd']) == ['a', 'b']
+p select_duplicates([1, 2, 3, 4]) == []
+p select_duplicates([]) == []
+
+# Output:
 # true
 # true
 # true
