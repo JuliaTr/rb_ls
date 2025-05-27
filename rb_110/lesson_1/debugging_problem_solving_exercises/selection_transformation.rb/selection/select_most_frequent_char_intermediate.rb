@@ -37,3 +37,21 @@ p most_frequent_char('abcdefgabc') == 'a'     # true
 p most_frequent_char('Launch School') == 'c'  # true
 p most_frequent_char('aaabbc') == 'a'         # true
 p most_frequent_char('') == nil               # true
+
+
+
+## Experiments:
+p "".downcase   # ""
+p "".chars      # []
+
+result = [].each_with_object({}) do |element, hash|
+  hash[element] = hash[element].to_i + 1
+end
+p result # {}
+
+p({}.values)  # []
+p({}.values.max)  # nil
+
+p({}.select { |_, value| value == {}.values.max }) # {}
+p({}.select { |_, value| value == {}.values.max }.keys) # []
+p({}.select { |_, value| value == {}.values.max }.keys.first) # nil
