@@ -93,3 +93,40 @@ p result
 # b
 # c
 # ["a", "c"]
+
+
+
+array = [1, 2, 3, 4, 5]
+result = array.select do |num|
+          p array
+          p num
+          array.delete(num) if num < 3
+          p array
+          p num
+          num > 2
+        end
+
+p result 
+
+# Output:
+# [1, 2, 3, 4, 5]
+# 1
+# [2, 3, 4, 5]
+# 1
+
+# [2, 3, 4, 5]
+# 3
+# [2, 3, 4, 5]
+# 3
+
+# [2, 3, 4, 5]
+# 4
+# [2, 3, 4, 5]
+# 4
+
+# [2, 3, 4, 5]
+# 5
+# [2, 3, 4, 5]
+# 5
+
+# [3, 4, 5]
