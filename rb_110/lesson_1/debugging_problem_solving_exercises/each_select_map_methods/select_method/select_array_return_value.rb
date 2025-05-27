@@ -11,3 +11,12 @@ p result
 # 2
 # 3
 # [2, 3]
+
+
+
+result = ['a', 'b', 'c'].select do |char|
+            char + '!'
+            nil
+          end
+
+p result # []
