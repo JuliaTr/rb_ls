@@ -34,3 +34,12 @@ result = { a: 'ant', b: 'bear' }.map do |_, value|
 end
 
 p result # [false, true]
+
+
+
+h = { first: 1, second: 'two', third: [3] }
+result = h.map do |key, value|
+  [key, value.to_s]
+end
+
+p result  # [[:first, "1"], [:second, "two"], [:third, "[3]"]]
