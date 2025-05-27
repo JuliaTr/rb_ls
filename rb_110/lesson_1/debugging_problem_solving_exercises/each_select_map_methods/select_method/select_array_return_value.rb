@@ -32,6 +32,67 @@ p result # [true, "", 0, 1, [], {}]
 
 
 
+result = ['a', 'b', 'c'].select do |char|
+  puts char
+  char if char != 'b'
+end
+
+p result  
+
+# Output:
+# a
+# b
+# c
+# ["a", "c"]
+
+
+
+array = [1, 2, 3, 4, 5]
+result = array.select do |num|
+  p array
+  p num
+  array.delete(num) if num < 3
+  p array
+  p num
+  num > 2
+end
+
+p result 
+
+# Output:
+# [1, 2, 3, 4, 5]
+# 1
+# [2, 3, 4, 5]
+# 1
+
+# [2, 3, 4, 5]
+# 3
+# [2, 3, 4, 5]
+# 3
+
+# [2, 3, 4, 5]
+# 4
+# [2, 3, 4, 5]
+# 4
+
+# [2, 3, 4, 5]
+# 5
+# [2, 3, 4, 5]
+# 5
+
+# [3, 4, 5]
+
+
+
+result = [5, 10, 15].select do |number|
+  number.tap { |n| n.to_s }
+  number < 10 && "keep this"
+end
+
+p result  # [5]
+
+
+
 
 ## Hash Examples with `select`:
 h = { a: 1, b: false, c: nil, d: 'hello', e: [] }
@@ -77,56 +138,3 @@ nil.odd?   # would raise a `NoMethodError`; `nil` doesn't have an `odd?` method
 `rescue false` catches this exception and returns `false` instead
 
 =end
-
-
-
-
-result = ['a', 'b', 'c'].select do |char|
-          puts char
-          char if char != 'b'
-        end
-
-p result  
-
-# Output:
-# a
-# b
-# c
-# ["a", "c"]
-
-
-
-array = [1, 2, 3, 4, 5]
-result = array.select do |num|
-          p array
-          p num
-          array.delete(num) if num < 3
-          p array
-          p num
-          num > 2
-        end
-
-p result 
-
-# Output:
-# [1, 2, 3, 4, 5]
-# 1
-# [2, 3, 4, 5]
-# 1
-
-# [2, 3, 4, 5]
-# 3
-# [2, 3, 4, 5]
-# 3
-
-# [2, 3, 4, 5]
-# 4
-# [2, 3, 4, 5]
-# 4
-
-# [2, 3, 4, 5]
-# 5
-# [2, 3, 4, 5]
-# 5
-
-# [3, 4, 5]
