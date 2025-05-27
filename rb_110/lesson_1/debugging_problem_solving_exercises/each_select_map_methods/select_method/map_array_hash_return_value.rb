@@ -15,3 +15,12 @@ result = ['ant', 'bear', 'cat'].map do |animal|
         end
 
 p result  # [3, 4, 3]
+
+
+
+result = [false, 'hi', 99].map do |element|
+          element.to_s
+          element.class
+        end
+
+p result  # [FalseClass, String, Integer]
