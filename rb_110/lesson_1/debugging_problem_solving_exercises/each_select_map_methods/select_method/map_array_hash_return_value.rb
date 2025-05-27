@@ -27,6 +27,29 @@ p result  # [FalseClass, String, Integer]
 
 
 
+result = ['ruby', 'rails'].map do |word|
+  word.each_char.with_index do |char, idx|
+    char * idx
+  end
+end
+
+p result # ["ruby", "rails"]
+
+
+## Experiments:
+p "word" * 0   # ""
+p "word" * 1   # 1
+
+p("hello".each_char { |char| p char })
+# Output:
+# "h"
+# "e"
+# "l"
+# "l"
+# "o"
+# "hello"
+
+
 
 ## Hash Examples with `map`
 result = { a: 'ant', b: 'bear' }.map do |_, value|
