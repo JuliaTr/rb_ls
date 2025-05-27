@@ -77,3 +77,19 @@ nil.odd?   # would raise a `NoMethodError`; `nil` doesn't have an `odd?` method
 `rescue false` catches this exception and returns `false` instead
 
 =end
+
+
+
+
+result = ['a', 'b', 'c'].select do |char|
+          puts char
+          char if char != 'b'
+        end
+
+p result  
+
+# Output:
+# a
+# b
+# c
+# ["a", "c"]
