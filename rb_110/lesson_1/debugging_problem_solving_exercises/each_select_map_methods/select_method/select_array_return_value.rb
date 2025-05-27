@@ -20,3 +20,12 @@ result = ['a', 'b', 'c'].select do |char|
           end
 
 p result # []
+
+
+
+arr = [nil, false, true, '', 0, 1, [], {}]
+result = arr.select do |element|
+          element
+        end
+
+p result # [true, "", 0, 1, [], {}]
