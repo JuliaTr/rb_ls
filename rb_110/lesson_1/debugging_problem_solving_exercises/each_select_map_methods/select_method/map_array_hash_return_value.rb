@@ -24,3 +24,13 @@ result = [false, 'hi', 99].map do |element|
         end
 
 p result  # [FalseClass, String, Integer]
+
+
+
+
+## Hash Examples with `map`
+result = { a: 'ant', b: 'bear' }.map do |_, value|
+  value.length > 3
+end
+
+p result # [false, true]
