@@ -36,6 +36,16 @@ end
 p result # ["ruby", "rails"]
 
 
+
+result =  [1, 2, 3].map do |num|
+            break 'done' if num > 1
+            num * 2
+          end
+
+p result   # "done"
+
+
+
 ## Experiments:
 p "word" * 0   # ""
 p "word" * 1   # 1
