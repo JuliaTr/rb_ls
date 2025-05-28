@@ -7,6 +7,7 @@ p result # false
 
 
 
+
 ## `Enumerable#all?`:
 result =  [1, 2, 3].all? do |num|
             num > 2
@@ -20,6 +21,7 @@ result =  { a: "ant", b: "bear", c: "cat" }.all? do |_, value|
           end
 
 p result  # true
+
 
 
 
@@ -53,6 +55,7 @@ p result
 
 
 
+
 ## `Enumerable#each_with_object`:
 result = [1, 2, 3].each_with_object([]) do |num, array|
           array << num if num.odd?
@@ -60,3 +63,12 @@ result = [1, 2, 3].each_with_object([]) do |num, array|
 
 p result  # [1, 3]
 
+
+
+h = { a: "ant", b: "bear", c: "cat" }
+
+result = h.each_with_object([]) do |pair, array|
+          array << pair.last
+        end
+
+p result # ["ant", "bear, "cat"]
