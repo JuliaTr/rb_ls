@@ -6,6 +6,44 @@ result =  { a: "ant", b: "bear", c: "cat" }.any? do |_, value|
 p result # false
 
 
+result = [1, nil, "apple"].any? { |e| e.length > 4 }
+p result # undefined method `length' for 1:Integer (NoMethodError)
+
+
+h = { x: nil, y: "yes", z: false }
+
+result = h.any? do |k, v| 
+          p k
+          p :z
+          p v
+          k == :z && v 
+        end
+
+p result 
+
+# Output:
+# :x
+# :z
+# nil
+
+# :y
+# :z
+# "yes"
+
+# :z
+# :z
+# false
+
+# false
+
+
+h = { x: nil, y: "yes", z: true }
+
+result = h.any? { |k, v| k == :z && v }
+p result  # true
+
+
+
 
 
 ## `Enumerable#all?`:
