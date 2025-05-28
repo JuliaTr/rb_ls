@@ -87,9 +87,9 @@ p result
 
 h = { a: "ant", b: "bear", c: "cat" }
 
-result = h.each_with_index do |pair, index|
-  puts "The index of #{pair} is #{index}." 
-end
+result =  h.each_with_index do |pair, index|
+            puts "The index of #{pair} is #{index}." 
+          end
 
 p result 
 
@@ -98,6 +98,35 @@ p result
 # The index of [:b, "bear"] is 1
 # The index of [:c, "cat"] is 2
 # {:a=>"ant", :b=>"bear", :c=>"cat"}
+
+
+arr = ["a", "b", "c"]
+
+result = arr.each_with_index { |char, idx| idx * 2 }
+
+p result # ["a", "b", "c"]
+p arr    # ["a", "b", "c"]
+
+
+h = { name: "Sam", age: 25 }
+
+result = h.each_with_index do |pair, idx|
+  p pair.last * idx
+end
+
+p result 
+
+# Output:
+# ""
+# 25
+# {:name=>"Sam", :age=>25}
+
+=begin
+Iteration 1 (`[:name, "Sam"`]):
+- [:name, "Sam"].last   => "Sam"
+- "Sam" * 0
+
+=end
 
 
 
@@ -155,8 +184,8 @@ p result  # [[1, 3], [2]]
 
 
 odd, even = [1, 2, 3].partition do |num|
-  num.odd?
-end
+              num.odd?
+            end
 
 p odd   # [1, 3]
 p even  # [2]
@@ -166,8 +195,8 @@ p even  # [2]
 h = { a: "ant", b: "bear", c: "cat" }
 
 long, short = h.partition do |_, value|
-  value.size > 3
-end
+                value.size > 3
+              end
 
 p long, short
 # [[:b, "bear"]]
