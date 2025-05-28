@@ -241,3 +241,18 @@ irb(main):004:0> end
 
 p long.to_h   # {:b=>"bear"}
 p short.to_h  # {:a=>"ant", :c=>"cat"}
+
+
+
+result = [99, 8, 77, 8].partition { |num| num < 10 }
+p result # [[8, 8], [99, 77]]
+
+
+
+h = { height: 180, weight: 80 }
+
+big, small = h.partition { |_, v| v > 100 }
+
+p big, small
+# [[:height, 180]]
+# [[:weight, 80]]
