@@ -46,6 +46,18 @@ p result   # "done"
 
 
 
+nested = [[1, 2], [3, 4]]
+
+result = nested.map do |arr|
+          p arr  # [1, 2]; [3, 4]
+          arr.map do |num|  # [2, 4]; [6, 8]
+            num * 2
+          end.first
+        end
+
+p result # [2, 6]
+
+
 ## Experiments:
 p "word" * 0   # ""
 p "word" * 1   # 1
