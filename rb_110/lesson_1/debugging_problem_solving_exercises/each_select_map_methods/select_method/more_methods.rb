@@ -186,10 +186,16 @@ p ["ear", "eye", "elbow"].first(2)  # ["ear", "eye"]
 p({"Happy": "Sad", Angry: nil}.first(1))  # [[:Happy, "Sad"]]
 
 
+
+
 ## `Enumerable#include?`:
 p [1, 2, 3].include?(1)  # true
 p({ a: "ant", b: "bear", c: "cat" }.include?("ant"))  # false
 p({ a: "ant", b: "bear", c: "cat" }.include?(:a))     # true
+
+p %w(dog cat fish).include?("cat")  # true
+p({ color: "red", size: "medium" }.include?(:size))  # true
+
 
 
 
