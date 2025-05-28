@@ -96,3 +96,13 @@ p ({ a: "ant", b: "bear", c: "cat" }.first(2))  # [[:a, "ant"], [:b, "bear"]]
 p [1, 2, 3].include?(1)  # true
 p({ a: "ant", b: "bear", c: "cat" }.include?("ant"))  # false
 p({ a: "ant", b: "bear", c: "cat" }.include?(:a))     # true
+
+
+
+## `Enumerable#partition`:
+result =  [1, 2, 3].partition do |num|
+            num.odd?
+          end
+
+p result  # [[1, 3], [2]]
+
