@@ -120,3 +120,11 @@ result = h.map do |key, value|
 end
 
 p result  # [[:first, "1"], [:second, "two"], [:third, "[3]"]]
+
+
+
+result = { a: 'ant', b: 'bear' }.map do |key, value|
+          [value, key.to_s * 2]
+        end.to_h
+
+p result # {"ant"=>"aa", "bear"=>"bb"}
