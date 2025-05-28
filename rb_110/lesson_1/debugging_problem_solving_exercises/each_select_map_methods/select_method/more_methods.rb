@@ -82,3 +82,10 @@ result = h.each_with_object({}) do |(key, value), hash|
         end
 
 p result # {"ant"=>:a, "bear"=>:b, "cat"=>:c}
+
+
+
+
+## `Enumerable#first`:
+p [1, 2, 3].first  # 1
+p ({ a: "ant", b: "bear", c: "cat" }.first(2))  # [[:a, "ant"], [:b, "bear"]]
