@@ -60,6 +60,38 @@ p("hello".each_char { |char| p char })
 # "hello"
 
 
+counter = 0
+
+p(loop do
+  break if counter == 3
+  puts 'Hello!'
+  counter += 1
+end)
+
+# Output:
+# Hello!
+# Hello!
+# Hello!
+# nil
+
+
+counter = 0
+
+p(loop do
+  break 'done' if counter == 3
+  puts 'Hello'
+  counter += 1
+end)
+
+# Output:
+# Hello
+# Hello
+# Hello
+# "done"
+
+
+
+
 
 ## Hash Examples with `map`
 result = { a: 'ant', b: 'bear' }.map do |_, value|
