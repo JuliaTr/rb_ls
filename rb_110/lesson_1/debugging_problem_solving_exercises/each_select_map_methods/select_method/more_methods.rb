@@ -182,6 +182,8 @@ p result  # [["m", 2], ["n", 3]]
 p [1, 2, 3].first  # 1
 p ({ a: "ant", b: "bear", c: "cat" }.first(2))  # [[:a, "ant"], [:b, "bear"]]
 
+p ["ear", "eye", "elbow"].first(2)  # ["ear", "eye"]
+p({"Happy": "Sad", Angry: nil}.first(1))  # [[:Happy, "Sad"]]
 
 
 ## `Enumerable#include?`:
