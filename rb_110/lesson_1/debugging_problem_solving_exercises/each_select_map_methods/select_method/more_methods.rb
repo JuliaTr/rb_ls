@@ -45,7 +45,6 @@ p result  # true
 
 
 
-
 ## `Enumerable#all?`:
 result =  [1, 2, 3].all? do |num|
             num > 2
@@ -59,6 +58,15 @@ result =  { a: "ant", b: "bear", c: "cat" }.all? do |_, value|
           end
 
 p result  # true
+
+
+result = [2, 4, 6].all? { |num| num.even? && num > 0 }
+p result # true
+
+
+h = { a: "ant", b: "bat", c: 0 }
+result = h.all? { |k, v| k.is_a?(Symbol) && v }
+p result # true
 
 
 
