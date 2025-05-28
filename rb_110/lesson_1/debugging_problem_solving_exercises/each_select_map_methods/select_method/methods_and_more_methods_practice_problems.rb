@@ -28,3 +28,14 @@ p result
 # 2
 # 3
 # [1, 2, 3]
+
+
+
+# Practice Problem 4:
+arr = ['ant', 'bear', 'cat']
+
+result = arr.each_with_object({}) do |value, hash|
+  hash[value[0]] = value
+end
+
+p result # {"a"=>"ant", "b"=>"bear", "c"=>"cat"}
