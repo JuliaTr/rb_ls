@@ -128,3 +128,28 @@ result = { a: 'ant', b: 'bear' }.map do |key, value|
         end.to_h
 
 p result # {"ant"=>"aa", "bear"=>"bb"}
+
+
+
+hash = { counter: 0 }
+
+result =  [1, 2, 3].map do |num|
+            hash[:counter] += 1
+            hash[:counter] + num
+          end
+
+p result # [2, 4, 6]
+
+=begin
+Iteration 1 (`num` is `1`):
+1 = 0 + 1
+1 + 1  => 2
+
+Iteration 2 (`num` is `2`):
+2 = 1 + 1
+2 + 2  => 4
+
+Iteration 3 (`num` is `3`):
+3 = 2 + 1
+3 + 3  => 6
+=end
