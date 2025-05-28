@@ -159,6 +159,23 @@ result = h.each_with_object({}) do |(key, value), hash|
 p result # {"ant"=>:a, "bear"=>:b, "cat"=>:c}
 
 
+arr = [5, 10, 15]
+
+result =  arr.each_with_object({}) do |num, hash|
+            hash[num] = num.to_s
+          end
+
+p result # {5=>"5", 10=>"10", 15=>"15"}
+
+
+h = { m: 1, n: 2 }
+
+result =  h.each_with_object([]) do |(key, value), arr| 
+            arr << [key.to_s, value + 1]
+          end
+
+p result  # [["m", 2], ["n", 3]]
+
 
 
 ## `Enumerable#first`:
