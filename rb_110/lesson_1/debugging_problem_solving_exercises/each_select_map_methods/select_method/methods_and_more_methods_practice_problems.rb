@@ -14,3 +14,17 @@ result =  ['ant', 'bat', 'caterpillar'].count do |str|
           end
 p result  # 2
 
+
+
+# Practice Problem 3:
+result = [1, 2, 3].reject do |num|
+  puts num
+end
+
+p result 
+
+# Output:
+# 1
+# 2
+# 3
+# [1, 2, 3]
