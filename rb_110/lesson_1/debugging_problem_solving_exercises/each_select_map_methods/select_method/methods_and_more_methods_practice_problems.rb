@@ -100,10 +100,28 @@ p arr.take     # wrong number of arguments (given 0, expected 1) (ArgumentError)
 ## Practice Problem 9:
 h = { a: 'ant', b: 'bear' }
 
-result = h.map do |_, value|
-  if value.size > 3
-    value
-  end
-end 
+result =  h.map do |_, value|
+            if value.size > 3
+              value
+            end
+          end 
 
 p result  # [nil, "bear"]
+
+
+
+## Practice Problem 10:
+result =  [1, 2, 3].map do |num|
+            if num > 1
+              puts num
+            else
+              num
+            end
+          end
+
+p result  
+
+# Output:
+# 2
+# 3
+# [1, nil, nil]
