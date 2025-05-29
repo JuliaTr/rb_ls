@@ -85,3 +85,12 @@ p result
 # Output:
 # 1
 # true
+
+
+
+## Practice Problem 8:
+arr = [1, 2, 3, 4, 5]
+p arr.take(2)  # [1, 2]
+p arr          # [1, 2, 3, 4, 5]
+
+p arr.take     # wrong number of arguments (given 0, expected 1) (ArgumentError)
