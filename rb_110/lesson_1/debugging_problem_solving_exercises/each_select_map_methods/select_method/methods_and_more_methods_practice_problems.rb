@@ -94,3 +94,16 @@ p arr.take(2)  # [1, 2]
 p arr          # [1, 2, 3, 4, 5]
 
 p arr.take     # wrong number of arguments (given 0, expected 1) (ArgumentError)
+
+
+
+## Practice Problem 9:
+h = { a: 'ant', b: 'bear' }
+
+result = h.map do |_, value|
+  if value.size > 3
+    value
+  end
+end 
+
+p result  # [nil, "bear"]
