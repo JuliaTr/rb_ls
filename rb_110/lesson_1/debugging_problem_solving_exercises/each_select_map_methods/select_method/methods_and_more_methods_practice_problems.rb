@@ -71,3 +71,17 @@ p hash         # {:b=>"bear"}
 
 ## Practice Problem 6:
 p ['ant', 'bear', 'caterpillar'].pop.size  # 11
+
+
+
+## Practice Problem 7:
+result =  [1, 2, 3].any? do |num|
+            puts num
+            num.odd?
+          end
+
+p result
+
+# Output:
+# 1
+# true
