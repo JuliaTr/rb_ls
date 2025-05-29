@@ -39,3 +39,6 @@ result = arr.each_with_object({}) do |value, hash|
 end
 
 p result # {"a"=>"ant", "b"=>"bear", "c"=>"cat"}
+
+p arr.object_id     # 60
+p result.object_id  # 80
