@@ -59,3 +59,10 @@ result =  arr.each_with_object(hash) do |value, hash|
 
 p result             # {"a"=>"ant", "b"=>"bear", "c"=>"cat"}
 p result.object_id   # 60
+
+
+
+## Practice Problem 5:
+hash = { a: 'ant', b: 'bear' }
+p hash.shift   # [:a, "ant"]
+p hash         # {:b=>"bear"}
