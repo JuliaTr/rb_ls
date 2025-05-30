@@ -150,3 +150,11 @@ p result   # [[:Mike, 18], [:john, 25], [:Kate, 27]]
 
 
 
+
+people = { Kate: 27, john: 25, Mike: 18 }
+
+result =  people.sort_by do |name, _|
+            name.capitalize
+          end
+
+p result   # [[:john, 25], [:Kate, 27], [:Mike, 18]]
