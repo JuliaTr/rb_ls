@@ -95,3 +95,8 @@ p result
 # a is 3 and b is 1
 # a is 2 and b is 1
 # [1, 2, 3, 4, 5]
+
+
+
+arr = ['arc', 'bat', 'cape', 'ants', 'cap']
+p arr.sort  # ['ants', 'arc', 'bat', 'cap', 'cape']
