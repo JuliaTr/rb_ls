@@ -75,3 +75,27 @@ ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843,
         "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
 
 p ages.values.min  # 10
+
+
+
+
+=begin
+Find the index of the first name that starts with "Be"
+=end
+
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+flintstones.index { |name| name[0, 2] == "Be" }
+
+
+## Alternattive:
+index = nil
+flintstones.each_with_index do |element, idx|
+  if element[0, 2] == "Be"
+    index = idx
+  end
+end
+p index # 3
+
+
+
