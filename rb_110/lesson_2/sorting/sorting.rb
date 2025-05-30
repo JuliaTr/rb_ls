@@ -53,8 +53,17 @@ p 'b' <=> '}'  # -1
 ## The `sort` method:
 arr = [2, 5, 3, 4, 1]
 
-result = arr.sort do |a, b|
-  a <=> b
-end
+result =  arr.sort do |a, b|
+            a <=> b
+          end
 
 p result   # [1, 2, 3, 4, 5]
+
+
+arr = [2, 5, 3, 4, 1]
+
+result =  arr.sort do |a, b|
+            b <=> a
+          end
+
+p result    # [5, 4, 3, 2, 1]
