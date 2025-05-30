@@ -29,6 +29,7 @@ total_ages = 0
 ages.each { |_, age| total_ages = total_ages + age }
 p total_ages              # 6174
 
+
 ## Alternatives:
 # Option 1:
 p ages.values.sum         # 6174
@@ -51,7 +52,6 @@ p result   # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
 p ages     # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
 
 
-
 ## Alternatives:
 # Option 1 (keep the same object unchanged):
 result = ages.select { |_, value| value < 100 }
@@ -62,3 +62,16 @@ p ages   # {"Herman"=>32, "Lily"=>30, "Grandpa"=>402, "Eddie"=>10}
 result = ages.reject { |_, value| value >= 100 }
 p result     # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
 p ages       # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
+
+
+
+
+=begin
+Practice Problem 4:
+Pick out the minimum age from our current Munster family hash
+=end
+
+ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, 
+        "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
+
+p ages.values.min  # 10
