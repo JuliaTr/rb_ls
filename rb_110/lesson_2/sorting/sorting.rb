@@ -38,3 +38,12 @@ p 1 <=> 'a'     # nil
 
 
 p ['a', 1].sort  # comparison of String with 1 failed (ArgumentError)
+
+
+p 'A' <=> 'a'  # -1
+p '!' <=> 'A'  # -1
+
+p 'b'.ord      # 98
+p '}'.ord      # 125
+
+p 'b' <=> '}'  # -1
