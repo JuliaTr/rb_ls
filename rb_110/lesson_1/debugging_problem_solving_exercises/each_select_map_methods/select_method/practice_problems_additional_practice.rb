@@ -119,3 +119,47 @@ flintstones.each do |element|
 end
 
 p flintstones  # ["Fre", "Bar", "Wil", "Bet", "Bam", "Peb"]
+
+
+
+
+=begin
+Practice Problem 7:
+Create a hash that expresses the frequency with which each letter 
+occurs in this string
+
+Algorithm:
+- Find how many times each character appear in the string
+  - Iterate over the string
+  - Create a hash with occurrences
+- Order hash entries in alphabetical order by keys
+=end
+
+statement = "The Flintstones Rock"
+
+result = {}
+letters = ('A'..'Z').to_a + ('a'..'z').to_a
+
+letters.each do |letter|
+  letter_frequency = statement.count(letter)
+  result[letter] = letter_frequency if letter_frequency > 0
+end
+
+p result 
+# {"F"=>1, "R"=>1, "T"=>1, "c"=>1, "e"=>2, "h"=>1, "i"=>1, 
+# "k"=>1, "l"=>1, "n"=>2, "o"=>2, "s"=>2, "t"=>2}
+
+
+## Alternative:
+alphabet = "ABCDEFGHIGKLMNOPQRSTUVWXWZabcdefghijklmnopqrstuvwxyz"
+hash = Hash.new(0)
+
+alphabet.each_char do |char|
+  if statement.include?(char)
+    hash[char] = hash[char] + 1
+  end
+end
+
+p hash
+# {"F"=>1, "R"=>1, "T"=>1, "c"=>1, "e"=>1, "h"=>1, "i"=>1, 
+# "k"=>1, "l"=>1, "n"=>1, "o"=>1, "s"=>1, "t"=>1}
