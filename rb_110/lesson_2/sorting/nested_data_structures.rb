@@ -44,3 +44,12 @@ p arr[1]          # { b: "bear", c: "cat" }
 p arr[1][:b]      # "bear"
 p arr[1][:b][0]   # "b"
 p arr[2][2]       # "b"
+
+
+
+
+## Variable reference for nested collections:
+a = [1, 3]
+b = [2]
+arr = [a, b]
+p arr   # [[1, 3], [2]]
