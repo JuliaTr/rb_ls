@@ -202,3 +202,36 @@ p result
 # 1
 # 2
 # [1, 2]
+
+
+
+
+=begin
+Practice Problem 9:
+Create a string that has each word capitalized.
+
+Algorithm:
+- Define a method `capitalize_word` with takes a string as an argument
+- Convert string into array (Return: array)
+- Iterate over each word of the array
+  - Capitalize each word
+- Return a new string with capitalized words (Return: string)
+=end
+
+words = "the flintstones rock"
+
+def capitalize_word(str)
+  str.split.map { |word| word.capitalize }.join(' ')
+end
+
+p capitalize_word(words)  # "The Flintstones Rock"
+
+
+## Alternative:
+def capitalize_word(str)
+  array_words = str.split(' ')
+  mod_array = array_words.map { |word| word.capitalize }
+  mod_array.join(' ')
+end
+
+p capitalize_word(words)  # "The Flintstones Rock"
