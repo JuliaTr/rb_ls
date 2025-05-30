@@ -186,3 +186,19 @@ p result
 # [3, 4]
 
 # [3, 4]
+
+
+# Example 2:
+numbers = [1, 2, 3, 4]
+
+result =  numbers.each do |number|
+            p number
+            numbers.pop(1)
+          end
+
+p result
+
+# Output:
+# 1
+# 2
+# [1, 2]
