@@ -34,3 +34,13 @@ p arr    # [[1, [3]], [2]]
 arr = [{ a: 'ant' }, { b: 'bear' }]
 arr[0][:c] = 'cat'
 p arr    # [{:a=>"ant", :c=>"cat"}, {:b=>"bear"}]
+
+
+arr = [['a', ['b']], { b: 'bear', c: 'cat' }, 'cab']
+
+p arr[0]          # ["a", ["b"]]
+p arr[0][1][0]    # "b"
+p arr[1]          # { b: "bear", c: "cat" }
+p arr[1][:b]      # "bear"
+p arr[1][:b][0]   # "b"
+p arr[2][2]       # "b"
