@@ -32,3 +32,7 @@ end.select do |element|
 end
 
 p result  # [3]
+
+
+
+p "a".to_i   # 0
