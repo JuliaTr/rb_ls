@@ -163,3 +163,26 @@ end
 p hash
 # {"F"=>1, "R"=>1, "T"=>1, "c"=>1, "e"=>1, "h"=>1, "i"=>1, 
 # "k"=>1, "l"=>1, "n"=>1, "o"=>1, "s"=>1, "t"=>1}
+
+
+
+
+# Practice Problem 8:
+# Example 1:
+numbers = [1, 2, 3, 4]
+
+result =  numbers.each do |number|
+            p number
+            numbers.shift(1)
+            p numbers
+          end
+p result
+
+# Output:
+# 1
+# [2, 3, 4]
+
+# 3
+# [3, 4]
+
+# [3, 4]
