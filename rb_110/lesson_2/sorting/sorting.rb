@@ -100,3 +100,16 @@ p result
 
 arr = ['arc', 'bat', 'cape', 'ants', 'cap']
 p arr.sort  # ['ants', 'arc', 'bat', 'cap', 'cape']
+
+
+
+arr = [
+  ['a', 'cat', 'b', 'c'],
+  ['b', 2],
+  ['a', 'car', 'd', 3],
+  ['a', 'car', 'd']
+]
+
+p arr.sort 
+# [["a", "car", "d"], ["a", "car", "d", 3], 
+# ["a", "cat", "b", "c"], ["b", 2]]
