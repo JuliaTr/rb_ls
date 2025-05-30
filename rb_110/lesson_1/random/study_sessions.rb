@@ -36,3 +36,13 @@ p result  # [3]
 
 
 p "a".to_i   # 0
+
+
+
+# What will the following code output and why?
+hash = { a: 'ant', b: 'bear', c: 'cat' }
+result = hash.each_with_object([]) do |(key, value), array|
+  array << key if value.size > 3
+end
+
+p result # [:b]
