@@ -124,3 +124,15 @@ arr = [
 ]
 
 p arr.sort # comparison of Array with Array failed (ArgumentError)
+
+
+
+
+## The `sort_by` method:
+arr = ['cot', 'bed', 'mat']
+
+result =  arr.sort_by do |word|
+            word[1]
+          end
+
+p result   # ["mat", "bed", "cot"]
