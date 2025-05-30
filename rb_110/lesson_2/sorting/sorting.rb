@@ -18,3 +18,23 @@ p arr      # ["", "cc", "d", "aaaaa", "bbbb"]
 ## Comparison:
 arr = ['c', 'a', 'e', 'b', 'd']
 p arr.sort   # ["a", "b", "c", "d", "e"]
+
+
+
+## The <=> Method:
+### Experiments:
+p 1 <=> 1  # 0
+p 1 <=> 2  # -1
+p 2 <=> 1  # 1
+
+
+p 2 <=> 1       # 1
+p 1 <=> 2       # -1
+p 2 <=> 2       # 0
+p 'b' <=> 'a'   # 1
+p 'a' <=> 'b'   # -1
+p 'b' <=> 'b'   # 0
+p 1 <=> 'a'     # nil
+
+
+p ['a', 1].sort  # comparison of String with 1 failed (ArgumentError)
