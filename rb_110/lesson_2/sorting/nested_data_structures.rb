@@ -68,7 +68,7 @@ arr1 = ["a", "b", "c"]
 
 p arr1.object_id    # 60
 
-arr2 = arr1.dup
+arr2 = arr1.dup     # shallow copy
 arr2[1].upcase!
 
 p arr1              # ["a", "B", "c"]
@@ -77,3 +77,18 @@ p arr1.object_id    # 60
 p arr2              # ["a", "B", "c"]
 p arr2.object_id    # 80
 
+
+
+### Experiment:
+arr1 = ["a", "b", "c"]
+
+p arr1.object_id    # 60
+
+arr2 = arr1         # Variables as pointers concept
+arr2[1].upcase!
+
+p arr1              # ["a", "B", "c"]
+p arr1.object_id    # 60
+
+p arr2              # ["a", "B", "c"]
+p arr2.object_id    # 60
