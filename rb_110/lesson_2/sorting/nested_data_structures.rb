@@ -26,3 +26,11 @@ p arr    # [[1, 3], [2]]
 arr = [[1], [2]]
 arr[0] << [3]
 p arr    # [[1, [3]], [2]]
+
+
+
+
+## Other nested structures:
+arr = [{ a: 'ant' }, { b: 'bear' }]
+arr[0][:c] = 'cat'
+p arr    # [{:a=>"ant", :c=>"cat"}, {:b=>"bear"}]
