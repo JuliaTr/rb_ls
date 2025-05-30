@@ -47,3 +47,14 @@ p 'b'.ord      # 98
 p '}'.ord      # 125
 
 p 'b' <=> '}'  # -1
+
+
+
+## The `sort` method:
+arr = [2, 5, 3, 4, 1]
+
+result = arr.sort do |a, b|
+  a <=> b
+end
+
+p result   # [1, 2, 3, 4, 5]
