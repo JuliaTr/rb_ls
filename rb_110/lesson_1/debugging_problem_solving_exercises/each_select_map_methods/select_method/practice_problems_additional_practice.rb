@@ -80,6 +80,7 @@ p ages.values.min  # 10
 
 
 =begin
+Practice Problem 5:
 Find the index of the first name that starts with "Be"
 =end
 
@@ -99,3 +100,22 @@ p index # 3
 
 
 
+
+=begin
+Practice Problem 6:
+Write code that changes the array below so that all of the names 
+are shortened to just the first three characters. Do not create 
+a new array.
+=end
+
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+flintstones.map! { |name| name[0, 3] }
+p flintstones  # ["Fre", "Bar", "Wil", "Bet", "Bam", "Peb"]
+
+## Alternatives:
+flintstones.each do |element|
+  element.gsub!(element, element[0, 3])
+end
+
+p flintstones  # ["Fre", "Bar", "Wil", "Bet", "Bam", "Peb"]
