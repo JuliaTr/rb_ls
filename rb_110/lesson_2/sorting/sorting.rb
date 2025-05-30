@@ -6,6 +6,7 @@ p arr1.sort   # [1, 2, 3, 4, 5]
 
 
 
+
 ### Experiment:
 arr = ['', 'cc', 'd', 'aaaaa', 'bbbb']
 result = arr.sort_by { |str| str.size }
@@ -15,9 +16,11 @@ p arr      # ["", "cc", "d", "aaaaa", "bbbb"]
 
 
 
+
 ## Comparison:
 arr = ['c', 'a', 'e', 'b', 'd']
 p arr.sort   # ["a", "b", "c", "d", "e"]
+
 
 
 
@@ -50,6 +53,7 @@ p 'b' <=> '}'  # -1
 
 
 
+
 ## The `sort` method:
 arr = [2, 5, 3, 4, 1]
 
@@ -60,6 +64,7 @@ result =  arr.sort do |a, b|
 p result   # [1, 2, 3, 4, 5]
 
 
+
 arr = [2, 5, 3, 4, 1]
 
 result =  arr.sort do |a, b|
@@ -67,3 +72,26 @@ result =  arr.sort do |a, b|
           end
 
 p result    # [5, 4, 3, 2, 1]
+
+
+
+arr = [2, 5, 3, 4, 1]
+
+result = arr.sort do |a, b|
+  puts "a is #{a} and b is #{b}"
+  a <=> b
+end
+
+p result
+
+# Output:
+# a is 2 and b is 5
+# a is 5 and b is 3
+# a is 2 and b is 3
+# a is 5 and b is 4
+# a is 3 and b is 4
+# a is 5 and b is 1
+# a is 4 and b is 1
+# a is 3 and b is 1
+# a is 2 and b is 1
+# [1, 2, 3, 4, 5]
