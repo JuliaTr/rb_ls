@@ -16,6 +16,29 @@ p h
 
 
 
+
+=begin
+Practice Problem 2:
+Add up all of the ages from the Munster family hash
+=end
+
+ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, 
+        "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
+
+total_ages = 0
+ages.each { |_, age| total_ages = total_ages + age }
+p total_ages              # 6174
+
+## Alternatives:
+# Option 1:
+p ages.values.sum         # 6174
+
+# Option 2:
+p ages.values.inject(:+)  # 6174
+
+
+
+
 =begin
 Practice Problem 3:
 Remove people with age 100 and greater.
