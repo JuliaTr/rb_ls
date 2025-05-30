@@ -113,3 +113,14 @@ arr = [
 p arr.sort 
 # [["a", "car", "d"], ["a", "car", "d", 3], 
 # ["a", "cat", "b", "c"], ["b", 2]]
+
+
+
+arr = [
+  ['a', 'cat', 'b', 'c'],
+  ['a', 2],   # issue is here
+  ['a', 'car', 'd', 3],
+  ['a', 'car', 'd']
+]
+
+p arr.sort # comparison of Array with Array failed (ArgumentError)
