@@ -6,6 +6,7 @@ the values are the positions in the array.
 
 flintstones = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "BamBam"]
 
+# (my solution):
 h = {}
 flintstones.each_with_index do |element, index|
   h[element] = index
@@ -31,7 +32,7 @@ p total_ages              # 6174
 
 
 ## Alternatives:
-# Option 1:
+# Option 1 (my solution):
 p ages.values.sum         # 6174
 
 # Option 2:
@@ -53,7 +54,7 @@ p ages     # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
 
 
 ## Alternatives:
-# Option 1 (keep the same object unchanged):
+# Option 1 (keep the same object unchanged)(my solution):
 result = ages.select { |_, value| value < 100 }
 p result # {"Herman"=>32, "Lily"=>30, "Eddie"=>10}
 p ages   # {"Herman"=>32, "Lily"=>30, "Grandpa"=>402, "Eddie"=>10}
@@ -74,6 +75,7 @@ Pick out the minimum age from our current Munster family hash
 ages = { "Herman" => 32, "Lily" => 30, "Grandpa" => 5843, 
         "Eddie" => 10, "Marilyn" => 22, "Spot" => 237 }
 
+# (my solution):        
 p ages.values.min  # 10
 
 
@@ -90,12 +92,15 @@ flintstones.index { |name| name[0, 2] == "Be" }
 
 
 ## Alternattive:
+# (my soluion):
 index = nil
+
 flintstones.each_with_index do |element, idx|
   if element[0, 2] == "Be"
     index = idx
   end
 end
+
 p index # 3
 
 
@@ -114,6 +119,7 @@ flintstones.map! { |name| name[0, 3] }
 p flintstones  # ["Fre", "Bar", "Wil", "Bet", "Bam", "Peb"]
 
 ## Alternatives:
+# (my soluion):
 flintstones.each do |element|
   element.gsub!(element, element[0, 3])
 end
@@ -151,6 +157,7 @@ p result
 
 
 ## Alternative:
+# (my solution):
 alphabet = "ABCDEFGHIGKLMNOPQRSTUVWXWZabcdefghijklmnopqrstuvwxyz"
 hash = Hash.new(0)
 
@@ -228,6 +235,7 @@ p capitalize_word(words)  # "The Flintstones Rock"
 
 
 ## Alternative:
+# (my solution):
 def capitalize_word(str)
   array_words = str.split(' ')
   mod_array = array_words.map { |word| word.capitalize }
