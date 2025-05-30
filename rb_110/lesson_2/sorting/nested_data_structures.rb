@@ -59,3 +59,21 @@ p arr  # [[1, 5], [2]]
 
 arr[0][1] = 8
 p arr  # [[1, 8], [2]]
+
+
+
+
+## Shallow copy:
+arr1 = ["a", "b", "c"]
+
+p arr1.object_id    # 60
+
+arr2 = arr1.dup
+arr2[1].upcase!
+
+p arr1              # ["a", "B", "c"]
+p arr1.object_id    # 60
+
+p arr2              # ["a", "B", "c"]
+p arr2.object_id    # 80
+
