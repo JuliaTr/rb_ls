@@ -99,3 +99,15 @@ p arr1.object_id    # 60
 
 p arr2              # ["a", "B", "c"]
 p arr2.object_id    # 60
+
+
+
+arr1 = ["a", "b", "c"]
+arr2 = arr1.dup
+
+arr2.map! do |char|
+  char.upcase
+end
+
+p arr1  # ["a", "b", "c"]
+p arr2  # ["A", "B", "C"]
