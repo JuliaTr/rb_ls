@@ -78,6 +78,13 @@ p arr2              # ["a", "B", "c"]
 p arr2.object_id    # 80
 
 
+arr1 = ["abc", "def"]
+arr2 = arr1.clone
+arr2[0].reverse!
+
+p arr1   # ["cba", "def"]
+p arr2   # ["cba", "def"]
+
 
 ### Experiment:
 arr1 = ["a", "b", "c"]
