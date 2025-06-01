@@ -66,24 +66,31 @@ p arr  # [[1, 8], [2]]
 ## Shallow copy:
 arr1 = ["a", "b", "c"]
 
-p arr1.object_id    # 60
+p arr1.object_id       # 60
 
-arr2 = arr1.dup     # shallow copy
+arr2 = arr1.dup        # shallow copy
+p arr2.object_id       # 80
 arr2[1].upcase!
 
-p arr1              # ["a", "B", "c"]
-p arr1.object_id    # 60
+p arr1                 # ["a", "B", "c"]
+p arr1.object_id       # 60
 
-p arr2              # ["a", "B", "c"]
-p arr2.object_id    # 80
+p arr2                 # ["a", "B", "c"]
+p arr2.object_id       # 80
 
 
 arr1 = ["abc", "def"]
-arr2 = arr1.clone
+p arr1.object_id       # 60
+
+arr2 = arr1.clone      # shallow copy
+p arr2.object_id       # 80
 arr2[0].reverse!
 
-p arr1   # ["cba", "def"]
-p arr2   # ["cba", "def"]
+p arr1                 # ["cba", "def"]
+p arr1.object_id       # 60
+
+p arr2                 # ["cba", "def"]
+p arr2.object_id       # 80
 
 
 ### Experiment:
@@ -158,3 +165,9 @@ p 5.frozen?   # true
 arr = [[1], [2], [3]].freeze
 arr[2] << 4
 p arr   # [[1], [2], [3, 4]]
+
+
+
+arr = ["a", "b", "c"].freeze
+arr[2] << "d"
+p arr   # ["a", "b", "cd"]
