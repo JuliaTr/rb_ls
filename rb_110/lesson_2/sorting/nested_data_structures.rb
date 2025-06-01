@@ -152,3 +152,9 @@ str << "d"
 
 
 p 5.frozen?   # true
+
+
+
+arr = [[1], [2], [3]].freeze
+arr[2] << 4
+p arr   # [[1], [2], [3, 4]]
