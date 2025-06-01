@@ -135,3 +135,10 @@ arr2 << "d"
 # can't modify frozen Array: ["a", "b", "c"] (FrozenError)
 
 
+
+arr1 = ["a", "b", "c"].freeze
+arr2 = arr1.dup
+arr2 << "d"
+
+p arr1  # ["a", "b", "c", "d"]
+p arr2  # ["a", "b", "c"]
