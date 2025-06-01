@@ -60,3 +60,14 @@ p my_arr
 # 7
 # 12
 # [[18, 7], [3, 12]]
+
+
+
+## Example 5:
+result = [[1, 2], [3, 4]].map do |arr|
+  arr.map do |num|
+    num * 2
+  end
+end
+
+p result # [[2, 4], [6, 8]]
