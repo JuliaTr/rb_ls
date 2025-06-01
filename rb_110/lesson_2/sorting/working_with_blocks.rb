@@ -63,6 +63,7 @@ p my_arr
 
 
 
+
 ## Example 5:
 result = [[1, 2], [3, 4]].map do |arr|
   arr.map do |num|
@@ -71,3 +72,34 @@ result = [[1, 2], [3, 4]].map do |arr|
 end
 
 p result # [[2, 4], [6, 8]]
+
+
+
+
+## Example 6:
+arr = [{ a: 'ant', b: 'elephant' }, { c: 'cat' }]
+result = arr.select do |hash|
+  hash.all? do |key, value|
+    value[0] == key.to_s
+  end
+end
+
+p result # [{:c=>"cat"}]
+
+
+
+### Experiments:
+arr = [{ a: 'ant', b: 'elephant' }, { c: 'cat' }]
+result = arr.select do |hash|
+  sub_result = hash.all? do |key, value|
+    value[0] == key.to_s
+  end
+  p sub_result  # just to output `all?` return value
+end
+
+p result
+
+# Output:
+# false
+# true
+# [{:c=>"cat"}]
