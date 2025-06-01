@@ -142,3 +142,13 @@ arr2 << "d"
 
 p arr1  # ["a", "b", "c", "d"]
 p arr2  # ["a", "b", "c"]
+
+
+
+str = "abc".freeze
+str << "d"
+# can't modify frozen String: "abc" (FrozenError)
+
+
+
+p 5.frozen?   # true
