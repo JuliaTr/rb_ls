@@ -103,3 +103,13 @@ p result
 # false
 # true
 # [{:c=>"cat"}]
+
+
+arr = [{ a: 'ant', b: 'elephant' }, { c: 'cat' }]
+result = arr.select do |hash|
+  hash.any? do |key, value|
+    value[0] == key.to_s
+  end
+end
+
+p result # [{:a=>"ant", :b=>"elephant"}, {:c=>"cat"}]
