@@ -123,3 +123,15 @@ end
 
 p arr1   # ["A", "B", "C"]
 p arr2   # ["A", "B", "C"]
+
+
+
+
+## Freezing objects:
+# `#clone` - the frozen state of the object:
+arr1 = ["a", "b", "c"].freeze
+arr2 = arr1.clone
+arr2 << "d"
+# can't modify frozen Array: ["a", "b", "c"] (FrozenError)
+
+
