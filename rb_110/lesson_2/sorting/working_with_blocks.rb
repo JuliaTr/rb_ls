@@ -147,6 +147,7 @@ p result
 
 
 
+## Example 8:
 arr = [[8, 13, 27], ['apple', 'banana', 'cantaloupe']]
 result = arr.map do |arr|
   arr.select do |item|
@@ -159,3 +160,23 @@ result = arr.map do |arr|
 end
 
 p result # [[27], ["apple"]]
+
+
+
+
+## Example 9:
+arr = [
+  [[1], [2], [3], [3], [4]],
+  [['a'], ['b'], ['c']]
+]
+
+result = arr.map do |element1|
+  element1.each do |element2|
+    element2.partition do |element3|
+      element3.size > 0
+    end
+  end
+end
+
+p result
+# [[[1], [2], [3], [3], [4]], [["a"], ["b"], ["c"]]]
