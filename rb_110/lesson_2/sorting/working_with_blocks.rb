@@ -203,3 +203,21 @@ result = arr.map do |arr|
 end
 
 p result # [[[2, 3], [4, 5], [6, 7]]
+
+
+
+
+### Do NOT mutate collections while iterating:
+# removes all even numbers from the array passed in as an argument
+def remove_evens!(arr)
+  arr.each do |num|
+    if num % 2 == 0
+      arr.delete(num)
+    end
+  end
+  arr
+end
+
+p remove_evens!([1, 1, 2, 3, 4, 6, 8, 9])
+# expected return value [1, 1, 3, 9]
+# actual return value [1, 1, 3, 6, 9]
