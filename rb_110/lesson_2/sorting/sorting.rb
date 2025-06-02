@@ -136,6 +136,7 @@ result =  arr.sort_by do |word|
           end
 
 p result   # ["mat", "bed", "cot"]
+p arr      # ["cot", "bed", "mat"]
 
 
 
@@ -147,6 +148,7 @@ result =  people.sort_by do |_, age|
           end
 
 p result   # [[:Mike, 18], [:john, 25], [:Kate, 27]]
+p people   # {:Kate=>27, :john=>25, :Mike=>18}
 
 
 
@@ -158,3 +160,4 @@ result =  people.sort_by do |name, _|
           end
 
 p result   # [[:john, 25], [:Kate, 27], [:Mike, 18]]
+p people   # {:Kate=>27, :john=>25, :Mike=>18}
