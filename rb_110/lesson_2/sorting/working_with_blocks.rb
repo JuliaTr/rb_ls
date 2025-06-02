@@ -143,3 +143,19 @@ end
 p result 
 # [["1", "8", "9"], ["1", "8", "11"], ["2", "6", "13"], 
 # ["2", "12", "15"]]
+
+
+
+
+arr = [[8, 13, 27], ['apple', 'banana', 'cantaloupe']]
+result = arr.map do |arr|
+  arr.select do |item|
+    if item.to_s.to_i == item  # if it's an integer
+      item > 13
+    else
+      item.size < 6
+    end
+  end
+end
+
+p result # [[27], ["apple"]]
