@@ -30,7 +30,8 @@ p arr1     # [1, [2, 3], 4]
 
 
 
-## Alternative:
+### Alternative solution:
 # Destructive:
+p arr1            # [1, [2, 3], 4]
 p arr1[1][1] = 4  # 4
 p arr1            # [1, [2, 4], 4]
