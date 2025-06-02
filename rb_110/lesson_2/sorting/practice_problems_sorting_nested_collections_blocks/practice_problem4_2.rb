@@ -11,6 +11,7 @@ arr2 = [
   3
 ]
 
+# Non-destructive:
 result = arr2.map do |element|
 
   if element.to_s.to_i == element
@@ -25,3 +26,10 @@ end
 
 p result  # [{:a=>1}, {:b=>2, :c=>[7, 6, 5], :d=>4}, 4]
 p arr2    # [{:a=>1}, {:b=>2, :c=>[7, 6, 5], :d=>4}, 3]
+
+
+### Alternative solution:
+# Destructive:
+p arr2  # [{:a=>1}, {:b=>2, :c=>[7, 6, 5], :d=>4}, 3]
+arr2[2] = 4
+p arr2  # [{:a=>1}, {:b=>2, :c=>[7, 6, 5], :d=>4}, 4]
