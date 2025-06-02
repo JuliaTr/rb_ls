@@ -180,3 +180,26 @@ end
 
 p result
 # [[[1], [2], [3], [3], [4]], [["a"], ["b"], ["c"]]]
+
+
+
+
+## Example 10:
+arr = [
+  [[1, 2], [3, 4]], 
+  [5, 6]
+]
+
+result = arr.map do |arr|
+  arr.map do |el|
+    if el.to_s.to_i == el
+      el + 1
+    else
+      el.map do |n|
+        n + 1
+      end
+    end
+  end
+end
+
+p result # [[[2, 3], [4, 5], [6, 7]]
