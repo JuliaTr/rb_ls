@@ -22,3 +22,13 @@ end
 p array_of_age             # [32, 402, 10]
 
 p array_of_age.inject(:+)  # 444
+
+
+
+## Solution from the assignment:
+total_male_age = 0
+munsters.each_value |details|
+  total_male_age += details["age"] if details["gender"] == "male"
+end
+
+p total_male_age
