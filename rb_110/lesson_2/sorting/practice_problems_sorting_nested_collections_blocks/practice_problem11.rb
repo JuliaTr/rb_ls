@@ -17,3 +17,13 @@ end
 
 p result  # [[], [3, 12], [9], [15]]
  
+
+
+## Alternative solution:
+result = arr.map do |element|
+  element.reject do |num|
+    num % 3 != 0
+  end
+end
+
+p result  # [[], [3, 12], [9], [15]]
