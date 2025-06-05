@@ -66,3 +66,39 @@ p contacts
 # }
 
 # Works as expected
+
+
+## Suggestions for improements:
+# Using array field names:
+contact_data = [
+  ["joe@email.com", "123 Main st.", "555-123-4567"],
+  ["sally@email.com", "404 Not Found Dr.", "123-234-3454"]
+]
+
+contacts = {"Joe Smith" => {}, "Sally Johnson" => {}}
+fields = [:email, :address, :phone]
+
+contacts.each_with_index do |(person_name, person_data), person_idx|
+  puts "#{person_name}, #{person_data}, #{person_idx}"
+  fields.each_with_index do |field, field_idx|
+    puts "#{field}, #{field_idx}"
+    person_data[field] = contact_data[person_idx][field_idx]
+  end
+end
+
+p contacts 
+
+# Output:
+# Joe Smith, {}, 0
+# email, 0
+# address, 1
+# phone, 2
+
+# Sally Johnson, {}, 1
+# email, 0
+# address, 1
+# phone, 2
+
+# {"Joe Smith"=>{:email=>"joe@email.com", :address=>"123 Main st.", 
+# :phone=>"555-123-4567"}, "Sally Johnson"=>{:email=>"sally@email.com", 
+# :address=>"404 Not Found Dr.", :phone=>"123-234-3454"}}
