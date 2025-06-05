@@ -68,6 +68,7 @@ p contacts
 # Works as expected
 
 
+
 ## Suggestions for improements:
 # Using array field names:
 contact_data = [
@@ -99,6 +100,25 @@ p contacts
 # address, 1
 # phone, 2
 
+# {"Joe Smith"=>{:email=>"joe@email.com", :address=>"123 Main st.", 
+# :phone=>"555-123-4567"}, "Sally Johnson"=>{:email=>"sally@email.com", 
+# :address=>"404 Not Found Dr.", :phone=>"123-234-3454"}}
+
+
+# Parallel Assignment:
+contact_data = [
+  ["joe@email.com", "123 Main st.", "555-123-4567"],
+  ["sally@email.com", "404 Not Found Dr.", "123-234-3454"]
+]
+
+contacts = {"Joe Smith" => {}, "Sally Johnson" => {}}
+fields = [:email, :address, :phone]
+
+contacts.keys.each_with_index do |person_name, person_idx|
+  contacts[person_name] = Hash[fields.zip(contact_data[person_idx])]
+end
+
+p contacts
 # {"Joe Smith"=>{:email=>"joe@email.com", :address=>"123 Main st.", 
 # :phone=>"555-123-4567"}, "Sally Johnson"=>{:email=>"sally@email.com", 
 # :address=>"404 Not Found Dr.", :phone=>"123-234-3454"}}
