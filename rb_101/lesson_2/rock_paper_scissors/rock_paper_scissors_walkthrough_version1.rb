@@ -1,6 +1,31 @@
 ## Step 2:
+# Create a constant to use throughout the program
+VALID_CHOICES = ['rock', 'paper', 'scissors']
 
+def prompt(message)
+  Kernel.puts("=> message")
+end
 
+prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+choice = Kernel.gets().chomp()
+
+computer_choice = VALID_CHOICES.sample
+
+=begin
+
+Experiments with `join`:
+
+irb(main):001:0> ['rock', 'paper', 'scissors'].join
+=> "rockpaperscissors"
+irb(main):002:0> ['rock', 'paper', 'scissors'].join(' ')
+=> "rock paper scissors"
+irb(main):003:0> ['rock', 'paper', 'scissors'].join(',')
+=> "rock,paper,scissors"
+irb(main):004:0> ['rock', 'paper', 'scissors'].join(', ')
+=> "rock, paper, scissors"
+irb(main):005:0> 
+
+=end
 
 
 ## Step 1:
