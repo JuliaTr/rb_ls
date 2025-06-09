@@ -1,3 +1,62 @@
+## Step 4:
+# Calculate who wins:
+VALID_CHOICES = ['rock', 'paper', 'scissors']
+
+def prompt(message)
+  Kernel.puts("=> #{message}")
+end
+
+choice = ''
+loop do
+  prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+  choice = Kernel.gets().chomp()
+
+  if VALID_CHOICES.include?(choice)
+    break
+  else
+    prompt("That's not a valid choice")
+  end
+end
+
+computer_choice = VALID_CHOICES.sample
+
+prompt("You choose: #{choice}; Computer choose: #{computer_choice}")
+
+if (choice == 'rock' && computer_choice == 'scissors') ||
+    (choice == 'paper' && computer_choice == 'rock') ||
+    (choice == 'scissors' && computer_choice == 'paper')
+  prompt("You won!")
+elsif (choice == 'rock' && computer_choice == 'paper') ||
+      (choice == 'paper' && computer_choice == 'scissors') ||
+      (choice == 'scissors' && computer_choice == 'rock')
+  prompt("Computer won!")
+else
+  prompt("It's a tie!")
+end
+
+=begin
+
+$ ruby rock_paper_scissors_walkthrough_version1.rb
+=> Choose one: rock, paper, scissors
+paper
+=> You choose: paper; Computer choose: paper
+=> It's a tie!
+$ ruby rock_paper_scissors_walkthrough_version1.rb
+=> Choose one: rock, paper, scissors
+scissors
+=> You choose: scissors; Computer choose: paper
+=> You won!
+$ ruby rock_paper_scissors_walkthrough_version1.rb
+=> Choose one: rock, paper, scissors
+scissors
+=> You choose: scissors; Computer choose: rock
+=> Computer won!
+
+=end
+
+
+
+
 ## Step 3:
 # Create a loop:
 VALID_CHOICES = ['rock', 'paper', 'scissors']
