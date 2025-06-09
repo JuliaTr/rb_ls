@@ -4,12 +4,14 @@
 
 VALID_CHOICE = %w(rock paper scissors)
 
-def test_method
-  prompt('test message')
-end
+# # The `test_method` is created to show where in the program a method 
+# # can be and cannot be invoked
+# def test_method
+#   prompt('test message')
+# end
 
-# test_method
-# doesn't work because the method `prompt` is invoked before its definition.
+# # test_method
+# # doesn't work because the method `prompt` is invoked before its definition.
 
 def prompt(message)
   Kernel.puts("=> #{message}")
