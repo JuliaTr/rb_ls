@@ -1,3 +1,83 @@
+# The program is without things to consider incuded to the assignment
+
+## Step 6:
+# Refactoring: extract piece of logic to a helper method 
+# `display_results`
+VALID_CHOICES = ['rock', 'paper', 'scissors']
+
+def prompt(message)
+  Kernel.puts("=> #{message}")
+end
+
+def display_results(player, computer)
+  if (player == 'rock' && computer == 'scissors') ||
+     (player == 'paper' && computer == 'rock') ||
+     (player == 'scissors' && computer == 'paper')
+    prompt("You won!")
+  elsif (player == 'rock' && computer == 'paper') ||
+        (player == 'rock' && computer == 'scissors') ||
+        (player == 'scissors' && computer == 'rock')
+    prompt("Computer won!")
+  else
+    prompt("It's a tie!")
+  end
+end
+
+loop do
+  choice = ''
+  loop do
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    choice = Kernel.gets().chomp()
+
+    if VALID_CHOICES.include?(choice)
+      break
+    else
+      prompt("That's not a valid choice")
+    end
+  end
+
+  computer_choice = VALID_CHOICES.sample
+
+  prompt("You choose: #{choice}; Computer choose: #{computer_choice}")
+
+  display_results(choice, computer_choice)
+
+  prompt("Do you want to play again?")
+  answer = Kernel.gets().chomp()
+  break unless answer.downcase().start_with?('y')
+end
+
+prompt("Thank you for playing. Good bye!")
+
+=begin
+
+$ ruby rock_paper_scissors_walkthrough_steps_breakdown.rb
+=> Choose one: rock, paper, scissors
+n
+=> That's not a valid choice
+=> Choose one: rock, paper, scissors
+rock
+=> You choose: rock; Computer choose: scissors
+=> You won!
+=> Do you want to play again?
+y
+=> Choose one: rock, paper, scissors
+paper
+=> You choose: paper; Computer choose: rock
+=> You won!
+=> Do you want to play again?
+y
+=> Choose one: rock, paper, scissors
+scissors
+=> You choose: scissors; Computer choose: rock
+=> Computer won!
+=> Do you want to play again?
+h
+=> Thank you for playing. Good bye!
+
+=end
+
+
 ## Step 5:
 # To play again:
 VALID_CHOICES = ['rock', 'paper', 'scissors']
