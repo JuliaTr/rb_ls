@@ -2,6 +2,9 @@
 # the computer makes a choice
 # the winner is displayed
 
+
+# The program includes things to consider from the assignment.
+
 VALID_CHOICE = %w(rock paper scissors)
 
 # # The `test_method` is created to show where in the program a method 
@@ -20,10 +23,11 @@ end
 # test_method
 # works because the method is invoked after the `prompt` method definition
 
+# The `display_results` method rewritten after running Rubocop
 def win?(first, second)
   (first == 'rock' && second == 'scissors') ||
-    (first == 'paper' && second == 'rock') ||
-    (first == 'scissors' && second == 'paper')
+  (first == 'paper' && second == 'rock') ||
+  (first == 'scissors' && second == 'paper')
 end
 
 def display_results(player, computer)
