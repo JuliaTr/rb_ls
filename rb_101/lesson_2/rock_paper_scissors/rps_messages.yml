@@ -1,0 +1,30 @@
+welcome: "Welcome to Rock-Ppaer-Scissors-Lizard-Spock game!\n
+  \n
+  Rock crushes Lizard and Scissors.\n
+  Paper covers Rock and disproves Spock (character from Star Trek).\n
+  Scissors decapitates Lizard and cuts Paper.\n
+  Lizard poissons Spock and eats Paper.\n
+  Spock smashes Scissors.\n
+  \n
+  The game will go until you or the computer earn 3 scores.\n
+  \n"
+choice: "Type:\n
+  \n
+  'r' for 'Rock'\n
+  'p' for 'Paper'\n
+  'sc' for 'Scissors'\n
+  'l' for 'Lizard'\n
+  'sp' for 'Spock'\n
+  \n"
+continue_game: "Press 'Enter' key to continue"
+not_valid_choice: "That's not a valid choice"
+user_choice: "Your choice is: %s"
+computer_choice: "Computer choice is: %s"
+winner: "%s"
+player_score: "Player score is %d"
+computer_score: "Computer score is %d"
+round: "Going to the next round ..."
+player_winner: "Player is the Grand Winner with total score of %d. Congratulations!"
+computer_winner: "Computer is the Grand Winner with total score of %d"
+play_again: "Do you want to play again? (Press 'y' / 'Enter' key to continue or any other key to exit)"
+thank_you: "Thank you for playing. Good bye!"
