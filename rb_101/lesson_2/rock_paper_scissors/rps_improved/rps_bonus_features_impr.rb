@@ -78,16 +78,6 @@ def calculate_score(defined_winner, player_score, computer_score)
   end
 end
 
-def main_methods(player_score, computer_score)
-  validated_choice = validate_choice()
-  computer_choice = display_computer_choice()
-  results = display_results(validated_choice, computer_choice)
-  calculate_score(results, player_score, computer_score)
-  calculated_player_score = calculate_sum_player_score(player_score)
-  calculated_computer_score = calculate_sum_computer_score(computer_score)
-  [calculated_player_score, calculated_computer_score]
-end
-
 def calculate_sum_player_score(player_score)
   player_score_total = player_score.sum
   prompt('player_score', player_score_total)
@@ -98,6 +88,16 @@ def calculate_sum_computer_score(computer_score)
   computer_score_total = computer_score.sum
   prompt('computer_score', computer_score_total)
   computer_score_total
+end
+
+def main_methods(player_score, computer_score)
+  validated_choice = validate_choice()
+  computer_choice = display_computer_choice()
+  results = display_results(validated_choice, computer_choice)
+  calculate_score(results, player_score, computer_score)
+  calculated_player_score = calculate_sum_player_score(player_score)
+  calculated_computer_score = calculate_sum_computer_score(computer_score)
+  [calculated_player_score, calculated_computer_score]
 end
 
 def another_game
@@ -149,3 +149,9 @@ end
 
 # Main program
 main_program()
+
+
+=begin
+For further projects: 
+- use integers to increment scores instead of array.
+=end
