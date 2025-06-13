@@ -59,7 +59,7 @@ def display_results(player_key, computer_choice)
   
   who_win =
     if CHOICES[player_key][:full_name] == computer_choice
-      "It's a tie"
+      "It's a tie. Both players chose the same move."
     elsif CHOICES[player_key][:beats].include?(computer_choice)
       "You won!"
     else
