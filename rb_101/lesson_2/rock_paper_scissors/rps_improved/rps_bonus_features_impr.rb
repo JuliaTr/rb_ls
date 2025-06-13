@@ -54,14 +54,14 @@ def display_computer_choice
   computer_choice
 end
 
-def display_results(player, computer)
+def display_results(player_key, computer_choice)
+  computer_key = CHOICES.keys { |_, v| v[:full_name] == computer_choice }
+  
   who_win =
-    if player &&
-       (computer == CHOICES[player][:beats][0] ||
-        computer == CHOICES[player][:beats][1])
-      "You won!"
-    elsif computer == CHOICES[player][:full_name]
+    if CHOICES[player_key][:full_name] == computer_choice
       "It's a tie"
+    elsif CHOICES[player_key][:beats].include?(computer_choice)
+      "You won!"
     else
       "Computer won!"
     end
