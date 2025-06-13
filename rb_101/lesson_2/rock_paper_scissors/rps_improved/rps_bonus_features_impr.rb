@@ -56,18 +56,20 @@ end
 
 def display_results(player_key, computer_choice)
   computer_key = CHOICES.keys { |_, v| v[:full_name] == computer_choice }
-  
-  who_win =
-    if CHOICES[player_key][:full_name] == computer_choice
-      "It's a tie. Both players chose the same move."
-    elsif CHOICES[player_key][:beats].include?(computer_choice)
-      "You won!"
-    else
-      "Computer won!"
-    end
+  player_goes = CHOICES[player_key][:full_name]
 
-  prompt('winner', who_win)
-  who_win
+  computer_choice_cap = computer_choice.capitalize
+  player_goes_cap = player_goes.capitalize
+
+  if player_goes == computer_choice
+    "It's a tie. Both players chose the same move."
+  elsif CHOICES[player_key][:beats].include?(computer_choice)
+    prompt('user_winner', player_goes_cap, computer_choice_cap)
+    "You won!"
+  else
+    prompt('computer_winner', computer_choice_cap, player_goes_cap)
+    "Computer won!"
+  end
 end
 
 def calculate_score(defined_winner, player_score, computer_score)
@@ -152,6 +154,8 @@ main_program()
 
 
 =begin
-For further projects: 
+Nice to change: 
 - use integers to increment scores instead of array.
+- It would be more informative to say something like "Rock crushes Scissors! You won!"
+  (Notes: `display_results` method include message about like "Rock beats Scissors. You won!")
 =end
