@@ -1,3 +1,5 @@
+require 'pry'
+
 =begin
 DESCRIPTION OF THE GAME
 Tic Tac Toe is a 2 player game played on a 3x3 board. Each player 
@@ -19,6 +21,176 @@ DECOMPOSITION
 9. If yes, go to #1   # loop 1 ends
 10. Good bye!
 =end
+
+## Practice using `pry`:
+INITIAL_MARKER = ' '
+PLAYER_MARKER = 'X'
+COMPUTER_MARKER = 'O'
+
+def prompt(message)
+  puts "=> #{message}"
+end
+
+def display_board(brd)
+  puts ""
+  puts "     |     |"
+  puts " #{brd[1]}   | #{brd[2]}   | #{brd[3]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[4]}   | #{brd[5]}   | #{brd[6]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[7]}   | #{brd[8]}   | #{brd[9]}"
+  puts "     |     |"
+  puts ""
+end
+
+def initialize_board
+  new_board = {}
+  (1..9).each { |num| new_board[num] = INITIAL_MARKER }
+  new_board
+end
+
+def empty_squares(brd)
+  # binding.pry
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+end
+
+=begin
+$ ruby ttt_decomposition_walkthrough.rb
+
+     |     |
+     |     |  
+     |     |
+-----+-----+-----
+     |     |
+     |     |  
+     |     |
+-----+-----+-----
+     |     |
+     |     |  
+     |     |
+
+
+From: /Users/julia/Desktop/rb_ls/rb_110/lesson_3/tic_tac_toe_game/ttt_decomposition_walkthrough.rb:57 Object#empty_squares:
+
+    56: def empty_squares(brd)
+ => 57:   binding.pry
+    58:   brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+    59: end
+
+[1] pry(main)> brd
+=> {1=>" ", 2=>" ", 3=>" ", 4=>" ", 5=>" ", 6=>" ", 7=>" ", 8=>" ", 9=>" "}
+[2] pry(main)> board
+NameError: undefined local variable or method `board' for main:Object (NameError)
+from (pry):2:in `empty_squares'
+[3] pry(main)> INITIAL_MARKER
+=> " "
+[4] pry(main)> PLAYER_MARKER
+=> "X"
+[5] pry(main)> brd.keys
+=> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+[6] pry(main)>      # `Ctrl + d` to continue
+
+=> Choose a square (1, 2, 3, 4, 5, 6, 7, 8, 9):
+3 
+
+From: /Users/julia/Desktop/rb_ls/rb_110/lesson_3/tic_tac_toe_game/ttt_decomposition_walkthrough.rb:57 Object#empty_squares:
+
+    56: def empty_squares(brd)
+ => 57:   binding.pry
+    58:   brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+    59: end
+
+[1] pry(main)> exit!
+=end
+
+def player_places_piece!(brd)
+  square = ''
+  loop do
+    prompt("Choose a square (#{empty_squares(brd).join(', ')}):")
+    square = gets.chomp.to_i
+
+    break if empty_squares(brd).include?(square)
+    prompt "Sorry, that's not a valid choice."
+  end
+  binding.pry
+  brd[square] = PLAYER_MARKER
+  binding.pry
+end
+
+=begin
+$ ruby ttt_decomposition_walkthrough.rb
+
+     |     |
+     |     |  
+     |     |
+-----+-----+-----
+     |     |
+     |     |  
+     |     |
+-----+-----+-----
+     |     |
+     |     |  
+     |     |
+
+=> Choose a square (1, 2, 3, 4, 5, 6, 7, 8, 9):
+4
+
+From: /Users/julia/Desktop/rb_ls/rb_110/lesson_3/tic_tac_toe_game/ttt_decomposition_walkthrough.rb:119 Object#player_places_piece!:
+
+    110: def player_places_piece!(brd)
+    111:   square = ''
+    112:   loop do
+    113:     prompt("Choose a square (#{empty_squares(brd).join(', ')}):")
+    114:     square = gets.chomp.to_i
+    115: 
+    116:     break if empty_squares(brd).include?(square)
+    117:     prompt "Sorry, that's not a valid choice."
+    118:   end
+ => 119:   binding.pry
+    120:   brd[square] = PLAYER_MARKER
+    121:   binding.pry
+    122: end
+
+[1] pry(main)> brd
+=> {1=>" ", 2=>" ", 3=>" ", 4=>" ", 5=>" ", 6=>" ", 7=>" ", 8=>" ", 9=>" "}
+[2] pry(main)> 
+
+
+From: /Users/julia/Desktop/rb_ls/rb_110/lesson_3/tic_tac_toe_game/ttt_decomposition_walkthrough.rb:121 Object#player_places_piece!:
+
+    110: def player_places_piece!(brd)
+    111:   square = ''
+    112:   loop do
+    113:     prompt("Choose a square (#{empty_squares(brd).join(', ')}):")
+    114:     square = gets.chomp.to_i
+    115: 
+    116:     break if empty_squares(brd).include?(square)
+    117:     prompt "Sorry, that's not a valid choice."
+    118:   end
+    119:   binding.pry
+    120:   brd[square] = PLAYER_MARKER
+ => 121:   binding.pry
+    122: end
+
+[1] pry(main)> brd
+=> {1=>" ", 2=>" ", 3=>" ", 4=>"X", 5=>" ", 6=>" ", 7=>" ", 8=>" ", 9=>" "}
+[2] pry(main)> exit!
+=end
+
+# 1. Display the initial empty 3x3 board.
+board = initialize_board  # hash
+display_board(board)      # empty board
+
+# 2. Ask the user to mark a square.
+player_places_piece!(board)    # player puts a piece on the board; modifies `board`
+puts board.inspect
+display_board(board)
+
+
 
 ## Step 5:
 INITIAL_MARKER = ' '
