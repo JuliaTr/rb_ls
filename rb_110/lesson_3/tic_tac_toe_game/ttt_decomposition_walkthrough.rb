@@ -20,7 +20,69 @@ DECOMPOSITION
 10. Good bye!
 =end
 
-## Step 4:
+## Step 5:
+INITIAL_MARKER = ' '
+PLAYER_MARKER = 'X'
+COMPUTER_MARKER = 'O'
+
+def prompt(message)
+  puts "=> #{message}"
+end
+
+def display_board(brd)
+  puts ""
+  puts "     |     |"
+  puts " #{brd[1]}   | #{brd[2]}   | #{brd[3]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[4]}   | #{brd[5]}   | #{brd[6]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[7]}   | #{brd[8]}   | #{brd[9]}"
+  puts "     |     |"
+  puts ""
+end
+
+def initialize_board
+  new_board = {}
+  (1..9).each { |num| new_board[num] = INITIAL_MARKER }
+  new_board
+end
+
+# To calculate empty squares we pass in the board.
+def empty_squares(brd)  # the method is inspecting the board without modifying it.
+  # return an array of integers that represent empty squares.
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+end
+
+def player_places_piece!(brd)
+  square = ''
+  loop do
+    prompt("Choose a square (#{empty_squares(brd).join(', ')}):")
+    # If I've chosen `4` on the next round it will be omitted, because it was already chosen.
+    square = gets.chomp.to_i
+
+    break if empty_squares(brd).include?(square)
+    prompt "Sorry, that's not a valid choice."   # only in condition is false
+  end
+
+  brd[square] = PLAYER_MARKER
+end
+
+# 1. Display the initial empty 3x3 board.
+board = initialize_board  # hash
+display_board(board)      # empty board
+
+# 2. Ask the user to mark a square.
+player_places_piece!(board)    # player puts a piece on the board; modifies `board`
+puts board.inspect
+display_board(board)
+
+
+
+# Step 4:
 def prompt(message)
   puts "=> #{message}"
 end
