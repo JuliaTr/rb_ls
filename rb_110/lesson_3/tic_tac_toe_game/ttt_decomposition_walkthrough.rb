@@ -22,6 +22,94 @@ DECOMPOSITION
 10. Good bye!
 =end
 
+## Step 7:
+INITIAL_MARKER = ' '
+PLAYER_MARKER = 'X'
+COMPUTER_MARKER = 'O'
+
+def prompt(message)
+  puts "=> #{message}"
+end
+
+def display_board(brd)
+  system 'clear'
+  puts ""
+  puts "     |     |"
+  puts " #{brd[1]}   | #{brd[2]}   | #{brd[3]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[4]}   | #{brd[5]}   | #{brd[6]}"
+  puts "     |     |"
+  puts "-----+-----+-----"
+  puts "     |     |"
+  puts " #{brd[7]}   | #{brd[8]}   | #{brd[9]}"
+  puts "     |     |"
+  puts ""
+end
+
+def initialize_board
+  new_board = {}
+  (1..9).each { |num| new_board[num] = INITIAL_MARKER }
+  new_board
+end
+
+def empty_squares(brd)
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+end
+
+def player_places_piece!(brd)
+  square = ''
+  loop do
+    prompt("Choose a square (#{empty_squares(brd).join(', ')}):")
+    square = gets.chomp.to_i
+
+    break if empty_squares(brd).include?(square)
+    prompt "Sorry, that's not a valid choice."
+  end
+
+  brd[square] = PLAYER_MARKER
+end
+
+def computer_places_piece!(brd)
+  square = empty_squares(brd).sample
+  brd[square] = COMPUTER_MARKER
+end
+
+def board_full?(brd) # The board is full when we have no more empty squares.
+  # The `empty_squares` method returns an empty array if there're no more empty squares
+  empty_squares(brd) == []  # if `empty_squares` an empty array
+end
+
+=begin
+irb(main):002:0> [1, 2, 3, 4].select { |num| num > 50 }
+=> []
+irb(main):003:0> [].empty?
+=> true
+=end
+
+def someone_won?(brd)
+  false  # just to check `break` condition in the loop 
+end
+
+# 1. Display the initial empty 3x3 board.
+board = initialize_board  # hash
+display_board(board)      # empty board
+
+loop do
+  # 2. Ask the user to mark a square.
+  player_places_piece!(board)
+  # 3. Computer marks a square.
+  computer_places_piece!(board)
+  display_board(board)
+  # binding.pry
+  break if someone_won?(board) || board_full?(board)
+end
+
+display_board(board)
+
+
+
 ## Step 6:
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
