@@ -118,6 +118,13 @@ def detect_winner(brd)
   nil
 end
 
+def another_game
+  prompt 'next_set_of_rounds'
+  answer = Kernel.gets().chomp()
+  # clear()
+  answer.downcase().start_with?('y') || answer == ""
+end
+
 def next_round
   prompt 'round'
   prompt 'continue'
@@ -162,26 +169,18 @@ loop do
   case detected_winner
   when 'Player'   
     players[:player] += 1 
-    p players[:player]
   when 'Computer'
     players[:computer] += 1
-    p players[:computer]
   end
-  p players[:player]
-  p players[:computer]
 
   if players[:player] == MAX_SCORE
     prompt 'player_won_5_scores'
     players = { player: 0, computer: 0 }
-    prompt 'next_set_of_rounds'
-    answer = gets.chomp
-    break unless answer.downcase.start_with?('y')
+    break unless another_game
   elsif players[:computer] == MAX_SCORE
     prompt 'computer_won_5_scores'
     players = { player: 0, computer: 0 }
-    prompt 'next_set_of_rounds'
-    answer = gets.chomp
-    break unless answer.downcase.start_with?('y')
+    break unless another_game
   else
     next_round
   end
