@@ -19,6 +19,9 @@ INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 MAX_SCORE = 5
+WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +  # rows
+                [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +  # columns
+                [[1, 5, 9], [3, 5, 7]]               # diagonals
 
 def messages(message)
   MESSAGES[message]
@@ -99,11 +102,7 @@ def someone_won?(brd)
 end
 
 def detect_winner(brd) 
-  winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +  # rows
-                  [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +  # columns
-                  [[1, 5, 9], [3, 5, 7]]               # diagonals
-  
-  winning_lines.each do |line|
+  WINNING_LINES.each do |line|
     if brd[line[0]] == PLAYER_MARKER &&
         brd[line[1]] == PLAYER_MARKER &&
         brd[line[2]] == PLAYER_MARKER
@@ -118,6 +117,20 @@ def detect_winner(brd)
   nil
 end
 
+def computer_ai_defense!(brd)
+  WINNING_LINES.each do |line|
+    if brd[line[0]] == PLAYER_MARKER && brd[line[1]] == PLAYER_MARKER && brd[line[2]] == INITIAL_MARKER
+      return brd[line[2]] = COMPUTER_MARKER
+    elsif brd[line[1]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER && brd[line[0]] == INITIAL_MARKER
+      return brd[line[0]] = COMPUTER_MARKER
+    elsif brd[line[0]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER && brd[line[1]] == INITIAL_MARKER
+      return brd[line[1]] = COMPUTER_MARKER
+    end
+  end
+
+  computer_places_piece!(brd)
+end
+
 def display_winner(who_won, winner_role)
   if who_won
     prompt 'winner', winner_role
@@ -129,7 +142,7 @@ end
 def another_game
   prompt 'next_set_of_rounds'
   answer = Kernel.gets().chomp()
-  # clear()
+  # system 'clear'
   answer.downcase().start_with?('y') || answer == ""
 end
 
@@ -155,7 +168,10 @@ loop do
     break if someone_won?(board) || board_full?(board)
 
     # 3. Computer marks a square.
-    computer_places_piece!(board)
+    # BF: Computer AI: Defense
+    computer_ai_defense!(board)
+
+    # 3. Computer marks a square.
     display_board(board, players)
 
     break if someone_won?(board) || board_full?(board)
