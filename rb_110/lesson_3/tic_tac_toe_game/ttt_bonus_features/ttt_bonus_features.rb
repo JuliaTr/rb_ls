@@ -118,6 +118,14 @@ def detect_winner(brd)
   nil
 end
 
+def display_winner(who_won, winner_role)
+  if who_won
+    prompt 'winner', winner_role
+  else
+    prompt 'tie'
+  end
+end
+
 def another_game
   prompt 'next_set_of_rounds'
   answer = Kernel.gets().chomp()
@@ -159,11 +167,7 @@ loop do
   # 5. If winner, display winner.
   # 6. If board is full, display tie.
   detected_winner = detect_winner(board)
-  if someone_won?(board)
-    prompt 'winner', detected_winner
-  else
-    prompt 'tie'
-  end
+  display_winner(someone_won?(board), detected_winner)
 
   # BF: Keep score
   case detected_winner
