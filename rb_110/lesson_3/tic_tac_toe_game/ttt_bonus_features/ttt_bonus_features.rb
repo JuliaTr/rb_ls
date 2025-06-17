@@ -23,7 +23,7 @@ end
 
 def display_board(brd, players_score)
   # system 'clear'
-  # puts "Player: #{players_score[:player]}, computer: #{players_score[:computer]}"
+  puts "Player: #{players_score[:player]}, computer: #{players_score[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
   puts "     |     |"
@@ -117,7 +117,6 @@ end
 
 
 players = { player: 0, computer: 0 }
-puts "Player: #{players[:player]}, computer: #{players[:computer]}"
 
 loop do
   # 1. Display the initial empty 3x3 board.
@@ -163,11 +162,13 @@ loop do
 
   if players[:player] == MAX_SCORE
     prompt "Player won with 5 scores"
+    players = { player: 0, computer: 0 }
     prompt "Play next set of rounds till someone get 5 scores? (y or n)"
     answer = gets.chomp
     break unless answer.downcase.start_with?('y')
   elsif players[:computer] == MAX_SCORE
     prompt "Computer won with 5 scores"
+    players = { player: 0, computer: 0 }
     prompt "Play next set of rounds till someone get 5 scores? (y or n)"
     answer = gets.chomp
     break unless answer.downcase.start_with?('y')
