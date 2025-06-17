@@ -117,6 +117,22 @@ def detect_winner(brd)
   nil
 end
 
+# BF: Computer AI: offense
+def computer_ai_offense!(brd)
+  WINNING_LINES.each do |line|
+    if brd[line[0]] == COMPUTER_MARKER && brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == INITIAL_MARKER
+      return brd[line[2]] = COMPUTER_MARKER
+    elsif brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER && brd[line[0]] == INITIAL_MARKER
+      return brd[line[0]] = COMPUTER_MARKER
+    elsif brd[line[0]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER && brd[line[1]] == INITIAL_MARKER
+      return brd[line[1]] = COMPUTER_MARKER
+    end
+  end
+
+  computer_ai_defense!(brd)
+end
+
+# BF: Computer AI: defense
 def computer_ai_defense!(brd)
   WINNING_LINES.each do |line|
     if brd[line[0]] == PLAYER_MARKER && brd[line[1]] == PLAYER_MARKER && brd[line[2]] == INITIAL_MARKER
@@ -167,9 +183,8 @@ loop do
     player_places_piece!(board)
     break if someone_won?(board) || board_full?(board)
 
-    # 3. Computer marks a square.
-    # BF: Computer AI: Defense
-    computer_ai_defense!(board)
+    # BF: Computer AI: offense
+    computer_ai_offense!(board)
 
     # 3. Computer marks a square.
     display_board(board, players)
