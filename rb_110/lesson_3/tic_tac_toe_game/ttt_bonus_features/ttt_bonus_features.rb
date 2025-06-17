@@ -1,13 +1,29 @@
+=begin
+1. Display the initial empty 3x3 board.  # loop 1 starts
+2. Ask the user to mark a square.   # loop 2 starts
+3. Computer marks a square.         # loop 2 ends
+4. Display the updated board state.
+5. If winner, display winner.
+6. If board is full, display tie.
+  BF: Keep score.
+7. If neither winner nor board is full, go to #2  # stopping condition for loop 2
+8. Play again?
+9. If yes, go to #1   # loop 1 ends
+10. Good bye!
+=end
+
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+MAX_SCORE = 5
 
 def prompt(message)
   puts "=> #{message}"
 end
 
-def display_board(brd)
-  system 'clear'
+def display_board(brd, players_score)
+  # system 'clear'
+  # puts "Player: #{players_score[:player]}, computer: #{players_score[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
   puts "     |     |"
@@ -88,16 +104,27 @@ def detect_winner(brd)
       return 'Computer'
     end
   end
-  nil
 
+  nil
 end
 
-loop do  # every time we start a gain, we need a new board
+def next_round
+  prompt "Going to the next round ..."
+  prompt "Press 'Enter' key to continue"
+  gets()
+  # system 'clear'
+end
+
+
+players = { player: 0, computer: 0 }
+puts "Player: #{players[:player]}, computer: #{players[:computer]}"
+
+loop do
   # 1. Display the initial empty 3x3 board.
-  board = initialize_board  # hash
+  board = initialize_board
 
   loop do
-    display_board(board)
+    display_board(board, players)
 
     # 2. Ask the user to mark a square.
     player_places_piece!(board)
@@ -105,23 +132,48 @@ loop do  # every time we start a gain, we need a new board
 
     # 3. Computer marks a square.
     computer_places_piece!(board)
-    display_board(board)
+    display_board(board, players)
+
     break if someone_won?(board) || board_full?(board)
   end
 
-  display_board(board) 
+  # 4. Display the updated board state.
+  display_board(board, players) 
 
   # 5. If winner, display winner.
   # 6. If board is full, display tie.
+  detected_winner = detect_winner(board)
   if someone_won?(board)
-    prompt "#{detect_winner(board)} won!"
+    prompt "#{detected_winner} won!"
   else
     prompt "It's a tie!"
   end
 
-  prompt "Play again? (y or n)"
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  # BF: Keep score
+  case detected_winner
+  when 'Player'   
+    players[:player] += 1 
+    p players[:player]
+  when 'Computer'
+    players[:computer] += 1
+    p players[:computer]
+  end
+  p players[:player]
+  p players[:computer]
+
+  if players[:player] == MAX_SCORE
+    prompt "Player won with 5 scores"
+    prompt "Play next set of rounds till someone get 5 scores? (y or n)"
+    answer = gets.chomp
+    break unless answer.downcase.start_with?('y')
+  elsif players[:computer] == MAX_SCORE
+    prompt "Computer won with 5 scores"
+    prompt "Play next set of rounds till someone get 5 scores? (y or n)"
+    answer = gets.chomp
+    break unless answer.downcase.start_with?('y')
+  else
+    next_round
+  end
 end
 
 prompt "Thank you for playing Tic Tac Toe! Good bye!"
