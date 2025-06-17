@@ -1,3 +1,5 @@
+require 'yaml'
+
 =begin
 1. Display the initial empty 3x3 board.  # loop 1 starts
 2. Ask the user to mark a square.   # loop 2 starts
@@ -12,12 +14,18 @@
 10. Good bye!
 =end
 
+MESSAGES = YAML.load_file('ttt_messages.yml')
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 MAX_SCORE = 5
 
-def prompt(message)
+def messages(message)
+  MESSAGES[message]
+end
+
+def prompt(key, *args)
+  message = messages(key) % args
   puts "=> #{message}"
 end
 
@@ -64,12 +72,14 @@ end
 
 def player_places_piece!(brd)
   square = ''
+  joined_str = joinor(empty_squares(brd))
+
   loop do
-    prompt "Choose a square: #{joinor(empty_squares(brd))}"
+    prompt 'choice', joined_str
     square = gets.chomp.to_i
 
     break if empty_squares(brd).include?(square)
-    prompt "Sorry, that's not a valid choice."
+    prompt 'not_valid_choice'
   end
 
   brd[square] = PLAYER_MARKER
@@ -109,9 +119,9 @@ def detect_winner(brd)
 end
 
 def next_round
-  prompt "Going to the next round ..."
-  prompt "Press 'Enter' key to continue"
-  gets()
+  prompt 'round'
+  prompt 'continue'
+  gets
   # system 'clear'
 end
 
@@ -143,9 +153,9 @@ loop do
   # 6. If board is full, display tie.
   detected_winner = detect_winner(board)
   if someone_won?(board)
-    prompt "#{detected_winner} won!"
+    prompt 'winner', detected_winner
   else
-    prompt "It's a tie!"
+    prompt 'tie'
   end
 
   # BF: Keep score
@@ -161,15 +171,15 @@ loop do
   p players[:computer]
 
   if players[:player] == MAX_SCORE
-    prompt "Player won with 5 scores"
+    prompt 'player_won_5_scores'
     players = { player: 0, computer: 0 }
-    prompt "Play next set of rounds till someone get 5 scores? (y or n)"
+    prompt 'next_set_of_rounds'
     answer = gets.chomp
     break unless answer.downcase.start_with?('y')
   elsif players[:computer] == MAX_SCORE
-    prompt "Computer won with 5 scores"
+    prompt 'computer_won_5_scores'
     players = { player: 0, computer: 0 }
-    prompt "Play next set of rounds till someone get 5 scores? (y or n)"
+    prompt 'next_set_of_rounds'
     answer = gets.chomp
     break unless answer.downcase.start_with?('y')
   else
@@ -177,4 +187,4 @@ loop do
   end
 end
 
-prompt "Thank you for playing Tic Tac Toe! Good bye!"
+prompt 'thank_you'
