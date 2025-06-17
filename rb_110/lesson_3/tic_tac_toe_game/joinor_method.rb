@@ -42,6 +42,24 @@ High level str/Algorithm:
 - Return a string with joined array elements (use `Array#join` method)
 =end
 
+## Refactored and improved:
+def joinor(arr, sep1=', ', sep2='or')
+  if arr.length == 2
+    arr.join(' ' + sep2 + ' ')
+  else
+    arr[-1] = "#{sep2} #{arr.last}"
+    arr.join(sep1)
+  end
+end
+
+p joinor([1, 2]) == "1 or 2"                       # true
+p joinor([1, 2, 3]) == "1, 2, or 3"                # true
+p joinor([1, 2, 3], '; ') == "1; 2; or 3"          # true
+p joinor([1, 2, 3], ', ', 'and') == "1, 2, and 3"  # true
+
+p joinor([1, 2, 3, 256], ', ', 'and') == "1, 2, 3, and 256" # true
+
+
 def joinor(arr, sep1=', ', sep2='or')
   if arr.length == 2
     str_int = arr.join(sep2)
@@ -49,7 +67,7 @@ def joinor(arr, sep1=', ', sep2='or')
     str_int
   else
     str_int = arr.join(sep1)
-    str_int[str_int.length - 2] = ' ' + sep2 + ' '
+    str_int[str_int.length - 2] = ' ' + sep2 + ' ' # issue is here
     str_int
   end
 end
@@ -58,6 +76,9 @@ p joinor([1, 2]) == "1 or 2"                       # true
 p joinor([1, 2, 3]) == "1, 2, or 3"                # true
 p joinor([1, 2, 3], '; ') == "1; 2; or 3"          # true
 p joinor([1, 2, 3], ', ', 'and') == "1, 2, and 3"  # true
+
+p joinor([1, 2, 3, 256], ', ', 'and') == "1, 2, 3, and 256" # false
+p joinor([1, 2, 3, 256], ', ', 'and')  # "1, 2, 3, 2 and 6"
 
 
 
