@@ -1,4 +1,5 @@
 require 'yaml'
+require 'pry-byebug'
 
 =begin
 1. Display the initial empty 3x3 board.  # loop 1 starts
@@ -136,11 +137,9 @@ end
 # BF: Computer turn refinements (b) pick square #5 if available
 def computer_go_square_5!(brd)
   WINNING_LINES.each do |line|
-    if line == [1, 2, 3]
-      next
-    elsif (line == [4, 5, 6] || line == [2, 5, 8] || 
-            line == [1, 5, 9] || line == [3, 5, 7]) &&
-            brd[line[1]] == INITIAL_MARKER
+    if (line == [4, 5, 6] || line == [2, 5, 8] || 
+        line == [1, 5, 9] || line == [3, 5, 7]) &&
+        brd[line[1]] == INITIAL_MARKER
       return brd[line[1]] = COMPUTER_MARKER
     end
   end
@@ -164,17 +163,13 @@ def computer_ai_defense!(brd)
 end
 
 def computer_moves!(brd)
-  squares_2_o = computer_ai_offense!(brd)
-  squares_2_x = computer_ai_defense!(brd)
-  computer_go_5 = computer_go_square_5!(brd)
-
-  if squares_2_o == nil
-    return squares_2_x
-  elsif squares_2_x == nil
-    return computer_go_5
+  if computer_ai_offense!(brd) == nil && computer_ai_defense!(brd) != nil
+    return computer_ai_defense!(brd)
+  elsif computer_ai_offense!(brd) == nil && computer_ai_defense!(brd) == nil && computer_go_square_5!(brd) != nil
+    return computer_go_square_5!(brd)
+  elsif computer_go_square_5!(brd) == nil
+    return computer_places_piece!(brd)
   end
-
-  computer_moves_randomly
 end
 
 def display_winner(who_won, winner_role)
@@ -212,12 +207,9 @@ loop do
     # 2. Ask the user to mark a square.
     player_places_piece!(board)
     break if someone_won?(board) || board_full?(board)
-
-    # BF: Computer AI: offense
-    computer_moves!(board)
-
     # 3. Computer marks a square.
-    display_board(board, players)
+    # BF: Computer refinements
+    computer_moves!(board)
 
     break if someone_won?(board) || board_full?(board)
   end
