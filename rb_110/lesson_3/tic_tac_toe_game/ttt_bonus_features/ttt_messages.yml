@@ -1,3 +1,27 @@
+welcome: "Welcome to Tic Tac Toe game!\n
+  \n
+  The board has 9 squares, which are numerated:\n
+  \n
+  \n  1  |  2  |  3\n
+  -----------------
+  \n  4  |  5  |  6\n
+  -----------------
+  \n  7  |  8  |  9\n
+  \n
+  Each player one by one place 'X' or 'O' on the board.\n
+  Who first will occupy the line vertically / horizontally / in diagonal, won.\n
+  \n
+  Ex. 1: line (1, 2, 3)    Ex. 2: line (1, 4, 7)   Ex. 3: line (1, 5, 9)
+  \n
+  \n  X  |  X  |  X            X  |  O  |              X  |  O  |   \n 
+  ----------------         ---------------         ---------------
+  \n  O  |  O  |               X  |     |  O              |  X  |  O\n
+  ----------------         ---------------         ---------------
+  \n     |     |  O            X  |     |  O           O  |     |  X\n
+  \n
+  The game will go until you or the computer earn 5 scores.\n
+  Good luck!\n
+  \n"
 choice: "Choose a square: %s"
 not_valid_choice: "Sorry, that's not a valid choice."
 round: "Going to the next round ..."
