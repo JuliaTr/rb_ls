@@ -47,18 +47,18 @@ def get_name
   name.upcase
 end
 
-def get_move_first_choice
-  move_first_choice = ''
+def get_first_move_choice
+  first_move_choice = ''
 
   loop do
     prompt 'role_choice'
-    move_first_choice = gets.chomp.downcase
+    first_move_choice = gets.chomp.downcase
 
-    break if move_first_choice == 'x' || move_first_choice == 'o'
+    break if first_move_choice == 'x' || first_move_choice == 'o'
     prompt 'valid_role'
   end
 
-  move_first_choice
+  p first_move_choice
 end
 
 def display_board(brd, players_score)
@@ -163,7 +163,7 @@ def computer_ai_offense!(brd)
 end
 
 # BF: Computer turn refinements (b) pick square #5 if available
-def computer_go_square_5!(brd)
+def computer_goes_square_5!(brd)
   WINNING_LINES.each do |line|
     if (line == [4, 5, 6] || line == [2, 5, 8] || 
         line == [1, 5, 9] || line == [3, 5, 7]) &&
@@ -191,11 +191,16 @@ def computer_ai_defense!(brd)
 end
 
 def computer_moves!(brd)
-  if computer_ai_offense!(brd) == nil && computer_ai_defense!(brd) != nil
+  # If there're no 2 `'O'` and there're 2 `'X' in a line
+  if (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) != nil)
     return computer_ai_defense!(brd)
-  elsif computer_ai_offense!(brd) == nil && computer_ai_defense!(brd) == nil && computer_go_square_5!(brd) != nil
-    return computer_go_square_5!(brd)
-  elsif computer_go_square_5!(brd) == nil
+
+  # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
+  elsif (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) == nil) && (computer_goes_square_5!(brd) != nil)
+    return p computer_goes_square_5!(brd)
+
+  # If the square #5 is occupied
+  elsif computer_goes_square_5!(brd) == nil
     return computer_places_piece!(brd)
   end
 end
@@ -208,7 +213,7 @@ def display_winner(who_won, winner_role)
   end
 end
 
-def another_game
+def another_game?
   prompt 'next_set_of_rounds'
   answer = Kernel.gets().chomp()
   # system 'clear'
@@ -222,64 +227,84 @@ def next_round
   # system 'clear'
 end
 
+def player_goes_first(brd, plrs)
+  loop do
+    display_board(brd, plrs)
+
+    player_places_piece!(brd)
+    break if someone_won?(brd) || board_full?(brd)
+
+    computer_moves!(brd)
+    display_board(brd, plrs)
+    break if someone_won?(brd) || board_full?(brd)
+  end
+end
+
+def computer_goes_first(brd, plrs)
+  loop do
+    display_board(brd, plrs)
+
+    computer_moves!(brd)
+    display_board(brd, plrs)
+    break if someone_won?(brd) || board_full?(brd)
+
+    player_places_piece!(brd)
+    break if someone_won?(brd) || board_full?(brd)
+  end
+end
+
+def define_who_goes_first(brd, plrs, role)
+  if role == 'x'
+    return player_goes_first(brd, plrs)
+  elsif role == 'o'
+    return computer_goes_first(brd, plrs)
+  end
+end
+
+def display_game_start
+  system 'clear'
+  prompt 'welcome'
+  name = get_name
+  system 'clear'
+  prompt 'rules', name
+  prompt 'continue'
+  gets
+  system 'clear'
+end
+
 ## Main program
+# display_game_start
+first_move = get_first_move_choice
+players = { player: 0, computer: 0 }
+
+loop do
+  # 1. Display the initial empty 3x3 board.
+  board = initialize_board
+  define_who_goes_first(board, players, first_move)
+
+  detected_winner = detect_winner(board)
+  display_winner(someone_won?(board), detected_winner)
+
+  # BF: Keep score
+  case detected_winner
+  when 'Player'   
+    players[:player] += 1 
+  when 'Computer'
+    players[:computer] += 1
+  end
+
+  if players[:player] == MAX_SCORE
+    prompt 'player_won_5_scores'
+    players = { player: 0, computer: 0 }
+    break unless another_game?
+  elsif players[:computer] == MAX_SCORE
+    prompt 'computer_won_5_scores'
+    players = { player: 0, computer: 0 }
+    break unless another_game?
+  else
+    next_round
+  end
+end
+
 system 'clear'
-prompt 'welcome'
-name = get_name
-system 'clear'
-prompt 'rules', name
-prompt 'continue'
-gets
-system 'clear'
-role = get_move_first_choice
-
-
-
-# players = { player: 0, computer: 0 }
-# loop do
-#   # 1. Display the initial empty 3x3 board.
-#   board = initialize_board
-
-#   loop do
-#     display_board(board, players)
-
-#     # 2. Ask the user to mark a square.
-#     player_places_piece!(board)
-#     break if someone_won?(board) || board_full?(board)
-#     # 3. Computer marks a square.
-#     # BF: Computer refinements
-#     computer_moves!(board)
-
-#     break if someone_won?(board) || board_full?(board)
-#   end
-
-#   # 4. Display the updated board state.
-#   display_board(board, players) 
-
-#   # 5. If winner, display winner.
-#   # 6. If board is full, display tie.
-#   detected_winner = detect_winner(board)
-#   display_winner(someone_won?(board), detected_winner)
-
-#   # BF: Keep score
-#   case detected_winner
-#   when 'Player'   
-#     players[:player] += 1 
-#   when 'Computer'
-#     players[:computer] += 1
-#   end
-
-#   if players[:player] == MAX_SCORE
-#     prompt 'player_won_5_scores'
-#     players = { player: 0, computer: 0 }
-#     break unless another_game
-#   elsif players[:computer] == MAX_SCORE
-#     prompt 'computer_won_5_scores'
-#     players = { player: 0, computer: 0 }
-#     break unless another_game
-#   else
-#     next_round
-#   end
-# end
-
-# prompt 'thank_you'
+prompt 'thank_you'
