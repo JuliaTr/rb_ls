@@ -1,4 +1,7 @@
-welcome: "Welcome to Tic Tac Toe game!\n
+welcome: "Welcome to Tic Tac Toe game!"
+get_name: "Enter your name:"
+valid_name: "Make sure to use a valid name."
+rules: "Hi, %s! Let me introduce rules of the game.\n
   \n
   The board has 9 squares, which are numerated:\n
   \n
@@ -8,7 +11,7 @@ welcome: "Welcome to Tic Tac Toe game!\n
   -----------------
   \n  7  |  8  |  9\n
   \n
-  Each player one by one place 'X' or 'O' on the board.\n
+  There're 2 players: you and computer. Each player one by one chose a square to make a move.\n
   Who first will occupy the line vertically / horizontally / in diagonal, won.\n
   \n
   Ex. 1: line (1, 2, 3)    Ex. 2: line (1, 4, 7)   Ex. 3: line (1, 5, 9)
@@ -22,6 +25,8 @@ welcome: "Welcome to Tic Tac Toe game!\n
   The game will go until you or the computer earn 5 scores.\n
   Good luck!\n
   \n"
+role_choice: "Do you want to play with X or O? Type X or O:\n"
+valid_role: "Make sure you chose X or O."
 choice: "Choose a square: %s"
 not_valid_choice: "Sorry, that's not a valid choice."
 round: "Going to the next round ..."
