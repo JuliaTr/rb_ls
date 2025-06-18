@@ -25,7 +25,9 @@ rules: "Hi, %s! Let me introduce rules of the game.\n
   The game will go until you or the computer earn 5 scores.\n
   Good luck!\n
   \n"
-role_choice: "Do you want to play with X or O? Type X or O:\n"
+role_choice: "Who do you want to go first? Type:\n
+  X if you go first\n
+  O if computer goes first"
 valid_role: "Make sure you chose X or O."
 choice: "Choose a square: %s"
 not_valid_choice: "Sorry, that's not a valid choice."
