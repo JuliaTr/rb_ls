@@ -47,18 +47,18 @@ def get_name
   name.upcase
 end
 
-def get_role_choice
-  role = ''
+def get_move_first_choice
+  move_first_choice = ''
 
   loop do
     prompt 'role_choice'
-    role = gets.chomp.downcase
+    move_first_choice = gets.chomp.downcase
 
-    break if role == 'x' || role == 'o'
+    break if move_first_choice == 'x' || move_first_choice == 'o'
     prompt 'valid_role'
   end
 
-  role
+  move_first_choice
 end
 
 def display_board(brd, players_score)
@@ -231,7 +231,7 @@ prompt 'rules', name
 prompt 'continue'
 gets
 system 'clear'
-get_role_choice
+role = get_move_first_choice
 
 
 
