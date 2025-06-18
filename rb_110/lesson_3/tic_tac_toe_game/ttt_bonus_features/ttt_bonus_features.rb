@@ -33,6 +33,34 @@ def prompt(key, *args)
   puts "=> #{message}"
 end
 
+def get_name
+  name = ''
+
+  loop do
+    prompt 'get_name'
+    name = gets.chomp
+
+    break unless name.empty?
+    prompt 'valid_name'
+  end
+
+  name.upcase
+end
+
+def get_role_choice
+  role = ''
+
+  loop do
+    prompt 'role_choice'
+    role = gets.chomp.downcase
+
+    break if role == 'x' || role == 'o'
+    prompt 'valid_role'
+  end
+
+  role
+end
+
 def display_board(brd, players_score)
   # system 'clear'
   puts "Player: #{players_score[:player]}, computer: #{players_score[:computer]}"
@@ -195,10 +223,17 @@ def next_round
 end
 
 ## Main program
-# system 'clear'
+system 'clear'
 prompt 'welcome'
+name = get_name
+system 'clear'
+prompt 'rules', name
 prompt 'continue'
-# gets
+gets
+system 'clear'
+get_role_choice
+
+
 
 # players = { player: 0, computer: 0 }
 # loop do
