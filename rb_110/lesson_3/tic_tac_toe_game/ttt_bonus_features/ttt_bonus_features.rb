@@ -54,11 +54,11 @@ def get_first_move_choice
     prompt 'role_choice'
     first_move_choice = gets.chomp.downcase
 
-    break if first_move_choice == 'x' || first_move_choice == 'o'
+    break if first_move_choice == 'x' || first_move_choice == 'o' || first_move_choice == ''
     prompt 'valid_role'
   end
 
-  p first_move_choice
+  first_move_choice
 end
 
 def display_board(brd, players_score)
@@ -253,10 +253,14 @@ def computer_goes_first(brd, plrs)
   end
 end
 
+# BF: Ask user before play begins who should go first, including 
+# computer choose who goes first
 def define_who_goes_first(brd, plrs, role)
   if role == 'x'
     return player_goes_first(brd, plrs)
   elsif role == 'o'
+    return computer_goes_first(brd, plrs)
+  elsif role == ''
     return computer_goes_first(brd, plrs)
   end
 end
