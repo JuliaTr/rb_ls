@@ -194,53 +194,57 @@ def next_round
   # system 'clear'
 end
 
+## Main program
+# system 'clear'
+prompt 'welcome'
+prompt 'continue'
+# gets
 
-players = { player: 0, computer: 0 }
+# players = { player: 0, computer: 0 }
+# loop do
+#   # 1. Display the initial empty 3x3 board.
+#   board = initialize_board
 
-loop do
-  # 1. Display the initial empty 3x3 board.
-  board = initialize_board
+#   loop do
+#     display_board(board, players)
 
-  loop do
-    display_board(board, players)
+#     # 2. Ask the user to mark a square.
+#     player_places_piece!(board)
+#     break if someone_won?(board) || board_full?(board)
+#     # 3. Computer marks a square.
+#     # BF: Computer refinements
+#     computer_moves!(board)
 
-    # 2. Ask the user to mark a square.
-    player_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
-    # 3. Computer marks a square.
-    # BF: Computer refinements
-    computer_moves!(board)
+#     break if someone_won?(board) || board_full?(board)
+#   end
 
-    break if someone_won?(board) || board_full?(board)
-  end
+#   # 4. Display the updated board state.
+#   display_board(board, players) 
 
-  # 4. Display the updated board state.
-  display_board(board, players) 
+#   # 5. If winner, display winner.
+#   # 6. If board is full, display tie.
+#   detected_winner = detect_winner(board)
+#   display_winner(someone_won?(board), detected_winner)
 
-  # 5. If winner, display winner.
-  # 6. If board is full, display tie.
-  detected_winner = detect_winner(board)
-  display_winner(someone_won?(board), detected_winner)
+#   # BF: Keep score
+#   case detected_winner
+#   when 'Player'   
+#     players[:player] += 1 
+#   when 'Computer'
+#     players[:computer] += 1
+#   end
 
-  # BF: Keep score
-  case detected_winner
-  when 'Player'   
-    players[:player] += 1 
-  when 'Computer'
-    players[:computer] += 1
-  end
+#   if players[:player] == MAX_SCORE
+#     prompt 'player_won_5_scores'
+#     players = { player: 0, computer: 0 }
+#     break unless another_game
+#   elsif players[:computer] == MAX_SCORE
+#     prompt 'computer_won_5_scores'
+#     players = { player: 0, computer: 0 }
+#     break unless another_game
+#   else
+#     next_round
+#   end
+# end
 
-  if players[:player] == MAX_SCORE
-    prompt 'player_won_5_scores'
-    players = { player: 0, computer: 0 }
-    break unless another_game
-  elsif players[:computer] == MAX_SCORE
-    prompt 'computer_won_5_scores'
-    players = { player: 0, computer: 0 }
-    break unless another_game
-  else
-    next_round
-  end
-end
-
-prompt 'thank_you'
+# prompt 'thank_you'
