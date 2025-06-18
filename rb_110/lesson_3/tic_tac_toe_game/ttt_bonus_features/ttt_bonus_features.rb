@@ -117,6 +117,7 @@ def detect_winner(brd)
   nil
 end
 
+# BF: Computer turn refinements (a) computer offense first
 # BF: Computer AI: offense
 def computer_ai_offense!(brd)
   WINNING_LINES.each do |line|
@@ -129,7 +130,22 @@ def computer_ai_offense!(brd)
     end
   end
 
-  computer_ai_defense!(brd)
+  nil
+end
+
+# BF: Computer turn refinements (b) pick square #5 if available
+def computer_go_square_5!(brd)
+  WINNING_LINES.each do |line|
+    if line == [1, 2, 3]
+      next
+    elsif (line == [4, 5, 6] || line == [2, 5, 8] || 
+            line == [1, 5, 9] || line == [3, 5, 7]) &&
+            brd[line[1]] == INITIAL_MARKER
+      return brd[line[1]] = COMPUTER_MARKER
+    end
+  end
+
+  nil
 end
 
 # BF: Computer AI: defense
@@ -144,7 +160,21 @@ def computer_ai_defense!(brd)
     end
   end
 
-  computer_places_piece!(brd)
+  nil
+end
+
+def computer_moves!(brd)
+  squares_2_o = computer_ai_offense!(brd)
+  squares_2_x = computer_ai_defense!(brd)
+  computer_go_5 = computer_go_square_5!(brd)
+
+  if squares_2_o == nil
+    return squares_2_x
+  elsif squares_2_x == nil
+    return computer_go_5
+  end
+
+  computer_moves_randomly
 end
 
 def display_winner(who_won, winner_role)
@@ -184,7 +214,7 @@ loop do
     break if someone_won?(board) || board_full?(board)
 
     # BF: Computer AI: offense
-    computer_ai_offense!(board)
+    computer_moves!(board)
 
     # 3. Computer marks a square.
     display_board(board, players)
