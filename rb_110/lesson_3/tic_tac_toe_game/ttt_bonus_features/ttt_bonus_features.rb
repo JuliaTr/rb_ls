@@ -1,19 +1,4 @@
 require 'yaml'
-require 'pry-byebug'
-
-=begin
-1. Display the initial empty 3x3 board.  # loop 1 starts
-2. Ask the user to mark a square.   # loop 2 starts
-3. Computer marks a square.         # loop 2 ends
-4. Display the updated board state.
-5. If winner, display winner.
-6. If board is full, display tie.
-  BF: Keep score.
-7. If neither winner nor board is full, go to #2  # stopping condition for loop 2
-8. Play again?
-9. If yes, go to #1   # loop 1 ends
-10. Good bye!
-=end
 
 MESSAGES = YAML.load_file('ttt_messages.yml')
 INITIAL_MARKER = ' '
@@ -253,8 +238,8 @@ def computer_goes_first(brd, plrs)
   end
 end
 
-# BF: Ask user before play begins who should go first, including 
-# computer choose who goes first
+# BF: Ask user before play begins who should go first 
+# BF: Add opion for computer choose who goes first
 def define_who_goes_first(brd, plrs, role)
   if role == 'x'
     return player_goes_first(brd, plrs)
@@ -277,12 +262,11 @@ def display_game_start
 end
 
 ## Main program
-# display_game_start
+display_game_start
 first_move = get_first_move_choice
 players = { player: 0, computer: 0 }
 
 loop do
-  # 1. Display the initial empty 3x3 board.
   board = initialize_board
   define_who_goes_first(board, players, first_move)
 
