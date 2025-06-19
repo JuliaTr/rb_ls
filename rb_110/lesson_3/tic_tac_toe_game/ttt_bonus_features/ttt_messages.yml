@@ -12,6 +12,7 @@ rules: "Hi, %s! Let me introduce rules of the game.\n
   \n  7  |  8  |  9\n
   \n
   There're 2 players: you and computer. Each player one by one chose a square to make a move.\n
+  First, the player choose who goes first. Each round who goes first is switched.\n
   Who first will occupy the line vertically / horizontally / in diagonal, won.\n
   \n
   Ex. 1: line (1, 2, 3)    Ex. 2: line (1, 4, 7)   Ex. 3: line (1, 5, 9)
@@ -34,6 +35,8 @@ choice: "Choose a square: %s"
 not_valid_choice: "Sorry, that's not a valid choice."
 round: "Going to the next round ..."
 continue: "Press 'Enter' key to continue"
+player_moves_first: "%s, go first"
+computer_moves_first: "Now computer goes first"
 winner: "%s won!"
 tie: "It's a tie!"
 player_won_5_scores: "Player won with 5 scores"
