@@ -63,9 +63,9 @@ def initialize_board
   new_board
 end
 
-def display_board(brd, plrs, player_name)
+def display_board(brd, plrs)
   system 'clear'
-  puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
+  puts "Player: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
   puts "     |     |"
@@ -164,7 +164,7 @@ def computer_moves!(brd)
 
   # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
   elsif (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) == nil) && (computer_goes_square_5!(brd) != nil)
-    return p computer_goes_square_5!(brd)
+    return computer_goes_square_5!(brd)
 
   # If the square #5 is occupied
   elsif computer_goes_square_5!(brd) == nil
@@ -180,16 +180,21 @@ def define_current_player(first_role)
   end
 end
 
-def place_piece!(brd, plrs, curr_plr, player_name)
+def place_piece!(brd, plrs, curr_plr)
   if curr_plr == 'Player'
-    prompt 'player_moves_first', player_name
     player_places_piece!(brd)
     computer_moves!(brd)
   else
-    prompt 'computer_moves_first'
+    prompt 'computer_moved'
+    prompt 'continue'
+    gets
 
     computer_moves!(brd)
-    display_board(brd, plrs, player_name)
+    display_board(brd, plrs)
+
+    prompt 'computer_moves_first'
+    prompt 'player_turn'
+    
     player_places_piece!(brd)
   end
 end
@@ -211,10 +216,13 @@ def someone_won?(brd)
 end
 
 # Game loop
-def game_loop(brd, plrs, curr_plr, player_name)
+def game_loop(brd, plrs, curr_plr)
+  system 'clear'
+
   loop do
-    display_board(brd, plrs, player_name)
-    place_piece!(brd, plrs, curr_plr, player_name)
+    # system 'clear'
+    display_board(brd, plrs)
+    place_piece!(brd, plrs, curr_plr)
     curr_plr = alternate_player(curr_plr)
     break if someone_won?(brd) || board_full?(brd)
   end
@@ -260,38 +268,38 @@ end
 
 ## Main program
 display_game_start
-# who_first_moves = get_first_move_choice
-# current_player = define_current_player(who_first_moves)
-# players = { player: 0, computer: 0 }
+who_first_moves = get_first_move_choice
+current_player = define_current_player(who_first_moves)
+players = { player: 0, computer: 0 }
 
-# loop do
-#   board = initialize_board
-#   game_loop(board, players, current_player, name)
-#   display_board(board, players, name)
+loop do
+  board = initialize_board
+  game_loop(board, players, current_player)
+  # display_board(board, players)
 
-#   detected_winner = detect_winner(board)
-#   display_winner(someone_won?(board), detected_winner)
+  detected_winner = detect_winner(board)
+  display_winner(someone_won?(board), detected_winner)
 
-#   # BF: Keep score
-#   case detected_winner
-#   when 'Player'   
-#     players[:player] += 1 
-#   when 'Computer'
-#     players[:computer] += 1
-#   end
+  # BF: Keep score
+  case detected_winner
+  when 'Player'   
+    players[:player] += 1 
+  when 'Computer'
+    players[:computer] += 1
+  end
 
-#   if players[:player] == MAX_SCORE
-#     prompt 'player_won_5_scores'
-#     players = { player: 0, computer: 0 }
-#     break unless another_game?
-#   elsif players[:computer] == MAX_SCORE
-#     prompt 'computer_won_5_scores'
-#     players = { player: 0, computer: 0 }
-#     break unless another_game?
-#   else
-#     next_round
-#   end
-# end
+  if players[:player] == MAX_SCORE
+    prompt 'player_won_5_scores'
+    players = { player: 0, computer: 0 }
+    break unless another_game?
+  elsif players[:computer] == MAX_SCORE
+    prompt 'computer_won_5_scores'
+    players = { player: 0, computer: 0 }
+    break unless another_game?
+  else
+    next_round
+  end
+end
 
-# system 'clear'
-# prompt 'thank_you'
+system 'clear'
+prompt 'thank_you'
