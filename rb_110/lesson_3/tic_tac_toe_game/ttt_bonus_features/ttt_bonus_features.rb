@@ -39,7 +39,8 @@ def get_first_move_choice
     prompt 'role_choice'
     first_move_choice = gets.chomp.downcase
 
-    break if first_move_choice == 'x' || first_move_choice == 'o' || first_move_choice == ''
+    break if first_move_choice == 'x' || first_move_choice == 'o' ||
+             first_move_choice == ''
     prompt 'valid_role'
   end
 
@@ -52,10 +53,14 @@ def initialize_board
   new_board
 end
 
-def display_board(brd, plrs, player_name)
-  system 'clear'
+def display_score_board_and_player_role(plrs, player_name)
   puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
+end
+
+def display_board(brd, plrs, player_name)
+  system 'clear'
+  display_score_board_and_player_role(plrs, player_name)
   puts ""
   puts "     |     |"
   puts " #{brd[1]}   | #{brd[2]}   | #{brd[3]}"
@@ -72,7 +77,7 @@ def display_board(brd, plrs, player_name)
 end
 
 def empty_squares(brd)
-  brd.keys.select { |num| brd[num] == INITIAL_MARKER } 
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
 def joinor(arr, delimeter=', ', word='or')
@@ -103,11 +108,14 @@ end
 
 def computer_ai_offense!(brd)
   WINNING_LINES.each do |line|
-    if brd[line[0]] == COMPUTER_MARKER && brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == INITIAL_MARKER
+    if brd[line[0]] == COMPUTER_MARKER && brd[line[1]] == COMPUTER_MARKER &&
+       brd[line[2]] == INITIAL_MARKER
       return brd[line[2]] = COMPUTER_MARKER
-    elsif brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER && brd[line[0]] == INITIAL_MARKER
+    elsif brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER &&
+          brd[line[0]] == INITIAL_MARKER
       return brd[line[0]] = COMPUTER_MARKER
-    elsif brd[line[0]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER && brd[line[1]] == INITIAL_MARKER
+    elsif brd[line[0]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER &&
+          brd[line[1]] == INITIAL_MARKER
       return brd[line[1]] = COMPUTER_MARKER
     end
   end
@@ -117,11 +125,14 @@ end
 
 def computer_ai_defense!(brd)
   WINNING_LINES.each do |line|
-    if brd[line[0]] == PLAYER_MARKER && brd[line[1]] == PLAYER_MARKER && brd[line[2]] == INITIAL_MARKER
+    if brd[line[0]] == PLAYER_MARKER && brd[line[1]] == PLAYER_MARKER &&
+       brd[line[2]] == INITIAL_MARKER
       return brd[line[2]] = COMPUTER_MARKER
-    elsif brd[line[1]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER && brd[line[0]] == INITIAL_MARKER
+    elsif brd[line[1]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER &&
+          brd[line[0]] == INITIAL_MARKER
       return brd[line[0]] = COMPUTER_MARKER
-    elsif brd[line[0]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER && brd[line[1]] == INITIAL_MARKER
+    elsif brd[line[0]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER &&
+          brd[line[1]] == INITIAL_MARKER
       return brd[line[1]] = COMPUTER_MARKER
     end
   end
@@ -131,9 +142,9 @@ end
 
 def computer_goes_square_5!(brd)
   WINNING_LINES.each do |line|
-    if (line == [4, 5, 6] || line == [2, 5, 8] || 
+    if (line == [4, 5, 6] || line == [2, 5, 8] ||
         line == [1, 5, 9] || line == [3, 5, 7]) &&
-        brd[line[1]] == INITIAL_MARKER
+       brd[line[1]] == INITIAL_MARKER
       return brd[line[1]] = COMPUTER_MARKER
     end
   end
@@ -148,23 +159,23 @@ end
 
 def computer_moves!(brd)
   # If there're 2 `'O'`
-  if computer_ai_offense!(brd) != nil
-    return computer_ai_offense!(brd)
-  
-  elsif (computer_ai_offense!(brd) != nil) && (computer_ai_defense!(brd) != nil)
-    return computer_ai_offense!(brd)
-  
+  if !computer_ai_offense!(brd).nil?
+    computer_ai_offense!(brd)
+
+  elsif (!computer_ai_offense!(brd).nil?) && (!computer_ai_defense!(brd).nil?)
+    computer_ai_offense!(brd)
+
   # If there're no 2 `'O'` and there're 2 `'X' in a line
-  elsif (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) != nil)
-    return computer_ai_defense!(brd)
+  elsif (computer_ai_offense!(brd).nil?) && (!computer_ai_defense!(brd).nil?)
+    computer_ai_defense!(brd)
 
   # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
-  elsif (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) == nil) && (computer_goes_square_5!(brd) != nil)
-    return computer_goes_square_5!(brd)
+  elsif (computer_ai_offense!(brd).nil?) && (computer_ai_defense!(brd).nil?) && (!computer_goes_square_5!(brd).nil?)
+    computer_goes_square_5!(brd)
 
   # If the square #5 is occupied
-  elsif computer_goes_square_5!(brd) == nil
-    return computer_places_piece!(brd)
+  elsif computer_goes_square_5!(brd).nil?
+    computer_places_piece!(brd)
   end
 end
 
@@ -226,11 +237,11 @@ def game_loop(brd, plrs, curr_plr, player_name)
   end
 end
 
-def detect_winner(brd) 
+def detect_winner(brd)
   WINNING_LINES.each do |line|
     if brd[line[0]] == PLAYER_MARKER &&
-        brd[line[1]] == PLAYER_MARKER &&
-        brd[line[2]] == PLAYER_MARKER
+       brd[line[1]] == PLAYER_MARKER &&
+       brd[line[2]] == PLAYER_MARKER
       return 'Player'
     elsif brd[line[0]] == COMPUTER_MARKER &&
           brd[line[1]] == COMPUTER_MARKER &&
@@ -260,8 +271,8 @@ end
 
 def another_game?
   prompt 'next_set_of_rounds'
-  answer = Kernel.gets().chomp()
-  answer.downcase().start_with?('y') || answer == ""
+  answer = gets.chomp
+  answer.downcase.start_with?('y') || answer == ""
 end
 
 ## Main program
@@ -288,8 +299,8 @@ loop do
 
   # BF: Keep score
   case detected_winner
-  when 'Player'   
-    players[:player] += 1 
+  when 'Player'
+    players[:player] += 1
   when 'Computer'
     players[:computer] += 1
   end
