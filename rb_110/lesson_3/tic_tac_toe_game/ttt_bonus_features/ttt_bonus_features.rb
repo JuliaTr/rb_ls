@@ -54,26 +54,31 @@ def initialize_board
 end
 
 def display_score_board_and_player_role(plrs, player_name)
+  system 'clear'
   puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
 end
 
+def display_3_squares(brd, square_left=1, square_middle=2, square_right=3)
+  puts "     |     |"
+  puts "  #{brd[square_left]}  |  #{brd[square_middle]}  " \
+       "|  #{brd[square_right]}"
+  puts "     |     |"
+end
+
+def display_board_separator
+  puts "-----+-----+-----"
+end
+
 def display_board(brd, plrs, player_name)
-  system 'clear'
   display_score_board_and_player_role(plrs, player_name)
-  puts ""
-  puts "     |     |"
-  puts " #{brd[1]}   | #{brd[2]}   | #{brd[3]}"
-  puts "     |     |"
-  puts "-----+-----+-----"
-  puts "     |     |"
-  puts " #{brd[4]}   | #{brd[5]}   | #{brd[6]}"
-  puts "     |     |"
-  puts "-----+-----+-----"
-  puts "     |     |"
-  puts " #{brd[7]}   | #{brd[8]}   | #{brd[9]}"
-  puts "     |     |"
-  puts ""
+  puts " "
+  display_3_squares(brd)
+  display_board_separator
+  display_3_squares(brd, 4, 5, 6)
+  display_board_separator
+  display_3_squares(brd, 7, 8, 9)
+  puts " "
 end
 
 def empty_squares(brd)
@@ -170,7 +175,8 @@ def computer_moves!(brd)
     computer_ai_defense!(brd)
 
   # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
-  elsif (computer_ai_offense!(brd).nil?) && (computer_ai_defense!(brd).nil?) && (!computer_goes_square_5!(brd).nil?)
+  elsif (computer_ai_offense!(brd).nil?) && (computer_ai_defense!(brd).nil?) &&
+        (!computer_goes_square_5!(brd).nil?)
     computer_goes_square_5!(brd)
 
   # If the square #5 is occupied
