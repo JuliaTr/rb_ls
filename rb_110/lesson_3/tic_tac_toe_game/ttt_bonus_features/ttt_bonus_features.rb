@@ -158,8 +158,15 @@ def computer_places_piece!(brd)
 end
 
 def computer_moves!(brd)
+  # If there're 2 `'O'`
+  if computer_ai_offense!(brd) != nil
+    return computer_ai_offense!(brd)
+  
+  elsif (computer_ai_offense!(brd) != nil) && (computer_ai_defense!(brd) != nil)
+    return computer_ai_offense!(brd)
+  
   # If there're no 2 `'O'` and there're 2 `'X' in a line
-  if (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) != nil)
+  elsif (computer_ai_offense!(brd) == nil) && (computer_ai_defense!(brd) != nil)
     return computer_ai_defense!(brd)
 
   # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
@@ -182,6 +189,7 @@ end
 
 def place_piece!(brd, plrs, curr_plr)
   if curr_plr == 'Player'
+    prompt 'player_moves_first'
     player_places_piece!(brd)
     computer_moves!(brd)
   else
@@ -194,7 +202,7 @@ def place_piece!(brd, plrs, curr_plr)
 
     prompt 'computer_moves_first'
     prompt 'player_turn'
-    
+
     player_places_piece!(brd)
   end
 end
@@ -220,7 +228,6 @@ def game_loop(brd, plrs, curr_plr)
   system 'clear'
 
   loop do
-    # system 'clear'
     display_board(brd, plrs)
     place_piece!(brd, plrs, curr_plr)
     curr_plr = alternate_player(curr_plr)
@@ -256,13 +263,11 @@ def next_round
   prompt 'round'
   prompt 'continue'
   gets
-  # system 'clear'
 end
 
 def another_game?
   prompt 'next_set_of_rounds'
   answer = Kernel.gets().chomp()
-  # system 'clear'
   answer.downcase().start_with?('y') || answer == ""
 end
 
@@ -275,7 +280,7 @@ players = { player: 0, computer: 0 }
 loop do
   board = initialize_board
   game_loop(board, players, current_player)
-  # display_board(board, players)
+  display_board(board, players)
 
   detected_winner = detect_winner(board)
   display_winner(someone_won?(board), detected_winner)
