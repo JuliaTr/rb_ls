@@ -32,17 +32,6 @@ def get_name
   name.upcase
 end
 
-def display_game_start
-  system 'clear'
-  prompt 'welcome'
-  name = get_name
-  system 'clear'
-  prompt 'rules', name
-  prompt 'continue'
-  gets
-  system 'clear'
-end
-
 def get_first_move_choice
   first_move_choice = ''
 
@@ -63,9 +52,9 @@ def initialize_board
   new_board
 end
 
-def display_board(brd, plrs)
+def display_board(brd, plrs, player_name)
   system 'clear'
-  puts "Player: #{plrs[:player]}, computer: #{plrs[:computer]}"
+  puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
   puts "     |     |"
@@ -187,9 +176,9 @@ def define_current_player(first_role)
   end
 end
 
-def place_piece!(brd, plrs, curr_plr)
+def place_piece!(brd, plrs, curr_plr, player_name)
   if curr_plr == 'Player'
-    prompt 'player_moves_first'
+    prompt 'player_moves_first', player_name
     player_places_piece!(brd)
     computer_moves!(brd)
   else
@@ -198,10 +187,10 @@ def place_piece!(brd, plrs, curr_plr)
     gets
 
     computer_moves!(brd)
-    display_board(brd, plrs)
+    display_board(brd, plrs, player_name)
 
     prompt 'computer_moves_first'
-    prompt 'player_turn'
+    prompt 'player_turn', player_name
 
     player_places_piece!(brd)
   end
@@ -224,12 +213,12 @@ def someone_won?(brd)
 end
 
 # Game loop
-def game_loop(brd, plrs, curr_plr)
+def game_loop(brd, plrs, curr_plr, player_name)
   system 'clear'
 
   loop do
-    display_board(brd, plrs)
-    place_piece!(brd, plrs, curr_plr)
+    display_board(brd, plrs, player_name)
+    place_piece!(brd, plrs, curr_plr, player_name)
     curr_plr = alternate_player(curr_plr)
     break if someone_won?(brd) || board_full?(brd)
   end
@@ -251,9 +240,11 @@ def detect_winner(brd)
   nil
 end
 
-def display_winner(who_won, winner_role)
-  if who_won
-    prompt 'winner', winner_role
+def display_winner(who_won, detected_winner, player_name)
+  if who_won && (detected_winner == 'Player')
+    prompt 'player_won', player_name
+  elsif who_won && (detected_winner == 'Computer')
+    prompt 'computer_won'
   else
     prompt 'tie'
   end
@@ -272,18 +263,26 @@ def another_game?
 end
 
 ## Main program
-display_game_start
+system 'clear'
+prompt 'welcome'
+name = get_name
+system 'clear'
+prompt 'rules', name
+prompt 'continue'
+gets
+system 'clear'
+
 who_first_moves = get_first_move_choice
 current_player = define_current_player(who_first_moves)
 players = { player: 0, computer: 0 }
 
 loop do
   board = initialize_board
-  game_loop(board, players, current_player)
-  display_board(board, players)
+  game_loop(board, players, current_player, name)
+  display_board(board, players, name)
 
   detected_winner = detect_winner(board)
-  display_winner(someone_won?(board), detected_winner)
+  display_winner(someone_won?(board), detected_winner, name)
 
   # BF: Keep score
   case detected_winner
@@ -294,7 +293,7 @@ loop do
   end
 
   if players[:player] == MAX_SCORE
-    prompt 'player_won_5_scores'
+    prompt 'player_won_5_scores', name
     players = { player: 0, computer: 0 }
     break unless another_game?
   elsif players[:computer] == MAX_SCORE
@@ -307,4 +306,4 @@ loop do
 end
 
 system 'clear'
-prompt 'thank_you'
+prompt 'thank_you', name
