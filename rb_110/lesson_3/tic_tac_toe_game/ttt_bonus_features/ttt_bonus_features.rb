@@ -179,13 +179,15 @@ end
 def place_piece!(brd, plrs, curr_plr, player_name)
   if curr_plr == 'Player'
     prompt 'player_moves_first', player_name
+
     player_places_piece!(brd)
     computer_moves!(brd)
-  else
+    display_board(brd, plrs, player_name)
+
     prompt 'computer_moved'
     prompt 'continue'
     gets
-
+  else
     computer_moves!(brd)
     display_board(brd, plrs, player_name)
 
