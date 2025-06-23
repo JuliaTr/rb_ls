@@ -1,3 +1,4 @@
+require 'pry-byebug'
 require 'yaml'
 
 MESSAGES = YAML.load_file('ttt_messages.yml')
@@ -54,7 +55,7 @@ def initialize_board
 end
 
 def display_score_board_and_player_role(plrs, player_name)
-  system 'clear'
+  # system 'clear'
   puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
 end
@@ -111,18 +112,26 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
+def find_offensive_square(brd, line)
+  board_values = brd.values_at(*line)
+
+  number_of_o = board_values.count(COMPUTER_MARKER)
+  number_of_empty_squares = board_values.count(INITIAL_MARKER)
+
+  if number_of_o == 2 && number_of_empty_squares == 1
+    selected_pairs = brd.select do |k, _|  
+      k == line[0] || k == line[1] || k == line[2]
+    end
+    return selected_pairs.key(INITIAL_MARKER)
+  end
+
+  nil
+end
+
 def computer_ai_offense!(brd)
   WINNING_LINES.each do |line|
-    if brd[line[0]] == COMPUTER_MARKER && brd[line[1]] == COMPUTER_MARKER &&
-       brd[line[2]] == INITIAL_MARKER
-      return brd[line[2]] = COMPUTER_MARKER
-    elsif brd[line[1]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER &&
-          brd[line[0]] == INITIAL_MARKER
-      return brd[line[0]] = COMPUTER_MARKER
-    elsif brd[line[0]] == COMPUTER_MARKER && brd[line[2]] == COMPUTER_MARKER &&
-          brd[line[1]] == INITIAL_MARKER
-      return brd[line[1]] = COMPUTER_MARKER
-    end
+    square = find_offensive_square(brd, line)
+    return brd[square] = COMPUTER_MARKER if square
   end
 
   nil
