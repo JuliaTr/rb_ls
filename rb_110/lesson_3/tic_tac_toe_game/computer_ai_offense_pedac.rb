@@ -57,18 +57,56 @@ Intermediate:
 Algorithm:
 - Define a method `find_offensive_square` which accepts 2 arguments
   (`line`, `brd`)
-- Count computer markers (Return: integer)
-- Count empty squares (Return: integer)
+- Select key-value pairs which keys of the board are numbers of 
+  the squares in the line (use `values_at`; `*` to unpack each value 
+  from the array) 
+  (Return: array)
+- Count computer markers 
+  (values which contain `COMPUTER_MARKER` and in the line in key-value 
+  pairs on the board) 
+  (Return: integer)
+- Count empty squares 
+  (values which is empty (`INITIAL_MARKER`) and in the line in key-value 
+  pairs on the board)
+  (Return: integer)
 - If computer markers are 2 and 1 empty square for this line
-  - find the position (key) of the empty square (use `select`)
+  - find the position (key) of the empty square
     (notes)
   - return the selected key (Return: integer)
 - Otherwise, return `nil`
-
+  
 Note: (P) find the position (key) of the empty square
-  - select key from the board which value is equal to empty line `" "`
+  - select key-value pairs which keys equal to either `line[0]`, 
+    `line[1]`, or `line[2]` (Return: hash)
+  - find key from the board which value is equal to empty line `INITIAL_MARKER`
+    and in this line (use `key`)
 =end
 
+def find_offensive_square(brd, line)
+  board_values = brd.values_at(*line)
+
+  number_of_o = board_values.count(COMPUTER_MARKER)
+  number_of_empty_squares = board_values.count(INITIAL_MARKER)
+
+  if number_of_o == 2 && number_of_empty_squares == 1
+    selected_pairs = brd.select do |k, _|  
+      k == line[0] || k == line[1] || k == line[2]
+    end
+    
+    return selected_pairs.key(INITIAL_MARKER)
+  end
+
+  nil
+end
+
+def computer_ai_offense!(brd)
+  WINNING_LINES.each do |line|
+    square = find_offensive_square(brd, line)
+    return brd[square] = COMPUTER_MARKER if square
+  end
+
+  nil
+end
 
 
 =begin
