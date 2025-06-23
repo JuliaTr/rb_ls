@@ -71,15 +71,19 @@ def display_board_separator
   puts "-----+-----+-----"
 end
 
+def display_empty_space
+  puts " "
+end
+
 def display_board(brd, plrs, player_name)
   display_score_board_and_player_role(plrs, player_name)
-  puts " "
+  display_empty_space
   display_3_squares(brd)
   display_board_separator
   display_3_squares(brd, 4, 5, 6)
   display_board_separator
   display_3_squares(brd, 7, 8, 9)
-  puts " "
+  display_empty_space
 end
 
 def empty_squares(brd)
@@ -119,9 +123,10 @@ def find_offensive_square(brd, line)
   number_of_empty_squares = board_values.count(INITIAL_MARKER)
 
   if number_of_o == 2 && number_of_empty_squares == 1
-    selected_pairs = brd.select do |k, _|  
+    selected_pairs = brd.select do |k, _|
       k == line[0] || k == line[1] || k == line[2]
     end
+
     return selected_pairs.key(INITIAL_MARKER)
   end
 
