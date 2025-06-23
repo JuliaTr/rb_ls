@@ -1,3 +1,76 @@
+=begin 
+Rewrite the method to meet RuboCop requirements:
+
+ttt_bonus_features.rb:114:1: C: Metrics/AbcSize: Assignment Branch Condition size for computer_ai_offense! is too high. [<4, 25, 19> 31.65/18] (http://c2.com/cgi/wiki?AbcMetric, https://en.wikipedia.org/wiki/ABC_Software_Metric)
+def computer_ai_offense!(brd) ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ttt_bonus_features.rb:114:1: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for computer_ai_offense! is too high. [11/7]
+def computer_ai_offense!(brd) ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ttt_bonus_features.rb:114:1: C: Metrics/PerceivedComplexity: Perceived complexity for computer_ai_offense! is too high. [12/8]
+def computer_ai_offense!(brd) ...
+
+
+PROBLEM:
+Create a helper method that can identify if a line is "at risk" (has
+2 of a specific marker and 1 empty space) and return the empy square's
+position. 
+
+Eliminate repetitive conditional logic. Work with the data
+more abstractly rather than check each specific position combination 
+manually.
+
+Patterns: The same logic is repeated three times. Each condition checks 
+          if two positions have the computer marker and one position 
+          is empty.
+Count: how many squars in the line contain the computer marker?
+       how many squares in the line are empty?
+       return the empty square position
+Finding the empty square: identify which position is empy without checking
+                          each combination individually
+Method responsibilities: the current method does two things - finds
+                         the square AND places the piece.
+Ruby methods to consider: `count` for arrays; `select` or `find` for filering
+                          `values_at` for getting multople hash values at once
+
+________________________________________
+
+PEDAC:
+
+Input:
+  - current line (ex. `[1, 2, 3]` or `[1, 4, 7]`....)
+  - board to access square values
+
+Output: number of the only empty square on the line
+
+High-level: 
+  - check the current state of each square of the line (is it empty?
+    does it have a computer marker?)
+  - access square values
+
+Intermediate:
+- count computer markers (should be 2)
+- count empty squares (should be 1)
+- find and return the empty line square position if the line has 
+  2 computer markers and 1 empty square
+
+Algorithm:
+- Define a method `find_offensive_square` which accepts 2 arguments
+  (`line`, `brd`)
+- Count computer markers (Return: integer)
+- Count empty squares (Return: integer)
+- If computer markers are 2 and 1 empty square for this line
+  - find the position (key) of the empty square (use `select`)
+    (notes)
+  - return the selected key (Return: integer)
+- Otherwise, return `nil`
+
+Note: (P) find the position (key) of the empty square
+  - select key from the board which value is equal to empty line `" "`
+=end
+
+
+
 =begin
 PROBLEM:
 BF: Computer AI: Offense
