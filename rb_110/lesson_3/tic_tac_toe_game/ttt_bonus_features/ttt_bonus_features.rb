@@ -313,10 +313,8 @@ loop do
 
   # BF: Keep score
   case detected_winner
-  when 'Player'
-    players[:player] += 1
-  when 'Computer'
-    players[:computer] += 1
+  when 'Player'   then players[:player] += 1
+  when 'Computer' then players[:computer] += 1
   end
 
   if players[:player] == MAX_SCORE
