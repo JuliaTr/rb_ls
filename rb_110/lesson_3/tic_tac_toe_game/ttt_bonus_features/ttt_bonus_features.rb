@@ -142,18 +142,28 @@ def computer_ai_offense!(brd)
   nil
 end
 
+def find_defensive_square(brd, line)
+  board_values = brd.values_at(*line)
+
+  number_of_x = board_values.count(PLAYER_MARKER)
+  number_of_empty_squares = board_values.count(INITIAL_MARKER)
+
+  if number_of_x == 2 && number_of_empty_squares == 1
+    selected_pairs = brd.select do |k, _|
+      k == line[0] || k == line[1] || k == line[2]
+    end
+
+    return selected_pairs.key(INITIAL_MARKER)
+  end
+
+  nil
+end
+
 def computer_ai_defense!(brd)
   WINNING_LINES.each do |line|
-    if brd[line[0]] == PLAYER_MARKER && brd[line[1]] == PLAYER_MARKER &&
-       brd[line[2]] == INITIAL_MARKER
-      return brd[line[2]] = COMPUTER_MARKER
-    elsif brd[line[1]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER &&
-          brd[line[0]] == INITIAL_MARKER
-      return brd[line[0]] = COMPUTER_MARKER
-    elsif brd[line[0]] == PLAYER_MARKER && brd[line[2]] == PLAYER_MARKER &&
-          brd[line[1]] == INITIAL_MARKER
-      return brd[line[1]] = COMPUTER_MARKER
-    end
+    square = find_defensive_square(brd, line)
+
+    return brd[square] = COMPUTER_MARKER if square
   end
 
   nil
@@ -204,6 +214,11 @@ def define_current_player(first_role)
   'Computer'
 end
 
+def get_enter_key_continue
+  prompt 'continue'
+  gets
+end
+
 def place_piece!(brd, plrs, curr_plr, player_name)
   if curr_plr == 'Player'
     prompt 'player_moves_first', player_name
@@ -213,8 +228,7 @@ def place_piece!(brd, plrs, curr_plr, player_name)
     display_board(brd, plrs, player_name)
 
     prompt 'computer_moved'
-    prompt 'continue'
-    gets
+    get_enter_key_continue
   else
     computer_moves!(brd)
     display_board(brd, plrs, player_name)
@@ -277,11 +291,6 @@ def display_winner(who_won, detected_winner, player_name)
   end
 end
 
-def get_enter_key
-  prompt 'continue'
-  gets
-end
-
 def another_game?
   prompt 'next_set_of_rounds'
   answer = gets.chomp
@@ -294,8 +303,8 @@ prompt 'welcome'
 name = get_name
 system 'clear'
 prompt 'rules', name
-get_enter_key
-# system 'clear'
+get_enter_key_continue
+system 'clear'
 
 who_first_moves = get_first_move_choice
 current_player = define_current_player(who_first_moves)
@@ -325,7 +334,7 @@ loop do
     break unless another_game?
   else
     prompt 'round'
-    get_enter_key
+    get_enter_key_continue
   end
 end
 
