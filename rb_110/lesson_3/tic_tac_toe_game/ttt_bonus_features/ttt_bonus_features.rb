@@ -200,11 +200,8 @@ def computer_moves!(brd)
 end
 
 def define_current_player(first_role)
-  if first_role == 'x'
-    'Player'
-  else
-    'Computer'
-  end
+  return 'Player' if first_role == 'x'
+  'Computer'
 end
 
 def place_piece!(brd, plrs, curr_plr, player_name)
