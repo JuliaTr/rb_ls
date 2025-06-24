@@ -227,11 +227,8 @@ def place_piece!(brd, plrs, curr_plr, player_name)
 end
 
 def alternate_player(curr_plr)
-  if curr_plr == 'Player'
-    'Computer'
-  else
-    'Player'
-  end
+  return 'Computer' if curr_plr == 'Player'
+  'Player'
 end
 
 def board_full?(brd)
