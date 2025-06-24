@@ -55,7 +55,6 @@ def initialize_board
 end
 
 def display_score_board_and_player_role(plrs, player_name)
-  # system 'clear'
   puts "#{player_name}: #{plrs[:player]}, computer: #{plrs[:computer]}"
   puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
 end
@@ -76,6 +75,7 @@ def display_empty_space
 end
 
 def display_board(brd, plrs, player_name)
+  # system 'clear'
   display_score_board_and_player_role(plrs, player_name)
   display_empty_space
   display_3_squares(brd)
@@ -277,8 +277,7 @@ def display_winner(who_won, detected_winner, player_name)
   end
 end
 
-def next_round
-  prompt 'round'
+def get_enter_key
   prompt 'continue'
   gets
 end
@@ -295,9 +294,8 @@ prompt 'welcome'
 name = get_name
 system 'clear'
 prompt 'rules', name
-prompt 'continue'
-gets
-system 'clear'
+get_enter_key
+# system 'clear'
 
 who_first_moves = get_first_move_choice
 current_player = define_current_player(who_first_moves)
@@ -326,7 +324,8 @@ loop do
     players = { player: 0, computer: 0 }
     break unless another_game?
   else
-    next_round
+    prompt 'round'
+    get_enter_key
   end
 end
 
