@@ -116,98 +116,53 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def find_offensive_square(brd, line)
-  board_values = brd.values_at(*line)
-
-  number_of_o = board_values.count(COMPUTER_MARKER)
-  number_of_empty_squares = board_values.count(INITIAL_MARKER)
-
-  if number_of_o == 2 && number_of_empty_squares == 1
-    selected_pairs = brd.select do |k, _|
-      k == line[0] || k == line[1] || k == line[2]
+def find_at_risk_square(line, brd, marker)
+  if brd.values_at(*line).count(marker) == 2
+    selected_pair = brd.select do |k, v| 
+      line.include?(k) && v == INITIAL_MARKER
     end
-
-    return selected_pairs.key(INITIAL_MARKER)
+    p selected_pairs
+    selected_pair.keys.first
+  else
+    nil
   end
-
-  nil
 end
 
-def computer_ai_offense!(brd)
-  WINNING_LINES.each do |line|
-    square = find_offensive_square(brd, line)
-    return brd[square] = COMPUTER_MARKER if square
-  end
-
-  nil
-end
-
-def find_defensive_square(brd, line)
-  board_values = brd.values_at(*line)
-
-  number_of_x = board_values.count(PLAYER_MARKER)
-  number_of_empty_squares = board_values.count(INITIAL_MARKER)
-
-  if number_of_x == 2 && number_of_empty_squares == 1
-    selected_pairs = brd.select do |k, _|
-      k == line[0] || k == line[1] || k == line[2]
-    end
-
-    return selected_pairs.key(INITIAL_MARKER)
-  end
-
-  nil
-end
-
-def computer_ai_defense!(brd)
-  WINNING_LINES.each do |line|
-    square = find_defensive_square(brd, line)
-
-    return brd[square] = COMPUTER_MARKER if square
-  end
-
-  nil
-end
-
-def computer_goes_square_5!(brd)
-  WINNING_LINES.each do |line|
-    if (line == [4, 5, 6] || line == [2, 5, 8] ||
-        line == [1, 5, 9] || line == [3, 5, 7]) &&
-       brd[line[1]] == INITIAL_MARKER
-      return brd[line[1]] = COMPUTER_MARKER
-    end
-  end
-
-  nil
+def find_square5(brd)
+  brd.keys.values_at(4).first
 end
 
 def computer_places_piece!(brd)
-  square = empty_squares(brd).sample
+  square = nil
+
+  # offense
+  WINNING_LINES.each do |line|
+    square = find_at_risk_square(line, brd, COMPUTER_MARKER)
+    break if square
+  end
+
+  # defense
+  if !square
+    WINNING_LINES.each do |line|
+      square = find_at_risk_square(line, brd, PLAYER_MARKER)
+      break if square
+    end
+  end
+
+  # square 5
+  if !square && brd[5] == INITIAL_MARKER
+    square = find_square5(brd)
+  end
+
+  # pick a random square
+  if !square
+    square = empty_squares(brd).sample
+  end
+
   brd[square] = COMPUTER_MARKER
 end
 
-def computer_moves!(brd)
-  # If there're 2 `'O'`
-  if !computer_ai_offense!(brd).nil?
-    computer_ai_offense!(brd)
 
-  elsif (!computer_ai_offense!(brd).nil?) && (!computer_ai_defense!(brd).nil?)
-    computer_ai_offense!(brd)
-
-  # If there're no 2 `'O'` and there're 2 `'X' in a line
-  elsif (computer_ai_offense!(brd).nil?) && (!computer_ai_defense!(brd).nil?)
-    computer_ai_defense!(brd)
-
-  # If there're no 2 `'O'` and no 2 `'X' in a line, and a square #5 is free
-  elsif (computer_ai_offense!(brd).nil?) && (computer_ai_defense!(brd).nil?) &&
-        (!computer_goes_square_5!(brd).nil?)
-    computer_goes_square_5!(brd)
-
-  # If the square #5 is occupied
-  elsif computer_goes_square_5!(brd).nil?
-    computer_places_piece!(brd)
-  end
-end
 
 def define_current_player(first_role)
   return 'Player' if first_role == 'x'
@@ -224,13 +179,13 @@ def place_piece!(brd, plrs, curr_plr, player_name)
     prompt 'player_moves_first', player_name
 
     player_places_piece!(brd)
-    computer_moves!(brd)
+    computer_places_piece!(brd)
     display_board(brd, plrs, player_name)
 
     prompt 'computer_moved'
     get_enter_key_continue
   else
-    computer_moves!(brd)
+    computer_places_piece!(brd)
     display_board(brd, plrs, player_name)
 
     prompt 'computer_moves_first'
@@ -255,7 +210,6 @@ end
 
 # Game loop
 def game_loop(brd, plrs, curr_plr, player_name)
-  system 'clear'
 
   loop do
     display_board(brd, plrs, player_name)
