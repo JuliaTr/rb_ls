@@ -118,35 +118,44 @@ end
 
 def find_at_risk_square(line, brd, marker)
   if brd.values_at(*line).count(marker) == 2
-    selected_pair = brd.select do |k, v| 
+    selected_pair = brd.select do |k, v|
       line.include?(k) && v == INITIAL_MARKER
     end
-    p selected_pairs
-    selected_pair.keys.first
-  else
-    nil
+    return selected_pair.keys.first
   end
+
+  nil
 end
 
 def find_square5(brd)
   brd.keys.values_at(4).first
 end
 
-def computer_places_piece!(brd)
-  square = nil
-
-  # offense
+def computer_ai_offense(brd)
   WINNING_LINES.each do |line|
     square = find_at_risk_square(line, brd, COMPUTER_MARKER)
-    break if square
+    return brd[square] = COMPUTER_MARKER if square
   end
+
+  nil
+end
+
+def computer_ai_defense(brd)
+  WINNING_LINES.each do |line|
+    square = find_at_risk_square(line, brd, PLAYER_MARKER)
+    return brd[square] = COMPUTER_MARKER if square
+  end
+
+  nil
+end
+
+def computer_places_piece!(brd)
+  # offense
+  square = computer_ai_offense(brd)
 
   # defense
   if !square
-    WINNING_LINES.each do |line|
-      square = find_at_risk_square(line, brd, PLAYER_MARKER)
-      break if square
-    end
+    square = computer_ai_defense(brd)
   end
 
   # square 5
@@ -161,8 +170,6 @@ def computer_places_piece!(brd)
 
   brd[square] = COMPUTER_MARKER
 end
-
-
 
 def define_current_player(first_role)
   return 'Player' if first_role == 'x'
@@ -210,7 +217,6 @@ end
 
 # Game loop
 def game_loop(brd, plrs, curr_plr, player_name)
-
   loop do
     display_board(brd, plrs, player_name)
     place_piece!(brd, plrs, curr_plr, player_name)
