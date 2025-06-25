@@ -183,24 +183,32 @@ def get_enter_key_continue
   gets
 end
 
+def player_goes_first(brd, plrs, player_name)
+  prompt 'player_moves_first', player_name
+
+  player_places_piece!(brd)
+  computer_places_piece!(brd)
+  display_board(brd, plrs, player_name)
+
+  prompt 'computer_moved'
+  get_enter_key_continue
+end
+
+def computer_goes_first(brd, plrs, player_name)
+  computer_places_piece!(brd)
+  display_board(brd, plrs, player_name)
+
+  prompt 'computer_moves_first'
+  prompt 'player_turn', player_name
+
+  player_places_piece!(brd)
+end
+
 def place_piece!(brd, plrs, curr_plr, player_name)
   if curr_plr == 'Player'
-    prompt 'player_moves_first', player_name
-
-    player_places_piece!(brd)
-    computer_places_piece!(brd)
-    display_board(brd, plrs, player_name)
-
-    prompt 'computer_moved'
-    get_enter_key_continue
+    player_goes_first(brd, plrs, player_name)
   else
-    computer_places_piece!(brd)
-    display_board(brd, plrs, player_name)
-
-    prompt 'computer_moves_first'
-    prompt 'player_turn', player_name
-
-    player_places_piece!(brd)
+    computer_goes_first(brd, plrs, player_name)
   end
 end
 
