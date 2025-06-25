@@ -223,11 +223,7 @@ def game_loop(brd, plrs, curr_plr, player_name)
 end
 
 def find_winning_line(line, brd, marker)
-  if brd.values_at(*line).count(marker) == NUM_FOR_WINNER
-    return brd.keys
-  end
-
-  nil
+  brd.values_at(*line).count(marker) == NUM_FOR_WINNER
 end
 
 def detect_winner(brd)
