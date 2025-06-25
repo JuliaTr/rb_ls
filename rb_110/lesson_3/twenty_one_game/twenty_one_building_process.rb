@@ -9,27 +9,19 @@
 6. If dealer bust, player wins.
 7. Compare cards and declare winner.
 =end
-def deal_card(crd_values, suits)
-  initilize_deck(crd_values, suits).pop
+
+## Step 3:
+def prompt(message)
+  puts "=> #{message}"
 end
 
-deal_card(card_values, suits) 
-
-def display_message:
-
-puts "Player: #{initilize_deck(crd_values, suits).sample}"
-puts "Computer: #{initilize_deck(crd_values, suits).sample}"
-
-
-
-## Step 2:
 card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
                'Jack', 'Queen', 'King', 'Ace']
 
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
 # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
-def initilize_deck(crd_values, suits)
+def initialize_deck(crd_values, suits)
   # [[suit, value], [suit, value] ... ]
   suit_value_pairs = []
 
@@ -42,80 +34,135 @@ def initilize_deck(crd_values, suits)
   suit_value_pairs
 end
 
-initilize_deck(card_values, suits)
-
-# 2. Deal card to player and dealer
-# Ex. Player: [['Hearts', '2'], ['Diamonds', 'Ace']]
-#     Computer: [['Clubs', '2'], ['Spades', 'Jack']]
-def deal_card(crd_values, suits)
-  puts "Player: #{initilize_deck(crd_values, suits).sample}"
-  puts "Computer: #{initilize_deck(crd_values, suits).sample}"
+# Deletes the first inner array
+def deal_card!(deck)
+  deck.shift
 end
 
-deal_card(card_values, suits)
+def display_message_player(dealt_card)
+  prompt "Player: #{dealt_card}"
+end
+
+def display_message_dealer(dealt_card)
+  prompt "Dealer: #{dealt_card}"
+end
+
+deck = initialize_deck(card_values, suits)
+
+p deck
+dealt_card = deal_card!(deck)
+display_message_player(dealt_card)
+p deck
+dealt_card = deal_card!(deck)
+display_message_dealer(dealt_card)
+p deck
+
 =begin
-$ ruby twenty_one.rb
-Player: ["Hearts", "4"]
-Computer: ["Hearts", "8"]
-
-$ ruby twenty_one.rb
-Player: ["Diamonds", "10"]
-Computer: ["Spades", "Jack"]
-
-$ ruby twenty_one.rb
-Player: ["Clubs", "Jack"]
-Computer: ["Diamonds", "7"]
+[["Hearts", "2"], ["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
+=> Player: ["Hearts", "2"]
+[["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
+=> Dealer: ["Hearts", "3"]
+[["Hearts", "4"], ["Hearts", "5"], ["Hearts", "6"], ...
 =end
 
 
 
-## Step 1:
-# 1. Initialize deck
-card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
-               'Jack', 'Queen', 'King', 'Ace']
 
-suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+# ## Step 2:
+# card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
+#                'Jack', 'Queen', 'King', 'Ace']
 
-# Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
-def initilize_deck(crd_values, suits)
-  # [[suit, value], [suit, value] ... ]
-  suit_value_pairs = []
+# suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
-  suits.each do |suit|
-    crd_values.each do |card|
-      suit_value_pairs << [suit, card]
-    end
-  end
+# # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
+# def initialize_deck(crd_values, suits)
+#   # [[suit, value], [suit, value] ... ]
+#   suit_value_pairs = []
 
-  suit_value_pairs
-end
+#   suits.each do |suit|
+#     crd_values.each do |card|
+#       suit_value_pairs << [suit, card]
+#     end
+#   end
 
-initilize_deck(card_values, suits)
+#   suit_value_pairs
+# end
 
-=begin
-[["Hearts", "2"], ["Hearts", "3"], ["Hearts", "4"], 
-["Hearts", "5"], ["Hearts", "6"], ["Hearts", "7"], 
-["Hearts", "8"], ["Hearts", "9"], ["Hearts", "10"], 
-["Hearts", "Jack"], ["Hearts", "Queen"], ["Hearts", "King"], 
-["Hearts", "Ace"], 
+# initialize_deck(card_values, suits)
 
-["Diamonds", "2"], ["Diamonds", "3"], ["Diamonds", "4"], 
-["Diamonds", "5"], ["Diamonds", "6"], ["Diamonds", "7"], 
-["Diamonds", "8"], ["Diamonds", "9"], ["Diamonds", "10"], 
-["Diamonds", "Jack"], ["Diamonds", "Queen"], 
-["Diamonds", "King"], ["Diamonds", "Ace"], 
+# # 2. Deal card to player and dealer
+# # Ex. Player: [['Hearts', '2'], ['Diamonds', 'Ace']]
+# #     Computer: [['Clubs', '2'], ['Spades', 'Jack']]
+# def deal_card(crd_values, suits)
+#   puts "Player: #{initialize_deck(crd_values, suits).sample}"
+#   puts "Computer: #{initialize_deck(crd_values, suits).sample}"
+# end
 
-["Clubs", "2"], ["Clubs", "3"], ["Clubs", "4"], ["Clubs", "5"], 
-["Clubs", "6"], ["Clubs", "7"], ["Clubs", "8"], ["Clubs", "9"], 
-["Clubs", "10"], ["Clubs", "Jack"], ["Clubs", "Queen"], 
-["Clubs", "King"], ["Clubs", "Ace"], 
+# deal_card(card_values, suits)
+# =begin
+# $ ruby twenty_one.rb
+# Player: ["Hearts", "4"]
+# Computer: ["Hearts", "8"]
 
-["Spades", "2"], ["Spades", "3"], ["Spades", "4"], 
-["Spades", "5"], ["Spades", "6"], ["Spades", "7"], 
-["Spades", "8"], ["Spades", "9"], ["Spades", "10"], 
-["Spades", "Jack"], ["Spades", "Queen"], ["Spades", "King"], 
-["Spades", "Ace"]]
-=end
+# $ ruby twenty_one.rb
+# Player: ["Diamonds", "10"]
+# Computer: ["Spades", "Jack"]
+
+# $ ruby twenty_one.rb
+# Player: ["Clubs", "Jack"]
+# Computer: ["Diamonds", "7"]
+# =end
+
+
+
+
+# ## Step 1:
+# # 1. Initialize deck
+# card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
+#                'Jack', 'Queen', 'King', 'Ace']
+
+# suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
+# # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
+# def initialize_deck(crd_values, suits)
+#   # [[suit, value], [suit, value] ... ]
+#   suit_value_pairs = []
+
+#   suits.each do |suit|
+#     crd_values.each do |card|
+#       suit_value_pairs << [suit, card]
+#     end
+#   end
+
+#   suit_value_pairs
+# end
+
+# initialize_deck(card_values, suits)
+
+# =begin
+# [["Hearts", "2"], ["Hearts", "3"], ["Hearts", "4"], 
+# ["Hearts", "5"], ["Hearts", "6"], ["Hearts", "7"], 
+# ["Hearts", "8"], ["Hearts", "9"], ["Hearts", "10"], 
+# ["Hearts", "Jack"], ["Hearts", "Queen"], ["Hearts", "King"], 
+# ["Hearts", "Ace"], 
+
+# ["Diamonds", "2"], ["Diamonds", "3"], ["Diamonds", "4"], 
+# ["Diamonds", "5"], ["Diamonds", "6"], ["Diamonds", "7"], 
+# ["Diamonds", "8"], ["Diamonds", "9"], ["Diamonds", "10"], 
+# ["Diamonds", "Jack"], ["Diamonds", "Queen"], 
+# ["Diamonds", "King"], ["Diamonds", "Ace"], 
+
+# ["Clubs", "2"], ["Clubs", "3"], ["Clubs", "4"], ["Clubs", "5"], 
+# ["Clubs", "6"], ["Clubs", "7"], ["Clubs", "8"], ["Clubs", "9"], 
+# ["Clubs", "10"], ["Clubs", "Jack"], ["Clubs", "Queen"], 
+# ["Clubs", "King"], ["Clubs", "Ace"], 
+
+# ["Spades", "2"], ["Spades", "3"], ["Spades", "4"], 
+# ["Spades", "5"], ["Spades", "6"], ["Spades", "7"], 
+# ["Spades", "8"], ["Spades", "9"], ["Spades", "10"], 
+# ["Spades", "Jack"], ["Spades", "Queen"], ["Spades", "King"], 
+# ["Spades", "Ace"]]
+# =end
 
 
 
