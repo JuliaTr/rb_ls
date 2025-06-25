@@ -248,6 +248,10 @@ def display_winner(who_won, detected_winner, player_name)
   end
 end
 
+def reset_scores(players)
+  { player: 0, computer: 0 }
+end
+
 def another_game?
   prompt 'next_set_of_rounds'
   answer = gets.chomp
@@ -275,7 +279,7 @@ loop do
   detected_winner = detect_winner(board)
   display_winner(someone_won?(board), detected_winner, name)
 
-  # BF: Keep score
+  # Keep score
   case detected_winner
   when 'Player'   then players[:player] += 1
   when 'Computer' then players[:computer] += 1
@@ -283,13 +287,13 @@ loop do
 
   if players[:player] == MAX_SCORE
     prompt 'player_won_5_scores', name
-    players = { player: 0, computer: 0 }
+    players = reset_scores
     break unless another_game?
   elsif players[:computer] == MAX_SCORE
     prompt 'computer_won_5_scores'
-    players = { player: 0, computer: 0 }
+    players = reset_scores
     break unless another_game?
-  else
+  else 
     prompt 'round'
     get_enter_key_continue
   end
