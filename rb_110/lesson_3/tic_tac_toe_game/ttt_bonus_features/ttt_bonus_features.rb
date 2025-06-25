@@ -140,13 +140,11 @@ def computer_offense_or_defense(brd, marker)
 end
 
 def computer_ai_offense(brd)
-  return computer_offense_or_defense(brd, COMPUTER_MARKER)
-  nil
+  computer_offense_or_defense(brd, COMPUTER_MARKER)
 end
 
 def computer_ai_defense(brd)
-  return computer_offense_or_defense(brd, PLAYER_MARKER)
-  nil
+  computer_offense_or_defense(brd, PLAYER_MARKER)
 end
 
 def computer_places_piece!(brd)
