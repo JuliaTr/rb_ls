@@ -5,6 +5,8 @@ MESSAGES = YAML.load_file('ttt_messages.yml')
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+NUM_FOR_PLACE_PIECE = 2
+NUM_FOR_WINNER = 3
 MAX_SCORE = 5
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +  # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +  # columns
@@ -75,7 +77,7 @@ def display_empty_space
 end
 
 def display_board(brd, plrs, player_name)
-  # system 'clear'
+  system 'clear'
   display_score_board_and_player_role(plrs, player_name)
   display_empty_space
   display_3_squares(brd)
@@ -117,7 +119,7 @@ def player_places_piece!(brd)
 end
 
 def find_at_risk_square(line, brd, marker)
-  if brd.values_at(*line).count(marker) == 2
+  if brd.values_at(*line).count(marker) == NUM_FOR_PLACE_PIECE
     selected_pair = brd.select do |k, v|
       line.include?(k) && v == INITIAL_MARKER
     end
@@ -225,15 +227,22 @@ def game_loop(brd, plrs, curr_plr, player_name)
   end
 end
 
+def find_winning_line(line, brd, marker)
+  if brd.values_at(*line).count(marker) == NUM_FOR_WINNER
+    selected_pair = brd.select do |k, v|
+      line.include?(k) && v == INITIAL_MARKER
+    end
+    return selected_pair.keys
+  end
+
+  nil
+end
+
 def detect_winner(brd)
   WINNING_LINES.each do |line|
-    if brd[line[0]] == PLAYER_MARKER &&
-       brd[line[1]] == PLAYER_MARKER &&
-       brd[line[2]] == PLAYER_MARKER
+    if find_winning_line(line, brd, PLAYER_MARKER)
       return 'Player'
-    elsif brd[line[0]] == COMPUTER_MARKER &&
-          brd[line[1]] == COMPUTER_MARKER &&
-          brd[line[2]] == COMPUTER_MARKER
+    elsif find_winning_line(line, brd, COMPUTER_MARKER)
       return 'Computer'
     end
   end
