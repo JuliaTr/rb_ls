@@ -132,8 +132,7 @@ end
 
 def computer_offense_or_defense(brd, marker)
   WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, marker)
-    return brd[square] = COMPUTER_MARKER if square
+    return find_at_risk_square(line, brd, marker)
   end
 
   nil
