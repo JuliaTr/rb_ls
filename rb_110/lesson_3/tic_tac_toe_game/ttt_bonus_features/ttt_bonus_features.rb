@@ -7,6 +7,7 @@ PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 NUM_FOR_PLACE_PIECE = 2
 NUM_FOR_WINNER = 3
+SQUARE5 = 5
 MAX_SCORE = 5
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +  # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +  # columns
@@ -129,25 +130,22 @@ def find_at_risk_square(line, brd, marker)
   nil
 end
 
-def find_square5(brd)
-  brd.keys.values_at(4).first
-end
-
-def computer_ai_offense(brd)
+def computer_offense_or_defense(brd, marker)
   WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, COMPUTER_MARKER)
+    square = find_at_risk_square(line, brd, marker)
     return brd[square] = COMPUTER_MARKER if square
   end
 
   nil
 end
 
-def computer_ai_defense(brd)
-  WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, PLAYER_MARKER)
-    return brd[square] = COMPUTER_MARKER if square
-  end
+def computer_ai_offense(brd)
+  return computer_offense_or_defense(brd, COMPUTER_MARKER)
+  nil
+end
 
+def computer_ai_defense(brd)
+  return computer_offense_or_defense(brd, PLAYER_MARKER)
   nil
 end
 
@@ -162,7 +160,7 @@ def computer_places_piece!(brd)
 
   # square 5
   if !square && brd[5] == INITIAL_MARKER
-    square = find_square5(brd)
+    square = SQUARE5
   end
 
   # pick a random square
@@ -237,10 +235,7 @@ end
 
 def find_winning_line(line, brd, marker)
   if brd.values_at(*line).count(marker) == NUM_FOR_WINNER
-    selected_pair = brd.select do |k, v|
-      line.include?(k) && v == INITIAL_MARKER
-    end
-    return selected_pair.keys
+    return brd.keys
   end
 
   nil
