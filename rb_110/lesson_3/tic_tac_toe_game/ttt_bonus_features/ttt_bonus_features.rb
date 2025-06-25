@@ -139,21 +139,13 @@ def computer_offense_or_defense(brd, marker)
   nil
 end
 
-def computer_ai_offense(brd)
-  computer_offense_or_defense(brd, COMPUTER_MARKER)
-end
-
-def computer_ai_defense(brd)
-  computer_offense_or_defense(brd, PLAYER_MARKER)
-end
-
 def computer_places_piece!(brd)
   # offense
-  square = computer_ai_offense(brd)
+  square = computer_offense_or_defense(brd, COMPUTER_MARKER)
 
   # defense
   if !square
-    square = computer_ai_defense(brd)
+    square = computer_offense_or_defense(brd, PLAYER_MARKER)
   end
 
   # square 5
