@@ -88,7 +88,7 @@ def total(hand, total)
     sum -= J_Q_K_A_VALUES_BUSTED if sum > total
   end
 
-  p sum
+  sum
 end
 
 # should return `true` or `false` if score > 21
@@ -98,10 +98,9 @@ def busted?(hand, total)
 end
 
 def player_turn(deck, player_hand)
-  # answer = nil
   loop do
-    # p player_hand
-    # total(player_hand, PLAYER_TOTAL)
+    p player_hand
+    p total(player_hand, PLAYER_TOTAL)
 
     prompt "Hit or stay?"
     answer = gets.chomp
@@ -112,8 +111,6 @@ def player_turn(deck, player_hand)
       give_additional_card(deck, player_hand)
     end
   end
-
-  # answer
 end
 
 def play_again?
@@ -140,7 +137,6 @@ loop do
 
   # 4. If palyer bust, dealer wins.
   if busted?(player_hand, PLAYER_TOTAL)
-    # probably end the game? or ask the user to play again?
     prompt "Player is busted. The game is over."
     prompt "Dealer won."
     break unless play_again?
@@ -160,8 +156,171 @@ loop do
     # p total(dealer_hand, DEALER_TOTAL)
   end
 
+  display_message_dealer(dealer_hand)
+  p total(dealer_hand, DEALER_TOTAL)
+  # 6. If dealer bust, player wins.
+  if busted?(dealer_hand, DEALER_TOTAL)
+    prompt "Dealer is busted. The game is over."
+    prompt "Player won."
+    break unless play_again?
+  end
+  
   break
 end
+
+
+
+
+# ## Step 5:
+# J_Q_K_A_VALUES = 11
+# J_Q_K_A_VALUES_BUSTED = 10
+# PLAYER_TOTAL = 21
+# DEALER_TOTAL = 17
+
+# def prompt(message)
+#   puts "=> #{message}"
+# end
+
+# card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
+#                'J', 'Q', 'K', 'A']
+
+# suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
+# # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
+# def initialize_deck(crd_values, suits)
+#   # [[suit, value], [suit, value] ... ]
+#   suit_value_pairs = []
+
+#   suits.each do |suit|
+#     crd_values.each do |card|
+#       suit_value_pairs << [suit, card]
+#     end
+#   end
+
+#   suit_value_pairs
+# end
+
+# # Deletes the first inner array
+# def deal_card!(deck)
+#   deck.shift
+# end
+
+# def game_setup(deck, hand)
+#   2.times do 
+#     dealt_card = deal_card!(deck)
+#     hand << dealt_card 
+#   end
+# end
+
+# def give_additional_card(deck, hand)
+#   dealt_card = deal_card!(deck)
+#   hand << dealt_card
+# end
+
+# def display_message_player(plyer_hand)
+#   prompt "Player has: #{plyer_hand}"
+# end
+
+# def display_message_dealer(dealer_hand)
+#   prompt "Dealer has: #{dealer_hand}"
+# end
+
+# ## Calculate sum including Aces:
+# def total(hand, total)
+#   # hand = [['H', '3'], ['5', 'Q'], ... ]
+
+#   values = hand.map { |card| card[1] }
+
+#   sum = 0
+#   values.each do |value|
+#     if value == "A"
+#       sum += J_Q_K_A_VALUES
+#     elsif value.to_i == 0 # J, Q, K
+#       sum += J_Q_K_A_VALUES_BUSTED
+#     else
+#       sum += value.to_i
+#     end
+#   end
+
+#   # correct for Aces
+#   values.select { |value| value == "A" }.count.times do
+#     sum -= J_Q_K_A_VALUES_BUSTED if sum > total
+#   end
+
+#   p sum
+# end
+
+# # should return `true` or `false` if score > 21
+# def busted?(hand, total)
+#   return true if total(hand, total) > total
+#   false
+# end
+
+# def player_turn(deck, player_hand)
+#   # answer = nil
+#   loop do
+#     # p player_hand
+#     # total(player_hand, PLAYER_TOTAL)
+
+#     prompt "Hit or stay?"
+#     answer = gets.chomp
+
+#     if (answer == 'stay') || busted?(player_hand, PLAYER_TOTAL)
+#       break
+#     else
+#       give_additional_card(deck, player_hand)
+#     end
+#   end
+
+#   # answer
+# end
+
+# def play_again?
+#   prompt "Do you want to play again? (Press Y or 'Enter' key to continue)"
+#   answer = gets.chomp
+#   answer.downcase.start_with?('y') || answer == ''
+# end
+
+
+# # Main loop
+# player_hand = []
+# dealer_hand = []
+
+# loop do
+#   deck = initialize_deck(card_values, suits)
+#   game_set = game_setup(deck, player_hand)
+#   display_message_player(player_hand)
+
+#   game_set = game_setup(deck, dealer_hand)
+#   display_message_dealer(dealer_hand)
+
+#   # 3. Player turn: hit or stay
+#   player_turn(deck, player_hand)
+
+#   # 4. If palyer bust, dealer wins.
+#   if busted?(player_hand, PLAYER_TOTAL)
+#     # probably end the game? or ask the user to play again?
+#     prompt "Player is busted. The game is over."
+#     prompt "Dealer won."
+#     break unless play_again?
+#   end
+#   # if player didn't bust, must have stayed to get here
+#   prompt "You chose to stay!"
+
+
+#   # 5. Dealer turn: hit or stay
+#   # - repeat until total >= 17
+#   display_message_dealer(dealer_hand)
+#   until total(dealer_hand, DEALER_TOTAL) >= DEALER_TOTAL
+#     # p dealer_hand
+#     give_additional_card(deck, dealer_hand)
+#     # display_message_player(player_hand)
+#     display_message_dealer(dealer_hand)
+#     # p total(dealer_hand, DEALER_TOTAL)
+#   end
+
+#   break
+# end
 
 
 
