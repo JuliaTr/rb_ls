@@ -10,7 +10,7 @@
 7. Compare cards and declare winner.
 =end
 
-## Step 3:
+## Step 4:
 def prompt(message)
   puts "=> #{message}"
 end
@@ -39,31 +39,132 @@ def deal_card!(deck)
   deck.shift
 end
 
-def display_message_player(dealt_card)
-  prompt "Player: #{dealt_card}"
+def game_setup(deck, hand)
+  2.times do 
+    dealt_card = deal_card!(deck)
+    hand << dealt_card 
+  end
 end
 
-def display_message_dealer(dealt_card)
-  prompt "Dealer: #{dealt_card}"
+def give_additional_card(deck, hand)
+  dealt_card = deal_card!(deck)
+  hand << dealt_card
+end
+
+def display_message_player(plyer_hand)
+  prompt "Player has: #{plyer_hand}"
+end
+
+def display_message_dealer(dealer_hand)
+  prompt "Dealer has: #{dealer_hand}"
 end
 
 deck = initialize_deck(card_values, suits)
+player_hand = []
+dealer_hand = []
 
-p deck
-dealt_card = deal_card!(deck)
-display_message_player(dealt_card)
-p deck
-dealt_card = deal_card!(deck)
-display_message_dealer(dealt_card)
-p deck
+game_set = game_setup(deck, player_hand)
+display_message_player(player_hand)
+
+game_set = game_setup(deck, dealer_hand)
+display_message_dealer(dealer_hand)
+
+## 3. Player turn: hit or stay
+#   - repeat until bust or "stay"
+=begin
+1. ask "hit" or "stay"
+2. if "stay", stop asking
+3. otherwise, go to #1
+=end
+
+answer = nil
+loop do
+  prompt "Hit or stay?"
+  answer = gets.chomp
+  break if answer == 'stay' || busted?
+  give_additional_card(deck, player_hand)
+  p player_hand
+end
 
 =begin
-[["Hearts", "2"], ["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
-=> Player: ["Hearts", "2"]
-[["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
-=> Dealer: ["Hearts", "3"]
-[["Hearts", "4"], ["Hearts", "5"], ["Hearts", "6"], ...
+$ ruby twenty_one_building_process.rb
+=> Player has: [["Hearts", "2"], ["Hearts", "3"]]
+=> Dealer has: [["Hearts", "4"], ["Hearts", "5"]]
+=> Hit or stay?
+hit
+[["Hearts", "2"], ["Hearts", "3"], ["Hearts", "6"]]
+=> Hit or stay?
+hit
+[["Hearts", "2"], ["Hearts", "3"], ["Hearts", "6"], ["Hearts", "7"]]
+=> Hit or stay?
+stay
 =end
+
+# if busted?
+#   # probably end the game? or ask the user to play again?
+# else
+#   # if player didn't bust, must have stayed to get here
+#   puts "You chose to stay!"
+# end
+
+# # ... continue on to Dealer turn
+
+
+
+# ## Step 3:
+# def prompt(message)
+#   puts "=> #{message}"
+# end
+
+# card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
+#                'Jack', 'Queen', 'King', 'Ace']
+
+# suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
+# # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
+# def initialize_deck(crd_values, suits)
+#   # [[suit, value], [suit, value] ... ]
+#   suit_value_pairs = []
+
+#   suits.each do |suit|
+#     crd_values.each do |card|
+#       suit_value_pairs << [suit, card]
+#     end
+#   end
+
+#   suit_value_pairs
+# end
+
+# # Deletes the first inner array
+# def deal_card!(deck)
+#   deck.shift
+# end
+
+# def display_message_player(dealt_card)
+#   prompt "Player: #{dealt_card}"
+# end
+
+# def display_message_dealer(dealt_card)
+#   prompt "Dealer: #{dealt_card}"
+# end
+
+# deck = initialize_deck(card_values, suits)
+
+# p deck
+# dealt_card = deal_card!(deck)
+# display_message_player(dealt_card)
+# p deck
+# dealt_card = deal_card!(deck)
+# display_message_dealer(dealt_card)
+# p deck
+
+# =begin
+# [["Hearts", "2"], ["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
+# => Player: ["Hearts", "2"]
+# [["Hearts", "3"], ["Hearts", "4"], ["Hearts", "5"], ... 
+# => Dealer: ["Hearts", "3"]
+# [["Hearts", "4"], ["Hearts", "5"], ["Hearts", "6"], ...
+# =end
 
 
 
@@ -190,26 +291,3 @@ p deck
 
 #   sum
 # end
-
-
-# ## Player turn
-# =begin
-# 1. ask "hit" or "stay"
-# 2. if "stay", stop asking
-# 3. otherwise, go to #1
-# =end
-# answer = nil
-# loop do
-#   puts "hit or stay?"
-#   answer = gets.chomp
-#   break if answer == 'stay' || busted?
-# end
-
-# if busted?
-#   # probably end the game? or ask the user to play again?
-# else
-#   puts "You chose to stay!" # if player didn't bust, must have stayed to get here
-# end
-
-# # ... continue on to Dealer turn
-
