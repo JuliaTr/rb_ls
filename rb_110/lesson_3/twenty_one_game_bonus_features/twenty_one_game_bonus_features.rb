@@ -177,16 +177,13 @@ loop do
     break if player_turn == 's' || busted?(player_hand, BUSTED)
   end
 
-  # # 4. If palyer bust, dealer wins.
-  # if busted?(player_hand, BUSTED)
-  #   prompt "Player is busted. The game is over."
-  #   prompt "Dealer won."
-  #   break unless play_again?
-  # end
-
-  # if !busted?(player_hand, BUSTED)
-  #   # if player didn't bust, must have stayed to get here
-  #   prompt "You chose to stay!"
+  # If palyer bust, display results
+  if busted?(player_hand, BUSTED)
+    display_results(player_hand, dealer_hand)
+    play_again? ? next : break
+  else
+    ptompt "You stayed at #{total(player_hand, BUSTED)}"
+  end
 
   #   # 5. Dealer turn: hit or stay
   #   # - repeat until total >= 17
