@@ -190,12 +190,17 @@ loop do
     display_results(player_hand, dealer_hand)
     play_again? next : break
   else
-    prompt "Dealer stays at #{total(dealer_cards)}"
+    prompt "Dealer stays at #{total(dealer_cards, DEALER_SAFE)}"
   end
 
-  # # 7. Compare cards and declare winner.
-  # if !busted?(dealer_hand, DEALER_SAFE)
-  #   display_results(player_hand, dealer_hand)
-  # end
-  break
+  # 7. Both player and dealer stays. Compare cards and declare winner.
+  puts "============="
+  prompt "Dealer has #{dealer_hand}, for a total of: #{total(dealer_cards, DEALER_SAFE)}"
+  prompts "Player has #{player_hand}, for a total of #{total(player_hand, BUSTED)}"
+  
+  display_results(player_hand, dealer_hand)
+
+  break unless play_again?
 end
+
+prompt "Thank you for playing Twenty-One! Good bye!"
