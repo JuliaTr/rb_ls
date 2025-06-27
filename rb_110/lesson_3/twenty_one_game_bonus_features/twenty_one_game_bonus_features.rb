@@ -1,18 +1,5 @@
 require 'pry-byebug'
 
-=begin
-1. Initialize deck
-2. Deal card to player and dealer
-3. Player turn: hit or stay
-  - repeat until bust or "stay"
-4. If palyer bust, dealer wins.
-5. Dealer turn: hit or stay
-  - repeat until total >= 17
-6. If dealer bust, player wins.
-7. Compare cards and declare winner.
-=end
-
-## Step 8 (refactor):
 J_Q_K_A_VALUES = 11
 J_Q_K_A_VALUES_BUSTED = 10
 BUSTED = 21
@@ -147,6 +134,14 @@ def display_results(player_hand, dealer_hand)
   end
 end
 
+def dealer_turn(dealer_hand, deck)
+  until total(dealer_hand, DEALER_TOTAL) >= DEALER_SAFE
+    prompt "Dealer his!"
+    give_additional_card(deck, dealer_hand)
+    prompt "Dealer's cards are now: #{dealer_cards}"
+  end
+end
+
 def play_again?
   puts "---------------"
   prompt "Do you want to play again? (Press Y or 'Enter' key to continue)"
@@ -185,22 +180,18 @@ loop do
     ptompt "You stayed at #{total(player_hand, BUSTED)}"
   end
 
-  #   # 5. Dealer turn: hit or stay
-  #   # - repeat until total >= 17
-  #   display_message_dealer(dealer_hand)
-  #   until total(dealer_hand, DEALER_TOTAL) >= DEALER_SAFE
-  #     give_additional_card(deck, dealer_hand)
-  #   end
+  # 5. Dealer turn: hit or stay
+  prompt "Dealer turn..."
+  dealer_turn(dealer_hand, deck)
 
-  #   p total(dealer_hand, DEALER_SAFE)
-  # end
-
-  # # 6. If dealer bust, player wins.
-  # if busted?(dealer_hand, DEALER_SAFE)
-  #   prompt "Dealer is busted. The game is over."
-  #   prompt "Player won."
-  #   break unless play_again?
-  # end
+  # If dealer bust
+  if busted?(dealer_hand, BUSTED)
+    prompt "Dealer total is now: #{total(dealer_hand, DEALER_SAFE)}"
+    display_results(player_hand, dealer_hand)
+    play_again? next : break
+  else
+    prompt "Dealer stays at #{total(dealer_cards)}"
+  end
 
   # # 7. Compare cards and declare winner.
   # if !busted?(dealer_hand, DEALER_SAFE)
