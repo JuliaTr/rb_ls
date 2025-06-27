@@ -111,12 +111,6 @@ def player_turn(deck, player_hand)
   end
 end
 
-def play_again?
-  prompt "Do you want to play again? (Press Y or 'Enter' key to continue)"
-  answer = gets.chomp
-  answer.downcase.start_with?('y') || answer == ''
-end
-
 def compare_results(player_hand, dealer_hand)
   player_total = total(player_hand, PLAYER_TOTAL)
   dealer_total = total(dealer_hand, DEALER_TOTAL)
@@ -138,17 +132,20 @@ def display_results(player_hand, dealer_hand)
   end
 end
 
-# def display_message_if_busted
-#   prompt "Player is busted. The game is over."
-#   prompt "Dealer won."
-# end
-
+def play_again?
+  puts "---------------"
+  prompt "Do you want to play again? (Press Y or 'Enter' key to continue)"
+  answer = gets.chomp
+  answer.downcase.start_with?('y') || answer == ''
+end
 
 # Main loop
 dealer_hand = []
 player_hand = []
 
 loop do
+  prompt "Welcome to Twenty-One!"
+
   deck = initialize_deck(card_values, suits)
 
   game_set = game_setup(deck, dealer_hand)
