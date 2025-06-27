@@ -31,3 +31,37 @@ def total(cards)
 
   sum
 end
+
+def busted?(cards)
+  total(cards) > 21
+end
+
+=begin
+Symbols are lightweight and immutable and memory-efficient than 
+strings, when I need a simple constant identifier. Clear, fixed 
+labels to represent the game outcome. Unlike strings, symbols are 
+unique and consistent throught the program, which makes comparisons
+faster and avoids unnecessary string allocations.
+
+Symbols work well here because we want to represent distinct states
+or categories (results) rather than variavle text values. 
+
+This keeps code effecient and easy to read.
+=end
+# :tie, :dealer, :player, :dealer_busted, :player_busted
+def detect_result(dealer_cards, player_cards)
+  player_total = total(player_cards)
+  dealer_total = total(dealer_cards)
+
+  if player_total > 21
+    :player_busted
+  elsif dealer_total > 21
+    :dealer_busted
+  elsif dealer_total < player_total
+    :player
+  elsif dealer_total > player_total
+    :dealer
+  else
+    :tie
+  end
+end
