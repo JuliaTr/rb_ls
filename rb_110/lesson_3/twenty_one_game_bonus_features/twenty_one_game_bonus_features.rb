@@ -1,11 +1,21 @@
 require 'pry-byebug'
+require 'yaml'
 
+MESSAGES = YAML.load_file('twenty_one_messages.yml')
 J_Q_K_A_VALUES = 11
 J_Q_K_A_VALUES_BUSTED = 10
 BUSTED = 21
 DEALER_SAFE = 17
+ACES = 'A'
+HIT = 'h'
+STAY = 's'
 
-def prompt(message)
+def messages(message)
+  MESSAGES[message]
+end
+
+def prompt(key, *args)
+  message = messages(key) % args
   puts "=> #{message}"
 end
 
@@ -52,7 +62,7 @@ def total(hand, total)
 
   sum = 0
   values.each do |value|
-    if value == "A"
+    if value == ACES
       sum += J_Q_K_A_VALUES
     elsif value.to_i == 0 # J, Q, K
       sum += J_Q_K_A_VALUES_BUSTED
@@ -62,42 +72,41 @@ def total(hand, total)
   end
 
   # correct for Aces
-  values.select { |value| value == "A" }.count.times do
+  values.select { |value| value == ACES }.count.times do
     sum -= J_Q_K_A_VALUES_BUSTED if sum > total
   end
 
   sum
 end
 
+def display_dealer_hand(dealer_hand)
+  prompt 'dealer_hand', dealer_hand[0][1]
+end
+
+def display_player_hand(player_hand)
+  prompt 'player_hand', player_hand[0][1], player_hand[1][1], total(player_hand, BUSTED)
+end
+
 def get_player_turn(player_turn)
   loop do
-    prompt "Would you like 'hit' or 'stay'?"
+    prompt 'hit_stay'
     player_turn = gets.chomp.downcase
 
-    break if player_turn.start_with?('h') ||
-             player_turn.start_with?('s')
-    prompt "Sorry, please enter 'h' or 's'."
+    break if player_turn.start_with?(HIT) ||
+             player_turn.start_with?(STAY)
+    prompt 'invalid_input'
   end
 
   player_turn[0]
 end
 
 def update_player_hand(player_turn, deck, player_hand)
-  if player_turn == 'h'
+  if player_turn == HIT
     give_additional_card(deck, player_hand)
-    prompt "You choose to hit!"
-    prompt "Your cards are now: #{player_cards}"
-    prompt "Your total is now #{total(player_hand, BUSTED)}"
+    prompt 'player_hits'
+    prompt 'update_player_hand', player_hand
+    prompt 'player_total', total(player_hand, BUSTED)
   end
-end
-
-def display_dealer_hand(dealer_hand)
-  prompt "Dealer has: #{dealer_hand[0][1]} and unknown card"
-end
-
-def display_player_hand(player_hand)
-  prompt "You have: #{player_hand[0][1]} and #{player_hand[1][1]} " +
-         "for a total of #{total(player_hand, BUSTED)}"
 end
 
 # should return `true` or `false` if score > 21
@@ -126,25 +135,25 @@ def display_results(player_hand, dealer_hand)
   game_results = compare_results(player_hand, dealer_hand)
 
   case game_results
-  when :player_busted then prompt "You busted! Dealer won!"
-  when :dealer_busted then prompt "Dealer busted! You won!"
-  when :player        then prompt "You won. Congratulations!"
-  when :dealer        then prompt "Dealer won."
-  when :tie           then prompt "It's a tie"
+  when :player_busted then prompt 'player_busted'
+  when :dealer_busted then prompt 'dealer_busted'
+  when :player        then prompt 'player_won'
+  when :dealer        then prompt 'dealer_won'
+  when :tie           then prompt 'tie'
   end
 end
 
 def dealer_turn(dealer_hand, deck)
   until total(dealer_hand, DEALER_TOTAL) >= DEALER_SAFE
-    prompt "Dealer his!"
+    prompt 'dealer_hits'
     give_additional_card(deck, dealer_hand)
-    prompt "Dealer's cards are now: #{dealer_cards}"
+    prompt 'dealer_hand', dealer_hand
   end
 end
 
 def play_again?
   puts "---------------"
-  prompt "Do you want to play again? (Press Y or 'Enter' key to continue)"
+  prompt 'play_again'
   answer = gets.chomp
   answer.downcase.start_with?('y') || answer == ''
 end
@@ -154,7 +163,7 @@ dealer_hand = []
 player_hand = []
 
 loop do
-  prompt "Welcome to Twenty-One!"
+  prompt 'welcome'
 
   deck = initialize_deck(card_values, suits)
 
@@ -169,7 +178,7 @@ loop do
     player_turn = nil
     player_turn = get_player_turn(player_turn)
     update_player_hand(player_turn, deck, player_hand)
-    break if player_turn == 's' || busted?(player_hand, BUSTED)
+    break if player_turn == STAY || busted?(player_hand, BUSTED)
   end
 
   # If palyer bust, display results
@@ -177,30 +186,31 @@ loop do
     display_results(player_hand, dealer_hand)
     play_again? ? next : break
   else
-    ptompt "You stayed at #{total(player_hand, BUSTED)}"
+    ptompt 'player_stays', total(player_hand, BUSTED)}
   end
 
   # 5. Dealer turn: hit or stay
-  prompt "Dealer turn..."
+  prompt 'dealer_turn'
   dealer_turn(dealer_hand, deck)
 
   # If dealer bust
   if busted?(dealer_hand, BUSTED)
-    prompt "Dealer total is now: #{total(dealer_hand, DEALER_SAFE)}"
+    prompt 'dealer_total', total(dealer_hand, DEALER_SAFE)
     display_results(player_hand, dealer_hand)
     play_again? next : break
   else
-    prompt "Dealer stays at #{total(dealer_cards, DEALER_SAFE)}"
+    prompt 'dealer_stays', total(dealer_cards, DEALER_SAFE)
   end
 
   # 7. Both player and dealer stays. Compare cards and declare winner.
   puts "============="
-  prompt "Dealer has #{dealer_hand}, for a total of: #{total(dealer_cards, DEALER_SAFE)}"
-  prompts "Player has #{player_hand}, for a total of #{total(player_hand, BUSTED)}"
-  
+  prompt 'dealer_final_cards_scores', dealer_hand, total(dealer_cards, DEALER_SAFE)
+  prompts 'player_final_cards_scores', player_hand, total(player_hand, BUSTED)
+  puts "============="
+
   display_results(player_hand, dealer_hand)
 
   break unless play_again?
 end
 
-prompt "Thank you for playing Twenty-One! Good bye!"
+prompt 'thank_you'
