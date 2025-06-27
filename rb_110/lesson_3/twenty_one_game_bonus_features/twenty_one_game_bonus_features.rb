@@ -114,8 +114,7 @@ end
 
 # should return `true` or `false` if score > 21
 def busted?(hand, total)
-  return true if total(hand, total) > total
-  false
+  total(hand, total) > total
 end
 
 def compare_results(player_hand, dealer_hand)
@@ -168,7 +167,7 @@ loop do
     update_player_hand(player_turn, deck, player_hand)
     break if player_turn == 's' || busted?(player_hand, PLAYER_TOTAL)
   end
-  
+
   # # 4. If palyer bust, dealer wins.
   # if busted?(player_hand, PLAYER_TOTAL)
   #   prompt "Player is busted. The game is over."
