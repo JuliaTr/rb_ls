@@ -15,8 +15,8 @@ require 'pry-byebug'
 ## Step 8 (refactor):
 J_Q_K_A_VALUES = 11
 J_Q_K_A_VALUES_BUSTED = 10
-PLAYER_TOTAL = 21
-DEALER_TOTAL = 17
+BUSTED = 21
+DEALER_SAFE = 17
 
 def prompt(message)
   puts "=> #{message}"
@@ -91,7 +91,8 @@ def get_player_turn(player_turn)
              player_turn.start_with?('s')
     prompt "Sorry, please enter 'h' or 's'."
   end
-  p player_turn[0]
+
+  player_turn[0]
 end
 
 def update_player_hand(player_turn, deck, player_hand)
@@ -99,7 +100,7 @@ def update_player_hand(player_turn, deck, player_hand)
     give_additional_card(deck, player_hand)
     prompt "You choose to hit!"
     prompt "Your cards are now: #{player_cards}"
-    prompt "Your total is now #{total(player_hand, PLAYER_TOTAL)}"
+    prompt "Your total is now #{total(player_hand, BUSTED)}"
   end
 end
 
@@ -109,7 +110,7 @@ end
 
 def display_player_hand(player_hand)
   prompt "You have: #{player_hand[0][1]} and #{player_hand[1][1]} " +
-         "for a total of #{total(player_hand, PLAYER_TOTAL)}"
+         "for a total of #{total(player_hand, BUSTED)}"
 end
 
 # should return `true` or `false` if score > 21
@@ -118,13 +119,19 @@ def busted?(hand, total)
 end
 
 def compare_results(player_hand, dealer_hand)
-  player_total = total(player_hand, PLAYER_TOTAL)
-  dealer_total = total(dealer_hand, DEALER_TOTAL)
+  player_total = total(player_hand, BUSTED)
+  dealer_total = total(dealer_hand, DEALER_SAFE)
 
-  if player_total > dealer_total
+  if player_total > BUSTED
+    :player_busted
+  elsif dealer_total > BUSTED
+    :dealer_busted
+  elsif player_total > dealer_total
     :player
   elsif dealer_total > player_total
     :dealer
+  else
+    :tie
   end
 end
 
@@ -132,9 +139,11 @@ def display_results(player_hand, dealer_hand)
   game_results = compare_results(player_hand, dealer_hand)
 
   case game_results
-  when :player then prompt "Player won. Congratulations!"
-  when :dealer then prompt "Dealer won."
-  else              prompt "It's a tie"
+  when :player_busted then prompt "You busted! Dealer won!"
+  when :dealer_busted then prompt "Dealer busted! You won!"
+  when :player        then prompt "You won. Congratulations!"
+  when :dealer        then prompt "Dealer won."
+  when :tie           then prompt "It's a tie"
   end
 end
 
@@ -165,39 +174,39 @@ loop do
     player_turn = nil
     player_turn = get_player_turn(player_turn)
     update_player_hand(player_turn, deck, player_hand)
-    break if player_turn == 's' || busted?(player_hand, PLAYER_TOTAL)
+    break if player_turn == 's' || busted?(player_hand, BUSTED)
   end
 
   # # 4. If palyer bust, dealer wins.
-  # if busted?(player_hand, PLAYER_TOTAL)
+  # if busted?(player_hand, BUSTED)
   #   prompt "Player is busted. The game is over."
   #   prompt "Dealer won."
   #   break unless play_again?
   # end
 
-  # if !busted?(player_hand, PLAYER_TOTAL)
+  # if !busted?(player_hand, BUSTED)
   #   # if player didn't bust, must have stayed to get here
   #   prompt "You chose to stay!"
 
   #   # 5. Dealer turn: hit or stay
   #   # - repeat until total >= 17
   #   display_message_dealer(dealer_hand)
-  #   until total(dealer_hand, DEALER_TOTAL) >= DEALER_TOTAL
+  #   until total(dealer_hand, DEALER_TOTAL) >= DEALER_SAFE
   #     give_additional_card(deck, dealer_hand)
   #   end
 
-  #   p total(dealer_hand, DEALER_TOTAL)
+  #   p total(dealer_hand, DEALER_SAFE)
   # end
 
   # # 6. If dealer bust, player wins.
-  # if busted?(dealer_hand, DEALER_TOTAL)
+  # if busted?(dealer_hand, DEALER_SAFE)
   #   prompt "Dealer is busted. The game is over."
   #   prompt "Player won."
   #   break unless play_again?
   # end
 
   # # 7. Compare cards and declare winner.
-  # if !busted?(dealer_hand, DEALER_TOTAL)
+  # if !busted?(dealer_hand, DEALER_SAFE)
   #   display_results(player_hand, dealer_hand)
   # end
   break
