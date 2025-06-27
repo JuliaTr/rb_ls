@@ -82,6 +82,16 @@ def total(hand, total)
   sum
 end
 
+def get_player_turn
+  loop do
+    prompt "Would you like 'hit' or 'stay'?"
+    answer = gets.chomp.downcase
+
+    break if answer.start_with?('h') || answer.start_with?('s')
+    prompt "Sorry, please enter 'h' or 's'."
+  end
+end
+
 def display_dealer_hand(dealer_hand)
   prompt "Dealer has: #{dealer_hand[0][1]} and unknown card"
 end
@@ -95,21 +105,6 @@ end
 def busted?(hand, total)
   return true if total(hand, total) > total
   false
-end
-
-def player_turn(deck, player_hand)
-  loop do
-    p player_hand
-    p total(player_hand, PLAYER_TOTAL)
-
-    break if busted?(player_hand, PLAYER_TOTAL)
-
-    prompt "Hit or stay?"
-    answer = gets.chomp
-
-    break if answer == 'stay' || busted?(player_hand, PLAYER_TOTAL)
-    give_additional_card(deck, player_hand)
-  end
 end
 
 def compare_results(player_hand, dealer_hand)
@@ -155,9 +150,12 @@ loop do
   game_set = game_setup(deck, player_hand)
   display_player_hand(player_hand)
 
-  # # 3. Player turn: hit or stay
-  # player_turn(deck, player_hand)
-
+  # 3. Player turn: hit or stay
+  loop do
+    player_turn = nil
+    get_player_turn
+    break
+  end
   # # 4. If palyer bust, dealer wins.
   # if busted?(player_hand, PLAYER_TOTAL)
   #   prompt "Player is busted. The game is over."
