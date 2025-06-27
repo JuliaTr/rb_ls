@@ -66,7 +66,6 @@ def display_message_dealer(dealer_hand)
   prompt "Dealer has: #{dealer_hand[0][1]} and unknown card"
 end
 
-## Calculate sum including Aces:
 def total(hand, total)
   # hand = [['H', '3'], ['5', 'Q'], ... ]
 
@@ -119,25 +118,23 @@ def play_again?
 end
 
 def compare_results(player_hand, dealer_hand)
-  player_toal = total(player_hand, PLAYER_TOTAL)
+  player_total = total(player_hand, PLAYER_TOTAL)
   dealer_total = total(dealer_hand, DEALER_TOTAL)
 
-  if player_toal > dealer_total
-    'Player'
-  elsif dealer_total > player_toal
-    'Dealer'
+  if player_total > dealer_total
+    :player
+  elsif dealer_total > player_total
+    :dealer
   end
 end
 
-def winner(player_hand, dealer_hand)
+def display_results(player_hand, dealer_hand)
   game_results = compare_results(player_hand, dealer_hand)
 
-  if game_results == 'Player'
-    prompt "Player won. Congratulations!"
-  elsif game_results == 'Dealer'
-    prompt "Dealer won."
-  else
-    prompt "It's a tie"
+  case game_results
+  when :player then prompt "Player won. Congratulations!"
+  when :dealer then prompt "Dealer won."
+  else              prompt "It's a tie"
   end
 end
 
@@ -193,6 +190,6 @@ loop do
 
   # 7. Compare cards and declare winner.
   if !busted?(dealer_hand, DEALER_TOTAL)
-    winner(player_hand, dealer_hand)
+    display_results(player_hand, dealer_hand)
   end
 end
