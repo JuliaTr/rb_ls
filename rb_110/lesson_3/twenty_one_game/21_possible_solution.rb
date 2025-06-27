@@ -89,3 +89,48 @@ def play_again?
   answer = gets.chomp
   answer.downcase.start_with?('y')
 end
+
+loop do
+
+  # initialize vars
+  deck = initialize_deck
+  player_cards = []
+  dealer_cards = []
+
+  # initial deal
+  2.times do
+    player_cards << deck.pop
+    dealer_cards << deck.pop
+  end
+
+  prompt "Dealer hash #{dealer_cards[0]} and ?"
+  prompt "#{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
+
+  loop do
+    player_turn = nil
+    loop do
+      prompt "would you like to (h)it or (s)tay?"
+      player_turn = gets.chomp.downcase
+      break if ['h', 's'].include?(player_turn)
+      prompt "sorry, must enter 'h' or 's'."
+    end
+
+    if player_turn == 'h'
+      player_cards << deck.pop
+      prompt "You chose to hit!"
+      prompt "Your cards are now: #{player_cards}"
+      prompt "Your total is now: #{total(player_cards)}"
+    end
+
+    break if player_turn == 's' || busted?(player_cards)
+  end
+
+  if busted?(player_cards)
+    display_result(dealer_cards, player_cards)
+    play_again? ? next : break
+  else
+    prompt "You stayed at #{total(player_cards)}"
+  end
+
+  
+end
