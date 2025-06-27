@@ -25,7 +25,7 @@ def total(cards)
   end
 
   # correct for Aces
-  values.selec { |value| value == "A" }.count.times do
+  values.select { |value| value == "A" }.count.times do
     sum -= 10 if sum > 21
   end
 
@@ -104,12 +104,12 @@ loop do
   end
 
   prompt "Dealer hash #{dealer_cards[0]} and ?"
-  prompt "#{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
+  prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
 
   loop do
     player_turn = nil
     loop do
-      prompt "would you like to (h)it or (s)tay?"
+      prompt "Would you like to (h)it or (s)tay?"
       player_turn = gets.chomp.downcase
       break if ['h', 's'].include?(player_turn)
       prompt "sorry, must enter 'h' or 's'."
@@ -163,3 +163,32 @@ loop do
 end
 
 prompt "Thank you for playing Twenty-One! Good bye!"
+
+=begin
+=> Dealer hash ["H", "Q"] and ?
+=> You have: ["D", "2"] and ["H", "J"], for a total of 12.
+=> Would you like to (h)it or (s)tay?
+hit
+=> sorry, must enter 'h' or 's'.
+=> Would you like to (h)it or (s)tay?
+h
+=> You chose to hit!
+=> Your cards are now: [["D", "2"], ["H", "J"], ["D", "6"]]
+=> Your total is now: 18
+=> Would you like to (h)it or (s)tay?
+stay
+=> sorry, must enter 'h' or 's'.
+=> Would you like to (h)it or (s)tay?
+s
+=> You stayed at 18
+=> Dealer turn...
+=> Dealer stays at 17
+==============
+=> Dealer has [["H", "Q"], ["S", "7"]], for a otal of: 17
+=> Player has [["D", "2"], ["H", "J"], ["D", "6"]], for a total of: 18
+==============
+=> You win!
+--------------
+=> Do you wan to play again? (y or n)
+n
+=end
