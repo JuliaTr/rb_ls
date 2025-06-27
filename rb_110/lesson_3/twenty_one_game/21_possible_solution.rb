@@ -83,3 +83,9 @@ def display_result(dealer_cards, player_cards)
   end
 end
 
+def play_again?
+  puts "--------------"
+  prompt "Do you wan to play again? (y or n)"
+  answer = gets.chomp
+  answer.downcase.start_with?('y')
+end
