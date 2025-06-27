@@ -132,5 +132,34 @@ loop do
     prompt "You stayed at #{total(player_cards)}"
   end
 
-  
+  # dealer turn
+  prompt "Dealer turn..."
+
+  loop do
+    break if total(dealer_cards) >= 17
+
+    prompt "Dealer hits!"
+    dealer_cards << deck.pop
+    prompt "Dealer's cardds are now: #{dealer_cards}"
+  end
+
+  if busted?(dealer_cards)
+    prompt "Dealer total is now: #{total(dealer_cards)}"
+    display_result(dealer_cards, player_cards)
+    play_again? ? next : break
+  else
+    prompt "Dealer stays at #{total(dealer_cards)}"
+  end
+
+  # both player and dealer stays - compare cards!
+  puts "=============="
+  prompt "Dealer has #{dealer_cards}, for a otal of: #{total(dealer_cards)}"
+  prompt "Player has #{player_cards}, for a total of: #{total(player_cards)}"
+  puts "=============="
+
+  display_result(dealer_cards, player_cards)
+
+  break unless play_again?
 end
+
+prompt "Thank you for playing Twenty-One! Good bye!"
