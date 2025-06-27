@@ -82,13 +82,24 @@ def total(hand, total)
   sum
 end
 
-def get_player_turn
+def get_player_turn(player_turn)
   loop do
     prompt "Would you like 'hit' or 'stay'?"
-    answer = gets.chomp.downcase
+    player_turn = gets.chomp.downcase
 
-    break if answer.start_with?('h') || answer.start_with?('s')
+    break if player_turn.start_with?('h') ||
+             player_turn.start_with?('s')
     prompt "Sorry, please enter 'h' or 's'."
+  end
+  p player_turn[0]
+end
+
+def update_player_hand(player_turn, deck, player_hand)
+  if player_turn == 'h'
+    give_additional_card(deck, player_hand)
+    prompt "You choose to hit!"
+    prompt "Your cards are now: #{player_cards}"
+    prompt "Your total is now #{total(player_hand, PLAYER_TOTAL)}"
   end
 end
 
@@ -153,9 +164,11 @@ loop do
   # 3. Player turn: hit or stay
   loop do
     player_turn = nil
-    get_player_turn
-    break
+    player_turn = get_player_turn(player_turn)
+    update_player_hand(player_turn, deck, player_hand)
+    break if player_turn == 's' || busted?(player_hand, PLAYER_TOTAL)
   end
+  
   # # 4. If palyer bust, dealer wins.
   # if busted?(player_hand, PLAYER_TOTAL)
   #   prompt "Player is busted. The game is over."
