@@ -58,14 +58,6 @@ def give_additional_card(deck, hand)
   hand << dealt_card
 end
 
-def display_message_player(player_hand)
-  prompt "You have: #{player_hand[0][1]} and #{player_hand[1][1]}"
-end
-
-def display_message_dealer(dealer_hand)
-  prompt "Dealer has: #{dealer_hand[0][1]} and unknown card"
-end
-
 def total(hand, total)
   # hand = [['H', '3'], ['5', 'Q'], ... ]
 
@@ -88,6 +80,15 @@ def total(hand, total)
   end
 
   sum
+end
+
+def display_dealer_hand(dealer_hand)
+  prompt "Dealer has: #{dealer_hand[0][1]} and unknown card"
+end
+
+def display_player_hand(player_hand)
+  prompt "You have: #{player_hand[0][1]} and #{player_hand[1][1]} " +
+         "for a total of #{total(player_hand, PLAYER_TOTAL)}"
 end
 
 # should return `true` or `false` if score > 21
@@ -149,44 +150,45 @@ loop do
   deck = initialize_deck(card_values, suits)
 
   game_set = game_setup(deck, dealer_hand)
-  display_message_dealer(dealer_hand)
+  display_dealer_hand(dealer_hand)
 
   game_set = game_setup(deck, player_hand)
-  display_message_player(player_hand)
+  display_player_hand(player_hand)
 
-  # 3. Player turn: hit or stay
-  player_turn(deck, player_hand)
+  # # 3. Player turn: hit or stay
+  # player_turn(deck, player_hand)
 
-  # 4. If palyer bust, dealer wins.
-  if busted?(player_hand, PLAYER_TOTAL)
-    prompt "Player is busted. The game is over."
-    prompt "Dealer won."
-    break unless play_again?
-  end
+  # # 4. If palyer bust, dealer wins.
+  # if busted?(player_hand, PLAYER_TOTAL)
+  #   prompt "Player is busted. The game is over."
+  #   prompt "Dealer won."
+  #   break unless play_again?
+  # end
 
-  if !busted?(player_hand, PLAYER_TOTAL)
-    # if player didn't bust, must have stayed to get here
-    prompt "You chose to stay!"
+  # if !busted?(player_hand, PLAYER_TOTAL)
+  #   # if player didn't bust, must have stayed to get here
+  #   prompt "You chose to stay!"
 
-    # 5. Dealer turn: hit or stay
-    # - repeat until total >= 17
-    display_message_dealer(dealer_hand)
-    until total(dealer_hand, DEALER_TOTAL) >= DEALER_TOTAL
-      give_additional_card(deck, dealer_hand)
-    end
+  #   # 5. Dealer turn: hit or stay
+  #   # - repeat until total >= 17
+  #   display_message_dealer(dealer_hand)
+  #   until total(dealer_hand, DEALER_TOTAL) >= DEALER_TOTAL
+  #     give_additional_card(deck, dealer_hand)
+  #   end
 
-    p total(dealer_hand, DEALER_TOTAL)
-  end
+  #   p total(dealer_hand, DEALER_TOTAL)
+  # end
 
-  # 6. If dealer bust, player wins.
-  if busted?(dealer_hand, DEALER_TOTAL)
-    prompt "Dealer is busted. The game is over."
-    prompt "Player won."
-    break unless play_again?
-  end
+  # # 6. If dealer bust, player wins.
+  # if busted?(dealer_hand, DEALER_TOTAL)
+  #   prompt "Dealer is busted. The game is over."
+  #   prompt "Player won."
+  #   break unless play_again?
+  # end
 
-  # 7. Compare cards and declare winner.
-  if !busted?(dealer_hand, DEALER_TOTAL)
-    display_results(player_hand, dealer_hand)
-  end
+  # # 7. Compare cards and declare winner.
+  # if !busted?(dealer_hand, DEALER_TOTAL)
+  #   display_results(player_hand, dealer_hand)
+  # end
+  break
 end
