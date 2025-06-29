@@ -145,7 +145,6 @@ def display_results(player_hand, dealer_hand, player_total, dealer_total)
 end
 
 def dealer_turn(dealer_hand, deck, dealer_total)
-
   until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
     give_additional_card(deck, dealer_hand)
@@ -159,6 +158,13 @@ def play_again?
   prompt 'play_again'
   answer = gets.chomp
   answer.downcase.start_with?('y') || answer == ''
+end
+
+def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+  puts "============="
+  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
+  prompt 'player_final_cards_scores', player_hand, player_total
+  puts "============="
 end
 
 # Main loop
@@ -197,6 +203,7 @@ loop do
   # If palyer bust, display results
   if busted?(player_total)
     display_results(player_hand, dealer_hand, player_total, dealer_total)
+    display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
     play_again? ? next : break
   else
     prompt 'player_stays', player_total
@@ -210,6 +217,7 @@ loop do
   # If dealer bust
   if busted?(dealer_total)
     prompt 'dealer_total', dealer_total
+    display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
     display_results(player_hand, dealer_hand)
     play_again? ? next : break
   else
@@ -217,11 +225,7 @@ loop do
   end
 
   # 7. Both player and dealer stays. Compare cards and declare winner.
-  puts "============="
-  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
-  prompt 'player_final_cards_scores', player_hand, player_total
-  puts "============="
-
+  display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
   display_results(player_hand, dealer_hand, player_total, dealer_total)
 
   break unless play_again?
