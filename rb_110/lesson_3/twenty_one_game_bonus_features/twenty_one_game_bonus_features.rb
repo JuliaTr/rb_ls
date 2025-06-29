@@ -6,6 +6,7 @@ J_Q_K_A_VALUES = 11
 J_Q_K_A_VALUES_BUSTED = 10
 BUSTED = 21
 DEALER_SAFE = 17
+MAX_SCORE = 5
 ACES = 'A'
 HIT = 'h'
 STAY = 's'
@@ -36,6 +37,10 @@ def initialize_deck(crd_values, suits)
   end
 
   suit_value_pairs.shuffle
+end
+
+def display_score_board(plrs, player_name)
+  puts "#{player_name}: #{plrs[:player]}, dealer: #{plrs[:dealer]}"
 end
 
 # Deletes the first inner array
@@ -153,11 +158,8 @@ def dealer_turn(dealer_hand, deck, dealer_total)
   end
 end
 
-def play_again?
-  puts "---------------"
-  prompt 'play_again'
-  answer = gets.chomp
-  answer.downcase.start_with?('y') || answer == ''
+def rest_scores
+  { player: 0, dealer: 0 }
 end
 
 def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
@@ -167,16 +169,32 @@ def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
   puts "============="
 end
 
-# Main loop
+def get_enter_key_continue
+  prompt 'continue'
+  gets
+end
+
+def play_again?
+  puts "---------------"
+  prompt 'play_again'
+  answer = gets.chomp
+  answer.downcase.start_with?('y') || answer == ''
+end
+
+# Main program
+prompt 'welcome'
+
 dealer_hand = []
 player_hand = []
+players = {player: 0, dealer: 0}
 
+# Main loop
 loop do
-  prompt 'welcome'
-
   deck = initialize_deck(card_values, suits)
   dealer_total = total(dealer_hand, DEALER_SAFE)
   player_total = total(player_hand, BUSTED)
+
+  display_score_board(players, player_name)
 
   game_set = game_setup(deck, dealer_hand)
   dealer_total = total(dealer_hand, DEALER_SAFE)
@@ -204,6 +222,7 @@ loop do
   if busted?(player_total)
     display_results(player_hand, dealer_hand, player_total, dealer_total)
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+    players[:dealer] += 1
     play_again? ? next : break
   else
     prompt 'player_stays', player_total
@@ -219,6 +238,7 @@ loop do
     prompt 'dealer_total', dealer_total
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
     display_results(player_hand, dealer_hand)
+    players[:player] += 1
     play_again? ? next : break
   else
     prompt 'dealer_stays', dealer_total
@@ -228,7 +248,20 @@ loop do
   display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
   display_results(player_hand, dealer_hand, player_total, dealer_total)
 
-  break unless play_again?
+  if players[:player] == MAX_SCORE
+    prompt 'player_won_5_scores', name
+    players = reset_scores
+    break unless another_game?
+  elsif players[:computer] == MAX_SCORE
+    prompt 'computer_won_5_scores'
+    players = reset_scores
+    break unless another_game?
+  else 
+    prompt 'round'
+    get_enter_key_continue
+  end
+
+  # break unless play_again?
 end
 
 prompt 'thank_you'
