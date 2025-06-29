@@ -80,11 +80,14 @@ def total(hand, total)
 end
 
 def display_dealer_hand(dealer_hand)
-  prompt 'dealer_hand', dealer_hand[0][1]
+  first_card = dealer_hand[0][1]
+  prompt 'dealer_hand', first_card
 end
 
-def display_player_hand(player_hand)
-  prompt 'player_hand', player_hand[0][1], player_hand[1][1], total(player_hand, BUSTED)
+def display_player_hand(player_hand, player_total)
+  first_card = player_hand[0][1]
+  second_card = player_hand[1][1]
+  prompt 'player_hand', first_card, second_card, player_total
 end
 
 def get_player_turn(player_turn)
@@ -100,24 +103,22 @@ def get_player_turn(player_turn)
   player_turn[0]
 end
 
-def update_player_hand(player_turn, deck, player_hand)
+def update_player_hand(player_turn, deck, player_hand, player_total)
   if player_turn == HIT
     give_additional_card(deck, player_hand)
     prompt 'player_hits'
     prompt 'update_player_hand', player_hand
-    prompt 'player_total', total(player_hand, BUSTED)
+    player_total = total(player_hand, BUSTED)
+    prompt 'player_total', player_total
   end
 end
 
 # should return `true` or `false` if score > 21
-def busted?(hand, total)
-  total(hand, total) > total
+def busted?(total)
+  total > BUSTED
 end
 
-def compare_results(player_hand, dealer_hand)
-  player_total = total(player_hand, BUSTED)
-  dealer_total = total(dealer_hand, DEALER_SAFE)
-
+def compare_results(player_hand, dealer_hand, player_total, dealer_total)
   if player_total > BUSTED
     :player_busted
   elsif dealer_total > BUSTED
@@ -131,8 +132,8 @@ def compare_results(player_hand, dealer_hand)
   end
 end
 
-def display_results(player_hand, dealer_hand)
-  game_results = compare_results(player_hand, dealer_hand)
+def display_results(player_hand, dealer_hand, player_total, dealer_total)
+  game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
 
   case game_results
   when :player_busted then prompt 'player_busted'
@@ -143,10 +144,12 @@ def display_results(player_hand, dealer_hand)
   end
 end
 
-def dealer_turn(dealer_hand, deck)
-  until total(dealer_hand, DEALER_TOTAL) >= DEALER_SAFE
+def dealer_turn(dealer_hand, deck, dealer_total)
+
+  until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
     give_additional_card(deck, dealer_hand)
+    dealer_total = total(dealer_hand, DEALER_SAFE)
     prompt 'dealer_hand', dealer_hand
   end
 end
@@ -166,49 +169,60 @@ loop do
   prompt 'welcome'
 
   deck = initialize_deck(card_values, suits)
+  dealer_total = total(dealer_hand, DEALER_SAFE)
+  player_total = total(player_hand, BUSTED)
 
   game_set = game_setup(deck, dealer_hand)
+  dealer_total = total(dealer_hand, DEALER_SAFE)
   display_dealer_hand(dealer_hand)
+  dealer_total = total(dealer_hand, DEALER_SAFE)
 
   game_set = game_setup(deck, player_hand)
-  display_player_hand(player_hand)
+  player_total = total(player_hand, BUSTED)
+  display_player_hand(player_hand, player_total)
+  player_total = total(player_hand, BUSTED)
+
+  p dealer_total
+  p player_total
 
   # 3. Player turn: hit or stay
   loop do
     player_turn = nil
     player_turn = get_player_turn(player_turn)
-    update_player_hand(player_turn, deck, player_hand)
-    break if player_turn == STAY || busted?(player_hand, BUSTED)
+    player_total = total(player_hand, BUSTED)
+    update_player_hand(player_turn, deck, player_hand, player_total)
+    break if player_turn == STAY || busted?(player_total)
   end
 
   # If palyer bust, display results
-  if busted?(player_hand, BUSTED)
-    display_results(player_hand, dealer_hand)
+  if busted?(player_total)
+    display_results(player_hand, dealer_hand, player_total, dealer_total)
     play_again? ? next : break
   else
-    ptompt 'player_stays', total(player_hand, BUSTED)}
+    prompt 'player_stays', player_total
   end
 
   # 5. Dealer turn: hit or stay
   prompt 'dealer_turn'
-  dealer_turn(dealer_hand, deck)
+  dealer_total = total(dealer_hand, DEALER_SAFE)
+  dealer_turn(dealer_hand, deck, dealer_total)
 
   # If dealer bust
-  if busted?(dealer_hand, BUSTED)
-    prompt 'dealer_total', total(dealer_hand, DEALER_SAFE)
+  if busted?(dealer_total)
+    prompt 'dealer_total', dealer_total
     display_results(player_hand, dealer_hand)
-    play_again? next : break
+    play_again? ? next : break
   else
-    prompt 'dealer_stays', total(dealer_cards, DEALER_SAFE)
+    prompt 'dealer_stays', dealer_total
   end
 
   # 7. Both player and dealer stays. Compare cards and declare winner.
   puts "============="
-  prompt 'dealer_final_cards_scores', dealer_hand, total(dealer_cards, DEALER_SAFE)
-  prompts 'player_final_cards_scores', player_hand, total(player_hand, BUSTED)
+  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
+  prompt 'player_final_cards_scores', player_hand, player_total
   puts "============="
 
-  display_results(player_hand, dealer_hand)
+  display_results(player_hand, dealer_hand, player_total, dealer_total)
 
   break unless play_again?
 end
