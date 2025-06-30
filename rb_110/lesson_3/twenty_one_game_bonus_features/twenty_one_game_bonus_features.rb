@@ -167,15 +167,17 @@ def dealer_turn(dealer_hand, deck, dealer_total)
   end
 end
 
-def rest_scores
+def reset_scores
   { player: 0, dealer: 0 }
 end
 
 def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+  puts
   puts "============="
   prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
   prompt 'player_final_cards_scores', player_hand, player_total
   puts "============="
+  puts
 end
 
 def get_enter_key_continue
@@ -184,11 +186,13 @@ def get_enter_key_continue
   system 'clear'
 end
 
-def play_again?
+def another_game?
+  puts
   puts "---------------"
   prompt 'play_again'
   answer = gets.chomp
   answer.downcase.start_with?('y') || answer == ''
+  system 'clear'
 end
 
 ## Main program
@@ -200,12 +204,12 @@ prompt 'rules', name
 get_enter_key_continue
 system 'clear'
 
-dealer_hand = []
-player_hand = []
 players = {player: 0, dealer: 0}
 
 # Main loop
 loop do
+  dealer_hand = []
+  player_hand = []
   deck = initialize_deck(card_values, suits)
   dealer_total = total(dealer_hand)
   player_total = total(player_hand)
@@ -226,6 +230,7 @@ loop do
   loop do
     player_turn = nil
     player_turn = get_player_turn(player_turn)
+    system 'clear'
     update_player_hand(player_turn, deck, player_hand)
     player_total = total(player_hand)
     prompt 'player_total', player_total
@@ -234,8 +239,9 @@ loop do
 
   # If player bust, display results
   if busted?(player_total)
-    display_results(player_hand, dealer_hand, player_total, dealer_total)
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+    game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+    display_results(game_results)
     players[:dealer] += 1
     play_again? ? next : break
   else
@@ -251,11 +257,13 @@ loop do
   if busted?(dealer_total)
     prompt 'dealer_total', dealer_total
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-    display_results(player_hand, dealer_hand)
+    game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+    display_results(game_results)
     players[:player] += 1
     play_again? ? next : break
   else
     system 'clear'
+    prompt 'player_stays', player_total
     prompt 'dealer_stays', dealer_total
   end
 
@@ -273,14 +281,15 @@ loop do
     prompt 'player_won_5_scores', name
     players = reset_scores
     break unless another_game?
-  elsif players[:computer] == MAX_SCORE
+  elsif players[:dealer] == MAX_SCORE
     prompt 'computer_won_5_scores'
     players = reset_scores
     break unless another_game?
-  else 
+  else
     prompt 'round'
     get_enter_key_continue
   end
 end
 
+system 'clear'
 prompt 'thank_you'
