@@ -208,11 +208,11 @@ loop do
 
   display_score_board(players, name)
 
-  game_set = game_setup(deck, dealer_hand)
+  game_setup(deck, dealer_hand)
   display_dealer_hand(dealer_hand)
   dealer_total = total(dealer_hand)
 
-  game_set = game_setup(deck, player_hand)
+  game_setup(deck, player_hand)
   player_total = total(player_hand)
   display_player_hand(player_hand, player_total)
 
