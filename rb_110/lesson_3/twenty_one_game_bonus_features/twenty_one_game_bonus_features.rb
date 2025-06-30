@@ -148,9 +148,7 @@ def compare_results(player_hand, dealer_hand, player_total, dealer_total)
   end
 end
 
-def display_results(player_hand, dealer_hand, player_total, dealer_total)
-  game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
-
+def display_results(game_results)
   case game_results
   when :player_busted then prompt 'player_busted'
   when :dealer_busted then prompt 'dealer_busted'
@@ -183,6 +181,7 @@ end
 def get_enter_key_continue
   prompt 'continue'
   gets
+  system 'clear'
 end
 
 def play_again?
@@ -256,12 +255,19 @@ loop do
     players[:player] += 1
     play_again? ? next : break
   else
+    system 'clear'
     prompt 'dealer_stays', dealer_total
   end
 
   # 7. Both player and dealer stays. Compare cards and declare winner.
   display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-  display_results(player_hand, dealer_hand, player_total, dealer_total)
+  game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+  display_results(game_results)
+
+  case game_results
+  when :player then players[:player] += 1
+  when :dealer then players[:dealer] += 1
+  end
 
   if players[:player] == MAX_SCORE
     prompt 'player_won_5_scores', name
@@ -275,8 +281,6 @@ loop do
     prompt 'round'
     get_enter_key_continue
   end
-
-  break unless play_again?
 end
 
 prompt 'thank_you'
