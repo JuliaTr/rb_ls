@@ -80,8 +80,7 @@ def total(hand)
   sum = 0
   values.each do |value|
     sum += ACE_VALUE if value == ACES
-    sum += J_Q_K_VALUES if value.to_i == 0 # J, Q, K
-    sum += value.to_i
+    sum += (value.to_i == 0 ? J_Q_K_VALUES : value.to_i)
   end
 
   # correct for Aces
