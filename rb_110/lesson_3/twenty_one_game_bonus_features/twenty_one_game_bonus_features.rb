@@ -20,6 +20,20 @@ def prompt(key, *args)
   puts "=> #{message}"
 end
 
+def get_name
+  name = ''
+
+  loop do
+    prompt 'get_name'
+    name = gets.chomp
+
+    break unless name.empty?
+    prompt 'invalid_name'
+  end
+
+  name.upcase
+end
+
 card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
                'J', 'Q', 'K', 'A']
 
@@ -181,8 +195,14 @@ def play_again?
   answer.downcase.start_with?('y') || answer == ''
 end
 
-# Main program
+#@ Main program
+system 'clear'
 prompt 'welcome'
+name = get_name
+system 'clear'
+prompt 'rules', name
+get_enter_key_continue
+system 'clear'
 
 dealer_hand = []
 player_hand = []
