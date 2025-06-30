@@ -101,7 +101,7 @@ def display_player_hand(player_hand, player_total)
   prompt 'player_hand', first_card, second_card, player_total
 end
 
-def get_player_turn(player_turn)
+def ask_player_hit_or_stay(player_turn)
   loop do
     prompt 'hit_stay'
     player_turn = gets.chomp.downcase
@@ -217,7 +217,7 @@ loop do
   # 3. Player turn: hit or stay
   loop do
     player_turn = nil
-    player_turn = get_player_turn(player_turn)
+    player_turn = ask_player_hit_or_stay(player_turn)
     system 'clear'
     update_player_hand(player_turn, deck, player_hand)
     player_total = total(player_hand)
