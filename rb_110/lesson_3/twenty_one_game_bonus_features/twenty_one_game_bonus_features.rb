@@ -163,7 +163,7 @@ end
 def dealer_turn(dealer_hand, deck, dealer_total)
   until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
-    give_additional_card(deck, dealer_hand)
+    give_additional_card!(deck, dealer_hand)
     dealer_total = total(dealer_hand)
     prompt 'dealer_hand', dealer_hand
   end
@@ -243,40 +243,40 @@ loop do
     prompt 'player_stays', player_total
   end
 
-#   # 5. Dealer turn: hit or stay
-#   prompt 'dealer_turn'
-#   dealer_total = total(dealer_hand, DEALER_SAFE)
-#   dealer_turn(dealer_hand, deck, dealer_total)
+  # 5. Dealer turn: hit or stay
+  prompt 'dealer_turn'
+  dealer_total = total(dealer_hand)
+  dealer_turn(dealer_hand, deck, dealer_total)
 
-#   # If dealer bust
-#   if busted?(dealer_total)
-#     prompt 'dealer_total', dealer_total
-#     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-#     display_results(player_hand, dealer_hand)
-#     players[:player] += 1
-#     play_again? ? next : break
-#   else
-#     prompt 'dealer_stays', dealer_total
-#   end
+  # If dealer bust
+  if busted?(dealer_total)
+    prompt 'dealer_total', dealer_total
+    display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+    display_results(player_hand, dealer_hand)
+    players[:player] += 1
+    play_again? ? next : break
+  else
+    prompt 'dealer_stays', dealer_total
+  end
 
-#   # 7. Both player and dealer stays. Compare cards and declare winner.
-#   display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-#   display_results(player_hand, dealer_hand, player_total, dealer_total)
+  # 7. Both player and dealer stays. Compare cards and declare winner.
+  display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+  display_results(player_hand, dealer_hand, player_total, dealer_total)
 
-#   if players[:player] == MAX_SCORE
-#     prompt 'player_won_5_scores', name
-#     players = reset_scores
-#     break unless another_game?
-#   elsif players[:computer] == MAX_SCORE
-#     prompt 'computer_won_5_scores'
-#     players = reset_scores
-#     break unless another_game?
-#   else 
-#     prompt 'round'
-#     get_enter_key_continue
-#   end
+  if players[:player] == MAX_SCORE
+    prompt 'player_won_5_scores', name
+    players = reset_scores
+    break unless another_game?
+  elsif players[:computer] == MAX_SCORE
+    prompt 'computer_won_5_scores'
+    players = reset_scores
+    break unless another_game?
+  else 
+    prompt 'round'
+    get_enter_key_continue
+  end
 
   break unless play_again?
 end
 
-# prompt 'thank_you'
+prompt 'thank_you'
