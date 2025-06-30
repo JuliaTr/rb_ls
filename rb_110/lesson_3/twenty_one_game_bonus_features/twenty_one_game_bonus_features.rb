@@ -128,7 +128,7 @@ def busted?(total)
   total > BUSTED
 end
 
-def compare_results(player_hand, dealer_hand, player_total, dealer_total)
+def compare_results(player_total, dealer_total)
   if player_total > BUSTED
     :player_busted
   elsif dealer_total > BUSTED
@@ -205,20 +205,16 @@ loop do
   dealer_hand = []
   player_hand = []
   deck = initialize_deck(card_values, suits)
-  dealer_total = total(dealer_hand)
-  player_total = total(player_hand)
 
   display_score_board(players, name)
 
   game_set = game_setup(deck, dealer_hand)
-  dealer_total = total(dealer_hand)
   display_dealer_hand(dealer_hand)
   dealer_total = total(dealer_hand)
 
   game_set = game_setup(deck, player_hand)
   player_total = total(player_hand)
   display_player_hand(player_hand, player_total)
-  player_total = total(player_hand)
 
   # 3. Player turn: hit or stay
   loop do
@@ -234,10 +230,10 @@ loop do
   # If player bust, display results
   if busted?(player_total)
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-    game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+    game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:dealer] += 1
-    play_again? ? next : break
+    another_game? ? next : break
   else
     prompt 'player_stays', player_total
   end
@@ -251,10 +247,10 @@ loop do
   if busted?(dealer_total)
     prompt 'dealer_total', dealer_total
     display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-    game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+    game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:player] += 1
-    play_again? ? next : break
+    another_game? ? next : break
   else
     system 'clear'
     prompt 'player_stays', player_total
@@ -263,7 +259,7 @@ loop do
 
   # 7. Both player and dealer stays. Compare cards and declare winner.
   display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-  game_results = compare_results(player_hand, dealer_hand, player_total, dealer_total)
+  game_results = compare_results(player_total, dealer_total)
   display_results(game_results)
 
   case game_results
