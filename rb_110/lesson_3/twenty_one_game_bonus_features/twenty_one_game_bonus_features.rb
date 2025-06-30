@@ -33,18 +33,17 @@ def get_name
   name.upcase
 end
 
-card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
-               'J', 'Q', 'K', 'A']
-
-suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
-
 # Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
-def initialize_deck(crd_values, suits)
+def initialize_deck
+  card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
+               'J', 'Q', 'K', 'A']
+  suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
   # [[suit, value], [suit, value] ... ]
   suit_value_pairs = []
 
   suits.each do |suit|
-    crd_values.each do |card|
+    card_values.each do |card|
       suit_value_pairs << [suit, card]
     end
   end
@@ -203,7 +202,7 @@ players = { player: 0, dealer: 0 }
 loop do
   dealer_hand = []
   player_hand = []
-  deck = initialize_deck(card_values, suits)
+  deck = initialize_deck
 
   display_score_board(players, name)
 
