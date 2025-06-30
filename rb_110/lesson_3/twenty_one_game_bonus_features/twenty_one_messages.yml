@@ -2,7 +2,27 @@ welcome: "Welcome to Twenty-One!"
 get_name: "Enter your name:"
 invalid_name: "Make sure to use a valid name."
 rules: "Hi, %s! Let me introduce rules of the game.\n
-  
+  You start with a 52-card deck which has 4 suits\n
+  (hearts, diamonds, clubs, and spades), and 13 values\n
+  (2, 3, 4, 5, 6, 7, 8, 9, 10, jack (10), queen (10), king (10), ace).\n
+  The ace can be worth 1 or 11.\n
+  \n
+  There are 2 players 'dealer' and a 'player' (you). Each of you\n
+  are initially dealt 2 cards. You can see your 2 cards, but\n
+  can only see one of the dealer's cards.\n
+  \n
+  You go first, and can either 'hit' (ask for another card)\n
+  or 'stay'. The turn is over when you either bust (go over 21) or stay.\n
+  \n
+  The goal of Twenty-One is to try to get as close to 21 as possible,\n
+  without going over. If you bust, you lose.\n
+  \n
+  When you stay, it's the dealer's turn. The dealer must hit until the\n
+  total is at least 17. If the dealer busts, then you win.\n
+  \n
+  When you both stay, the cards are compared to see\n
+  who has the highest value.\n
+  \n
   The game will go until you or the dealer earn 5 scores.\n
   Good luck!\n
   \n"
