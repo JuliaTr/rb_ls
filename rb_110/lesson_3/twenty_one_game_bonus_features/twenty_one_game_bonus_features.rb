@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'yaml'
 
 MESSAGES = YAML.load_file('twenty_one_messages.yml')
@@ -63,9 +62,9 @@ def deal_card!(deck)
 end
 
 def game_setup(deck, hand)
-  2.times do 
+  2.times do
     dealt_card = deal_card!(deck)
-    hand << dealt_card 
+    hand << dealt_card
   end
 end
 
@@ -80,13 +79,9 @@ def total(hand)
 
   sum = 0
   values.each do |value|
-    if value == ACES
-      sum += ACE_VALUE
-    elsif value.to_i == 0 # J, Q, K
-      sum += J_Q_K_VALUES
-    else
-      sum += value.to_i
-    end
+    sum += ACE_VALUE if value == ACES
+    sum += J_Q_K_VALUES if value.to_i == 0 # J, Q, K
+    sum += value.to_i
   end
 
   # correct for Aces
@@ -129,7 +124,6 @@ def update_player_hand(player_turn, deck, player_hand)
   end
 end
 
-# should return `true` or `false` if score > 21
 def busted?(total)
   total > BUSTED
 end
@@ -204,7 +198,7 @@ prompt 'rules', name
 get_enter_key_continue
 system 'clear'
 
-players = {player: 0, dealer: 0}
+players = { player: 0, dealer: 0 }
 
 # Main loop
 loop do
