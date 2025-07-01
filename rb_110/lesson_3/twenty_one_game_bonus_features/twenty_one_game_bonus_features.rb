@@ -24,32 +24,18 @@ def display_score_board(plrs, player_name)
   puts "#{player_name}: #{plrs[:player]}, dealer: #{plrs[:dealer]}"
 end
 
-def extract_suit(hand)
-  hand_suit = ''
-  hand.each { |card| hand_suit << card[0] }
-  hand_suit
-end
-
-def extract_card_value(hand)
-  hand_card_value = ''
-  hand.each { |card| hand_card_value << card[1] }
-  hand_card_value
-end
-
 def display_dealer_hand_first_time(dealer_hand)
-  prompt 'dealer_hand_first_time', dealer_hand[0][1], dealer_hand[0][0]
+  prompt 'dealer_hand_first_time', dealer_hand[0][0], dealer_hand[0][1]
 end
 
 def display_dealer_hand(dealer_hand)
-  hand_suit = extract_suit(dealer_hand)
-  hand_card_value = extract_card_value(dealer_hand)
-  prompt 'dealer_hand', *hand_suit, *hand_card_value
+  joined_str = joinor(dealer_hand)
+  prompt 'dealer_hand', joined_str
 end
 
 def display_player_hand(player_hand, player_total)
-  hand_suit = extract_suit(player_hand)
-  hand_card_value = extract_card_value(player_hand)
-  prompt 'player_hand', *hand_suit, *hand_card_value, player_total
+  joined_str = joinor(player_hand)
+  prompt 'player_hand', joined_str, player_total
 end
 
 def display_results(game_results)
@@ -63,10 +49,13 @@ def display_results(game_results)
 end
 
 def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+  dealer_joined_str = joinor(dealer_hand)
+  player_joined_str = joinor(player_hand)
+
   puts
   puts "============="
-  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
-  prompt 'player_final_cards_scores', player_hand, player_total
+  prompt 'dealer_final_cards_scores', dealer_joined_str, dealer_total
+  prompt 'player_final_cards_scores', player_joined_str, player_total
   puts "============="
   puts
 end
@@ -86,18 +75,17 @@ def get_name
   name.upcase
 end
 
-# Ex. [['H', '2'], ['S', 'J'], ['D', 'A']]
 def initialize_deck
   card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
                'J', 'Q', 'K', 'A']
   suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
-  # [[suit, value], [suit, value] ... ]
+  # [[value, suit], [value, suit] ... ]
   suit_value_pairs = []
 
-  suits.each do |suit|
-    card_values.each do |card|
-      suit_value_pairs << [suit, card]
+  card_values.each do |card|
+    suits.each do |suit|
+      suit_value_pairs << [card, suit]
     end
   end
 
@@ -115,6 +103,17 @@ def game_setup(deck, hand)
   end
 end
 
+def joinor(arr, delimeter=', ', word='of')
+  case arr.size
+  when 0 then ''
+  when 1 then arr.join(" #{word} ")
+  else
+    arr.map do |sub_array| 
+      sub_array.join(" #{word} ")
+    end.join(delimeter)
+  end
+end
+
 def give_additional_card!(deck, hand)
   dealt_card = deal_card!(deck)
   hand << dealt_card
@@ -122,7 +121,7 @@ end
 
 def total(hand)
   # hand = [['H', '3'], ['5', 'Q'], ... ]
-  values = hand.map { |card| card[1] }
+  values = hand.map { |card| card[0] }
 
   sum = 0
   values.each do |value|
@@ -155,7 +154,8 @@ def update_player_hand(player_turn, deck, player_hand)
   if player_turn == HIT
     give_additional_card!(deck, player_hand)
     prompt 'player_hits'
-    prompt 'update_player_hand', player_hand
+    joined_str = joinor(player_hand)
+    prompt 'update_player_hand', joined_str
   end
 end
 
@@ -178,11 +178,13 @@ def compare_results(player_total, dealer_total)
 end
 
 def dealer_turn(dealer_hand, deck, dealer_total)
+  dealer_joined_str = joinor(dealer_hand)
+
   until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
     give_additional_card!(deck, dealer_hand)
     dealer_total = total(dealer_hand)
-    prompt 'dealer_hand', dealer_hand
+    prompt 'dealer_hand', dealer_joined_str
   end
 end
 
