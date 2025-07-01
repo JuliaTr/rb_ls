@@ -10,6 +10,7 @@ ACES = 'A'
 HIT = 'h'
 STAY = 's'
 
+### Display methods
 def messages(message)
   MESSAGES[message]
 end
@@ -19,6 +20,41 @@ def prompt(key, *args)
   puts "=> #{message}"
 end
 
+def display_score_board(plrs, player_name)
+  puts "#{player_name}: #{plrs[:player]}, dealer: #{plrs[:dealer]}"
+end
+
+def display_dealer_hand(dealer_hand)
+  first_card = dealer_hand[0][1]
+  prompt 'dealer_hand', first_card
+end
+
+def display_player_hand(player_hand, player_total)
+  first_card = player_hand[0][1]
+  second_card = player_hand[1][1]
+  prompt 'player_hand', first_card, second_card, player_total
+end
+
+def display_results(game_results)
+  case game_results
+  when :player_busted then prompt 'player_busted'
+  when :dealer_busted then prompt 'dealer_busted'
+  when :player        then prompt 'player_won'
+  when :dealer        then prompt 'dealer_won'
+  when :tie           then prompt 'tie'
+  end
+end
+
+def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
+  puts
+  puts "============="
+  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
+  prompt 'player_final_cards_scores', player_hand, player_total
+  puts "============="
+  puts
+end
+
+### Logic methods
 def get_name
   name = ''
 
@@ -51,11 +87,6 @@ def initialize_deck
   suit_value_pairs.shuffle
 end
 
-def display_score_board(plrs, player_name)
-  puts "#{player_name}: #{plrs[:player]}, dealer: #{plrs[:dealer]}"
-end
-
-# Deletes the first inner array
 def deal_card!(deck)
   deck.shift
 end
@@ -88,17 +119,6 @@ def total(hand)
   end
 
   sum
-end
-
-def display_dealer_hand(dealer_hand)
-  first_card = dealer_hand[0][1]
-  prompt 'dealer_hand', first_card
-end
-
-def display_player_hand(player_hand, player_total)
-  first_card = player_hand[0][1]
-  second_card = player_hand[1][1]
-  prompt 'player_hand', first_card, second_card, player_total
 end
 
 def ask_player_hit_or_stay(player_turn)
@@ -140,16 +160,6 @@ def compare_results(player_total, dealer_total)
   end
 end
 
-def display_results(game_results)
-  case game_results
-  when :player_busted then prompt 'player_busted'
-  when :dealer_busted then prompt 'dealer_busted'
-  when :player        then prompt 'player_won'
-  when :dealer        then prompt 'dealer_won'
-  when :tie           then prompt 'tie'
-  end
-end
-
 def dealer_turn(dealer_hand, deck, dealer_total)
   until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
@@ -163,15 +173,7 @@ def reset_scores
   { player: 0, dealer: 0 }
 end
 
-def display_final_cards(dealer_hand, dealer_total, player_hand, player_total)
-  puts
-  puts "============="
-  prompt 'dealer_final_cards_scores', dealer_hand, dealer_total
-  prompt 'player_final_cards_scores', player_hand, player_total
-  puts "============="
-  puts
-end
-
+### Utility methods
 def get_enter_key_continue
   prompt 'continue'
   gets
