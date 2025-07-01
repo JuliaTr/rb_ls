@@ -252,7 +252,6 @@ loop do
     game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:dealer] += 1
-    another_game? ? next : break
   else
     prompt 'player_stays', player_total
   end
@@ -269,7 +268,6 @@ loop do
     game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:player] += 1
-    another_game? ? next : break
   else
     system 'clear'
     prompt 'player_stays', player_total
