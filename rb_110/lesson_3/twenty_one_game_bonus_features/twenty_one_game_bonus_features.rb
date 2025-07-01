@@ -24,15 +24,32 @@ def display_score_board(plrs, player_name)
   puts "#{player_name}: #{plrs[:player]}, dealer: #{plrs[:dealer]}"
 end
 
+def extract_suit(hand)
+  hand_suit = ''
+  hand.each { |card| hand_suit << card[0] }
+  hand_suit
+end
+
+def extract_card_value(hand)
+  hand_card_value = ''
+  hand.each { |card| hand_card_value << card[1] }
+  hand_card_value
+end
+
+def display_dealer_hand_first_time(dealer_hand)
+  prompt 'dealer_hand_first_time', dealer_hand[0][1], dealer_hand[0][0]
+end
+
 def display_dealer_hand(dealer_hand)
-  first_card = dealer_hand[0][1]
-  prompt 'dealer_hand', first_card
+  hand_suit = extract_suit(dealer_hand)
+  hand_card_value = extract_card_value(dealer_hand)
+  prompt 'dealer_hand', *hand_suit, *hand_card_value
 end
 
 def display_player_hand(player_hand, player_total)
-  first_card = player_hand[0][1]
-  second_card = player_hand[1][1]
-  prompt 'player_hand', first_card, second_card, player_total
+  hand_suit = extract_suit(player_hand)
+  hand_card_value = extract_card_value(player_hand)
+  prompt 'player_hand', *hand_suit, *hand_card_value, player_total
 end
 
 def display_results(game_results)
@@ -209,7 +226,7 @@ loop do
   display_score_board(players, name)
 
   game_setup(deck, dealer_hand)
-  display_dealer_hand(dealer_hand)
+  display_dealer_hand_first_time(dealer_hand)
   dealer_total = total(dealer_hand)
 
   game_setup(deck, player_hand)
