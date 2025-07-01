@@ -26,8 +26,9 @@ rules: "Hi, %s! Let me introduce rules of the game.\n
   The game will go until you or the dealer earn 5 scores.\n
   Good luck!\n
   \n"
-dealer_hand: "Dealer has: %s and unknown card"
-player_hand: "You have: %s and %s for a total of %s"
+dealer_hand_first_time: "Dealer has: %s of %s and unknown card"
+dealer_hand: "Dealer has: %s"
+player_hand: "You have: %s for a total of %s"
 player_total: "Your total is now %s"
 hit_stay: "Would you like 'hit' or 'stay'?"
 invalid_input: "Sorry, please enter 'h' or 's'."
