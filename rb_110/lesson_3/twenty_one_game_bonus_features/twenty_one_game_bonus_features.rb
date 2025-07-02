@@ -214,7 +214,6 @@ def another_game?
   prompt 'play_again'
   answer = gets.chomp
   answer.downcase.start_with?('y') || answer == ''
-  system 'clear'
 end
 
 ## Main program
@@ -311,6 +310,7 @@ loop do
     prompt 'round'
     get_enter_key_continue
   end
+  system 'clear'
 end
 
 system 'clear'
