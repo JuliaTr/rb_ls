@@ -188,12 +188,11 @@ def compare_results(player_total, dealer_total)
 end
 
 def dealer_turn(dealer_hand, deck, dealer_total)
-  dealer_joined_str = joinor(dealer_hand)
-
   until dealer_total >= DEALER_SAFE
     prompt 'dealer_hits'
     give_additional_card!(deck, dealer_hand)
     dealer_total = total(dealer_hand)
+    dealer_joined_str = joinor(dealer_hand)
     prompt 'dealer_hand', dealer_joined_str
   end
 end
@@ -263,7 +262,8 @@ loop do
     display_results(game_results)
     players[:dealer] += 1
     prompt 'round'
-    next if get_enter_key_continue
+    get_enter_key_continue
+    next
   else
     prompt 'player_stays', player_total
   end
@@ -281,7 +281,8 @@ loop do
     display_results(game_results)
     players[:player] += 1
     prompt 'round'
-    next if get_enter_key_continue
+    get_enter_key_continue
+    next
   else
     system 'clear'
     prompt 'player_stays', player_total
