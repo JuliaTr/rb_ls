@@ -271,6 +271,7 @@ loop do
   prompt 'dealer_turn'
   dealer_total = total(dealer_hand)
   dealer_turn(dealer_hand, deck, dealer_total)
+  dealer_total = total(dealer_hand)
 
   # If dealer bust
   if busted?(dealer_total)
