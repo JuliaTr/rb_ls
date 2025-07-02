@@ -77,7 +77,7 @@ end
 
 def initialize_deck
   card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
-               'J', 'Q', 'K', 'A']
+               'Jack', 'Queen', 'King', 'Ace']
   suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
   # [[value, suit], [value, suit] ... ]
