@@ -119,14 +119,24 @@ def give_additional_card!(deck, hand)
   hand << dealt_card
 end
 
+def card_value(card)
+  case card
+  when ACES
+    ACE_VALUE
+  when 'Jack', 'Queen', 'King'
+    J_Q_K_VALUES
+  else
+    card.to_i
+  end
+end
+
 def total(hand)
   # hand = [['H', '3'], ['5', 'Q'], ... ]
   values = hand.map { |card| card[0] }
 
   sum = 0
   values.each do |value|
-    sum += ACE_VALUE if value == ACES
-    sum += (value.to_i == 0 ? J_Q_K_VALUES : value.to_i)
+    sum += card_value(value)
   end
 
   # correct for Aces
@@ -304,3 +314,19 @@ end
 
 system 'clear'
 prompt 'thank_you'
+
+
+
+=begin
+Conditional return value (option):
+
+values.each do |value|
+  sum += if value == ACES
+           ACE_VALUE
+         elsif value.to_i == 0  # J, Q, K
+           J_Q_K_VALUES
+         else
+           value.to_i
+         end
+end
+=end
