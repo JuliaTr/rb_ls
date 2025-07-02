@@ -77,7 +77,7 @@ end
 
 def initialize_deck
   card_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10',
-               'Jack', 'Queen', 'King', 'Ace']
+                 'Jack', 'Queen', 'King', 'Ace']
   suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
   # [[value, suit], [value, suit] ... ]
@@ -108,7 +108,7 @@ def joinor(arr, delimeter=', ', word='of')
   when 0 then ''
   when 1 then arr.join(" #{word} ")
   else
-    arr.map do |sub_array| 
+    arr.map do |sub_array|
       sub_array.join(" #{word} ")
     end.join(delimeter)
   end
