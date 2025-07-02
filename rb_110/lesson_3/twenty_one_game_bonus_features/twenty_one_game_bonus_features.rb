@@ -252,6 +252,8 @@ loop do
     game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:dealer] += 1
+    prompt 'round'
+    next if get_enter_key_continue
   else
     prompt 'player_stays', player_total
   end
@@ -268,6 +270,8 @@ loop do
     game_results = compare_results(player_total, dealer_total)
     display_results(game_results)
     players[:player] += 1
+    prompt 'round'
+    next if get_enter_key_continue
   else
     system 'clear'
     prompt 'player_stays', player_total
