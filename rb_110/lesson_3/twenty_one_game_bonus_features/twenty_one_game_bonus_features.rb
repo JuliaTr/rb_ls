@@ -211,8 +211,6 @@ def get_enter_key_continue
 end
 
 def another_game?
-  puts
-  puts "---------------"
   prompt 'play_again'
   answer = gets.chomp
   answer.downcase.start_with?('y') || answer == ''
@@ -303,10 +301,12 @@ loop do
   if players[:player] == MAX_SCORE
     prompt 'player_won_5_scores', name
     players = reset_scores
+    get_enter_key_continue
     break unless another_game?
   elsif players[:dealer] == MAX_SCORE
     prompt 'computer_won_5_scores'
     players = reset_scores
+    get_enter_key_continue
     break unless another_game?
   else
     prompt 'round'
