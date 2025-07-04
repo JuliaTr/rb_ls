@@ -211,3 +211,14 @@ repeating_pattern_detection('xyzxyzxyz') #== true
 # 2
 # 3
 # 4
+
+=begin
+The loop goes from `1` up to half the length of the string. If the
+string length is `9`. Half of `9` is 4.5. The `str.length / 2` returns
+`4` insted of 4.5.
+
+This range in test case above represents the possible substring length
+we are testing to see if repeating them forms the full string. We
+check substring length from 1 up to half the string length because 
+any larger substring couldn't repea enough times to make the entire string.
+=end
