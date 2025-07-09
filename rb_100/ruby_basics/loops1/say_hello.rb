@@ -23,3 +23,33 @@ end
 # Hello!
 # Hello!
 # Hello!
+
+
+
+### Other possible Solutions:
+say_hello = true
+count = 0
+
+while say_hello
+  puts 'Hello!'
+  count += 1
+  say_hello = false if count == 5
+end
+
+## Output:
+# Hello!
+# Hello!
+# Hello!
+# Hello!
+# Hello!
+
+
+# Simpler way to output `Hello!` 5 times.
+5.times { puts 'Hello!' }
+
+# Output:
+# Hello!
+# Hello!
+# Hello!
+# Hello!
+# Hello!
