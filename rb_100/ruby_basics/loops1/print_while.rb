@@ -21,3 +21,21 @@ $ ruby print_while.rb
 56
 42
 =end
+
+
+## Experiment:
+numbers = []
+
+while numbers.length <= 5
+  numbers << rand(100)
+end
+
+puts numbers
+
+# Output: (6 elements instead of 5)
+# 29
+# 45
+# 37
+# 58
+# 35
+# 97
