@@ -38,3 +38,23 @@ end
 # Joe
 # Lisa
 # Henry
+
+
+
+### Further exploration:
+# Can you change this to print the names from last to first?
+names = ['Sally', 'Joe', 'Lisa', 'Henry']
+
+loop do
+  puts names.pop
+  break if names.empty?
+end
+
+p names
+
+# Output:
+# Henry
+# Lisa
+# Joe
+# Sally
+# []
