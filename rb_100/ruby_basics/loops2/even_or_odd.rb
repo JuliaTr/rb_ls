@@ -42,3 +42,26 @@ end
 # 3 is odd!
 # 4 is even!
 # 5 is odd!
+
+
+
+### Possible solution:
+count = 1
+
+loop do
+  if count.even?
+    puts "#{count} is even!"
+  else
+    puts "#{count} is odd!"
+  end
+
+  break if count == 5
+  count += 1
+end
+
+# Output:
+# 1 is odd!
+# 2 is even!
+# 3 is odd!
+# 4 is even!
+# 5 is odd!
