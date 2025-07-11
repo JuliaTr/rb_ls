@@ -72,3 +72,30 @@ $ ruby catch_the_number.rb
 39
 4
 =end
+
+
+
+### Possible solution
+loop do
+  number = rand(100)
+  puts number
+  break if number.between?(0, 10)
+end
+
+=begin
+$ ruby catch_the_number.rb
+94
+63
+59
+64
+87
+39
+64
+65
+96
+43
+18
+59
+26
+4
+=end
