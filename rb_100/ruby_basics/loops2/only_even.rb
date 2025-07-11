@@ -101,6 +101,52 @@ output 10
 =end
 
 
+
+### Further exploration:
+# The `next` keyword skips the rest of code in this iteration. 
+
+# If `next` is placed before `number += 1` the number will be inremented
+# only once and then an infinite loop happens.
+number = 0
+
+until number == 10
+  next if number.odd?
+  number += 1
+  puts number
+end
+
+=begin
+1
+^C<internal:numeric>:202:in `odd?': Interrupt
+        from only_even.rb:112:in `<main>'
+=end
+
+
+# If `next` is placed after `#puts`, then all integers from 1 
+# to 10 would be output. Nothing would be skipped as it's the 
+# last line in the current iteration.
+number = 0
+
+until number == 10
+  number += 1
+  puts number
+  next if number.odd?
+end
+
+# Output:
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+
+
+
 ### Solution (output starts from 0 - neither positive nor negative):
 number = 0
 
