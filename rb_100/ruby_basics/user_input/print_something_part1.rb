@@ -34,3 +34,20 @@ $ ruby print_something_part1.rb
 >> Do you want me to print something? (y/n)
 help
 =end
+
+
+
+## Further exploration:
+# Can you modify this program so that it prints "something" 
+# if the user enters `Y` or `y`?
+puts '>> Do you want me to print something? (y/n)'
+answer = gets.chomp
+
+puts 'something' if answer == 'y' || answer == 'Y'
+
+=begin
+$ ruby print_something_part1.rb
+>> Do you want me to print something? (y/n)
+Y
+something
+=end
