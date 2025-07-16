@@ -9,8 +9,8 @@ puts meal   # Breakfast
 =begin
 The output is `Breakfast`.
 
-On line 7, the `meal` method is invoked and passed as an argument
-to the `puts` method.
+On line 7, the `meal` method is invoked and its return value is 
+passed as an argument to the `puts` method invocation.
 
 Lines 3-5 contain `meal` method definition. Line 4 is the only 
 line executed by the mehod definition. Also, the `return` key
