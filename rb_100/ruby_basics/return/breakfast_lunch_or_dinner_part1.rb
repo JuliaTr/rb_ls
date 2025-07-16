@@ -14,6 +14,7 @@ to the `puts` method.
 
 Lines 3-5 contain `meal` method definition. Line 4 is the only 
 line executed by the mehod definition. Also, the `return` key
-word returns the value on the same line. So, the value `Breakfast`
-is returned by `meal`.
+word returns the value on the same line. So, the value `"Breakfast"`
+is returned by `meal`. The `puts meal` call outputs `Breakfast` 
+to the console.
 =end
