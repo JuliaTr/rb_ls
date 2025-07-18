@@ -26,3 +26,27 @@ $ ruby stoplight_part1.rb
 Slow down!
 $ 
 =end
+
+
+
+## Experiments:
+stoplight = ['green', 'yellow', 'red'].sample
+
+case stoplight
+when 'green'  then puts "Go!"
+when 'yellow' then puts "Slow down!"
+else               puts "Stop!"
+end
+
+=begin
+$ ruby stoplight_part1.rb
+Go!
+$ ruby stoplight_part1.rb
+Slow down!
+$ ruby stoplight_part1.rb
+Slow down!
+$ ruby stoplight_part1.rb
+Slow down!
+$ ruby stoplight_part1.rb
+Stop!
+=end
