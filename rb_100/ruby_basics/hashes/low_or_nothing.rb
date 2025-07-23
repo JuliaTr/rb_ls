@@ -41,3 +41,15 @@ p numbers
 # Output: as expected
 # {:low=>10}
 # {:low=>10}
+
+
+
+## Further exploration:
+numbers = {
+  high: 100,
+  medium: 50,
+  low: 10
+}
+
+# No need to assign the return value to a variable:
+numbers.select! { |_, v| v < 25 }
