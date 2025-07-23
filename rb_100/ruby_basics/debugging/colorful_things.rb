@@ -270,3 +270,107 @@ break if i >= things.length
 break if i > things.length - 1
 break if i == things.length
 =end
+
+
+
+## Furtther exploraion:
+# How can you change the break condition, such that the loop 
+# always stops once we hit the end of the shorter array?
+
+# Option 1:
+colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 
+          'silver', 'black', 'turquoise']   # 8 colors
+things = ['pen', 'mouse pad', 'coffe mug', 'sofa', 'surf board',
+          'training mat', 'notebook']       # 7 things
+
+colors.shuffle!
+things.shuffle!
+
+i = 0
+loop do
+  break if i > things.length - 1 || i > colors.length - 1
+  
+  if i == 0
+    puts "I have a #{colors[i]} #{things[i]}."
+  else
+    puts "And a #{colors[i]} #{things[i]}."
+  end
+
+  i += 1
+end
+
+=begin
+I have a red training mat.
+And a turquoise notebook.
+And a green mouse pad.
+And a purple sofa.
+And a dark blue surf board.
+And a silver pen.
+And a black coffe mug.
+=end
+
+
+# Opion 2:
+colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 
+          'silver', 'black', 'turquoise']   # 8 colors
+things = ['pen', 'mouse pad', 'coffe mug', 'sofa', 'surf board',
+          'training mat', 'notebook']       # 7 things
+
+colors.shuffle!
+things.shuffle!
+
+i = 0
+loop do
+  break if i >= things.length || i >= colors.length
+
+  if i == 0
+    puts "I have a #{colors[i]} #{things[i]}."
+  else
+    puts "And a #{colors[i]} #{things[i]}."
+  end
+
+  i += 1
+end
+
+=begin
+I have a turquoise notebook.
+And a green coffe mug.
+And a red mouse pad.
+And a purple sofa.
+And a yellow surf board.
+And a black training mat.
+And a silver pen.
+=end
+
+
+# Option 3:
+colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 
+          'silver', 'black', 'turquoise']   # 8 colors
+things = ['pen', 'mouse pad', 'coffe mug', 'sofa', 'surf board',
+          'training mat', 'notebook']       # 7 things
+
+colors.shuffle!
+things.shuffle!
+
+i = 0
+loop do
+  break if i == things.length || i == colors.length
+
+  if i == 0
+    puts "I have a #{colors[i]} #{things[i]}."
+  else
+    puts "And a #{colors[i]} #{things[i]}."
+  end
+
+  i += 1
+end
+
+=begin
+I have a dark blue mouse pad.
+And a green training mat.
+And a red notebook.
+And a yellow sofa.
+And a purple coffe mug.
+And a turquoise pen.
+And a black surf board.
+=end
