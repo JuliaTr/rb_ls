@@ -374,3 +374,50 @@ And a purple coffe mug.
 And a turquoise pen.
 And a black surf board.
 =end
+
+
+#### Determine the boundary of the loop before the loop starts
+# and store it in a variable.
+colors = ['red', 'yellow', 'purple', 'green', 'dark blue', 
+          'silver', 'black', 'turquoise']   # 8 colors
+things = ['pen', 'mouse pad', 'coffe mug', 'sofa', 'surf board',
+          'training mat', 'notebook']       # 7 things
+
+colors.shuffle!
+things.shuffle!
+
+# limit = nil                         # tested; works
+# if colors.length < things.length
+#   limit = colors.length
+# else
+#   limit = things.length
+# end
+
+# Ternary operator for conciseness:   # tested; works
+# limit = colors.length < things.length ? colors.length : things.length
+
+# More idiomatic:
+limit = [colors.length, things.length].min
+
+i = 0
+loop do
+  break if i == limit
+
+  if i == 0
+    puts "I have a #{colors[i]} #{things[i]}."
+  else
+    puts "And a #{colors[i]} #{things[i]}."
+  end
+
+  i += 1
+end
+
+=begin
+I have a silver pen.
+And a turquoise notebook.
+And a dark blue mouse pad.
+And a black sofa.
+And a red surf board.
+And a green coffe mug.
+And a yellow training mat.
+=end
