@@ -1,6 +1,6 @@
 # What each of the 4 `puts` statements print?
 
-require `date`
+require 'date'
 
 puts Date.civil                  # -4712-01-01
 puts Date.civil(2016)            # 2016-01-01
