@@ -16,6 +16,43 @@ print_in_box('')
 +--+
 =end
 
+### More refactored solution: 
+PLUS_SIGN = '+'
+PIPE = '|'
+DASH = '-'
+EMPTY_SPACE = ' '
+
+def print_in_box(str)
+  borders = "#{PLUS_SIGN}#{DASH * (str.length + 2)}#{PLUS_SIGN}"
+  space_around_string = "#{PIPE} #{EMPTY_SPACE * str.length} #{PIPE}"
+  place_for_text = "#{PIPE} #{str} #{PIPE}"
+  
+  puts borders
+  puts space_around_string
+  puts place_for_text
+  puts space_around_string
+  puts borders
+end
+
+print_in_box('To boldly go where no one has gone before.')
+print_in_box('')
+
+=begin
+$ ruby bannerizer.rb
++--------------------------------------------+
+|                                            |
+| To boldly go where no one has gone before. |
+|                                            |
++--------------------------------------------+
++--+
+|  |
+|  |
+|  |
++--+
+=end
+
+
+
 ### Refactored solutions:
 def print_in_box(str)
   plus_sign = '+'
