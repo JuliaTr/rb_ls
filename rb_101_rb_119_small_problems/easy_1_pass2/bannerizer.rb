@@ -17,11 +17,7 @@ print_in_box('')
 =end
 
 def display_borders(str, plus_sign, dash)
-  if str.empty?
-    puts "#{plus_sign}#{dash * 2}#{plus_sign}"
-  else
-    puts "#{plus_sign}#{dash * (str.length + 2)}#{plus_sign}"
-  end
+  puts "#{plus_sign}#{dash * (str.length + 2)}#{plus_sign}"
 end
 
 def display_space_around_string(str, pipe, empty_space)
