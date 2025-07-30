@@ -161,6 +161,69 @@ $ ruby bannerizer.rb
 
 
 
+### Improved further exploration:
+PLUS_SIGN = '+'
+PIPE = '|'
+DASH = '-'
+EMPTY_SPACE = ' '
+MAX_WIDTH = 76
+
+def print_in_box_text_wrap(str)
+  if str.length > MAX_WIDTH
+    box_width = MAX_WIDTH + 2
+    borders = "#{PLUS_SIGN}#{DASH * box_width}#{PLUS_SIGN}"
+    space_around_string = "#{PIPE} #{EMPTY_SPACE * MAX_WIDTH} #{PIPE}"
+
+    puts borders
+    puts space_around_string
+
+    until str.empty?
+      sliced_str = str.slice!(0..75)
+      puts "#{PIPE} #{sliced_str}#{EMPTY_SPACE * (MAX_WIDTH - sliced_str.length)} #{PIPE}"
+    end
+
+    puts space_around_string
+    puts borders
+  
+  else
+    box_width = str.length + 2
+    borders = "#{PLUS_SIGN}#{DASH * (box_width)}#{PLUS_SIGN}"
+    space_around_string = "#{PIPE} #{EMPTY_SPACE * str.length} #{PIPE}"
+    place_for_text = "#{PIPE} #{str} #{PIPE}"
+
+    puts borders
+    puts space_around_string
+    puts place_for_text
+    puts space_around_string
+    puts borders
+  end
+end
+
+print_in_box_text_wrap('To boldly go where no one has gone before. To boldly go where no one has gone before. To boldly go where no one has gone before.')
+print_in_box_text_wrap('To boldly go where no one has gone before.')
+print_in_box_text_wrap('')
+
+=begin
+$ ruby bannerizer.rb
++------------------------------------------------------------------------------+
+|                                                                              |
+| To boldly go where no one has gone before. To boldly go where no one has gon |
+| e before. To boldly go where no one has gone before.                         |
+|                                                                              |
++------------------------------------------------------------------------------+
++--------------------------------------------+
+|                                            |
+| To boldly go where no one has gone before. |
+|                                            |
++--------------------------------------------+
++--+
+|  |
+|  |
+|  |
++--+
+=end
+
+
 ### Further exploration:
 =begin
 Modify this method so it will truncate the message if it will 
