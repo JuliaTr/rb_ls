@@ -242,34 +242,34 @@ $ ruby bannerizer.rb
 
 
 
-# ### Experiments:
-# str = 'To boldly go where no one has gone before. To boldly go where no one has gone before. To boldly go where no one has gone before.'
+### Experiments:
+str = 'To boldly go where no one has gone before. To boldly go where no one has gone before. To boldly go where no one has gone before.'
 
-# p str.split(' ', 76)
-# =begin
-# ["To", "boldly", "go", "where", "no", "one", "has", "gone", 
-# "before.", "To", "boldly", "go", "where", "no", "one", "has", 
-# "gone", "before.", "To", "boldly", "go", "where", "no", "one", 
-# "has", "gone", "before."]
-# =end
+p str.split(' ', 76)
+=begin
+["To", "boldly", "go", "where", "no", "one", "has", "gone", 
+"before.", "To", "boldly", "go", "where", "no", "one", "has", 
+"gone", "before.", "To", "boldly", "go", "where", "no", "one", 
+"has", "gone", "before."]
+=end
 
-# p str.slice(0..75)
-# p str
+p str.slice(0..75)
+p str
 
-# =begin
-# "To boldly go where no one has gone before. To boldly go where 
-# no one has gon"
+=begin
+"To boldly go where no one has gone before. To boldly go where 
+no one has gon"
 
-# "To boldly go where no one has gone before. To boldly go where 
-# no one has gone before. To boldly go where no one has gone 
-# before."
-# =end
+"To boldly go where no one has gone before. To boldly go where 
+no one has gone before. To boldly go where no one has gone 
+before."
+=end
 
-# p str.slice!(0..75)
-# p str
+p str.slice!(0..75)
+p str
 
-# =begin
-# "To boldly go where no one has gone before. To boldly go where 
-# no one has gon"
-# "e before. To boldly go where no one has gone before."
-# =end
+=begin
+"To boldly go where no one has gone before. To boldly go where 
+no one has gon"
+"e before. To boldly go where no one has gone before."
+=end
