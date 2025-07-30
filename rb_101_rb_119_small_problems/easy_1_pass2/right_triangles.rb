@@ -40,6 +40,82 @@ Algorithm:
 - Increment number of stars till the number of stars is equal to `n`
 =end
 
+## Refactored solution:
+def triangle(n)
+  star = '*'
+  white_space = ' '
+
+  n.times do |star_number|
+    current_star_number = star_number + 1
+    puts "#{white_space * (n - current_star_number)}#{star * current_star_number}"
+  end
+end
+
+# `star_number` holds the value for the current loop iteration (`0`, `1`, `2`...)
+# `current_star_count` is a new variable which holds the calculated
+# number of stars for the line.
+
+triangle(5)
+=begin
+    *
+   **
+  ***
+ ****
+*****
+=end
+
+triangle(9)
+=begin
+        *
+       **
+      ***
+     ****
+    *****
+   ******
+  *******
+ ********
+*********
+=end
+
+
+
+## Experiments:
+# Not recommended to change block parameter (reassigning block parameter):
+def triangle(n)
+  star = '*'
+  white_space = ' '
+
+  n.times do |star_number|
+    star_number = star_number + 1  # like chaging index
+    puts "#{white_space * (n - star_number)}#{star * star_number}"
+  end
+end
+
+triangle(5)
+=begin
+    *
+   **
+  ***
+ ****
+*****
+=end
+
+triangle(9)
+=begin
+        *
+       **
+      ***
+     ****
+    *****
+   ******
+  *******
+ ********
+*********
+=end
+
+
+
+## Solution:
 def triangle(n)
   star = '*'
   white_space = ' '
