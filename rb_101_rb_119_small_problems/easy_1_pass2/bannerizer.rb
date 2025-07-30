@@ -16,6 +16,8 @@ print_in_box('')
 +--+
 =end
 
+
+
 ### More refactored solution: 
 PLUS_SIGN = '+'
 PIPE = '|'
@@ -147,6 +149,74 @@ print_in_box('')
 
 =begin
 $ ruby bannerizer.rb
++--------------------------------------------+
+|                                            |
+| To boldly go where no one has gone before. |
+|                                            |
++--------------------------------------------+
++--+
+|  |
+|  |
+|  |
++--+
+=end
+
+
+
+### Refactored further exploration:
+# `#slice!` mutates the original object:
+PLUS_SIGN = '+'
+PIPE = '|'
+DASH = '-'
+EMPTY_SPACE = ' '
+MAX_WIDTH = 76
+
+def print_in_box_text_wrap(str, box_width)
+  borders = "#{PLUS_SIGN}#{DASH * box_width}#{PLUS_SIGN}"
+  space_around_string = "#{PIPE} #{EMPTY_SPACE * MAX_WIDTH} #{PIPE}"
+
+  puts borders
+  puts space_around_string
+
+  until str.empty?
+    sliced_str = str.slice!(0..75)
+    puts "#{PIPE} #{sliced_str}#{EMPTY_SPACE * (MAX_WIDTH - sliced_str.length)} #{PIPE}"
+  end
+
+  puts space_around_string
+  puts borders
+end
+
+def print_in_box(str)
+  box_width = str.length > MAX_WIDTH ? MAX_WIDTH + 2 : str.length + 2
+  
+  if str.length > MAX_WIDTH
+    print_in_box_text_wrap(str, box_width)
+  else
+    borders = "#{PLUS_SIGN}#{DASH * (box_width)}#{PLUS_SIGN}"
+    space_around_string = "#{PIPE} #{EMPTY_SPACE * str.length} #{PIPE}"
+    place_for_text = "#{PIPE} #{str} #{PIPE}"
+
+    puts borders
+    puts space_around_string
+    puts place_for_text
+    puts space_around_string
+    puts borders
+  end
+end
+
+print_in_box('To boldly go where no one has gone before. To boldly go where no one has gone before. To boldly go where no one has gone before.')
+print_in_box('To boldly go where no one has gone before.')
+print_in_box('')
+
+=begin
+$ ruby bannerizer.rb
++------------------------------------------------------------------------------+
+|                                                                              |
+| To boldly go where no one has gone before. To boldly go where no one has gon |
+| e before. To boldly go where no one has gone before.                         |
+|                                                                              |
++------------------------------------------------------------------------------+
 +--------------------------------------------+
 |                                            |
 | To boldly go where no one has gone before. |
