@@ -163,6 +163,66 @@ $ ruby bannerizer.rb
 
 
 
+### More refactored further exploration:
+# Original object isn't mutated:
+PLUS_SIGN = '+'
+PIPE = '|'
+DASH = '-'
+EMPTY_SPACE = ' '
+MAX_WIDTH = 76
+
+def print_in_box(str)
+  box_width = str.length > MAX_WIDTH ? MAX_WIDTH + 2 : str.length + 2
+  
+  borders = "#{PLUS_SIGN}#{DASH * box_width}#{PLUS_SIGN}"
+  space_around_string = "#{PIPE}#{EMPTY_SPACE * box_width}#{PIPE}"
+
+  puts borders
+  puts space_around_string
+
+  if str.length > MAX_WIDTH
+    index = 0
+    while index < str.length
+      # Get current chunk
+      sliced_str = str.slice(index, MAX_WIDTH)
+      puts "#{PIPE} #{sliced_str}#{EMPTY_SPACE * (MAX_WIDTH - sliced_str.length)} #{PIPE}"
+      
+      index += MAX_WIDTH
+    end
+  else
+    puts "#{PIPE} #{str} #{PIPE}"
+  end
+
+  puts space_around_string
+  puts borders
+end
+
+print_in_box('To boldly go where no one has gone before. To boldly go where no one has gone before. To boldly go where no one has gone before.')
+print_in_box('To boldly go where no one has gone before.')
+print_in_box('')
+
+=begin
+$ ruby bannerizer.rb
++------------------------------------------------------------------------------+
+|                                                                              |
+| To boldly go where no one has gone before. To boldly go where no one has gon |
+| e before. To boldly go where no one has gone before.                         |
+|                                                                              |
++------------------------------------------------------------------------------+
++--------------------------------------------+
+|                                            |
+| To boldly go where no one has gone before. |
+|                                            |
++--------------------------------------------+
++--+
+|  |
+|  |
+|  |
++--+
+=end
+
+
+
 ### Refactored further exploration:
 # `#slice!` mutates the original object:
 PLUS_SIGN = '+'
