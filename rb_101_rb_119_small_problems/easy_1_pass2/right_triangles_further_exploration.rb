@@ -6,6 +6,58 @@ Modify your solution again so that you can display the triangle
 with the right angle at any corner of the grid.
 =end
 
+## More refactored solution:
+def triangle(number_of_stars, angle)
+  star = '*'
+  white_space = ' '
+
+  0.upto(number_of_stars - 1) do |current_number|
+    difference = number_of_stars - current_number
+    incremented_current_number = current_number + 1
+
+    case angle
+    when 'top_left'
+      puts "#{star * difference}"
+    when 'top_right'
+      puts "#{white_space * current_number}#{star * difference}"
+    when 'bottom_left'
+      puts "#{star * incremented_current_number}#{white_space * (number_of_stars - incremented_current_number)}"
+    when 'bottom_right'
+      puts "#{white_space * (number_of_stars - incremented_current_number)}#{star * incremented_current_number}"
+    end
+  end
+end
+
+triangle(5, 'top_left')
+triangle(5, 'top_right')
+triangle(5, 'bottom_left')
+triangle(5, 'bottom_right')
+
+=begin
+*****     
+****    
+***   
+**  
+* 
+*****
+ ****
+  ***
+   **
+    *
+*    
+**   
+***  
+**** 
+*****
+    *
+   **
+  ***
+ ****
+*****
+=end
+
+
+
 ## Refactored solution:
 def triangle(n, angle)
   star = '*'
@@ -64,6 +116,7 @@ triangle(5, 'bottom_right')
  ****
 *****
 =end
+
 
 
 ## Solution:
