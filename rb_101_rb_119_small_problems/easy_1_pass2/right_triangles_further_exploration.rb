@@ -6,7 +6,42 @@ Modify your solution again so that you can display the triangle
 with the right angle at any corner of the grid.
 =end
 
-# Upside down right triangle
+# Upside down left triangle:
+def triangle(n)
+  star = '*'
+  white_space = ' '
+
+  current_star_number = n
+  while current_star_number != 0
+    puts "#{star * current_star_number}#{white_space * (n - current_star_number)}"
+    current_star_number -= 1
+  end
+end
+
+triangle(5)
+=begin
+*****
+**** 
+***  
+**   
+*
+=end
+
+triangle(9)
+=begin
+*********
+******** 
+*******  
+******   
+*****    
+****     
+***      
+**       
+* 
+=end
+
+
+# Upside down right triangle:
 def triangle(n)
   star = '*'
   white_space = ' '
@@ -41,7 +76,7 @@ triangle(9)
 =end
 
 
-# Left triangles
+# Left triangle:
 def triangle(n)
   star = '*'
   white_space = ' '
@@ -76,7 +111,7 @@ triangle(9)
 
 
 
-# Right triangles:
+# Right triangle:
 def triangle(n)
   star = '*'
   white_space = ' '
