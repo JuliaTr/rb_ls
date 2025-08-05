@@ -192,3 +192,37 @@ $ ruby sum_or_product_of_consecutive_integers.rb
 p
 The product of the integers between 1 and 6 is 720.
 =end
+
+
+# 'Enumerable#reduce':
+puts '>> Please enter an integer greater than 0:'
+number = gets.chomp.to_i
+
+puts ">> Enter 's' to compute the sum, 'p' to compute the product:"
+operation = gets.chomp
+
+if operation == 's'
+  sum = (1..number).reduce(:+)
+  puts "The sum of the integers between 1 and #{number} is #{sum}."
+elsif operation == 'p'
+  product = (1..number).reduce(:*)
+  puts "The product of the integers between 1 and #{number} is #{product}."
+else
+  puts "Oops. Unknown operation."
+end
+
+=begin
+$ ruby sum_or_product_of_consecutive_integers.rb
+>> Please enter an integer greater than 0:
+5
+>> Enter 's' to compute the sum, 'p' to compute the product:
+s
+The sum of the integers between 1 and 5 is 15.
+
+$ ruby sum_or_product_of_consecutive_integers.rb
+>> Please enter an integer greater than 0:
+6
+>> Enter 's' to compute the sum, 'p' to compute the product:
+p
+The product of the integers between 1 and 6 is 720.
+=end
