@@ -226,3 +226,64 @@ $ ruby sum_or_product_of_consecutive_integers.rb
 p
 The product of the integers between 1 and 6 is 720.
 =end
+
+
+
+## Solution with input validation:
+def valid_number?(num)
+  num.to_i.to_s == num && num.to_i != 0
+end
+
+def get_number
+  number = nil
+  loop do
+    puts '>> Please enter an integer greater than 0:'
+    number = gets.chomp
+
+    break if valid_number?(number)
+    puts ">> An integer isn't valid. Please try again."
+  end
+
+  number.to_i
+end
+
+number = get_number
+
+puts ">> Enter 's' to compute the sum, 'p' to compute the product."
+operation = gets.chomp
+
+if operation == 's'
+  sum = (1..number).reduce(:+)
+  puts "The sum of the integers between 1 and #{number} is #{sum}."
+elsif operation == 'p'
+  product = (1..number).reduce(:*)
+  puts "The product of the integers between 1 and #{number} is #{product}."
+else
+  puts "Oops. Unknown operation."
+end
+
+=begin
+$ ruby sum_or_product_of_consecutive_integers.rb
+>> Please enter an integer greater than 0:
+5
+>> Enter 's' to compute the sum, 'p' to compute the product.
+s
+The sum of the integers between 1 and 5 is 15.
+
+$ ruby sum_or_product_of_consecutive_integers.rb
+>> Please enter an integer greater than 0:
+a
+>> An integer isn't valid. Please try again.
+>> Please enter an integer greater than 0:
+6
+>> Enter 's' to compute the sum, 'p' to compute the product.
+s
+The sum of the integers between 1 and 6 is 21.
+
+$ ruby sum_or_product_of_consecutive_integers.rb
+>> Please enter an integer greater than 0:
+6
+>> Enter 's' to compute the sum, 'p' to compute the product.
+p
+The product of the integers between 1 and 6 is 720.
+=end
