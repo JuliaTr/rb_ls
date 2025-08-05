@@ -1,0 +1,87 @@
+=begin
+Write a program that prompts the user for two positive 
+integers, and then prints the results of the following 
+operations on those two numbers: addition, subtraction, 
+product, quotient, remainder, and power. Do not worry 
+about validating the input.
+
+Example:
+==> Enter the first number:
+23
+==> Enter the second number:
+17
+==> 23 + 17 = 40
+==> 23 - 17 = 6
+==> 23 * 17 = 391
+==> 23 / 17 = 1
+==> 23 % 17 = 6
+==> 23 ** 17 = 141050039560662968926103
+=end
+
+puts '==> Enter the first number:'
+first_number = gets.chomp.to_i
+puts '==> Enter the second number:'
+second_number = gets.chomp.to_i
+
+addition = first_number + second_number
+subtraction = first_number - second_number
+product = first_number * second_number
+quotient = first_number / second_number
+remainder_oper = first_number % second_number
+power = first_number**second_number
+
+operations_result = [addition, subtraction, product, quotient, 
+                     remainder_oper, power]
+operators_str = ['+', '-', '*', '/', '%', '**']
+
+6.times do |counter|
+  puts "==> #{first_number} #{operators_str[counter]} " \
+       "#{second_number} = #{operations_result[counter]}"
+end
+
+=begin
+$ ruby arithmetic_integer.rb
+==> Enter the first number:
+23
+==> Enter the second number:
+17
+==> 23 + 17 = 40
+==> 23 - 17 = 6
+==> 23 * 17 = 391
+==> 23 / 17 = 1
+==> 23 % 17 = 6
+==> 23 ** 17 = 141050039560662968926103
+=end
+
+
+
+## Possible solution:
+def prompt(message)
+  puts "==> #{message}"
+end
+
+prompt "Enter the first number:"
+first_number = gets.chomp.to_i
+prompt "Enter the second number:"
+second_number = gets.chomp.to_i
+
+prompt "#{first_number} + #{second_number} = #{first_number + second_number}"
+prompt "#{first_number} - #{second_number} = #{first_number - second_number}"
+prompt "#{first_number} * #{second_number} = #{first_number * second_number}"
+prompt "#{first_number} / #{second_number} = #{first_number / second_number}"
+prompt "#{first_number} % #{second_number} = #{first_number % second_number}"
+prompt "#{first_number} ** #{second_number} = #{first_number**second_number}"
+
+=begin
+$ ruby arithmetic_integer.rb
+==> Enter the first number:
+23
+==> Enter the second number:
+17
+==> 23 + 17 = 40
+==> 23 - 17 = 6
+==> 23 * 17 = 391
+==> 23 / 17 = 1
+==> 23 % 17 = 6
+==> 23 ** 17 = 141050039560662968926103
+=end
