@@ -28,7 +28,85 @@ Write a generic method to a "power to the n" type method: cubed, to
 the 4th power, to the 5th, etc. Use `multiply` method?
 =end
 
-## Improved solution with edge cases:
+### Simplified logic:
+def multiply(number1, number2)
+  number1 * number2
+end
+
+def power_to_n(number, n)
+  result = 1
+
+  while n > 0
+    result = multiply(result, number)
+    n -= 1
+  end
+
+  result
+end
+
+p power_to_n(5, 4) == 625       # true
+p power_to_n(-8, 5) == -32768   # true
+p power_to_n(4, 1) == 4         # true
+p power_to_n(3, 0) == 1         # true
+
+=begin
+Logic break down for `number = 5`,  `n = 4`:
+result = 1
+
+Iteration 1:
+while 4 > 0
+  5 = 1 * 5 (result)
+  3 = 4 - 1
+end
+
+Iteration 2:
+while 3 > 0
+  25 = 5 * 5
+  2 = 3 - 1
+end
+
+Iteration 3:
+while 2 > 0
+  125 = 25 * 5
+  1 = 2 - 1
+end
+
+Iteration 4:
+while 1 > 0
+  625 = 125 * 5
+  0 = 1 - 1
+end
+
+625 (result)
+
+
+
+Logic break down for `number = 4`,  `n = 1`:
+result = 1
+
+Iteration 1:
+while 1 > 0
+  4 = 1 * 4 (result)
+  0 = 1 - 1
+end
+
+4 (result)
+
+
+
+Logic break down for `number = 3`,  `n = 0`:
+result = 1
+
+Iteration 1:
+while 0 > 0  (false)
+end
+
+1 (result)
+=end
+
+
+
+### Improved solution with edge cases:
 def multiply(number1, number2)
   number1 * number2
 end
@@ -56,7 +134,7 @@ p power_to_n(3, 0) == 1         # true
 
 
 
-## Solution:
+### Solution:
 def multiply(number1, number2)
   number1 * number2
 end
