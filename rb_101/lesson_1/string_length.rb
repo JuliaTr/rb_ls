@@ -45,7 +45,7 @@ def string_lengths(sentence)
   lengths = []
 
   strings.each do |string|
-    lengths << strings.size
+    lengths << string.size
   end
 end
 
@@ -63,13 +63,30 @@ in the method, it is returned implicitly. That's why
 
 
 
+# Option 3 (bug fix):
+def string_lengths(sentence)
+  strings = sentence.split
+  lengths = []
+
+  strings.each do |string|
+    lengths << string.size
+  end
+
+  lengths
+end
+
+p string_lengths('To be or not to be')
+# [2, 2, 2, 3, 2, 2]    (as expected)
+
+
+
 # Option 4 (wrong return value):
 def string_lengths(sentence)
   strings = sentence.split
   lengths = []
   counter = 1
 
-  until counter == strings.size do
+  until counter == strings.size do   # issue is here
     word_length = strings[counter - 1].length
     lengths.push(word_length)
     counter += 1
@@ -79,7 +96,7 @@ def string_lengths(sentence)
 end
 
 p string_lengths('To be or not to be')
-# [2, 2, 2, 3, 2]    (not as exprected)
+# [2, 2, 2, 3, 2]    (not as expected)
 
 =begin
 `["To", "be", "or", "not", "to", "be"]`
@@ -125,3 +142,23 @@ until 6 == 6
   break
 end
 =end
+
+
+
+# Option 4 (bug fix):
+def string_lengths(sentence)
+  strings = sentence.split
+  lengths = []
+  counter = 1
+
+  until counter > strings.size do
+    word_length = strings[counter - 1].length
+    lengths.push(word_length)
+    counter += 1
+  end
+
+  lengths
+end
+
+p string_lengths('To be or not to be')
+# [2, 2, 2, 3, 2, 2]    (as expected)
