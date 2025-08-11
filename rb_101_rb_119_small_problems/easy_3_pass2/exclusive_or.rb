@@ -275,7 +275,8 @@ This `if` structure always finds the first truthy value ans short-
 circuits.
 
 So, we must always check truthiness for both operands to make sure
-that they are not both truthy and not falsey (Example 2 below).
+that they are not both truthy (both of them) and not falsey 
+(both of them) to cover all test cases. (Example 2 below).
 =end
 
 def xor?(bool1, bool2)
