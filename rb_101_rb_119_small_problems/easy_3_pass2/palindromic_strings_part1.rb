@@ -37,3 +37,25 @@ end
 p palindrome?([1, 2, 1]) == true             # true
 p palindrome?([1, 2, 3, 4, 5]) == false      # true
 p palindrome?([1, 2, 3, 3, 2, 1]) == true    # true
+
+
+=begin
+Write a method that determines whether an array or a 
+string is palindromic; that is, write a method that can 
+take either an array or a string argument, and determines 
+whether that argument is a palindrome. You may not use an 
+`if`, `unless`, or `case` statement or modifier.
+=end
+
+def palindrome?(param)
+  param.reverse == param
+end
+
+p palindrome?('madam') == true             # true
+p palindrome?('Madam') == false            # true
+p palindrome?("madam i'm adam") == false   # true
+p palindrome?('356653') == true            # true
+
+p palindrome?([1, 2, 1]) == true             # true
+p palindrome?([1, 2, 3, 4, 5]) == false      # true
+p palindrome?([1, 2, 3, 3, 2, 1]) == true    # true
