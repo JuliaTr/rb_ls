@@ -21,7 +21,7 @@ p uppercase?('T') == true               # true
 p uppercase?('Four Score') == false     # true
 p uppercase?('FOUR SCORE') == true      # true
 p uppercase?('4SCORE!') == true         # true
-p uppercase?('') == true                # true
+p uppercase?('') #== true                # true
 
 
 
@@ -66,3 +66,28 @@ p uppercase?('Four Score') == false     # true
 # p uppercase?('FOUR SCORE') == true    # false
 # p uppercase?('4SCORE!') == true       # false
 p uppercase?('') == true                # true
+
+
+
+### Further Exploration:
+=begin
+*The `uppercase?` should return `true` if the argument is an 
+empty string. Would it make sense to return `false` instead? 
+Why or why not?*
+
+It doesn't make sense to return `false`, because in Example 1
+`''.upcase` returns `""`, which in Ruby is a truthy value. 
+
+In Example 2, `"" == ''` return `true`. It means that it makes 
+sense to create a test case to `uppercase?('') == true`, not `false`.
+=end
+
+# Example 1:
+p ''.upcase           # ""
+
+# Example 2:
+def uppercase?(str)
+  str.upcase == str
+end
+
+p uppercase?('')      # true
