@@ -83,30 +83,22 @@ def palindrome?(param)
 end
 
 def palindromic_number?(str)
-  int = str.to_i  # to eliminate leading zeros
-  p int
+  # to eliminate leading zeros
+  int_with_no_leading_zeros = str.to_i
+  str_with_no_leading_zeros = int_with_no_leading_zeros.to_s
 
-  new_str = int.to_s
-  p new_str
+  reversed_str = str_with_no_leading_zeros.reverse
 
-  reversed_str = str.reverse
-  # reversed_str = new_str.reverse
-  int = reversed_str.to_i  # to eliminated leading zeros
-  # p int
+  # to eliminated leading zeros from the reversed string
+  new_int_with_no_leading_zeros = reversed_str.to_i
+  new_str_with_no_leading_zeros = new_int_with_no_leading_zeros.to_s
 
-  new_str = int.to_s
-  # p new_str
-
-  palindrome?(new_str)
+  palindrome?(new_str_with_no_leading_zeros)
 end
 
 p palindromic_number?('000034543') == true  # true
 p palindromic_number?('0345430') == true    # true
 p palindromic_number?('0000') == true       # true
-
-
-# p palindromic_number?('abba') == true       # true
-# p palindromic_number?('abc') #== false       # true
 
 
 
