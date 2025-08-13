@@ -21,6 +21,22 @@ end
 
 name = "Lisa"
 
+def display_name
+  puts name()
+end
+
+display_name
+
+# Output: George
+
+
+
+def name
+  "George"
+end
+
+name = "Lisa"
+
 def display_name(name)
   puts name   # Ruby references method's local variable `name`
 end
