@@ -42,12 +42,14 @@ The call to `demo_hash.value` returns a new array with a reference
 to the same values as values in `munsters` hash. 
 
 The `each` method returns an original object (here 
-`demo_hash.value` return value). However, 
-mutating methods (`#+=` (line 17), `#[]=` (line 18)), 
-are invoked on each element inside the block, this object 
-is mutated (`"age"` and "gender"). 
+`demo_hash.value` return value). However, non-mutating methods 
+`#+=` (line 17), `#[]=` (line 18), returning a new string object, 
+are invoked on each element (`family_member`) inside the block, 
+re-assign values for `"age"` and `"gender"`. So, `family_member`
+hashes were changed due to reassignmnet.
 
-That's why the original hash `munsters` was mutated.
+That's why the original hash `munsters` was changed (mutated) due
+to re-assignment of the values inside nested hashes.
 =end
 
 
