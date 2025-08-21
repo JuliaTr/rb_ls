@@ -49,3 +49,36 @@ is mutated (`"age"` and "gender").
 
 That's why the original hash `munsters` was mutated.
 =end
+
+
+
+### Experiment:
+# This solution also mutates values in the original object:
+munsters = {
+  "Herman" => { "age" => 32, "gender" => "male" },
+  "Lily" => { "age" => 30, "gender" => "female" },
+  "Grandpa" => { "age" => 402, "gender" => "male" },
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female" }
+}
+
+def mess_with_demographics(demo_hash)
+  demo_hash.each do |_, value|
+    value["age"] += 42
+    value["gender"] = "other"
+  end
+end
+
+p mess_with_demographics(munsters)
+# {"Herman"=>{"age"=>74, "gender"=>"other"}, 
+# "Lily"=>{"age"=>72, "gender"=>"other"}, 
+# "Grandpa"=>{"age"=>444, "gender"=>"other"},
+# "Eddie"=>{"age"=>52, "gender"=>"other"}, 
+# "Marilyn"=>{"age"=>65, "gender"=>"other"}}
+
+p munsters
+# {"Herman"=>{"age"=>74, "gender"=>"other"}, 
+# "Lily"=>{"age"=>72, "gender"=>"other"}, 
+# "Grandpa"=>{"age"=>444, "gender"=>"other"}, 
+# "Eddie"=>{"age"=>52, "gender"=>"other"}, 
+# "Marilyn"=>{"age"=>65, "gender"=>"other"}}
