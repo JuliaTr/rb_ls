@@ -26,6 +26,21 @@ High-level:
   the longe string, and the shorter string
 =end
 
+## Improved solution:
+def short_long_short(str1, str2)
+  if str1.size < str2.size
+    str1 + str2 + str1
+  else
+    str2 + str1 + str2
+  end
+end
+
+p short_long_short('abc', 'defgh') == "abcdefghabc"  # true
+p short_long_short('abcde', 'fgh') == "fghabcdefgh"  # true
+p short_long_short('', 'xyz') == "xyz"               # true
+
+
+
 ## Solution
 def short_long_short(str1, str2)
   return str2 if str1.empty?
@@ -43,6 +58,34 @@ p short_long_short('abcde', 'fgh') == "fghabcdefgh"  # true
 p short_long_short('', 'xyz') == "xyz"               # true
 
 
-
 ## Experiments:
 p '' + 'hello' + ''   # "hello"
+
+
+
+## Possible solutions:
+# clearer
+def short_long_short(str1, str2)
+  if str1.length > str2.length
+    str2 + str1 + str2
+  else
+    str1 + str2 + str1
+  end
+end
+
+p short_long_short('abc', 'defgh') == "abcdefghabc"  # true
+p short_long_short('abcde', 'fgh') == "fghabcdefgh"  # true
+p short_long_short('', 'xyz') == "xyz"               # true
+
+
+
+# good but it's hard to understand what this method is 
+# trying to do
+def short_long_short(str1, str2)
+  arr = [str1, str2].sort_by { |el| el.length }
+  arr.first + arr.last + arr.first
+end
+
+p short_long_short('abc', 'defgh') == "abcdefghabc"  # true
+p short_long_short('abcde', 'fgh') == "fghabcdefgh"  # true
+p short_long_short('', 'xyz') == "xyz"               # true
