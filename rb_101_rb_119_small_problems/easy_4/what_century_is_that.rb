@@ -33,7 +33,7 @@ High-level:
 - define the right ending
 =end
 
-def what_century?(int)
+def what_century(int)
   int_to_array = int.to_s.chars
   int_length = int.to_s.length
 
@@ -51,7 +51,7 @@ def what_century?(int)
 end
 
 def century(int)
-  century_str = what_century?(int).to_s
+  century_str = what_century(int).to_s
   century_array = century_str.chars
 
   ending = if century_array[-2] == '1'
@@ -69,15 +69,15 @@ def century(int)
   century_str + ending
 end
 
-p century(2000) == '20th'
-p century(2001) == '21st'
-p century(1965) == '20th'
-p century(256) == '3rd'
-p century(5) == '1st'
-p century(10103) == '102nd'
-p century(1052) == '11th'
-p century(1127) == '12th'
-p century(11201) == '113th'
+p century(2000) == '20th'    # true
+p century(2001) == '21st'    # true
+p century(1965) == '20th'    # true
+p century(256) == '3rd'      # true
+p century(5) == '1st'        # true
+p century(10103) == '102nd'  # true
+p century(1052) == '11th'    # true
+p century(1127) == '12th'    # true
+p century(11201) == '113th'  # true
 
 
 
@@ -91,3 +91,46 @@ def century
 end
 
 p century   # "\u0001"
+
+
+=begin
+irb(main):001:0> 2000 % 100
+=> 0
+irb(main):002:0> 2001 % 100
+=> 1
+irb(main):003:0> 11201 % 100
+=> 1
+irb(main):004:0> 11 % 100
+=> 11
+=end
+
+
+
+## Possible solution:
+def century(year)
+  century = year / 100 + 1
+  century -= 1 if year % 100 == 0
+  century.to_s + century_suffix(century)
+end
+
+def century_suffix(century)
+  return 'th' if [11, 12, 13].include?(century % 100)
+  last_digit = century % 10
+
+  case last_digit
+  when 1 then 'st'
+  when 2 then 'nd'
+  when 3 then 'rd'
+  else 'th'
+  end
+end
+
+p century(2000) == '20th'     # true
+p century(2001) == '21st'     # true
+p century(1965) == '20th'     # true
+p century(256) == '3rd'       # true
+p century(5) == '1st'         # true
+p century(10103) == '102nd'   # true
+p century(1052) == '11th'     # true
+p century(1127) == '12th'     # true
+p century(11201) == '113th'   # true
