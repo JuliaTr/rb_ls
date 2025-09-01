@@ -179,3 +179,71 @@ p leap_year?(1700) == false      # true
 p leap_year?(1) == false         # true
 p leap_year?(100) == false       # true
 p leap_year?(400) == true        # true
+
+
+
+## Further exploration:
+# Test 1:
+def leap_year?(year)
+  if year % 100 == 0
+    false
+  elsif year % 400 == 0
+    true
+  else
+    year % 4 == 0
+  end
+end
+
+p leap_year?(2016) == true       # true
+p leap_year?(2015) == false      # true
+p leap_year?(2100) == false      # true
+# p leap_year?(2400) == true       # false
+# p leap_year?(240000) == true     # false
+p leap_year?(240001) == false    # true
+# p leap_year?(2000) == true       # false
+p leap_year?(1900) == false      # true
+p leap_year?(1752) == true       # true
+p leap_year?(1700) == false      # true
+p leap_year?(1) == false         # true
+p leap_year?(100) == false       # true
+# p leap_year?(400) == true        # false
+
+=begin
+The test cases failed for leap years (2400, 240000, 2000, 400).
+They all divisible by 100 and by 400.
+
+Whereas in the original solution `false` is returned only if the
+year isn't divisible by 400. Not leap years aren't divisible by 
+400.
+=end
+
+
+# Test 1:
+def leap_year?(year)
+  if year % 4 == 0
+    true
+  elsif year % 100 == 0
+    false
+  else
+    year % 400 == 0
+  end
+end
+
+p leap_year?(2016) == true       # true
+p leap_year?(2015) == false      # true
+# p leap_year?(2100) == false      # false
+p leap_year?(2400) == true       # true
+p leap_year?(240000) == true     # true
+p leap_year?(240001) == false    # true
+p leap_year?(2000) == true       # true
+# p leap_year?(1900) == false      # false
+p leap_year?(1752) == true       # true
+p leap_year?(1700) == false      # false
+p leap_year?(1) == false         # true
+# p leap_year?(100) == false       # false
+p leap_year?(400) == true        # true
+
+=begin
+The test cases failed for not leap years (2100, 1900, 100).
+They all divisible by 4, so `true`.
+=end
