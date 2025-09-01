@@ -33,7 +33,7 @@ High-level:
 - define the right ending
 =end
 
-def what_century(int)
+def calculate_century(int)
   int_to_array = int.to_s.chars
   int_length = int.to_s.length
 
@@ -51,7 +51,7 @@ def what_century(int)
 end
 
 def century(int)
-  century_str = what_century(int).to_s
+  century_str = calculate_century(int).to_s
   century_array = century_str.chars
 
   ending = if century_array[-2] == '1'
