@@ -56,3 +56,19 @@ p running_total([2, 5, 13]) == [2, 7, 20]                    # true
 p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67] # true
 p running_total([3]) == [3]                                  # true
 p running_total([]) == []                                    # true
+
+
+
+## Further exploration:
+def running_total(array)
+  sum = 0
+  array.each_with_object([]) do |current_value, new_array|
+    sum += current_value
+    new_array << sum
+  end
+end
+
+p running_total([2, 5, 13]) == [2, 7, 20]                    # true
+p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67] # true
+p running_total([3]) == [3]                                  # true
+p running_total([]) == []                                    # true
