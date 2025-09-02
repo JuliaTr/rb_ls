@@ -65,24 +65,43 @@ p multisum(1000) == 234168   # true
 
 
 
-# ## Possible solution
-# def multiple?(number, divisor)
-#   number % divisor == 0
-# end
+## Possible solution
+def multiple?(number, divisor)
+  number % divisor == 0
+end
 
-# def multisum(max_value)
-#   sum = 0
+def multisum(max_value)
+  sum = 0
 
-#   1.upto(max_value) do |number|
-#     if multiple?(number, 3) || multiple?(number, 5)
-#       sum += number
-#     end
-#   end
+  1.upto(max_value) do |number|
+    if multiple?(number, 3) || multiple?(number, 5)
+      sum += number
+    end
+  end
 
-#   sum
-# end
+  sum
+end
 
-# p multisum(3) == 3           # true
-# p multisum(5) == 8           # true
-# p multisum(10) == 33         # true
-# p multisum(1000) == 234168   # true
+p multisum(3) == 3           # true
+p multisum(5) == 8           # true
+p multisum(10) == 33         # true
+p multisum(1000) == 234168   # true
+
+
+
+## Alternatives with further exploration:
+def multisum(num)
+  sum = (1..num).select do |current_num|
+    current_num % 3 == 0 || current_num % 5 == 0
+  end
+
+  sum.inject(:+)
+end
+
+p multisum(3) == 3           # true
+p multisum(5) == 8           # true
+p multisum(10) == 33         # true
+p multisum(1000) == 234168   # true
+
+
+
