@@ -105,3 +105,19 @@ p multisum(1000) == 234168   # true
 
 
 
+def multisum(num)
+  sum = 0
+
+  (1..num).each do |current_num|
+    if current_num % 3 == 0 || current_num % 5 == 0
+      sum += current_num
+    end
+  end
+
+  sum
+end
+
+p multisum(3) == 3           # true
+p multisum(5) == 8           # true
+p multisum(10) == 33         # true
+p multisum(1000) == 234168   # true
