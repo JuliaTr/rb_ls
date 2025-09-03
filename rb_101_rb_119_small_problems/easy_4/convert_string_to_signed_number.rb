@@ -75,3 +75,35 @@ end
 p string_to_signed_integer('4321') == 4321   # true
 p string_to_signed_integer('-570') == -570   # true
 p string_to_signed_integer('+100') == 100    # true
+
+
+
+## Further exploration:
+# Refactor the solution so it only makes `string[1..-1]` and 
+# `string_to_integer` calls once each.
+DIGITS = {
+  '0' => 0, '1' => 1, '2' => 2, '3' => 3, '4' => 4,
+  '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9
+}
+
+def string_to_integer(str)
+  digits = str.chars.map { |char| DIGITS[char] }
+  
+  value = 0
+  digits.each { |digit| value = 10 * value + digit }
+  value
+end
+
+def string_to_signed_integer(string)
+  includes_minus = string.include?('-')
+  includes_plus = string.include?('+')
+
+  string = includes_minus || includes_plus ? string[1..-1] : string
+  result = string_to_integer(string)
+
+  includes_minus ? -result : result
+end
+
+p string_to_signed_integer('4321') #== 4321   # true
+p string_to_signed_integer('-570') #== -570   # true
+p string_to_signed_integer('+100') #== 100    # true
