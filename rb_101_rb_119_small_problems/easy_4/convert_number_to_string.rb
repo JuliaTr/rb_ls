@@ -48,7 +48,7 @@ p integer_to_string(4321) == '4321'    # true
 
 =begin
 $ ruby convert_number_to_string.rb
-432  (4321 / 10 = 432 (1 is remainder))
+432  (4321 / 10 = 4320 / 10 = 432 (1 is remainder))
 1
 
 43
@@ -60,4 +60,126 @@ $ ruby convert_number_to_string.rb
 0
 4
 true
+=end
+
+
+## Experiments:
+p 5.divmod(2)   # [2, 1]
+
+number, remainder = 5.divmod(2)
+p number      # 2
+p remainder   # 1
+
+
+
+## Further exploration:
+=begin
+
+Strings:
+Mutating methods (with `!`):
+`#capitalize!`
+`#chomp!`
+`#chop!`
+`#delete!`
+`#delete_prefix!`
+`#delete_suffix!`
+`#downcase!`
+`#encode!`
+`#gsub!`
+`#lstrip!`
+`#next!`
+`#reverse!`
+`#rstrip!`
+`#scrub!`
+`#slice!`
+`#squeeze!`
+`#strip!`
+`#sub!`
+`#succ!`
+`#swapcase!`
+`#tr!`
+`#tr_s!`
+`#unicode_normalize!`
+`#upcase!`
+
+Mutating methods (without `!`):
+`#<<`
+`#[]=`
+`#clear`
+`#concat`
+`#prepend`
+`#replace`
+
+Non-mutating methods (with `!`), which don't have non-mutating 
+form:
+No such methods
+
+
+
+Arrays:
+Mutating methods (with `!`):
+`#collect!`
+`#compact!`
+`#filter!`
+`#flatten!`
+`#map!`
+`#reject!`
+`#reverse!`
+`#rotate!`
+`#select!`
+`#shuffle!`
+`#slice!`
+`#sort!`
+`#sort_by!`
+`#uniq`
+
+Mutating methods (without `!`):
+`#[]=`
+`#<<`
+`#append`
+`#clear`
+`#delete`
+`#delete_at`
+`#delete_if`
+`#fill`
+`#initialize_copy`
+`#keep_if`
+`#pop`
+`#prepend`
+`#push`
+`#replace`
+`#shift`
+`#unshift`
+
+Non-mutating methods (with `!`), which don't have non-mutating 
+form: 
+`#sort_by!`
+Another methods have non-mutating form.
+
+
+
+Hashes:
+Mutating methods (with `!`):
+`#compact!`
+`#filter!`
+`#merge!`
+`#reject!`
+`#select!`
+`#transform_keys!`
+`#transform_values!`
+
+Mutating methods (without `!`):
+`#[]=`
+`#clear`
+`#delete`
+`#delete_if`
+`#initialize_copy`
+`#keep_if`
+`#replace`
+`#shift`
+`#update`
+
+Non-mutating methods (with `!`), which don't have non-mutating 
+form:
+No such methods.
 =end
