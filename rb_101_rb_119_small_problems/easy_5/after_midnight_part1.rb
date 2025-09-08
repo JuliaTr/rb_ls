@@ -65,8 +65,53 @@ Positive argument (0 to 1439):
 Positive argument (>1439):
 - If integer > 1440
   - the hours divide on 24
-
 =end
+
+## Refactored solution:
+MINUTES_IN_HOUR = 60
+HOURS_IN_DAY = 24
+MINUTES_IN_DAY = 1440
+
+def calculate_hours_in_minutes(num)
+  num.divmod(MINUTES_IN_HOUR)
+end
+
+def time_of_day(num)
+  minutes = num
+  hour = 00
+
+  if num > MINUTES_IN_DAY
+    hour, minutes = calculate_hours_in_minutes(num)
+    hour = hour / HOURS_IN_DAY
+  elsif (num < 0) && (num > -59)
+    minutes = MINUTES_IN_HOUR - num.abs
+    hour = HOURS_IN_DAY - 1
+  elsif (num <= -MINUTES_IN_HOUR) && (num >= -MINUTES_IN_DAY)
+    minutes = MINUTES_IN_DAY - num.abs
+  elsif num >= MINUTES_IN_HOUR
+    hour, minutes = calculate_hours_in_minutes(num)
+  elsif num <= -MINUTES_IN_DAY
+    hour, minutes = calculate_hours_in_minutes(num)
+    hour = (hour.abs / HOURS_IN_DAY) - 1
+  end
+
+  hour = hour.to_s.prepend('0') if hour.between?(0, 10)
+  minutes = minutes.to_s.prepend('0') if minutes.between?(0, 10)
+
+  "#{hour.to_s}:#{minutes.to_s}"
+end
+
+p time_of_day(0) == "00:00"         # true
+p time_of_day(-3) == "23:57"        # true
+p time_of_day(35) == "00:35"        # true
+p time_of_day(-1437) == "00:03"     # true
+p time_of_day(3000) == "02:00"      # true
+p time_of_day(800) == "13:20"       # true
+p time_of_day(-4231) == "01:29"     # true
+
+
+
+## Solution:
 MINUTES_IN_HOUR = 60
 HOURS_IN_DAY = 24
 MINUTES_IN_DAY = 1440
@@ -113,9 +158,9 @@ def time_of_day(num)
 end
 
 p time_of_day(0) == "00:00"         # true
-p time_of_day(-3) == "23:57"         # true
+p time_of_day(-3) == "23:57"        # true
 p time_of_day(35) == "00:35"        # true
-p time_of_day(-1437) == "00:03"      # true
+p time_of_day(-1437) == "00:03"     # true
 p time_of_day(3000) == "02:00"      # true
 p time_of_day(800) == "13:20"       # true
-p time_of_day(-4231) == "01:29"
+p time_of_day(-4231) == "01:29"     # true
