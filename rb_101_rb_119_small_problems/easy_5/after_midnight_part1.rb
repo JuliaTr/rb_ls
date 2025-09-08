@@ -67,6 +67,50 @@ Positive argument (>1439):
   - the hours divide on 24
 =end
 
+
+## More refactored solution:
+MINUTES_IN_HOUR = 60
+HOURS_IN_DAY = 24
+MINUTES_IN_DAY = 1440
+
+def calculate_hours_in_minutes(minutes)
+  minutes.divmod(MINUTES_IN_HOUR)
+end
+
+def time_of_day(minutes)
+  hour = 00
+
+  if minutes > MINUTES_IN_DAY
+    hour, minutes = calculate_hours_in_minutes(minutes)
+    hour = hour / HOURS_IN_DAY
+  elsif (minutes < 0) && (minutes > -59)
+    minutes = MINUTES_IN_HOUR - minutes.abs
+    hour = HOURS_IN_DAY - 1
+  elsif (minutes <= -MINUTES_IN_HOUR) && (minutes >= -MINUTES_IN_DAY)
+    minutes = MINUTES_IN_DAY - minutes.abs
+  elsif minutes >= MINUTES_IN_HOUR
+    hour, minutes = calculate_hours_in_minutes(minutes)
+  elsif minutes <= -MINUTES_IN_DAY
+    hour, minutes = calculate_hours_in_minutes(minutes)
+    hour = (hour.abs / HOURS_IN_DAY) - 1
+  end
+
+  hour = hour.to_s.prepend('0') if hour.between?(0, 10)
+  minutes = minutes.to_s.prepend('0') if minutes.between?(0, 10)
+
+  "#{hour.to_s}:#{minutes.to_s}"
+end
+
+p time_of_day(0) == "00:00"         # true
+p time_of_day(-3) == "23:57"        # true
+p time_of_day(35) == "00:35"        # true
+p time_of_day(-1437) == "00:03"     # true
+p time_of_day(3000) == "02:00"      # true
+p time_of_day(800) == "13:20"       # true
+p time_of_day(-4231) == "01:29"     # true
+
+
+
 ## Refactored solution:
 MINUTES_IN_HOUR = 60
 HOURS_IN_DAY = 24
@@ -153,6 +197,89 @@ def time_of_day(num)
     hour = hour.to_s.prepend('0') if hour.between?(0, 10)
     minutes = minutes.to_s.prepend('0') if minutes.between?(0, 10)
   end
+
+  "#{hour.to_s}:#{minutes.to_s}"
+end
+
+p time_of_day(0) == "00:00"         # true
+p time_of_day(-3) == "23:57"        # true
+p time_of_day(35) == "00:35"        # true
+p time_of_day(-1437) == "00:03"     # true
+p time_of_day(3000) == "02:00"      # true
+p time_of_day(800) == "13:20"       # true
+p time_of_day(-4231) == "01:29"     # true
+
+
+
+## Possible solution:
+MINUTES_PER_HOUR = 60
+HOURS_PER_DAY = 24
+MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR  # 1440
+
+def normalize_minutes_to_0_through_1439(minutes)
+  while minutes < 0
+    minutes += MINUTES_PER_DAY
+  end
+
+  # minutes in one day
+  minutes % MINUTES_PER_DAY  # if minutes > 1440 (longer than a single day)
+end
+
+=begin
+p time_of_day(3000) #== "02:00"      # true
+
+From the beginnig of the day 120 minutes have past. 
+This is 2 hours.
+=end
+
+def time_of_day(delta_minutes)
+  delta_minutes = normalize_minutes_to_0_through_1439(delta_minutes)
+
+  # how many minutes and hours are represented `delta_minute`
+  hours, minutes = delta_minutes.divmod(MINUTES_PER_HOUR)
+  p hours
+  p minutes
+
+  format('%02d:%02d', hours, minutes)
+end
+
+p time_of_day(0) == "00:00"         # true
+p time_of_day(-3) == "23:57"        # true
+p time_of_day(35) == "00:35"        # true
+p time_of_day(-1437) == "00:03"     # true
+p time_of_day(3000) #== "02:00"      # true
+p time_of_day(800) == "13:20"       # true
+p time_of_day(-4231) == "01:29"     # true
+
+
+
+### Experiments:
+MINUTES_IN_HOUR = 60
+HOURS_IN_DAY = 24
+MINUTES_IN_DAY = 1440
+
+def calculate_hours_in_minutes(num)
+  num.divmod(MINUTES_IN_HOUR)
+end
+
+def time_of_day(num)
+  hour, minutes = calculate_hours_in_minutes(num)
+
+  if num > MINUTES_IN_DAY
+    hour = hour / HOURS_IN_DAY
+  elsif (num < 0) && (num > -59)
+    minutes = MINUTES_IN_HOUR - num.abs
+    hour = HOURS_IN_DAY - 1
+  elsif (num <= -MINUTES_IN_HOUR) && (num >= -MINUTES_IN_DAY)
+    minutes = MINUTES_IN_DAY - num.abs
+  elsif num <= -MINUTES_IN_DAY
+    hour = (hour.abs / HOURS_IN_DAY) - 1
+  end
+
+  hour = 00 if hour.abs == 24 || num == 0
+
+  hour = hour.to_s.prepend('0') if hour.between?(0, 10)
+  minutes = minutes.to_s.prepend('0') if minutes.between?(0, 10)
 
   "#{hour.to_s}:#{minutes.to_s}"
 end
