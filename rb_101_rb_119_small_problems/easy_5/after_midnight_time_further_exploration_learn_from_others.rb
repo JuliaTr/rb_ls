@@ -51,5 +51,3 @@ $ ruby after_midnight_time_further_exploration_learn_from_others.rb
 2
 true
 =end
-
-
