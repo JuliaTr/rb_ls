@@ -30,8 +30,9 @@ end
 p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
 p swap('Abcde') == 'ebcdA'
 p swap('a') == 'a'
-
 # All test cases return `true`.
+
+p swap("ruby programming") == "yubr grogramminp"  # true
 
 
 
@@ -44,13 +45,121 @@ end
 
 def swap(words)
   result = words.split.map do |word|
-    swap_first_last_characters(word)
+    p swap_first_last_characters(word)
   end
+
+  p result
+
   result.join(' ')
 end
 
 p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
 p swap('Abcde') == 'ebcdA'
 p swap('a') == 'a'
+
+# All test cases return `true`.
+
+=begin
+p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+$ ruby letter_swap.rb
+"hO"
+"thaw"
+"a"
+"londerfuw"
+"yad"
+"ti"
+"si"
+["hO", "thaw", "a", "londerfuw", "yad", "ti", "si"]
+"hO thaw a londerfuw yad ti si"
+=end
+
+
+
+## Further exploration:
+def swap_first_last_characters(a, b)
+  a, b = b, a
+end
+
+def swap(words)
+  result = words.split.map do |word|
+    p swap_first_last_characters(word[0], word[-1])
+  end
+  
+  p result
+
+  result.join(' ')
+end
+
+p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+p swap('Abcde') == 'ebcdA'
+p swap('a') == 'a'
+
+# All test cases return `false`.
+
+=begin
+p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+# returns `false`
+
+$ ruby letter_swap.rb
+["h", "O"]
+["t", "w"]
+["a", "a"]
+["l", "w"]
+["y", "d"]
+["t", "i"]
+["s", "i"]
+[["h", "O"], ["t", "w"], ["a", "a"], ["l", "w"], ["y", "d"], ["t", "i"], ["s", "i"]]
+"h O t w a a l w y d t i s i"
+=end
+
+=begin
+*Would this method work? Why or why not?*
+This variant doesn't work, because multiple assignment `a, b = b, a`
+returns an array of letters swapped. Instead, in the possible
+solution we return the same word with swapped letters
+=end
+
+
+
+## Experiments:
+=begin
+PEDAC
+
+- new string should be returned
+- `"a b c"` are separate words
+
+High-level:
+- Take the first character and put on a place of the last one.
+- The last character put on a place of the first one.
+
+- Iterate over each word
+
+String -> Array 
+Array -> String
+
+Algorithm:
+- Convert string into Array of words
+- Iterate over Array, in each word:
+  - take the first character (initialize local variable)
+  - substitute the last character with the first one
+  - sudstitute the first character with the last one
+- Join elements into string
+=end
+
+def swap_first_last(str)
+  array = str.split
+
+  result = array.map do |word|
+    word[0], word[-1] = word[-1], word[0]
+    word
+  end
+
+  result.join(' ')
+end
+
+p swap_first_last("Launch School") == "hauncL lchooS"
+p swap_first_last("ruby programming") == "yubr grogramminp"
+p swap_first_last("a b c") == "a b c"
+p swap_first_last("") == ""
 
 # All test cases return `true`.
