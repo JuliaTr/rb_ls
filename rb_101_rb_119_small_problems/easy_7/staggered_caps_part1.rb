@@ -54,3 +54,32 @@ p staggered_case('I Love Launch School!') == 'I LoVe lAuNcH ScHoOl!'
 p staggered_case('ALL_CAPS') == 'AlL_CaPs'
 p staggered_case('ignore 77 the 444 numbers') == 'IgNoRe 77 ThE 444 NuMbErS'
 # All test cases return `true`.
+
+
+
+## Further exploration:
+=begin
+Can you modify this method so the caller can request that 
+the first character be downcased rather than upcased? If 
+the first character is downcased, then the second character 
+should be upcased, and so on.
+
+Hint: Use a keyword argument.
+=end
+
+def staggered_case(str, first_char_cap: true)
+  arr = str.chars
+
+  staggered = arr.map do |char|
+    first_char_cap ? char.downcase! : char.upcase!
+    first_char_cap = !first_char_cap
+    char
+  end
+
+  staggered.join
+end
+
+p staggered_case('I Love Launch School!') == 'i lOvE LaUnCh sChOoL!'
+p staggered_case('ALL_CAPS') == 'aLl_cApS'
+p staggered_case('ignore 77 the 444 numbers') == 'iGnOrE 77 tHe 444 nUmBeRs'
+# # All test cases return `true`.
