@@ -50,3 +50,36 @@ p crunch('4444abcabccba') == '4abcabcba'               # true
 p crunch('ggggggggggggggg') == 'g'                     # true
 p crunch('a') == 'a'                                   # true
 p crunch('') == ''                                     # true
+
+
+
+## Further exploration:
+# What happens if we stop iterating when `index` is equal to 
+# `text.length`?
+def crunch(text)
+  index = 0
+  crunch_text = ''
+
+  # The condition should be true so that iteration starts
+  while index == text.length
+    p index
+    p text[index]
+    p text.length
+
+    crunch_text << text[index] unless text[index] == text[index + 1]
+    index += 1
+  end
+
+  crunch_text
+end
+
+p crunch('ddaaiillyy ddoouubbllee') #== 'daily double'  # false
+# p crunch('4444abcabccba') == '4abcabcba'               # false
+# p crunch('ggggggggggggggg') == 'g'                     # false
+# p crunch('a') == 'a'                                   # false
+# p crunch('') == ''                                     # true
+
+=begin
+The return value is `""`. It means that the iteration hasn't
+happened.
+=end
