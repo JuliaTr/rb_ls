@@ -252,3 +252,23 @@ p crunch('ddaaiillyy ddoouubbllee') #== 'daily double'  # false
 The return value is `""`. It means that the iteration hasn't
 happened.
 =end
+
+
+# With `#each_char`:
+def crunch(text)
+  index = 0
+  crunch_text = ''
+
+  text.each_char do |char|
+    crunch_text << char unless char == text[index + 1]
+    index += 1
+  end
+
+  crunch_text
+end
+
+p crunch('ddaaiillyy ddoouubbllee') == 'daily double'  # true
+p crunch('4444abcabccba') == '4abcabcba'               # true
+p crunch('ggggggggggggggg') == 'g'                     # true
+p crunch('a') == 'a'                                   # ttrue
+p crunch('') == ''                                     # true
