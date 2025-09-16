@@ -54,6 +54,175 @@ p crunch('') == ''                                     # true
 
 
 ## Further exploration:
+# Iteration break down:
+def crunch(text)
+  index = 0
+  crunch_text = ''
+  while index <= text.length - 1
+    crunch_text << text[index] unless text[index] == text[index + 1]
+    p crunch_text
+
+    p "Index is #{index}"
+    index += 1
+  end
+
+  crunch_text
+end
+
+p crunch('4444abcabccba') == '4abcabcba'               # true
+
+=begin
+Iteration 1:
+while 0 <= 13 - 1 (12)
+  crunch_text << 4 unless 4 == 4 (true)  (should be false so that Ruby push character to a new string)
+  # crunch_text => ""
+  # Index is 0
+  1 = 0 + 1
+end
+
+Iteration 2:
+while 1 <= 12
+  crunch_text << 4 unless 4 == 4
+  # crunch_text => ""
+  # Index is 1
+  2 = 1 + 1  
+end
+
+Iteration 3:
+while 2 <= 12
+  crunch_text << 4 unless 4 == 4
+  # crunch_text => ""
+  # Index is 2
+  3 = 2 + 1
+end
+
+Iteration 4:
+while 3 <= 12
+  crunch_text << 4 unless 4 == 'a' (`false`)
+  # crunch_text => "4"
+  # Index is 3
+  4 = 3 + 1
+end
+
+Iteration 5:
+while 4 <= 12
+  crunch_text << 'a' unless 'a' == 'b' (`false`)
+  # crunch_text => "4a"
+  # Index is 4
+  5 = 4 + 1
+end
+
+Iteration 6:
+while 5 <= 12
+  crunch_text << 'b' unless 'b' == 'c' (`false`)
+  # crunch_text => "4ab"
+  # Index is 5
+  6 = 5 + 1
+end
+
+Iteration 7:
+while 6 <= 12
+  crunch_text << 'c' unless 'c' == 'a' (`false`)
+  # crunch_text => "4abc"
+  # Index is 6
+  7 = 6 + 1
+end
+
+Iteration 8:
+while 7 <= 12
+  crunch_text << 'a' unless 'a' == 'b' (`false`)
+  # crunch_text => "4abca"
+  # Index is 7
+  8 = 7 + 1
+end
+
+Iteration 9:
+while 8 <= 12
+  crunch_text << 'b' unless 'b' == 'c' (`false`)
+  # crunch_text => "4abcab"
+  # Index is 8
+  9 = 8 + 1
+end
+
+Iteration 10:
+while 9 <= 12
+  crunch_text << 'c' unless 'c' == 'c' (`true`)
+  # crunch_text => "4abcab"
+  # Index is 9
+  10 = 9 + 1
+end
+
+Iteration 11:
+while 10 <= 12
+  crunch_text << 'c' unless 'c' == 'b' (`false`)
+  # crunch_text => "4abcabc"
+  # Index is 10
+  11 = 10 + 1
+end
+
+Iteration 12:
+while 11 <= 12
+  crunch_text << 'b' unless 'b' == 'a' (`false`)
+  # crunch_text => "4abcabcb"
+  # Index is 11
+  12 = 11 + 1
+end
+
+Iteration 13:
+while 12 <= 12
+  crunch_text << 'a' unless 'a' == nil (`false`)
+  # crunch_text => "4abcabcba"
+  # Index is 12
+  13 = 12 + 1
+end
+
+Iteration 13 (doesn't happen):
+while 13 <= 12 (`false`)
+=end
+
+=begin
+""
+"Index is 0"
+
+""
+"Index is 1"
+
+""
+"Index is 2"
+
+"4"
+"Index is 3"
+
+"4a"
+"Index is 4"
+
+"4ab"
+"Index is 5"
+
+"4abc"
+"Index is 6"
+
+"4abca"
+"Index is 7"
+
+"4abcab"
+"Index is 8"
+
+"4abcab"
+"Index is 9"
+
+"4abcabc"
+"Index is 10"
+
+"4abcabcb"
+"Index is 11"
+
+"4abcabcba"
+"Index is 12"
+=end
+
+
+
 # What happens if we stop iterating when `index` is equal to 
 # `text.length`?
 def crunch(text)
