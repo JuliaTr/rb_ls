@@ -32,3 +32,25 @@ show_multiplicative_average([3, 5])                # => The result is 7.500
 show_multiplicative_average([6])                   # => The result is 6.000
 show_multiplicative_average([2, 5, 7, 11, 13, 17]) # => The result is 28361.667
 # Works as expected.
+
+
+
+## Further exploration:
+# What happens if you omit the call to `#to_f` on the first 
+# line of our method?
+def show_multiplicative_average(numbers)
+  product = 1
+
+  numbers.each { |number| product *= number }
+  average = product / numbers.size
+  puts "The result is #{format('%.3f', average)}"
+end
+
+show_multiplicative_average([3, 5])                # => The result is 7.500
+show_multiplicative_average([6])                   # => The result is 6.000
+show_multiplicative_average([2, 5, 7, 11, 13, 17]) # => The result is 28361.667
+# Output: (not as expected; the remainder the number is 
+# rounded up without a remainder)
+# The result is 7.000
+# The result is 6.000
+# The result is 28361.000
