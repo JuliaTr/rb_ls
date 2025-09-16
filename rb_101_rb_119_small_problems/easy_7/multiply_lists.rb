@@ -32,3 +32,13 @@ def multiply_list(list_1, list_2)
 end
 
 p multiply_list([3, 5, 7], [9, 10, 11]) == [27, 50, 77] # true
+
+
+
+## Further exploration:
+# Option 1:
+def multiply_list(list_1, list_2)
+  list_1.zip(list_2).map { |sub_arr| sub_arr.inject(:*) }
+end
+
+p multiply_list([3, 5, 7], [9, 10, 11]) #== [27, 50, 77] # true
