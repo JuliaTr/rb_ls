@@ -26,17 +26,18 @@ count_occurences(vehicles)
 
 
 ## Possible solution:
+# With `#uniq` (efficiency - less iterations):
 vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
             'motorcycle', 'motorcycle', 'car', 'truck']
 
 def count_occurences(array)
-  occurrences = {}
+  occurences = {}
 
   array.uniq.each do |element|
-    occurrences[element] = array.count(element)
+    occurences[element] = array.count(element)
   end
 
-  occurrences.each do |element, count|
+  occurences.each do |element, count|
     puts "#{element} => #{count}"
   end
 end
@@ -67,9 +68,35 @@ def count_occurences(arr)
 end
 
 count_occurences(vehicles)
-
 # Output:
 # car => 4
 # truck => 3
 # suv => 2
 # motorcycle => 2
+
+
+
+### Experiments:
+# Without `#uniq` (more iterations):
+vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+            'motorcycle', 'motorcycle', 'car', 'truck', 'suv']
+
+def count_occurences(arr)
+  occurences = {}
+
+  arr.each do |element|
+    occurences[element] = arr.count(element)
+  end
+
+  occurences.each do |element, count|
+    puts "#{element} => #{count}"
+  end
+end
+
+count_occurences(vehicles)
+# Output:
+# car => 4
+# truck => 3
+# SUV => 1
+# motorcycle => 2
+# suv => 1
