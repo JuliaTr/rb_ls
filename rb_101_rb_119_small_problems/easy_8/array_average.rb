@@ -47,3 +47,15 @@ puts average([1, 6]) == 3 # integer division: (1 + 6) / 2 -> 3
 puts average([1, 5, 87, 45, 8, 8]) == 25
 puts average([9, 47, 23, 95, 16, 52]) == 40
 # All test cases return `true`.
+
+
+
+## Further exploration:
+def average_to_float(numbers)
+  sum = numbers.reduce { |sum, number| sum + number }
+  (sum.to_f / numbers.count).to_f.round(2)
+end
+
+puts average_to_float([1, 6])                   # 3.5
+puts average_to_float([1, 5, 87, 45, 8, 8])     # 25.67
+puts average_to_float([9, 47, 23, 95, 16, 52])  # 40.33
