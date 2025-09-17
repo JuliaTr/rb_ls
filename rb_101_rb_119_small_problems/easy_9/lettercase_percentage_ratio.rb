@@ -26,7 +26,7 @@ def letter_percentages(str)
   hash = letter_case_count(str)
 
   hash.transform_values do |value|  # returns new hash
-    (value.to_f * PERCENTAGE.to_f) / str.length.to_f
+    (value * PERCENTAGE) / str.length.to_f
   end
 end
 
@@ -62,4 +62,36 @@ end
 p letter_percentages('abCdef 123') == { lowercase: 50.0, uppercase: 10.0, neither: 40.0 }
 p letter_percentages('AbCd +Ef') == { lowercase: 37.5, uppercase: 37.5, neither: 25.0 }
 p letter_percentages('123') == { lowercase: 0.0, uppercase: 0.0, neither: 100.0 }
+# All test cases return `true`.
+
+
+
+## Further exploration:
+# Round float numbers.
+def calculate(percentages, counts, length)
+  percentages[:lowercase] = ((counts[:lowercase] / length.to_f) * 100).round(1)
+  percentages[:uppercase] = ((counts[:uppercase] / length.to_f) * 100).round(1)
+  percentages[:neither] = ((counts[:neither] / length.to_f) * 100).round(1)
+end
+
+def letter_percentages(str)
+  counts = {}
+  percentages = {}
+  characters = str.chars
+  length = str.length
+
+  counts[:lowercase] = characters.count { |char| char =~ /[a-z]/ }
+  counts[:uppercase] = characters.count { |char| char =~ /[A-Z]/ }
+  counts[:neither] = characters.count { |char| char =~ /[^A-Za-z]/ }
+
+  calculate(percentages, counts, length)
+
+  percentages
+end
+
+p letter_percentages('abCdef 123') == { lowercase: 50.0, uppercase: 10.0, neither: 40.0 }
+p letter_percentages('AbCd +Ef') == { lowercase: 37.5, uppercase: 37.5, neither: 25.0 }
+p letter_percentages('123') == { lowercase: 0.0, uppercase: 0.0, neither: 100.0 }
+
+p letter_percentages('abcdefGHI') == {:lowercase=>66.7, :uppercase=>33.3, :neither=>0.0}
 # All test cases return `true`.
