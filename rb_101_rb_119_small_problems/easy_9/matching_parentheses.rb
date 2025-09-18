@@ -167,3 +167,46 @@ p balanced?('What ((is))) up(') == false       # false
 
 # Has `)(`:
 p balanced?('What ())(is() up') == false       # true
+
+
+
+## Further exploration:
+# Expand the method to take into account square brackets, curly 
+# brackets, quotation marks(single and double).
+
+def balanced?(string)
+  parens = 0
+  square_brackets = 0
+  curly_brackets = 0
+  single_quotation_marks = 0
+  double_quotation_marks = 0
+
+  string.each_char do |char|
+    parens += 1 if char == '('
+    parens -= 1 if char == ')'
+
+    square_brackets += 1 if char == '['
+    square_brackets -= 1 if char == ']'
+
+    curly_brackets += 1 if char == '{'
+    curly_brackets -= 1 if char == '}'
+
+    single_quotation_marks += 1 if char == "'"
+    single_quotation_marks -= 1 if char == "'"
+
+    double_quotation_marks += 1 if char == "\""
+    double_quotation_marks -= 1 if char == "\""
+
+    break if parens < 0 || square_brackets < 0 ||
+             curly_brackets < 0 || single_quotation_marks < 0 ||
+             double_quotation_marks < 0
+  end
+
+  parens.zero? && square_brackets.zero? &&
+  curly_brackets.zero? && single_quotation_marks.zero? &&
+  double_quotation_marks.zero?
+end
+
+p balanced?("What "'[(is)]'" this?") == true     # true
+p balanced?('])Hey!("}') == false                # true
+p balanced?("What' ())(is() [up") == false       # true
