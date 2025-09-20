@@ -33,3 +33,12 @@ end
 p sequence(5) == [1, 2, 3, 4, 5]  # true
 p sequence(3) == [1, 2, 3]        # true
 p sequence(1) == [1]              # true
+
+
+
+## Further exploration:
+def sequence(number)
+  (number..1).to_a
+end
+
+p sequence(-1)   # [-1, 0, 1]
