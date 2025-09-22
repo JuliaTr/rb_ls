@@ -66,6 +66,32 @@ def dms(degrees_float)
   format(%(#{degrees}#{DEGREE}%02d'%02d"), minutes, seconds)
 end
 
+puts dms(30) == %(30°00'00")        # true
+puts dms(76.73) == %(76°43'48")     # true
+puts dms(254.6) == %(254°36'00")    # true
+puts dms(93.034773) == %(93°02'05") # true
+puts dms(0) == %(0°00'00")          # true
+puts dms(360) == %(360°00'00") || dms(360) == %(0°00'00") # true
+
+
+
+## Further exploration:
+# Since degrees are normally restricted to the range 0-360, 
+# can you modify the code so it returns a value in the appropriate 
+# range when the input is less than 0 or greater than 360?
+
+# Existing solution with integers greater than 360 or less than 0.
+DEGREE = "\u00B0"
+MINUTES_PER_DEGREE = 60
+SECONDS_PER_MINUTE = 60
+SECONDS_PER_DEGREE = MINUTES_PER_DEGREE * SECONDS_PER_MINUTE
+
+def dms(degrees_float)
+  total_seconds = (degrees_float * SECONDS_PER_DEGREE).round
+  degrees, remaining_seconds = total_seconds.divmod(SECONDS_PER_DEGREE)
+  minutes, seconds = remaining_seconds.divmod(SECONDS_PER_MINUTE)
+  format(%(#{degrees}#{DEGREE}%02d'%02d"), minutes, seconds)
+end
 
 puts dms(30) == %(30°00'00")        # true
 puts dms(76.73) == %(76°43'48")     # true
@@ -73,3 +99,49 @@ puts dms(254.6) == %(254°36'00")    # true
 puts dms(93.034773) == %(93°02'05") # true
 puts dms(0) == %(0°00'00")          # true
 puts dms(360) == %(360°00'00") || dms(360) == %(0°00'00") # true
+
+puts dms(400) == %(400°00'00")      # true
+puts dms(-40) == %(-40°00'00")      # true
+puts dms(-420) == %(-420°00'00")    # true
+
+puts dms(400) == %(40°00'00")       # false
+puts dms(-40) == %(320°00'00")      # false
+puts dms(-420) == %(300°00'00")     # false
+
+
+
+# Value in appropriate range
+DEGREE = "\u00B0"
+MINUTES_PER_DEGREE = 60
+SECONDS_PER_MINUTE = 60
+SECONDS_PER_DEGREE = MINUTES_PER_DEGREE * SECONDS_PER_MINUTE # 3600
+FULL_ANGLE_IN_DEGREES = 360
+
+def dms(degrees_float)
+  total_seconds = (degrees_float * SECONDS_PER_DEGREE).round
+
+  degrees, remaining_seconds = total_seconds.divmod(SECONDS_PER_DEGREE)
+
+  degrees = case
+            when degrees_float > FULL_ANGLE_IN_DEGREES
+              degrees_float - FULL_ANGLE_IN_DEGREES
+            when(-(FULL_ANGLE_IN_DEGREES - 1)..0).include?(degrees_float)
+              FULL_ANGLE_IN_DEGREES + degrees_float
+            when degrees_float < -(FULL_ANGLE_IN_DEGREES - 1)
+              FULL_ANGLE_IN_DEGREES + (FULL_ANGLE_IN_DEGREES + degrees_float)
+            else 
+              degrees
+            end
+
+  minutes, seconds = remaining_seconds.divmod(SECONDS_PER_MINUTE)
+
+  format(%(#{degrees}#{DEGREE}%02d'%02d"), minutes, seconds)
+end
+
+puts dms(30) == %(30°00'00")        # true
+puts dms(76.73) == %(76°43'48")     # true
+puts dms(254.6) == %(254°36'00")    # true
+
+puts dms(400) == %(40°00'00")       # true
+puts dms(-40) == %(320°00'00")      # true
+puts dms(-420) == %(300°00'00")     # true
