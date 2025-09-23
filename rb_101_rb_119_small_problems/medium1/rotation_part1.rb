@@ -55,3 +55,35 @@ p rotate_array(['a']) == ['a']
 x = [1, 2, 3, 4]
 p rotate_array(x) == [2, 3, 4, 1]   # => true
 p x == [1, 2, 3, 4]                 # => true
+
+
+
+## Further exploration:
+# Write a method that rotates a string instead of an array.
+# You may use `rotate_array` from inside your new method.
+
+def rotate_array(array)
+  array[1..-1] + [array[0]]
+end
+
+def rotate_string(str)
+  array = str.chars
+  rotate_array(array).join
+end
+
+p rotate_string('hello') == "elloh"   # true
+
+
+# Write a method that rotates integers. 
+# You may use `rotate_array` from inside your new method.
+def rotate_array(array)
+  array[1..-1] + [array[0]]
+end
+
+def rotate_integer(num)
+  array = num.to_s.chars
+  array_strings = rotate_array(array)
+  array_strings.join.to_i
+end
+
+p rotate_integer(123456) == 234561     # true
