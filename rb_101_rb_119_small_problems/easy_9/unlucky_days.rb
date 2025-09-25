@@ -28,3 +28,18 @@ end
 p friday_13th(2015) == 3
 p friday_13th(1986) == 1
 p friday_13th(2019) == 2
+
+
+
+## Further exploration
+# Count the number of months that have five Fridays. Account 
+# for leap years. 
+# Learn from others' solutions:
+def count_months_with_5_fridays(year)
+  (1..12).count do |month|
+    current_month = Date.new(year, month)
+    (current_month...current_month.next_month).count(&:friday?) == 5
+  end
+end
+
+p count_months_with_5_fridays(2024) == 4  # true
