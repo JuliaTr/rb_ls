@@ -27,6 +27,59 @@ ___________________________________________________________
 Build a temporary substring from chars.
 =end
 
+## Improved solution:
+def return_array_of_words(str)
+  index = 0
+  substring = ''
+
+  str.each_char do |char|
+    substring << char.downcase unless char.match?(/[^a-zA-Z' ]/)
+    index += 1
+  end
+
+  substring = '' if !str.match?(/[a-zA-Z]/)
+
+  substring.split
+end
+
+def return_occurrences(arr)
+  # Each word is processed once with its count incremented. (better)
+  arr.each_with_object(Hash.new(0)) do |word, h|
+    h[word] += 1
+  end
+end
+
+def top_3_words(str)
+  arr = return_array_of_words(str)
+  # p arr
+
+  h = return_occurrences(arr)
+
+  h.max_by(3) { |_, v| v }.map { |subarr| subarr[0] }
+end
+
+p top_3_words("In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An olla of rather more beef than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, made away with three-quarters of his income.")
+# => ["a", "of", "on"]   # works
+
+p top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e")
+# => ["e", "ddd", "aa"]  # works
+
+p top_3_words(" //wont won't won't")
+# => ["won't", "wont"]   # works
+
+p top_3_words("a a a b c c d d d d e e e e e") == ["e", "d", "a"]
+p top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e") == ["e", "ddd", "aa"]
+p top_3_words(" //wont won't won't ") == ["won't", "wont"]  #
+p top_3_words(" , e .. ") == ["e"]
+p top_3_words(" ... ") == []
+p top_3_words(" ' ") == []
+p top_3_words(" ''' ") == []
+p top_3_words("""In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An olla of rather more beef than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, made away with three-quarters of his income.""") == ["a", "of", "on"]
+# All test cases return `true`.
+
+
+
+## Solution:
 def return_array_of_words(str)
   index = 0
   substring = ''
@@ -42,7 +95,7 @@ def return_array_of_words(str)
 end
 
 # Opion 1 (`each`):
-# def return_occurences(arr)
+# def return_occurrences(arr)
 #   h = {}
 
 #   arr.each do |word|
@@ -53,8 +106,11 @@ end
 # end
 
 # Opion 2 ('each_with_object'):
-def return_occurences(arr)
+def return_occurrences(arr)
   arr.each_with_object({}) do |word, h|
+    # The `arr.count(word)` recomputes count multiple times for repeated words.
+    # The `arr.count` iterates through the entire array each time
+    # it's called.
     h[word] = arr.count(word)
   end
 end
@@ -63,7 +119,7 @@ def top_3_words(str)
   arr = return_array_of_words(str)
   # p arr
 
-  h = return_occurences(arr)
+  h = return_occurrences(arr)
 
   h.max_by(3) { |_, v| v }.map { |subarr| subarr[0] }
 end
