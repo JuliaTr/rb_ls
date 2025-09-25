@@ -7,6 +7,7 @@ Example:
 ["Keep", "Remove", "Keep", "Remove", "Keep", ...] --> ["Keep", "Keep", "Keep", ...]
 =end
 
+## Solution:
 def remove_elements(arr)
   new_arr = []
 
@@ -18,4 +19,16 @@ def remove_elements(arr)
 end
 
 p remove_elements(["Keep", "Remove", "Keep", "Remove", "Keep"]) == ["Keep", "Keep", "Keep"]
+# true
+
+
+
+## Experiments:
+def remove_every_other(arr)
+  arr.select.with_index do |el, index|
+    el if index.even?
+  end
+end
+
+p remove_every_other(["Keep", "Remove", "Keep", "Remove", "Keep"]) == ["Keep", "Keep", "Keep"]
 # true
