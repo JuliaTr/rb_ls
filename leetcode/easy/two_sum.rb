@@ -10,9 +10,52 @@ You can return the answer in any order.
 
 ____________________________________________________________
 
-[1, 4, 5, 2]:
-All pairs: [1, 4], [1, 5], [1, 2], [4, 5], [4, 2]
+[1, 4, 5, 2], target 7:
+All pairs: [1, 4], [1, 5], [1, 2], [4, 5], [4, 2], [5, 2]
+5 + 2 = 7
+
+
+- "you may not use the same element twice" means that I cannot 
+  compare an element with itself.
 =end
+
+## More improved solution:
+def two_sum(nums, target)
+  counter = 0
+  next_counter = counter + 1
+
+  loop do
+    current_element = nums[counter]
+    next_element = nums[next_counter]
+
+    sum = current_element + next_element
+
+    # As soon as the indices are found, add them to `new_arr` 
+    # and exit the loop (`return`).
+    if sum == target
+      # Returns new array right away.
+      return [counter, next_counter]
+    end
+
+    break if counter == nums.length - 1
+
+    next_counter += 1
+    
+    if next_counter == nums.length
+      counter += 1
+      next_counter = counter + 1
+    end
+  end
+end
+
+p two_sum([2, 7, 11, 15], 9) == [0, 1]  # true
+p two_sum([3, 2, 4], 6) == [1, 2]       # true
+p two_sum([3, 3], 6) == [0, 1]          # true
+p two_sum([-1, 2, 0], 1) == [0, 1]      # true
+p two_sum([1, 4, 5, 2], 7) == [2, 3]    # true
+p two_sum([1, 4, 5, 2], 3) == [0, 3]    # true
+
+
 
 ## Improved solution:
 # Finds all pairs.
