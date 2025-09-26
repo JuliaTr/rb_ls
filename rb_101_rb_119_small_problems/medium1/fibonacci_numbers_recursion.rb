@@ -51,3 +51,47 @@ p fibonacci(4) == 3         # true
 p fibonacci(5) == 5         # true
 p fibonacci(12) == 144      # true
 p fibonacci(20) == 6765     # true
+
+=begin
+fibonacci(3):
+fibonacci(3 - 1) + fibonacci(3 - 2)
+fibonacci(2) + fibonacci(1)
+1 + 1 = 2
+
+
+fibonacci(5):
+fibonacci(5 - 1)                + fibonacci(5 - 2)
+fibonacci(4)
+fibonacci(4 - 1) = fibonacci(3)
+fibonacci(4 - 2) = fibonacci(2)
+fibonacci(3)
+fibonacci(3 - 1) = fibonacci(2)
+fibonacci(3 - 2) = fibonacci(1)
+fibonacci(2) = 1
+fibonacci(2) = 1
+fibonacci(2) = 1
+
+fibonacci(5 - 2) = fibonacci(3)
+fibonacci(3 - 1) = fibonacci(2)
+fibonacci(3 - 2) = fibonacci(1)
+fibonacci(2) = 1
+fibonacci(1) = 1
+
+1 + 1 + 1 + 1 + 1 = 5 
+=end
+
+
+
+## Experiments:
+def not_fibonacci(n)
+  return 1 if n <= 2
+  (n - 1) + (n - 2)
+end 
+
+p not_fibonacci(1)  # 1
+p not_fibonacci(2)  # 1
+p not_fibonacci(3)  # 3
+p not_fibonacci(4)  # 5
+p not_fibonacci(5)  # 7
+p not_fibonacci(12) # 21
+p not_fibonacci(20) # 37
