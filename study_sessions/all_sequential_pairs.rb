@@ -2,7 +2,7 @@
 
 =begin
 Notes:
-current element and pair with the next element
+current element pair with the next element
 =end
 
 # Option 1:
@@ -30,3 +30,16 @@ p sequentialPairs(sample) == [[1, 2], [2, 3], [3, 4], [4, 5]]
 
 
 # Option 2:
+def sequentialPairs(arr)
+  new_arr = []
+
+  (0..arr.length - 2).each do |indice|
+    new_arr << [arr[indice], arr[indice + 1]]
+  end
+
+  new_arr
+end
+
+sample = [1, 2, 3, 4, 5]
+p sequentialPairs(sample) == [[1, 2], [2, 3], [3, 4], [4, 5]]
+# true
