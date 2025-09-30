@@ -24,18 +24,45 @@ Intermediate:
 - range - to iterate over to find all substrings with the length
 of `search_text`
 - array - to store substrings from the iteration over range
-- DISCARDED: hash - to find number of occurrences of `search_text`
-- NOT needed (booleans)
+- NOT needed (hash, booleans)
 
 High-level:
-- DISCARDED: If `search_text` length is greater than 1
-  - Iterate over a `full_text` to count how many `search_text` is 
-    there, return number of occurrences.
-- Otherwise, iterate over a range of characters in the `full_text`
+- Iterate over a range of characters in the `full_text`
   to find all substrings with the length of `search_text`.
 - Count substrings with occurrences of `search_text`
 =end
 
+## Improved solution:
+# Use an integer counter to increment:
+def solution(full_text, search_text)
+  counter = 0
+  offset = search_text.length - 1
+
+  # Iterate over range of characters to count all substrings with
+  # the length of `search_text`.
+  # Loops with an exclusive range that stops before the last invalid
+  # start index.
+  (0...full_text.length - offset).each do |indice|
+    if full_text[indice..indice + offset] == search_text
+      counter += 1
+    end
+  end
+
+  counter
+end
+
+p solution('aa_bb_cc_dd_bb_e', 'bb') # should return 2 since bb shows up twice
+# 2
+p solution('aaabbbcccc', 'bbb') # should return 1
+# 1
+
+p solution('abcdeb','b') == 2    # true
+p solution('abcdeb', 'a') == 1   # true
+p solution('abbc', 'bb') == 1    # true
+
+
+
+## Solution:
 def solution(full_text, search_text)
   count = []
   number_of_chars_without_first = search_text.length - 1
