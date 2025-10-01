@@ -37,6 +37,62 @@ Intermediate:
 - Count maximum length of substrings
 =end
 
+## Improved solution:
+VOWELS = 'aeiou'
+
+def return_vowels_substrings(str)
+  arr_substrings = []
+  substring = ''
+
+  str.each_char.with_index do |char, index|
+    if VOWELS.include?(char)
+      # Append a vowel to running substring:
+      substring << char
+
+      # Push substring and reset it if substring char is the 
+      # last character:
+      if index == str.length - 1
+        arr_substrings << substring
+        substring = ''
+      end
+
+    # Push substring and reset it if substring isn't a vowel and 
+    # isn't empty: 
+    else
+      if !substring.empty?
+        arr_substrings << substring
+        substring = ''
+      end
+    end
+  end
+
+  arr_substrings
+end
+
+def solve(str)
+  # Find all substrings with vowels only:
+  arr_substrings = return_vowels_substrings(str)
+
+  # Find length of each substring:
+  substrings_length = arr_substrings.map(&:length)
+
+  # Find max length:
+  substrings_length.max
+end
+
+
+p solve("codewarriors") == 2
+p solve("suoidea") == 3
+p solve("iuuvgheaae") == 4
+p solve("ultrarevolutionariees") == 3
+p solve("strengthlessnesses") == 1
+p solve("cuboideonavicuare") == 2
+p solve("chrononhotonthuooaos") == 5
+p solve("iiihoovaeaaaoougjyaw") == 8
+# All test cases return `true`.
+
+
+
 ## Solution:
 def return_all_substrings_with_vowels_only(str)
   arr_substrings = []
