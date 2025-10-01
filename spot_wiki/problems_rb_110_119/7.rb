@@ -37,6 +37,43 @@ High-level:
     - Push a character of index the same as index of this string
       to a new string
 =end
+## Improved solution:
+# Option 1:
+def nth_char(arr)
+  new_str = ''
+
+  # Push a character of index the same as index of this string
+  # to a new string:
+  arr.each_with_index do |str, index|
+    new_str << str[index]
+  end
+
+  new_str
+end
+
+p nth_char(['yoda', 'best', 'has']) == 'yes'
+p nth_char([]) == ''
+p nth_char(['X-ray']) == 'X'
+p nth_char(['No', 'No']) == 'No'
+p nth_char(['Chad', 'Morocco', 'India', 'Algeria', 'Botswana', 'Bahamas', 'Ecuador', 'Micronesia']) == 'Codewars'
+# All test cases return `true`.
+
+
+# Option 2:
+def nth_char(arr)
+  # Collect a character of index the same as index of this string
+  # to a new array. Join strings in array:
+  arr.map.with_index { |str, index| str[index] }.join
+end
+
+p nth_char(['yoda', 'best', 'has']) == 'yes'
+p nth_char([]) == ''
+p nth_char(['X-ray']) == 'X'
+p nth_char(['No', 'No']) == 'No'
+p nth_char(['Chad', 'Morocco', 'India', 'Algeria', 'Botswana', 'Bahamas', 'Ecuador', 'Micronesia']) == 'Codewars'
+# All test cases return `true`.
+
+
 
 ## Solution:
 def nth_char(arr)
@@ -44,6 +81,8 @@ def nth_char(arr)
 
   arr.each.with_index do |str, str_index|
     str.each_char.with_index do |char, char_index|
+      # Push a character of index the same as index of this string
+      # to a new string:
       if char_index == str_index
         new_str << char
         break
