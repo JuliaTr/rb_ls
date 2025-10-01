@@ -52,18 +52,45 @@ High-level:
 - Return array of counts
 =end
 
+## Improved solution:
+# Constant, `#map`, `#count`:
+
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
+
+def solve(arr)
+  arr.map do |str|
+    str.each_char.with_index.count do |char, index| # `#count` directly counts
+      char.downcase == ALPHABET[index]
+    end
+  end
+end
+
+p solve(["abode","ABc","xyzD"]) == [4, 3, 1]
+p solve(["abode","ABc","xyzD"]) == [4, 3, 1]
+p solve(["abide","ABc","xyz"]) == [4, 3, 0]
+p solve(["IAMDEFANDJKL","thedefgh","xyzDEFghijabc"]) == [6, 5, 7]
+p solve(["encode","abc","xyzD","ABmD"]) == [1, 3, 1, 3]
+# All test cases return `true`.
+
+
+
 ## Solution:
 def solve(arr)
+  # Alphabetic characters:
   alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+  # Array of counts:
   arr_counts = []
 
+  # Iterate over array of strings"
   arr.each do |str|
     count = 0
 
+    # Iterate over each character of the string and count characters
+    # with the same index as character in `alphabet`.
     str.each_char.with_index do |char, index|
       count += 1 if char.downcase == alphabet[index]
     end
-
     arr_counts << count
   end
 
