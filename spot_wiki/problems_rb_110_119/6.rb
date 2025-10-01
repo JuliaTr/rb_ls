@@ -43,6 +43,38 @@ High-level:
 - Count number of selected integers
 =end
 
+## Refactored solution:
+def return_odd_substrings(str)
+  arr_substrings = []
+
+  # Find all contiguous substrings and push them to new array
+  str.each_char.with_index do |_, index_first|
+    (index_first..str.length - 1).each do |index_last|
+      substring = str[index_first..index_last]
+      arr_substrings << substring if substring[-1].to_i.odd?
+    end
+  end
+
+  arr_substrings
+end
+
+def solve(str)
+  # Find odd substrings 
+  odd_substrings = return_odd_substrings(str)
+
+  # Count number of selected integers:
+  odd_substrings.length
+end
+
+p solve("1341") == 7          # true
+p solve("1357") == 10         # true
+p solve("13471") == 12        # true
+p solve("134721") == 13       # true
+p solve("1347231") == 20      # true
+p solve("13472315") == 28     # true
+
+
+
 ## Solution:
 # Inner iteration is on input string directly.
 # Option 2:
