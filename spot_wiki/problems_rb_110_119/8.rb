@@ -42,6 +42,27 @@ High-level
   string, value is the number of occurences.
 =end
 
+## Refactored solution:
+def min_substring(str)
+  str.each_char.with_index do |_, index|
+    substring = str[0..index]
+
+    if str.length % substring.length == 0
+      substring_times = str.length / substring.length
+      makes_str = substring * substring_times
+
+      # Substring of minimal length which build the whole string:
+      return [substring, substring_times] if makes_str == str
+    end
+  end
+end
+
+p min_substring("ababab") == ["ab", 3]     # true
+p min_substring("abcde") == ["abcde", 1]   # true
+
+
+
+## Solution:
 def return_substrings(str)
   substrings = []
 
@@ -81,5 +102,5 @@ def min_substring(str)
   repeating_substring_construct_input(occurrences, str)
 end
 
-p min_substring("ababab") == ["ab", 3]
-p min_substring("abcde") == ["abcde", 1]
+p min_substring("ababab") == ["ab", 3]    # true
+p min_substring("abcde") == ["abcde", 1]  # true
