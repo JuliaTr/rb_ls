@@ -77,6 +77,46 @@ __________________________________________________________
 ["4", "."]
 
 =end
+
+# Improved solution:
+DIGIT_HASH = {
+  'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
+  'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
+  'eight' => '8', 'nine' => '9'
+}
+
+def word_to_digit(words)
+  DIGIT_HASH.keys.each do |word|
+    words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
+  end
+  words
+end
+
+def modify_words(words)
+  words = word_to_digit(words)  # string
+
+  # New array is created in order not to remove elements from 
+  # original string when iterating furthe.
+  words_chars = words.chars # array
+
+  # Iterate over a string directly
+  words_chars.each_with_index do |char, index|
+    if char.to_i.to_s == char &&           # digit?
+        words_chars[index + 1] == ' ' &&
+        words_chars[index + 2].to_i.to_s ==  words_chars[index + 2]  # digit?
+      words_chars.slice!(index + 1)
+    end
+  end
+
+  words_chars.join
+end
+
+p modify_words('Please call me at five five five one two three four. Thanks.') == "Please call me at 5551234. Thanks."
+# true
+
+
+
+# Solution:
 DIGIT_HASH = {
   'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
   'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7', 
@@ -94,6 +134,7 @@ def modify_words(words)
   words = word_to_digit(words) # string
   arr_chars = words.chars   # array of chars
 
+  # ! Removing is while iteration ! (do NOT do this):
   (0..arr_chars.length - 2).each do |indice|  # indice
     if arr_chars[indice].to_i.to_s == arr_chars[indice] &&
         arr_chars[indice + 1] == ' ' &&
@@ -113,3 +154,5 @@ p modify_words('Please call me at five five five one two three four. Thanks.') =
 ## Experiments:
 p ' '.to_i # 0
 p ' '.to_i.to_s  # "0"
+
+
