@@ -1,17 +1,25 @@
 =begin
-We're receiving a set of messages in code. The messages are sets of text strings, like:
+We're receiving a set of messages in code. The messages are 
+sets of text strings, like:
 "alakwnwenvocxzZjsf"
-Write a method to decode these strings into numbers. The decoded number should be the number of lowercase characters between the first two uppercase characters. If there aren't two uppercase characters, the number should be 0.
+Write a method to decode these strings into numbers. The 
+decoded number should be the number of lowercase characters 
+between the first two uppercase characters. If there aren't 
+two uppercase characters, the number should be 0.
 
 
 P
-Return a new array with numbers. Each string in the input array is represented by a number in the output array. The number is the number of lowercase letters between two the first two uppercase letters.
+Return a new array with numbers. Each string in the input array 
+is represented by a number in the output array. The number is 
+the number of lowercase letters between two the first two 
+uppercase letters.
 
 Rules/Requirements
 - if there are not 2 uppercase letters, return 0
 - if the string is empty, return 0
 - if the input array is empty, return []
-- return the number of lowercase letters between the first two uppercase letters
+- return the number of lowercase letters between the first two 
+uppercase letters
 - strings contains alphabetic characters, upper and lower case
 
 D
@@ -24,20 +32,35 @@ Intermediate:
   - range - to store ascii values of uppercase letters
 
 High-level strategies
-Yuliia - find which characters are the first two uppercase characters, look to see if and how many lowercase characters there are between them.
+Yuliia - find which characters are the first two uppercase 
+characters, look to see if and how many lowercase characters 
+there are between them.
   
-Alex/Yuliia - create a range of the ascii values of A-Z, iterate through string, check whether each character is uppercase, if uppercase store the index in a new array ([2, 5, 9]), get the first two values in this array of uppercase indexes, find substring equating to this 'UrsC', count downcase letters - by getting the length of the substring and subtracting 2
+Alex/Yuliia - create a range of the ascii values of A-Z, 
+iterate through string, check whether each character is 
+uppercase, if uppercase store the index in a new array 
+([2, 5, 9]), get the first two values in this array of 
+uppercase indexes, find substring equating to this 'UrsC', 
+count downcase letters - by getting the length of the 
+substring and subtracting 2
 
-Alex - use the length of the uppercaseIndexes array to trigger guard clauses
+Alex - use the length of the uppercaseIndexes array to trigger 
+guard clauses
 
-Alex - create a sequential list of substrings, all combinations, filter for those that contain exactly two uppercase letters, filter for those where the uppercase are the start and end, then you need the first one that meets the criteria
+Alex - create a sequential list of substrings, all combinations, 
+filter for those that contain exactly two uppercase letters, 
+filter for those where the uppercase are the start and end, 
+then you need the first one that meets the criteria
 
 Alex - iterate through string, when find first uppercase, 
 store it in a new string, keep appending to the new string 
 until you get to another uppercase letter, the stop and 
 find the number of lowercase letters in the new string
 
-Clare - iterate through the string and store the index of uppercase letters (compare each letter with itself uppercased), then if the stored indexes lengths is < 2, return 0, otherwise return the difference between the first two indexes -1.
+Clare - iterate through the string and store the index of uppercase 
+letters (compare each letter with itself uppercased), then if 
+the stored indexes lengths is < 2, return 0, otherwise return 
+the difference between the first two indexes -1.
 
 
 Iterate through string, when find first uppercase, 
