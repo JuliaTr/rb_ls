@@ -1,118 +1,116 @@
-## Further exploration:
-# Replace uppercase and capitalized words:
-DIGIT_HASH = {
-  'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
-  'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
-  'eight' => '8', 'nine' => '9'
-}.freeze
+# ## Further exploration:
+# # Replace uppercase and capitalized words:
+# DIGIT_HASH = {
+#   'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
+#   'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
+#   'eight' => '8', 'nine' => '9'
+# }.freeze
 
-def word_to_digit(words)
-  DIGIT_HASH.keys.each do |word|
-    words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
-  end
-  words
-end
+# def word_to_digit(words)
+#   DIGIT_HASH.keys.each do |word|
+#     words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
+#   end
+#   words
+# end
 
-def modify_words(words)
-  # Replace words to digits:
-  words = word_to_digit(words)
+# def modify_words(words)
+#   # Replace words to digits:
+#   words = word_to_digit(words)
   
-  # Replace uppercase and capitalized words:
-  words.split.each do |word|
-    if word == word.capitalize
-      words.gsub!(word, word.downcase)
-    elsif word == word.downcase
-      words.gsub!(word, word.upcase)
-    else
-      word
-    end
-  end
-  words
-end
+#   # Replace uppercase and capitalized words:
+#   words.split.each do |word|
+#     if word == word.capitalize
+#       words.gsub!(word, word.downcase)
+#     elsif word == word.downcase
+#       words.gsub!(word, word.upcase)
+#     else
+#       word
+#     end
+#   end
+#   words
+# end
 
-p modify_words('Please call me at five five five one two three four. Thanks.') == "please CALL ME AT 5 5 5 1 2 3 4. thanks."
-# true
-
-
-
-=begin
-Can you change your solution so that the spaces between 
-consecutive numbers are removed? Suppose the string already 
-contains two or more space separated numbers (not words); 
-can you leave those spaces alone, while removing any spaces 
-between numbers that you create?
-
-__________________________________________________________
-
-["t", " ", "5"]
-[" ", "5", " "]
-["5", " ", "5"]
-[" ", "5", " "]
-["5", " ", "5"]
-[" ", "5", " "]
-["5", " ", "1"]
-[" ", "1", " "]
-["1", " ", "2"]
-[" ", "2", " "]
-["2", " ", "3"]
-[" ", "3", " "]
-["3", " ", "4"]
-[" ", "4", "."]
-["4", ".", " "]
+# p modify_words('Please call me at five five five one two three four. Thanks.') == "please CALL ME AT 5 5 5 1 2 3 4. thanks."
+# # true
 
 
-[" ", "5"]
-["5", " "]
-[" ", "5"]
-["5", " "]
-[" ", "5"]
-["5", " "]
-[" ", "1"]
-["1", " "]
-[" ", "2"]
-["2", " "]
-[" ", "3"]
-["3", " "]
-[" ", "4"]
-["4", "."]
 
-=end
+# =begin
+# Can you change your solution so that the spaces between 
+# consecutive numbers are removed? Suppose the string already 
+# contains two or more space separated numbers (not words); 
+# can you leave those spaces alone, while removing any spaces 
+# between numbers that you create?
 
-# Improved solution:
-DIGIT_HASH = {
-  'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
-  'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
-  'eight' => '8', 'nine' => '9'
-}
+# __________________________________________________________
 
-def word_to_digit(words)
-  DIGIT_HASH.keys.each do |word|
-    words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
-  end
-  words
-end
+# ["t", " ", "5"]
+# [" ", "5", " "]
+# ["5", " ", "5"]
+# [" ", "5", " "]
+# ["5", " ", "5"]
+# [" ", "5", " "]
+# ["5", " ", "1"]
+# [" ", "1", " "]
+# ["1", " ", "2"]
+# [" ", "2", " "]
+# ["2", " ", "3"]
+# [" ", "3", " "]
+# ["3", " ", "4"]
+# [" ", "4", "."]
+# ["4", ".", " "]
 
-def modify_words(words)
-  words = word_to_digit(words)  # string
 
-  # New array is created in order not to remove elements from 
-  # original string when iterating furthe.
-  words_chars = words.chars # array
+# [" ", "5"]
+# ["5", " "]
+# [" ", "5"]
+# ["5", " "]
+# [" ", "5"]
+# ["5", " "]
+# [" ", "1"]
+# ["1", " "]
+# [" ", "2"]
+# ["2", " "]
+# [" ", "3"]
+# ["3", " "]
+# [" ", "4"]
+# ["4", "."]
 
-  # Iterate over a string directly
-  words_chars.each_with_index do |char, index|
-    if char.to_i.to_s == char &&           # digit?
-        words_chars[index + 1] == ' ' &&
-        words_chars[index + 2].to_i.to_s ==  words_chars[index + 2]  # digit?
-      words_chars.slice!(index + 1)
-    end
-  end
+# =end
 
-  words_chars.join
-end
+# # Improved solution:
+# # # Iterate over a string directly:
+# DIGIT_HASH = {
+#   'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
+#   'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
+#   'eight' => '8', 'nine' => '9'
+# }.freeze
 
-p modify_words('Please call me at five five five one two three four. Thanks.') == "Please call me at 5551234. Thanks."
-# true
+# def word_to_digit(words)
+#   DIGIT_HASH.keys.each do |word|
+#     words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
+#   end
+#   words
+# end
+
+# def modify_words(words)
+#   words = word_to_digit(words)  # string
+#   arr_chars = words.chars
+
+#   # Simplified condition check
+#   arr_chars.each_with_index do |char, index|
+#     if char.to_i.to_s == char &&           # digit?
+#         arr_chars[index + 1] == ' ' &&
+#         arr_chars[index + 2].to_i.to_s ==  arr_chars[index + 2]  # digit?
+#       arr_chars.slice!(index + 1)
+#     end
+#   end
+
+#   arr_chars.join
+# end
+
+# p modify_words('Please call me at five five five one two three four. Thanks.') == "Please call me at 5551234. Thanks."
+# # true
 
 
 
@@ -133,17 +131,18 @@ end
 def modify_words(words)
   words = word_to_digit(words) # string
   arr_chars = words.chars   # array of chars
+  new_str = ''
 
-  # ! Removing is while iteration ! (do NOT do this):
-  (0..arr_chars.length - 2).each do |indice|  # indice
-    if arr_chars[indice].to_i.to_s == arr_chars[indice] &&
-        arr_chars[indice + 1] == ' ' &&
-        arr_chars[indice + 2].to_i.to_s == arr_chars[indice + 2]
-      arr_chars.delete_at(indice + 1)
+  (0..arr_chars.length - 1).each do |indice|
+    p arr_chars[indice]
+    unless arr_chars[indice] == ' ' &&
+            arr_chars[indice - 1].to_i.to_s == arr_chars[indice - 1] &&
+            arr_chars[indice + 1].to_i.to_s == arr_chars[indice + 1]
+      new_str << arr_chars[indice]
     end
   end
 
-  arr_chars.join
+  new_str
 end
 
 p modify_words('Please call me at five five five one two three four. Thanks.') == "Please call me at 5551234. Thanks."
@@ -151,8 +150,68 @@ p modify_words('Please call me at five five five one two three four. Thanks.') =
 
 
 
-## Experiments:
-p ' '.to_i # 0
-p ' '.to_i.to_s  # "0"
+# =begin
+# Assume that any 10 digit number is a phone number, and that the 
+# proper format should be `"(123) 456-7890"`.
+# =end
+
+# DIGIT_HASH = {
+#   'zero' => '0', 'one' => '1', 'two' => '2', 'three' => '3',
+#   'four' => '4', 'five' => '5', 'six' => '6', 'seven' => '7',
+#   'eight' => '8', 'nine' => '9'
+# }.freeze
+
+# def word_to_digit!(words)
+#   DIGIT_HASH.keys.each do |word|
+#     words.gsub!(/\b#{word}\b/, DIGIT_HASH[word])
+#   end
+
+#   words
+# end
+
+# # (See how to rewrite to build a new string with less characters 
+# # (in order not to modify the number characters)
+
+# def delete_spaces_between_integers!(words)
+#   arr_chars = words.chars
+
+#   arr_chars.each_with_index do |char, index|
+#     if char.to_i.to_s == char &&           # digit?
+#         arr_chars[index + 1] == ' ' &&
+#         arr_chars[index + 2].to_i.to_s == arr_chars[index + 2]  # digit?
+#       arr_chars.slice!(index + 1)
+#     end
+#   end
+
+#   arr_chars
+# end
+
+# def modify_words(str)
+#   words = word_to_digit!(str)  # string
+#   arr_chars = delete_spaces_between_integers!(words) # array
+
+#   # p arr_chars.join
+
+#   new_str = ''
+#   arr_chars.each_with_index do |char, index|
+#     if char == ' ' &&
+#         arr_chars[index + 1].to_i.to_s == arr_chars[index + 1] &&
+#       arr_chars.su
+#     end
+#   end
 
 
+
+#   # Build a new string with '(', ')', '-'
+
+
+# end
+
+# p modify_words('Please call me at five five five one two three four seven eight. Thanks.') #== "Please call me at (555) 123-478. Thanks."
+# #
+
+
+
+# ## Experiments:
+# p ' '.to_i # 0
+# p ' '.to_i.to_s  # "0"
