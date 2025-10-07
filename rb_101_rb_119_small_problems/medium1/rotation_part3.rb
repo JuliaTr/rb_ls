@@ -30,6 +30,7 @@ def max_rotation(number)
   n = number.to_s.length
 
   while n > 1
+
     number = rotate_rightmost_digits(number, n)
     n -= 1
   end
@@ -73,3 +74,35 @@ p max_rotation(35) == 53
 p max_rotation(105) == 15 # the leading zero gets dropped
 p max_rotation(8_703_529_146) == 7_321_609_845
 # All test cases return `true`
+
+
+
+## Further exploration:
+=begin
+When the number passed in as the argument has multiple 
+consecutive zeros. Can you create a solution that preserves 
+zeros?
+=end
+def rotate_array(array)
+  array[1..-1] + [array[0]]
+end
+
+def rotate_rightmost_digits(number, n)
+  all_digits = number.to_s.chars
+  all_digits[-n..-1] = rotate_array(all_digits[-n..-1])
+
+  # Returns a string if we want to maintain a leading `0`:
+  all_digits[0] == '0' ? all_digits.join : all_digits.join.to_i
+end
+
+def max_rotation(value)
+  value_digits = value.to_s.size
+
+  value_digits.downto(2) do |n|
+    value = rotate_rightmost_digits(value, n)
+  end
+
+  value
+end
+
+p max_rotation(105) == "015"  # true
