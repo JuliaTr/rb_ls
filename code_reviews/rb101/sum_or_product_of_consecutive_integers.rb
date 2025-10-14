@@ -67,30 +67,37 @@ puts compute(7, '-') == nil
 # All test cases return `true`.
 
 =begin
+CODE REVIEW:
+
 **Does the solution meet the problem requirements?**
 The solution meets the requirements abd provides a correct output.
+It passes all provided test cases, returning `true`.
 
 
 **Is the code readable and easy to understand?**
 The solution is readable but it isn't easy to undrstand, because of
-multiple reassignment, repeated logic. Please see the explanation 
-below.
+multiple reassignment, repeated logic.
+
+Lines 3-7, 9-13 repeat the same iterate-and-accumulate pattern.
+
+Please see detailed explanation below.
 
 
 **Do variable and method names adhere to Ruby naming conventions?**
-Variable `op` (lines 1, 2, 8), `i` (lines 4, 5, 10, 11) names are
-too short. According to Ruby convention variable names should have 
+Variable `op` (lines 1, 2, 8) is too short. According to 
+RuboCop cop (Naming/MethodParameterName) variable names should have 
 minimum 3 letters.
 
-While `i` is a common name to use for each item in the iteration,
-it's suggested to use more descriptive names for better readability.
+While `i` (lines 4, 5, 10, 11) is a common name to use for each item in the iteration,
+it's suggested to use more descriptive name for better readability.
 
 
 **Are the variable and method names meaningful and precise?**
 Consider to change varaible names into more meaningful and descriptive
 names for consistency:
-- `num` into `number`;
-- `op` into `operation`.
+- `op` into `operation` (flagged by RuboCop Naming/MethodParameterName);
+- `num` into `number` (for consistency);
+- `i` into `item` (for consistency).
 
 Please see the corrected version below.
 
@@ -118,6 +125,8 @@ condition of the `operation` (`+`, `*`).
 Also, `else` clause is redundant, because if no conditions are met,
 conditional statements return `nil`.
 
+However, some teams keep `else nil` for explicitness.
+
 
 **Would the solution benefit from helper methods?**
 There're two operations we work with: multiplication, and addition, everything
@@ -125,13 +134,14 @@ else should return `nil`. It can be beneficial to extract this logic into
 two separate helper methods:
 
 ```ruby
-def calculate_sum(numbers)
-  numbers.inject(:+)
+def calculate_sum(number)
+  (1..number).sum
 end
 
-```ruby
-def calculate_product(numbers)
-  numbers.inject(:*)
+def calculate_product(number)
+  product = 1
+  (1..number).each { |item| product *= item }
+  product
 end
 ```
 
@@ -155,10 +165,36 @@ sum_or_product_of_consecutive_integers.rb:59:3: C: [Correctable] Style/EmptyElse
 Redundant else-clause.
   else
   ^^^^
+`Naming/MethodParameterName` is flagged only for method
+parameter name `op`, not all variables. `i` inside a block isn't 
+flagged by that cop by default.
 
 The solution below addresses Rubocop offenses: descriptive variable
 names, reduced method length with `case` statement, redundant `else`
 clause.
+
+```ruby
+def calculate_sum(number)
+  (1..number).sum
+end
+
+def calculate_product(number)
+  product = 1
+  (1..number).each { |item| product *= item }
+  product
+end
+
+def compute(number, operation)
+  case operation
+  when '+' then calculate_sum(number)
+  when '*' then calculate_product(number)
+  end
+end
+```
+
+The alternative for `#sum` and to calculate product (using 
+`#each`) is `#inject` or `#reduce` mehtods, which can be 
+invoked on the Range object as well.
 
 ``` ruby
 def compute(number, operation)
@@ -170,9 +206,6 @@ def compute(number, operation)
   end
 end
 ```
-
-The alternative for `#inject` mehtod is `#sum`, which can be invoked 
-on the Range object as well.
 =end
 
 
@@ -201,20 +234,20 @@ puts compute(7, '-') == nil
 
 
 # With helper methods (no rubocop offenses):
-def calculate_sum(numbers)
-  numbers.inject(:+)
+def calculate_sum(number)
+  (1..number).sum
 end
 
-def calculate_product(numbers)
-  numbers.inject(:*)
+def calculate_product(number)
+  product = 1
+  (1..number).each { |item| product *= item }
+  product
 end
 
 def compute(number, operation)
-  numbers = (1..number)
-
   case operation
-  when '+' then calculate_sum(numbers)
-  when '*' then calculate_product(numbers)
+  when '+' then calculate_sum(number)
+  when '*' then calculate_product(number)
   end
 end
 
@@ -224,13 +257,29 @@ puts compute(7, '-') == nil
 # All test cases return `true`.
 
 
-# Without helper methods (no Rubocop offenses):
+# With `#inject`, without helper methods (no Rubocop offenses):
 def compute(number, operation)
   numbers = (1..number)
 
   case operation
   when '+' then numbers.inject(:+)
   when '*' then numbers.inject(:*)
+  end
+end
+
+puts compute(5, '+') == 15
+puts compute(6, '*') == 720
+puts compute(7, '-') == nil
+# All test cases return `true`.
+
+
+# With `#reduce`, without helper methods (no Rubocop offenses):
+def compute(number, operation)
+  numbers = (1..number)
+
+  case operation
+  when '+' then numbers.reduce(:+)
+  when '*' then numbers.reduce(:*)
   end
 end
 
