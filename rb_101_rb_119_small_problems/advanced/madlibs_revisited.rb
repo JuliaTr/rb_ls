@@ -49,3 +49,31 @@ lifts the sleepy yellow
 head, who noisily licks his
 fox and looks around.
 =end
+
+
+
+## Experiments:
+File.open('madlibs.txt') do |f|
+  p f.is_a?(IO)  # true
+  puts f.gets    # read one line
+end
+
+=begin
+true
+The %{adjective} brown %{noun} %{adverb}
+=end
+
+
+STDOUT.puts "Hello"  # Hello
+
+
+STDIN.each_line do |line|
+  puts "You typed: #{line}"
+end
+
+=begin
+hi
+You typed: hi
+
+(infinite loop)
+=end
