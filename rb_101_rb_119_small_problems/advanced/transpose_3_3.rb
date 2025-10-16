@@ -94,7 +94,6 @@ def transpose(array)
   end
 
   new_arr
-
 end
 
 matrix = [
@@ -110,6 +109,7 @@ p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]       # true
 
 
 
+## Possible solution:
 def transpose(matrix)
   result = []
 
@@ -168,3 +168,74 @@ matrix = [
 new_matrix = transpose(matrix)
 
 p new_matrix  # [[1, 4, 3]]
+
+
+
+## Further exploration:
+=begin
+Write a transpose! method from scratch that transposes a 
+matrix in place.
+=end
+
+# Learn from others:
+
+def transpose!(matrix)
+  matrix.length.times do |row|
+    matrix.length.times do |column|
+      matrix[row][column], matrix[column][row] = matrix[column][row], matrix[row][column] if row > column
+    end
+  end
+
+  matrix
+end
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+new_matrix = transpose!(matrix)
+
+p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]   # true
+p matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]       # true
+
+
+
+## Experiments:
+# Witout mutation:
+def transpose(matrix)
+  matrix.map.with_index do |subarray, subarray_index|
+    subarray.map.with_index do |item, item_index| 
+      matrix[item_index][subarray_index]
+    end
+  end
+end
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+new_matrix = transpose(matrix)
+
+p new_matrix  # [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+p matrix      # [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+
+
+# `Array#transpose` method (non-desttructive):
+def transpose(matrix)
+  matrix.transpose
+end
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+new_matrix = transpose(matrix)
+
+p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]   # true
+p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]       # true
