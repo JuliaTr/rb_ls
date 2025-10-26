@@ -4,6 +4,8 @@ Group the array into concentric pairs - the first and last
 elements, then the second and second-last, etc. "Consume" elements - 
 if they're part of one pair, they can't be part of any other.
 
+sample = [1, 2, 3, 4, 5]
+p grouped_airs(sample) == [[1, 5], [2, 4], [3]]
 ___________________________________________________________
 
 PEDAC
