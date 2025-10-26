@@ -44,23 +44,49 @@ pair => [2, 4]
 last_index -= 1
 =end
 
+## Improved solution (add test cases):
+def grouped_pairs(arr)
+  new_arr = []
+  first_index = 0
+  last_index = arr.length - 1
+
+  while first_index < last_index
+    new_arr << [arr[first_index], arr[last_index]]
+    first_index += 1
+    last_index -= 1 
+  end
+
+  # For odd-length arrays, where the pointers meet at the middle 
+  # element:
+  new_arr << [arr[first_index]] if first_index == last_index
+
+  new_arr
+end
+
+p grouped_pairs([1, 2, 3, 4, 5]) == [[1, 5], [2, 4], [3]]
+p grouped_pairs([1, 2, 3, 4]) == [[1, 4], [2, 3]]
+p grouped_pairs([1, 2, 3, 4, 5, 6]) == [[1, 6], [2, 5], [3, 4]]
+# All test cases return `true`.
+
+
+
+## Solution (according to PEDAC):
 def grouped_pairs(arr)
   new_arr = []
   last_index = -1
-  arr_length = arr.length / 2
+  arr_middle = arr.length / 2
 
-  0.upto(arr_length) do |first_index|
-    if arr_length == first_index
+  0.upto(arr_middle) do |first_index|
+    if arr_middle == first_index
       new_arr << [arr[first_index]]
     else
       new_arr << [arr[first_index], arr[last_index]]
     end
-    
+
     last_index -= 1
   end
 
   new_arr
 end
 
-sample = [1, 2, 3, 4, 5]
-p grouped_pairs(sample) == [[1, 5], [2, 4], [3]]
+p grouped_pairs([1, 2, 3, 4, 5]) == [[1, 5], [2, 4], [3]] # true
