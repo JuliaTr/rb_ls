@@ -9,6 +9,17 @@ Output:
 Hello
 Hello
 Hello
+
+_______________________________________________________
+
+PEDAC (part):
+
+High-level:
+- Print string number of times
+
+Algo:
+- Iterate number of times
+  - print string
 =end
 
 def repeat(str, int)
