@@ -7,6 +7,16 @@ If the boolean is `false`, the bonus should be `0`.
 puts calculate_bonus(2800, true) == 1400
 puts calculate_bonus(1000, false) == 0
 puts calculate_bonus(50000, true) == 25000
+
+
+____________________________________________________________
+
+PEDAC (part)
+
+High-level:
+- Chaeck if boolean is `true`. 
+- If yes, half a salary and return the result.
+- If not, return `0`
 =end
 
 def calculate_bonus(number, bool)
