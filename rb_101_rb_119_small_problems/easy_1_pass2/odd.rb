@@ -26,6 +26,20 @@ puts is_odd?(7)    # => true
 
 
 
+
+=begin
+PEDAC (part)
+
+High-level:
+- Find if number is odd
+
+Algo (step-by-step):
+- If number is divisible by 2 with a remainder (modulo)
+  - Return `true`
+- Otherwise,
+  - Return `false`
+=end
+
 ## Possible solution:
 def is_odd?(number)
   number % 2 == 1
