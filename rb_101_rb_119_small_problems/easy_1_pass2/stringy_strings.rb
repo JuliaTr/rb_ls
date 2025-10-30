@@ -50,7 +50,23 @@ puts stringy(4) == '1010'       # => true
 puts stringy(7) == '1010101'    # => true
 
 
+=begin
+PEDAC (part)
 
+Hight-level:
+- Create new array
+- Iterate number times, add `1` or `0` to array
+- Return new array, convert to string
+
+Algo:
+- Create `numbers` empty array
+- Iterate number times over indexes (index)
+  - If `index` even,
+    - Add `1` to `numbers`
+  - Otherwise,
+    - Add `0` to `numbers` 
+- Return `numbers` and join into string
+=end
 ## Possible solution:
 def stringy(size)
   numbers = []
