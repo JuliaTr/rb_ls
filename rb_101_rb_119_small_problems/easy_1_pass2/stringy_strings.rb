@@ -53,9 +53,12 @@ puts stringy(7) == '1010101'    # => true
 =begin
 PEDAC (part)
 
+Notes:
+- exute action a fixed number of times - the length of the string
+
 Hight-level:
 - Create new array
-- Iterate number times, add `1` or `0` to array
+- Iterate number times with `number`, add `1` or `0` to array
 - Return new array, convert to string
 
 Algo:
