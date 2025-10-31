@@ -132,6 +132,18 @@ $ ruby bannerizer.rb
 =end
 
 
+
+
+=begin
+PEDAC (part)
+
+High-level:
+- Print horizontal rule
+- Print empty line with borders
+- Print message with borders
+- Print empty line with borders
+- Print horizontal rule
+=end
 ## Possible solution:
 def print_in_box(message)
   horizontal_rule = "+#{'-' *(message.size + 2)}+"
