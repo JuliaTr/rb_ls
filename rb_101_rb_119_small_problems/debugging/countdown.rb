@@ -34,7 +34,7 @@ LAUNCH!
 
 ## Bug fix:
 def decrease(counter)
-  counter -= 1
+  counter - 1
 end
 
 counter = 10
@@ -58,4 +58,41 @@ puts 'LAUNCH!'
 2
 1
 LAUNCH!
+=end
+
+
+
+## Further exploration:
+=begin
+We specify 10 two times, which looks a bit redundant. It should 
+be possible to specify it only once. Can you refactor the code 
+accordingly?
+=end
+
+def decrease(counter)
+  counter - 1
+end
+
+counter = 10
+
+counter.times do
+  puts counter
+  counter = decrease(counter)
+end
+
+puts 'LAUNCH'
+
+=begin
+Output:
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+LAUNCH
 =end
