@@ -31,6 +31,14 @@ Output:
 LAUNCH!
 =end
 
+=begin
+**Why?**
+This is because `counter` should be reassigned to the return value 
+of `decrease(counter)` method call (line 14) inside the block,
+so that for the next iteration `counter` (line 13) will reference
+a new decreased value.
+=end
+
 
 ## Bug fix:
 def decrease(counter)
