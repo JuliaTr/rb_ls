@@ -55,3 +55,18 @@ p done  # ["apply sunscreen", "go to the beach", "study", "walk the dog"]
 
 
 
+## Further exploration:
+# What happens if the length of the from_array is smaller than n?
+def move(n, from_array, to_array)
+  return if n == 0
+  to_array << from_array.shift
+  move(n - 1, from_array, to_array)
+end
+
+todo = ['study']
+done = ['apply sunscreen', 'go to the beach']
+
+move(2, todo, done)
+
+p todo  # []
+p done  # ["apply sunscreen", "go to the beach", "study", nil]
