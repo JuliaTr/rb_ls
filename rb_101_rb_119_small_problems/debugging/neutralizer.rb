@@ -25,7 +25,14 @@ puts neutralize('These dull boring cards are part of a chaotic board game.')
 # Expected: These cards are part of a board game.
 # Actual: These boring cards are part of a board game.
 
-
+=begin
+Lines 9-11 contain a `do..end` block passed to `#each` method
+invoked on object referenced by `words`, which is an array of 
+strings. The `#each` method does iteration. Inside the block
+the `words.delete(word)` deletes negative words (`negative?(word)`)
+(line 10) in the array on which iteration is performed. So mutation
+is happening while iteration, which leads to unexpected behaviour.
+=end
 
 
 ## Bug fix:
