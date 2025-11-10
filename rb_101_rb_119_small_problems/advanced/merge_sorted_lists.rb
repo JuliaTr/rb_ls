@@ -10,6 +10,38 @@ time in the proper order.
 Your solution should not mutate the input arrays.
 =end
 
+## Refactored:
+def merge(arr1, arr2)
+  cloned_arr1 = arr1.clone
+  cloned_arr2 = arr2.clone
+
+  return cloned_arr2 if arr1.empty?
+  return cloned_arr1 if arr2.empty?
+
+  result = []
+
+  while cloned_arr1.any? || cloned_arr2.any?
+    if cloned_arr2.none? || cloned_arr1.first <= cloned_arr2.first
+      result << cloned_arr1.first
+      cloned_arr1.shift
+    else
+      result << cloned_arr2.first
+      cloned_arr2.shift
+    end
+  end
+
+  result
+end
+
+p merge([1, 5, 9], [2, 6, 8]) == [1, 2, 5, 6, 8, 9]
+p merge([1, 1, 3], [2, 2]) == [1, 1, 2, 2, 3]
+p merge([], [1, 4, 5]) == [1, 4, 5]
+p merge([1, 4, 5], []) == [1, 4, 5]
+# All test cases return `true`.
+
+
+
+## Solution:
 def merge(arr1, arr2)
   cloned_arr1 = arr1.clone
   cloned_arr2 = arr2.clone
