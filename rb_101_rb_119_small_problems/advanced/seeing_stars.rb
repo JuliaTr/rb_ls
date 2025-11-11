@@ -5,6 +5,59 @@ the method. The smallest such star you need to handle is a 7x7
 grid.
 =end
 
+## Refactored solution:
+def upper_star_beams(side, between)
+  while between >= 0
+    puts "#{' ' * side}*#{' '* between}*#{' ' * between}*"
+    side += 1
+    between -= 1
+  end
+end
+
+def lower_star_beams(side, between, max_distance)
+  while between <= max_distance
+    puts "#{' ' * side}*#{' ' * between}*#{' ' * between}*"
+    side -= 1
+    between += 1
+  end
+end
+
+def star(number)
+  min_distance = 0 
+  max_distance = (number - 3) / 2
+
+  upper_star_beams(min_distance, max_distance)
+  puts '*' * number
+  lower_star_beams(max_distance, min_distance, max_distance)
+end
+
+star(7)
+
+# *  *  *
+#  * * *
+#   ***
+# *******
+#   ***
+#  * * *
+# *  *  *
+
+
+star(9)
+
+# *   *   *
+#  *  *  *
+#   * * *
+#    ***
+# *********
+#    ***
+#   * * *
+#  *  *  *
+# *   *   *
+
+# Works as expected
+
+
+
 ## Solution:
 def star(number)
   white_space_sides = 0
