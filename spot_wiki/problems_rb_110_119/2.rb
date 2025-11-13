@@ -48,6 +48,24 @@ High-level:
   - Divide by 2
 =end
 
+## Method chaining:
+def pairs(arr)
+  arr.each_with_object(Hash.new(0)) { |num, hash| hash[num] += 1 }
+     .select { |_, val| val >= 2 }
+     .values
+     .sum { |val| val / 2 }
+end
+
+p pairs([1, 2, 5, 6, 5, 2]) == 2
+p pairs([1, 2, 2, 20, 6, 20, 2, 6, 2]) == 4
+p pairs([0, 0, 0, 0, 0, 0, 0]) == 3
+p pairs([1000, 1000]) == 1
+p pairs([]) == 0
+p pairs([54]) == 0
+# All test cases return `true`.
+
+
+
 ## Refactored version:
 def pairs(arr)
   occurrences = Hash.new(0)
