@@ -106,6 +106,46 @@ p pairs([54]) == 0
 
 
 
+## Possible solutions:
+# Option 1:
+def pairs(arr)
+  counts = {}
+  arr.each do |num|
+    counts[num] = counts.fetch(num, 0) + 1
+  end
+
+  total_pairs = 0
+  counts.each_value do |count|
+    total_pairs += count / 2
+  end
+
+  total_pairs
+end
+
+p pairs([1, 2, 5, 6, 5, 2]) == 2
+p pairs([1, 2, 2, 20, 6, 20, 2, 6, 2]) == 4
+p pairs([0, 0, 0, 0, 0, 0, 0]) == 3
+p pairs([1000, 1000]) == 1
+p pairs([]) == 0
+p pairs([54]) == 0
+# All test cases return `true`.
+
+
+# Option 2:
+def pairs(arr)
+  arr.tally.values.sum { |count| count / 2 }
+end
+
+p pairs([1, 2, 5, 6, 5, 2]) == 2
+p pairs([1, 2, 2, 20, 6, 20, 2, 6, 2]) == 4
+p pairs([0, 0, 0, 0, 0, 0, 0]) == 3
+p pairs([1000, 1000]) == 1
+p pairs([]) == 0
+p pairs([54]) == 0
+# All test cases return `true`.
+
+
+
 ## Experiments:
 def pairs(arr)
   return 0 if arr.empty? || arr.length == 1
