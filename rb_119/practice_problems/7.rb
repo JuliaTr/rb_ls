@@ -45,9 +45,27 @@ High-level:
 
 def pairs(arr)
   arr.tally
-     .select { |_, val| val > 1 }
+     .select { |_, val| val > 1 }  # creates intermediate data structure
      .values
+     # Each value is divided by 2 and sums up
      .sum { |val| val / 2 }
+end
+
+p pairs([3, 1, 4, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7]) == 3
+p pairs([2, 7, 1, 8, 2, 8, 1, 8, 2, 8, 4]) == 4
+p pairs([]) == 0
+p pairs([23]) == 0
+p pairs([997, 997]) == 1
+p pairs([32, 32, 32]) == 1
+p pairs([7, 7, 7, 7, 7, 7, 7]) == 3
+
+
+
+## Experiment:
+def pairs(arr)
+  arr.tally
+     .values
+     .sum { |count| count / 2 }
 end
 
 p pairs([3, 1, 4, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7]) == 3
