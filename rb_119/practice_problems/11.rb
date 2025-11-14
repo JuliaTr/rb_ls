@@ -54,11 +54,40 @@ Intermediate:
 - boolean: if multiple
 =end
 
+## Alternative:
 def substrings(str)
   result = []
-    str.each_char.with_index do |_, index|
-      result << str[0..index]
-    end
+  str.each_char.with_index do |_, index|
+    result << str[0..index]
+  end
+  result
+end
+
+def repeated_substring(str)
+  substrings = substrings(str)
+
+  substrings.each do |substring|
+    multiplier = str.length / substring.length
+    # Check if repeating the substring equals the original string
+    return [substring, multiplier] if substring * multiplier == str
+  end
+end
+
+p repeated_substring('xyzxyzxyz') == ['xyz', 3]
+p repeated_substring('xyxy') == ['xy', 2]
+p repeated_substring('xyz') == ['xyz', 1]
+p repeated_substring('aaaaaaaa') == ['a', 8]
+p repeated_substring('superduper') == ['superduper', 1]
+# All test cases return `true`
+
+
+
+## Solution:
+def substrings(str)
+  result = []
+  str.each_char.with_index do |_, index|
+    result << str[0..index]
+  end
   result
 end
 
