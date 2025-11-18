@@ -43,6 +43,42 @@ Algo:
 
 =end
 
+## Refactored:
+def upcase_characters(str)
+  index2 = 0
+  str.chars.map do |char|
+    char = index2.odd? ? char.upcase : char
+    index2 += 1
+    char
+  end
+end
+
+def to_weird_case(str)
+  new_str = str.split
+  index = 2
+
+  while index < new_str.size
+    new_str[index] = upcase_characters(new_str[index]).join
+    index += 3
+  end
+
+  new_str.join(' ')
+end
+
+original = 'Lorem Ipsum is simply dummy text of the printing world'
+expected = 'Lorem Ipsum iS simply dummy tExT of the pRiNtInG world'
+p to_weird_case(original) == expected
+
+original = 'It is a long established fact that a reader will be distracted'
+expected = 'It is a long established fAcT that a rEaDeR will be dIsTrAcTeD'
+p to_weird_case(original) == expected
+
+p to_weird_case('aaA bB c') == 'aaA bB c'
+
+original = "Mary Poppins' favorite word is supercalifragilisticexpialidocious"
+expected = "Mary Poppins' fAvOrItE word is sUpErCaLiFrAgIlIsTiCeXpIaLiDoCiOuS"
+p to_weird_case(original) == expected
+# All test cases return `true`.
 
 
 
@@ -54,7 +90,7 @@ def to_weird_case(str)
   while index < new_str.size
     index2 = 0
     result =  new_str[index].chars.map do |char|
-                char = index2.odd? ? char.upcase! : char
+                char = index2.odd? ? char.upcase : char
                 index2 += 1
                 char
               end
@@ -80,3 +116,4 @@ p to_weird_case('aaA bB c') == 'aaA bB c'
 original = "Mary Poppins' favorite word is supercalifragilisticexpialidocious"
 expected = "Mary Poppins' fAvOrItE word is sUpErCaLiFrAgIlIsTiCeXpIaLiDoCiOuS"
 p to_weird_case(original) == expected
+# All test cases return `true`.
