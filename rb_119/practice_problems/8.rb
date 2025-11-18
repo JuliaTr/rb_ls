@@ -17,11 +17,11 @@ Output: integer
 Intermediate:
 - array: store substrings
 - array: vowels
-- hash: substring (key), count of vowels (value)
+- hash: substring (key), vowels (value)
 - integer: iterate over indexes
-- integer: count how many strings don't have vowels
-- range: iterate over indexes
-- range: vowels
+- integer: count how many strings don't have vowels  X
+- range: iterate over indexes                        X
+- range: vowels                                      X
 - boolean: check if substring has a vowel
 - string: vowels
 
@@ -32,52 +32,59 @@ High-level:
   "e", "eq", "equ"...
   ...
   "u", "uo", "uoi", "uoia"]
-- Hash to count how many consonants strings have
-- Select hash with 0 consonants, if no such hash return 0
-- Return its length
+- Hash with values of vowels (array)
+- Select hash where length of string is the same as length number 
+  of vowels as values
+- Return max key length
 =end
 
-# CONSONANTS = 'bcdfghjklmnpqrstvwzyz'
+VOWELS = 'aeiou'
 
-# def substrings(str)
-#   result = []
-#   0.upto(str.size - 1) do |first|
-#     first.upto(str.size - 1) do |second|
-#       result << str[first..second]
-#     end
-#   end
-#   result
-# end
+def substrings(str)
+  result = []
 
-# def generate_count(substrings)
-#   hash = Hash.new(0)
+  0.upto(str.size - 1) do |first|
+    first.upto(str.size - 1) do |second|
+      result << str[first..second]
+    end
+  end
 
-#   substrings.each do |substring|
-#     p "substring #{substring}"
-#     substring.each_char do |char|
-#       # p char
-#       # p hash[substring]
-#       p !CONSONANTS.include?(char)
-#       hash[substring] = substring.count(char) if !CONSONANTS.include?(char)
-#     end
-#   end
+  result
+end
 
-#   hash
-# end
+def generate_count(substrings)
+  hash = {}
 
-# def longest_vowel_substring(str)
-#   substrings = substrings(str)
+  substrings.each do |substring|
+    char_vowels = []
+    substring.each_char do |char|
+      hash[substring] = char_vowels << char if VOWELS.include?(char)
+    end
+  end
 
-#   generate_count(substrings)
-# end
+  hash
+end
 
-# # p longest_vowel_substring('cwm') #== 0
-# p longest_vowel_substring('many') #== 1
-# # p longest_vowel_substring('launchschoolstudents') == 2
-# # p longest_vowel_substring('eau') == 3
-# # p longest_vowel_substring('beauteous') == 3
-# # p longest_vowel_substring('sequoia') #== 4
-# # p longest_vowel_substring('miaoued') == 5
+def longest_vowel_substring(str)
+  substrings = substrings(str)
+  hash = generate_count(substrings)
+
+  return 0 if hash.empty?
+
+  hash.select { |key, val| key.length == val.length }
+      .max_by { |key, _| key.length }[0]
+      .length
+end
+
+p longest_vowel_substring('cwm') == 0
+p longest_vowel_substring('many') == 1
+p longest_vowel_substring('launchschoolstudents') == 2
+p longest_vowel_substring('eau') == 3
+p longest_vowel_substring('beauteous') == 3
+p longest_vowel_substring('sequoia') == 4
+p longest_vowel_substring('miaoued') == 5
+# All test cases return `true`.
+
 
 
 ## Alternative 1:
@@ -112,7 +119,7 @@ p longest_vowel_substring('eau') == 3
 p longest_vowel_substring('beauteous') == 3
 p longest_vowel_substring('sequoia') == 4
 p longest_vowel_substring('miaoued') == 5
-# # All test cases return `true`.
+# All test cases return `true`.
 
 
 
