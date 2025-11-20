@@ -68,13 +68,23 @@ end
 
 p fibonacci(0)    # 0
 p fibonacci(1)    # 1
-p fibonacci(2)    # 1   The summing starts here. (0 + 1 = 1)
+p fibonacci(2)    # 1   
 p fibonacci(3)    # 2   (1 + 1 = 2)
 p fibonacci(4)    # 3   (2 + 1 = 3)
 p fibonacci(5)    # 5
 p fibonacci(6)    # 8
 p fibonacci(7)    # 13
 
+# `7` is a position (index) for `13`
+
 =begin
-`0`, `1` .. `6` are fibonacci indexes.
+`0`, `1` .. `6` are n in "compute the nth Fibonacci number", using 
+zero-based counting. It means "give me the 6th Fibonacci number 
+with zero-based indexing."
+
+Zero-based indexing for Fibonacci sequence is a convention.
+
+The argument `n` in `fibonacci(n)` serves the same pupose as an
+index in an array: it specifies the *position* of the element we want
+to retrieve from the sequence.
 =end
