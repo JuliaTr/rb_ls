@@ -30,7 +30,6 @@ def max_rotation(number)
   n = number.to_s.length
 
   while n > 1
-
     number = rotate_rightmost_digits(number, n)
     n -= 1
   end
