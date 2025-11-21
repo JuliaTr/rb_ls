@@ -72,13 +72,27 @@ def create_hash(arr)
   end
 end
 
+# Option 1:
 def closest_numbers(arr)
   pairs = all_pairs(arr)
+
+  # Hash with keys (pair), values (difference in values)
   hash = create_hash(pairs)
+
+  # Extract all values. Find minimum value.
   minimum_value = hash.values.min
+
+  # Select a hash which value is the same as minimum
   hash.select { |_, val| val == minimum_value }.keys[0]
 end
 
+# # Option 2:
+# # No need to create hash, extract values, find minimum:
+# def closest_numbers(arr)
+#   pairs = all_pairs(arr)
+#   pairs.sort_by! { |pair| (pair[0] - pair[1]).abs }
+#   pairs[0]
+# end
 
 p closest_numbers([5, 25, 15, 11, 20]) == [15, 11]
 p closest_numbers([19, 25, 32, 4, 27, 16]) == [25, 27]
