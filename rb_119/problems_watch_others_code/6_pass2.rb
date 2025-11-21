@@ -96,16 +96,39 @@ Check if substring in string 2 appears in string 1:
 
 =end
 
-# # Option 1:
-# def substring_test(str1, str2)
-#   return false if str1.empty? || str2.empty?
+## Improved version:
+def substrings(str)
+  result = []
+  0.upto(str.size - 1) do |first|
+    (first + 1).upto(str.size - 1) do |second|
+      result << str[first..second]
+    end
+  end
+  result
+end
 
-#   downcase_str1 = str1.downcase
-#   downcase_str2 = str2.downcase
+def substring_test(str1, str2)
+  return false if str1.empty? || str2.empty?
 
-#   # `#any?`:
-#   substrings(downcase_str1)
-# end
+  downcase_str1 = str1.downcase
+  downcase_str2 = str2.downcase
+
+  # `#any?`:
+  substrings(downcase_str1).any? do |substring|
+    substrings(downcase_str2).include?(substring)
+  end
+end
+
+p substring_test('Something', 'fun') == false
+p substring_test('Something', 'Home') == true
+p substring_test('Something','') == false #
+p substring_test('', 'Something') == false #
+p substring_test('BANANA', 'banana') == true
+p substring_test('test', 'lllt') == false      
+p substring_test('', '') == false #
+p substring_test('1234567', '541265') == true
+p substring_test('supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou') == true
+
 
 
 
@@ -121,7 +144,7 @@ def substrings(str)
 end
 
 def substring_test(str1, str2)
-  # downcase str1 and str2
+  # downcase str1 and str2 (at the beginning, then work with upcased version)
   return false if str1.empty? || str2.empty?
 
   # `#any?` is possible to use instead
