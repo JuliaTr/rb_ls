@@ -14,8 +14,12 @@ def bubble_sort!(arr)
     next_element = arr[counter + 1]
 
     if current_element > next_element
+      p current_element
+      p arr[counter + 2..-arr.length]
+
       arr[counter + 2..-arr_length] = current_element
-      arr.slice!(counter)
+      p arr.slice!(counter)
+      p arr
     end
 
     counter += 1
@@ -30,13 +34,57 @@ def bubble_sort!(arr)
   arr
 end
 
-array = [5, 3]
-p bubble_sort!(array)
-p array == [3, 5]
+# array = [5, 3]
+# p bubble_sort!(array)
+# p array == [3, 5]
+# =begin
+# $ ruby bubble_sort.rb
+# 5
+# []
+# 5
+# [3, 5]
+# [3, 5]
+# true
+# =end
 
 array = [6, 2, 7, 1, 4]
 p bubble_sort!(array)
 p array == [1, 2, 4, 6, 7]
+=begin
+$ ruby bubble_sort.rb
+6
+[]
+6
+[2, 6, 7, 1, 4]
+
+7
+[]
+7
+[2, 6, 1, 7, 4]
+
+7
+[]
+7
+[2, 6, 1, 4, 7]
+
+6
+[]
+6
+[2, 1, 6, 4, 7]
+
+6
+[]
+6
+[2, 1, 4, 6, 7]
+
+2
+[]
+2
+[1, 2, 4, 6, 7]
+
+[1, 2, 4, 6, 7]
+true
+=end
 
 array = %w(Sue Pete Alice Tyler Rachel Kim Bonnie)
 p bubble_sort!(array)
