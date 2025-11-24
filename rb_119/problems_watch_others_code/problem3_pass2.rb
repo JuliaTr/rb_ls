@@ -76,11 +76,64 @@ Return key which has minimum difference
 
 =end
 
+## Alternative:
+def max_number(number)
+  number.to_s.chars.sort.reverse.join.to_i
+end
+
+def next_bigger_num(input_number)
+  max_number = max_number(input_number)
+  p max_number
+
+  p "______________"
+
+  # Iterate from number next to input upto `max_number`
+  (input_number + 1..max_number).each do |num|
+    p num
+    p max_number(num)
+    # sorted `num` should be the same as `max_number`
+    return num if max_number == max_number(num)
+  end
+
+  -1
+end
+
+p next_bigger_num(9) == -1
+p next_bigger_num(12) == 21
+p next_bigger_num(513) == 531
+p next_bigger_num(2017) == 2071
+=begin
+7210
+"______________"
+
+2018
+8210
+.....
+2071
+7210  the same as `max_number`
+true
+=end
+
+p next_bigger_num(111) == -1
+p next_bigger_num(531) == -1
+p next_bigger_num(123456789) == 123456798
+# All test cases return `true`.
+
+
+
+## Solution:
 def all_combinations(arr)
   result = []
   arr.permutation { |permutation| result << permutation }
   result
 end
+
+# # Alternative:
+# def all_combinations(arr)
+#   result = []
+#   arr.permutation(arr.size) { |permutation| result << permutation}
+#   result
+# end
 
 def hash_with_difference(arr, number)
   hash = {}
