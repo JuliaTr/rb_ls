@@ -27,6 +27,9 @@ def bubble_sort!(arr)
 
     counter = 0 if counter + 1 == arr_length + 1
 
+    p arr
+    p arr.sort
+
     break if arr == arr.sort
   end
 
@@ -37,15 +40,6 @@ end
 # array = [5, 3]
 # p bubble_sort!(array)
 # p array == [3, 5]
-# =begin
-# $ ruby bubble_sort.rb
-# 5
-# []
-# 5
-# [3, 5]
-# [3, 5]
-# true
-# =end
 
 array = [6, 2, 7, 1, 4]
 p bubble_sort!(array)
@@ -56,32 +50,49 @@ $ ruby bubble_sort.rb
 []
 6
 [2, 6, 7, 1, 4]
+[2, 6, 7, 1, 4]
+[1, 2, 4, 6, 7]
+[2, 6, 7, 1, 4]
+[1, 2, 4, 6, 7]
 
 7
 []
 7
 [2, 6, 1, 7, 4]
+[2, 6, 1, 7, 4]
+[1, 2, 4, 6, 7]
 
 7
 []
 7
 [2, 6, 1, 4, 7]
+[2, 6, 1, 4, 7]
+[1, 2, 4, 6, 7]
+[2, 6, 1, 4, 7]
+[1, 2, 4, 6, 7]
 
 6
 []
 6
 [2, 1, 6, 4, 7]
+[2, 1, 6, 4, 7]
+[1, 2, 4, 6, 7]
 
 6
 []
 6
 [2, 1, 4, 6, 7]
+[2, 1, 4, 6, 7]
+[1, 2, 4, 6, 7]
+[2, 1, 4, 6, 7]
+[1, 2, 4, 6, 7]
 
 2
 []
 2
 [1, 2, 4, 6, 7]
-
+[1, 2, 4, 6, 7]
+[1, 2, 4, 6, 7]
 [1, 2, 4, 6, 7]
 true
 =end
@@ -164,8 +175,11 @@ array = [6, 2, 7, 1, 4]
 p bubble_sort!(array)         # [1, 2, 4, 6, 7]
 p array == [1, 2, 4, 6, 7]    # true
 
-# Doesn't work
+
 array = %w(Sue Pete Alice Tyler Rachel Kim Bonnie)
+# Doesn't work, because not sorted in alphabetical order; 
+# `min = "Alice"`, `max = "Tyler`
 bubble_sort!(array)
+# ["Alice", "Pete", "Sue", "Rachel", "Kim", "Bonnie", "Tyler"]
 # Sorted in alphabetical order
 p array == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
