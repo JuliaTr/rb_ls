@@ -121,6 +121,59 @@ p next_bigger_num(123456789) == 123456798
 
 
 
+## Alternative:
+def sort_descending_order(arr)
+  arr.sort { |a, b| b <=> a }
+end
+
+def convert_array_to_integer(arr)
+  arr.map(&:to_s).join.to_i
+end
+
+def all_combinations(arr)
+  result = []
+  arr.permutation { |permutation| result << permutation }
+  result
+end
+
+def hash_with_difference(arr, number)
+  hash = {}
+  arr.each do |subarray|
+    new_number = convert_array_to_integer(subarray)
+    difference = new_number - number
+    hash[new_number] = difference unless new_number == number  # `if new_number != number`
+  end
+  hash
+end
+
+def next_bigger_num(number)
+  digits = number.digits.reverse
+
+  # Refactored from solution
+  return -1 if digits == sort_descending_order(digits)
+  
+  if digits.size == 2 
+    sorted = sort_descending_order(digits)
+    return convert_array_to_integer(sorted)
+  end
+
+  combinations = all_combinations(digits)
+  hash = hash_with_difference(combinations, number)
+  selected_pair = hash.select { |_, val| val > 0 }
+  selected_pair.keys[0]
+end
+
+p next_bigger_num(9) == -1
+p next_bigger_num(12) == 21
+p next_bigger_num(513) == 531
+p next_bigger_num(2017) == 2071
+p next_bigger_num(111) == -1
+p next_bigger_num(531) == -1
+p next_bigger_num(123456789) == 123456798
+# All test cases return `true`.
+
+
+
 ## Solution:
 def all_combinations(arr)
   result = []
