@@ -10,6 +10,11 @@ puts array2
 The `#<<` copies references to the values of the original array.
 If we modify the reference in the original array, the values in the
 `array2` are also modified.
+
+If we can refernce, mutate array element (if they are mutable objects),
+pushing them to another array, will mutate that another array.
+
+Both arrays just hold pointers to objects.
 =end
 
 
