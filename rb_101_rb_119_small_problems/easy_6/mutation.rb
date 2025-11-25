@@ -54,7 +54,7 @@ p arr2  # ["A", "b", "c"]
 
 
 
-## Further exploration:
+## Further exploration (from links in assignment):
 greeting = 'Hello'
 p greeting               # "Hello"
 
@@ -88,7 +88,7 @@ greeting = 'Dude!'
 p greeting                 # "Dude!"
 
 puts greeting              # Dude!
-puts whazzup               # "Dude!"
+puts whazzup               # HELLO!
 
 p greeting.object_id       # 80
 p whazzup.object_id        # 60
@@ -107,3 +107,10 @@ p a[1] = '-'                 # "-"
 
 p a                          # ["a", "-", "c"]
 p a.object_id                # 60
+
+a[1] = 'a'
+a[1].upcase
+p a                          # ["a", "a", "c"]
+
+a[1].upcase!
+p a                          # ["a", "A", "c"]
