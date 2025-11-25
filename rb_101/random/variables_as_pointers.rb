@@ -119,8 +119,8 @@ example.
 a = ["foo", "bar", "baz"]
 b = a
 c = b[0]
-c[0].downcase! # "f"
-a[0].upcase!
+c[0].downcase! # "f"   (`c[0]` references string character)
+a[0].upcase!           # `a[0]` references array element
 
 p c  # "FOO"
 p b  # ["FOO", "bar", "baz"]
