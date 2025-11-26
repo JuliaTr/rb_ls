@@ -47,19 +47,19 @@
 # # 3
 
 
-arr = [1, 2, 3]
-index = 0
+# arr = [1, 2, 3]
+# index = 0
 
-loop do
-  break if index == arr.size
-  p arr[index]
-  index += 1
-end
+# loop do
+#   break if index == arr.size
+#   p arr[index]
+#   index += 1
+# end
 
-# Output
-# 1
-# 2
-# 3
+# # Output
+# # 1
+# # 2
+# # 3
 
 
 # [1, 2, 3].each { |val| puts val }
@@ -71,20 +71,24 @@ end
 
 
 
-# arr = [[1, 2], [3, 4]]
-# index_outer = 0
-# index_inner = 0
+arr = [[1, 2], [3, 4]]
+index_outer = 0
+index_inner = 0
 
-# loop do
-#   loop do
-#     break if 
-#     arr[index_outer][index_inner] += 1
-#     index_inner += 1
-#   end
+loop do
+  break if index_outer == arr.size
 
-#   index_outer += 1
-# end
+  loop do
+    nested_arr = arr[index_outer]
+    
+    break if index_inner == nested_arr.size
+    nested_arr[index_inner] += 1
+    index_inner += 1
+  end
 
-# p arr
+  index_outer += 1
+end
+
+p arr   # [[2, 3], [3, 4]]
 
 
