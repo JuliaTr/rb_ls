@@ -28,3 +28,19 @@ end
 # 1
 # 2
 # 3
+
+
+
+index = 0
+
+loop do
+  puts "Ruby"
+  break if index == 3
+  index += 1
+end
+
+# Output:
+# Ruby
+# Ruby
+# Ruby
+# Ruby
