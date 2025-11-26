@@ -1,56 +1,90 @@
-## Looping
-index = 0
+# ## Looping
+# index = 0
 
-loop do
-  puts "Ruby"
-  break if index == 3
-  index += 1
-end
+# loop do
+#   puts "Ruby"
+#   break if index == 3
+#   index += 1
+# end
 
-# Output:
-# Ruby
-# Ruby
-# Ruby
-# Ruby
+# # Output:
+# # Ruby
+# # Ruby
+# # Ruby
+# # Ruby
 
 
 
-## Iterating
+# ## Iterating
+# arr = [1, 2, 3]
+# index = 0
+
+# loop do
+#   p arr[index]
+#   break if index == arr.size
+#   index += 1
+# end
+
+# # Output:
+# # 1
+# # 2
+# # 3
+# # nil
+
+
+# arr = [1, 2, 3]
+# index = 0
+
+# loop do
+#   p arr[index]
+#   break if index == arr.size - 1
+#   index += 1  
+# end
+
+# # Output:
+# # 1
+# # 2
+# # 3
+
+
 arr = [1, 2, 3]
 index = 0
 
 loop do
-  p arr[index]
   break if index == arr.size
+  p arr[index]
   index += 1
 end
 
-# Output:
-# 1
-# 2
-# 3
-# nil
-
-
-arr = [1, 2, 3]
-index = 0
-
-loop do
-  p arr[index]
-  break if index == arr.size - 1
-  index += 1  
-end
-
-# Output:
+# Output
 # 1
 # 2
 # 3
 
 
+# [1, 2, 3].each { |val| puts val }
 
-[1, 2, 3].each { |val| puts val }
+# # Output:
+# # 1
+# # 2
+# # 3
 
-# Output:
-# 1
-# 2
-# 3
+
+
+# arr = [[1, 2], [3, 4]]
+# index_outer = 0
+# index_inner = 0
+
+# loop do
+#   loop do
+#     break if 
+#     arr[index_outer][index_inner] += 1
+#     index_inner += 1
+#   end
+
+#   index_outer += 1
+# end
+
+# p arr
+
+
