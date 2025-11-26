@@ -29,6 +29,63 @@ end
 
 
 
+# Return values:
+# `loop` method:
+index = 0
+
+p(loop do
+  puts "Ruby"
+  break
+end)
+
+# Output:
+# Ruby
+# nil
+
+
+# `while` loop:
+arr = [1, 2, 3]
+index = 0
+
+p(while index < arr.size
+  puts arr[index]
+  index += 1
+end)
+
+# Output
+# 1
+# 2
+# 3
+# nil
+
+
+# `until` loop:
+arr = [1, 2, 3]
+index = 0
+
+p(until index == arr.size
+  puts arr[index]
+  index += 1
+end)
+
+# Output
+# 1
+# 2
+# 3
+# nil
+
+
+# `for` loop:
+p(for element in [1, 2, 3]
+  puts element
+end)
+
+# Output:
+# 1
+# 2
+# 3
+# [1, 2, 3]
+
 
 ## Iterating
 arr = [1, 2, 3]
