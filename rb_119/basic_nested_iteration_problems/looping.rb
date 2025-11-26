@@ -1,3 +1,21 @@
+## Looping
+index = 0
+
+loop do
+  puts "Ruby"
+  break if index == 3
+  index += 1
+end
+
+# Output:
+# Ruby
+# Ruby
+# Ruby
+# Ruby
+
+
+
+## Iterating
 arr = [1, 2, 3]
 index = 0
 
@@ -12,7 +30,6 @@ end
 # 2
 # 3
 # nil
-
 
 
 arr = [1, 2, 3]
@@ -31,16 +48,9 @@ end
 
 
 
-index = 0
-
-loop do
-  puts "Ruby"
-  break if index == 3
-  index += 1
-end
+[1, 2, 3].each { |val| puts val }
 
 # Output:
-# Ruby
-# Ruby
-# Ruby
-# Ruby
+# 1
+# 2
+# 3
