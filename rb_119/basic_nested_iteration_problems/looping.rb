@@ -14,6 +14,21 @@ end
 # Ruby
 
 
+times = 1
+
+loop do
+  puts "Ruby"
+  break if times == 3
+  times += 1
+end
+
+# Output:
+# Ruby
+# Ruby
+# Ruby
+
+
+
 
 ## Iterating
 arr = [1, 2, 3]
@@ -94,7 +109,7 @@ p arr   # [[2, 3], [3, 4]]
 
 
 arr = [[1, 2], [3, 4]]
-arr.map do |nested_arr|
+arr.map! do |nested_arr|
   nested_arr.map! do |val|
     val += 1
   end
