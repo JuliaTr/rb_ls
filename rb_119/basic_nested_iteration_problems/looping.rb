@@ -184,6 +184,7 @@ end
 
 
 ## Selection:
+# Using `loop` method
 array = [1, 2, 3]
 selected_values = []
 index = 0
@@ -199,8 +200,32 @@ end
 p selected_values  # [1, 3]
 
 
+# Using `#select` method
+selected_values = [1, 2, 3].select { |val| val.odd? }
+p selected_values  # [1, 3]
+
+
+
 
 ## Transformation:
+# Using `loop` method:
+arr = [1, 2, 3]
+index = 0
+
+loop do
+  break if index == arr.size
+
+  arr[index] += 1
+  index += 1
+end
+
+p arr   # [2, 3, 4]
+
+
+
+
+
+# Nested collection:
 arr = [[1, 2], [3, 4]]
 index_outer = 0
 index_inner = 0
