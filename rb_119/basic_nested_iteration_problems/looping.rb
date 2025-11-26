@@ -152,9 +152,9 @@ loop do
   index_inner = 0
 
   loop do
-    nested_arr = arr[index_outer]
-
     break if index_inner == nested_arr.size
+
+    nested_arr = arr[index_outer]
     puts nested_arr[index_inner]
     index_inner += 1
   end
@@ -181,6 +181,22 @@ end
 # 2
 # 3
 # 4
+
+
+## Selection:
+array = [1, 2, 3]
+selected_values = []
+index = 0
+
+loop do
+  break if index == array.size
+
+  current_value = array[index]
+  selected_values << current_value if current_value.odd?
+  index += 1
+end
+
+p selected_values  # [1, 3]
 
 
 
