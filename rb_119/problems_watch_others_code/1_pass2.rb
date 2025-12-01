@@ -1,3 +1,5 @@
+# took 45 mins
+
 =begin
 String consists of substrings:
 
@@ -112,10 +114,13 @@ end
 
 def repeated_substring_pattern(str)
   substrings = substrings(str)
+  p substrings
 
   substrings.each do |substring|
     multiplier = str.length / substring.length
-    return true if multiplier != 1 && (substring * multiplier) == str
+    p multiplier
+
+    return true if multiplier != 1 && (substring * multiplier == str)
   end
 
   false
@@ -123,7 +128,87 @@ end
 
 p repeated_substring_pattern('abab') == true
 p repeated_substring_pattern('aba') == false
+=begin
+["ab", "aba", "ba"]
+1
+1
+1
+true
+=end
+
 p repeated_substring_pattern('aabaaba') == false
 p repeated_substring_pattern('abaababaab') == true
 p repeated_substring_pattern('abcabcabcabc') == true
+# All test cases return `true`.
+
+
+
+## Learn from others:
+def substrings(str)
+  substrings = []
+
+  1.upto(str.size / 2) do |substring_length|  # multipliers
+    # p substring_length
+
+    if str.size % substring_length == 0
+      substrings << str[0, substring_length]
+    end
+  end
+
+  substrings
+end
+
+=begin
+1
+2
+["a", "ab"]
+
+1
+["a"]
+1
+2
+3
+["a"]
+
+1
+2
+3
+4
+5
+["a", "ab", "abaab"]
+
+1
+2
+3
+4
+["a", "abc"]
+=end
+
+def repeated_substring_pattern(str)
+  substrings = substrings(str)
+  p substrings
+
+  substrings.each do |substring|
+    multiplier = str.size / substring.size
+    p multiplier
+
+    return true if substring * multiplier == str
+  end
+
+  false
+end
+
+p repeated_substring_pattern('abab') == true         # true
+p repeated_substring_pattern('aba') == false         # true
+=begin
+["a"]
+3
+true
+=end
+
+p repeated_substring_pattern('aabaaba') == false     # true
+p repeated_substring_pattern('abaababaab') == true   # true
+
+# `str.size` is 9, not `12` 
+p repeated_substring_pattern('abcabcabc') == true    # true
 # All test cases return `true`.
