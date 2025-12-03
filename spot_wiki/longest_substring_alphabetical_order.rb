@@ -83,6 +83,41 @@ ASCII value
 
 =end
 
+## Refactored:
+def substrings(str)
+  substrings = []
+  temp = ''
+
+  str.each_char.with_index do |char, index|
+    if !str[index + 1].nil? && str[index + 1].ord >= char.ord
+      temp << char
+    else
+      temp << char
+      substrings << temp
+      temp = ''
+    end
+  end
+
+  substrings
+end
+
+def longest(str)
+  substrings = substrings(str)
+  substrings.sort_by { |substring| -substring.size}[0]
+end
+
+p longest('asd') == 'as' 
+p longest('nab') == 'ab' 
+p longest('abcdeapbcdef') == 'abcde' 
+p longest('asdfaaaabbbbcttavvfffffdf') == 'aaaabbbbctt' 
+p longest('asdfbyfgiklag') =='fgikl' 
+p longest('z') == 'z' 
+p longest('zyba') == 'z'
+# All test cases return `true`.
+
+
+
+## Solution
 def substrings(str)
   substrings = []
   temp = ''
@@ -125,3 +160,33 @@ p longest('asdfbyfgiklag') =='fgikl'
 p longest('z') == 'z' 
 p longest('zyba') == 'z'
 # All test cases return `true`.
+
+
+
+### Experiments:
+def substrings(str)
+  substrings = []
+  temp = ''
+
+  0.upto(str.size - 1) do |index|
+    char = str[index]
+    if !str[index + 1].nil? && str[index + 1].ord >= char.ord
+      temp << char
+    else
+      temp << char
+      substrings << temp
+      temp = ''
+    end
+  end
+
+  substrings
+end
+
+p substrings('asd')  # ["as", "d"]
+p substrings('nab')  # ["n", "ab"]
+p substrings('abcdeapbcdef')  # ["abcde", "ap", "bcdef"]
+p substrings('asdfaaaabbbbcttavvfffffdf')
+# ["as", "df", "aaaabbbbctt", "avv", "fffff", "df"]
+p substrings('asdfbyfgiklag') # ["as", "df", "by", "fgikl", "ag"]
+p substrings('z')    # ["z"]
+p substrings('zyba') # ["z", "y", "b", "a"]
