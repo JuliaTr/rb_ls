@@ -54,11 +54,19 @@ Output:
 ## Solution
 def common_prefix(arr)
   prefix_substr = ''
+
   arr[0].each_char.with_index do |char, index|
-    prefix_substr << char if arr.all? { |word| word[index] == char }
+    if arr.all? { |word| word[index] == char }
+      prefix_substr << char
+    else
+      return prefix_substr
+    end
   end
+
   prefix_substr
 end
+
+p common_prefix(["flower", "flow", "fliwht"]) == "fl"
 
 p common_prefix(["flower", "flow", "flight"]) == "fl"
 p common_prefix(["dog", "racecar", "car"]) == ""
