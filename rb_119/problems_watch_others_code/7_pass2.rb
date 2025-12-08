@@ -1,100 +1,100 @@
-# # took 11 mins
+# took 11 mins
 
-# =begin
-# PROBLEM
-# Write function `scramble(str1, str2)` that returns `true` if a
-# portion of `str1` characters can be rearranged to match `str2`,
-# otherwise, return `false`.
+=begin
+PROBLEM
+Write function `scramble(str1, str2)` that returns `true` if a
+portion of `str1` characters can be rearranged to match `str2`,
+otherwise, return `false`.
 
-# For example:
-# - `str1` is `'rkgodlw'` and `str2` is `'world'` should return `true`
-# - `str1` is `'codewaraaossoqqyt'` and `str2` is `'codewars'`
-#   should return `true`
-# - `str1` is `'katas'` and `str2` is `'steak'` should return `false`
+For example:
+- `str1` is `'rkgodlw'` and `str2` is `'world'` should return `true`
+- `str1` is `'codewaraaossoqqyt'` and `str2` is `'codewars'`
+  should return `true`
+- `str1` is `'katas'` and `str2` is `'steak'` should return `false`
 
-# Only lower case letters will be used (a-z). No punctuation or
-# digits will be included.
-
-
-# __________________________
-
-# Idea1:
-# - Create a copy of str1
-
-# - Iterate over each char in str2
-#   - check if char is included in copy of str1
-#     - If yes, substitute (modifying) the first occurrence of char 
-#       in copy of str1
-#     - If no, return `false`
-# - Return `true`
-
-# Idea2:
-# - Create a copy of str1
-# - count = 0
-# - Iterate over each char in str2
-#   - check if char is included in copy of str1
-#     - If yes, substitute (modifying) the first occurrence of char in copy of str1
-#     - Increment count by 1
-# - count == str2.size
-# =end
-
-# ## Solution (idea2):
-# def scramble(str1, str2)
-#   str1_dup = str1.dup
-
-#   str2.each_char do |char|
-#     if str1_dup.include?(char)
-#       str1_dup.sub!(char, '')
-#     else
-#       return false
-#     end
-#   end
-
-#   true
-# end
-
-# p scramble('javass', 'jjss') == false
-# p scramble('rkgodlw', 'world') == true
-# p scramble('cedewaraaossoqqyt', 'codewars') == true
-# p scramble('katas', 'steak') == false
-# p scramble('scriptjava', 'javascript') == true
-# p scramble('scriptingjava', 'javascript') == true
-# # All test cases return `true`.
+Only lower case letters will be used (a-z). No punctuation or
+digits will be included.
 
 
+__________________________
 
-# ## Solution (idea2):
-# =begin
-# - Create a copy of str1
-# - count = 0
-# - Iterate over each char in str2
-#   - check if char is included in copy of str1
-#     - If yes, substitute (modifying) the first occurrence of char in copy of str1
-#     - Increment count by 1
-# - count == str2.size
-# =end
+Idea1:
+- Create a copy of str1
 
-# def scramble(str1, str2)
-#   str1_dup = str1.dup
+- Iterate over each char in str2
+  - check if char is included in copy of str1
+    - If yes, substitute (modifying) the first occurrence of char 
+      in copy of str1
+    - If no, return `false`
+- Return `true`
 
-#   count = 0
-#   str2.each_char do |char|
-#     if str1_dup.include?(char)
-#       str1_dup.sub!(char, '')
-#       count += 1
-#     end
-#   end
+Idea2:
+- Create a copy of str1
+- count = 0
+- Iterate over each char in str2
+  - check if char is included in copy of str1
+    - If yes, substitute (modifying) the first occurrence of char in copy of str1
+    - Increment count by 1
+- count == str2.size
+=end
 
-#   count == str2.size
-# end
+## Solution (idea2):
+def scramble(str1, str2)
+  str1_dup = str1.dup
 
-# p scramble('javass', 'jjss') == false
-# p scramble('rkgodlw', 'world') == true
-# p scramble('cedewaraaossoqqyt', 'codewars') == true
-# p scramble('katas', 'steak') == false
-# p scramble('scriptjava', 'javascript') == true
-# p scramble('scriptingjava', 'javascript') == true
-# # All test cases return `true`.
+  str2.each_char do |char|
+    if str1_dup.include?(char)
+      str1_dup.sub!(char, '')
+    else
+      return false
+    end
+  end
+
+  true
+end
+
+p scramble('javass', 'jjss') == false
+p scramble('rkgodlw', 'world') == true
+p scramble('cedewaraaossoqqyt', 'codewars') == true
+p scramble('katas', 'steak') == false
+p scramble('scriptjava', 'javascript') == true
+p scramble('scriptingjava', 'javascript') == true
+# All test cases return `true`.
+
+
+
+## Solution (idea2):
+=begin
+- Create a copy of str1
+- count = 0
+- Iterate over each char in str2
+  - check if char is included in copy of str1
+    - If yes, substitute (modifying) the first occurrence of char in copy of str1
+    - Increment count by 1
+- count == str2.size
+=end
+
+def scramble(str1, str2)
+  str1_dup = str1.dup
+
+  count = 0
+  str2.each_char do |char|
+    if str1_dup.include?(char)
+      str1_dup.sub!(char, '')
+      count += 1
+    end
+  end
+
+  count == str2.size
+end
+
+p scramble('javass', 'jjss') == false
+p scramble('rkgodlw', 'world') == true
+p scramble('cedewaraaossoqqyt', 'codewars') == true
+p scramble('katas', 'steak') == false
+p scramble('scriptjava', 'javascript') == true
+p scramble('scriptingjava', 'javascript') == true
+# All test cases return `true`.
 
 
 
