@@ -23,7 +23,7 @@ Idea1:
 
 - Iterate over each char in str2
   - check if char is included in copy of str1
-    - If yes, substitute (without modifying) the first occurrence of char 
+    - If yes, substitute (modifying) the first occurrence of char 
       in copy of str1
     - If no, return `false`
 - Return `true`
@@ -33,11 +33,12 @@ Idea2:
 - count = 0
 - Iterate over each char in str2
   - check if char is included in copy of str1
-    - If yes, delete the first occurrence of char in copy of str1
+    - If yes, substitute (modifying) the first occurrence of char in copy of str1
     - Increment count by 1
 - count == str2.size
 =end
 
+## Solution (idea2):
 def scramble(str1, str2)
   str1_dup = str1.dup
 
@@ -50,6 +51,41 @@ def scramble(str1, str2)
   end
 
   true
+end
+
+p scramble('javass', 'jjss') == false
+p scramble('rkgodlw', 'world') == true
+p scramble('cedewaraaossoqqyt', 'codewars') == true
+p scramble('katas', 'steak') == false
+p scramble('scriptjava', 'javascript') == true
+p scramble('scriptingjava', 'javascript') == true
+# All test cases return `true`.
+
+
+
+## Solution (idea2):
+=begin
+- Create a copy of str1
+- count = 0
+- Iterate over each char in str2
+  - check if char is included in copy of str1
+    - If yes, substitute (modifying) the first occurrence of char in copy of str1
+    - Increment count by 1
+- count == str2.size
+=end
+
+def scramble(str1, str2)
+  str1_dup = str1.dup
+
+  count = 0
+  str2.each_char do |char|
+    if str1_dup.include?(char)
+      str1_dup.sub!(char, '')
+      count += 1
+    end
+  end
+
+  count == str2.size
 end
 
 p scramble('javass', 'jjss') == false
