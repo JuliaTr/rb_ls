@@ -49,10 +49,11 @@ Output: sorted new hash
   [-2, 1, -3, 4, -1, 2, 1, -5, 4]
                                ^
 
-
 =end
 
-def substrings(arr)
+
+## Solution
+def subarrays(arr)
   result = []
   0.upto(arr.size - 1) do |first_idx|
     first_idx.upto(arr.size - 1) do |second_idx|
@@ -64,8 +65,8 @@ end
 
 def return_hash_with_sum(arr)
   hash = {}
-  arr.each do |substring|
-    hash[substring] = substring.sum
+  arr.each do |subarray|
+    hash[subarray] = subarray.sum
   end
   hash
 end
@@ -74,8 +75,8 @@ def max_sequence(arr)
   return 0 if arr.empty? || arr.all? { |val| val < 0 }
   return arr[0] if arr.size == 1
 
-  substrings = substrings(arr)
-  hash = return_hash_with_sum(substrings)
+  subarrays = subarrays(arr)
+  hash = return_hash_with_sum(subarrays)
   hash.sort_by { |_, val| val }.last[1]
 end
 
@@ -102,6 +103,39 @@ def max_sequence(arr)
   # Returns subarray with maximum sum.
   # Calculate sum of this subarray.
   result.max_by { |subarray| subarray.sum }.sum
+end
+
+p max_sequence([]) == 0
+p max_sequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
+p max_sequence([11]) == 11
+p max_sequence([-32]) == 0
+p max_sequence([-2, 1, -7, 4, -10, 2, 1, 5, 4]) == 12
+# All test cases return `true`.
+
+
+
+## Experiments:
+=begin
+- Create `max_sum` equal to `0`
+- For each subarray 
+  - Calculate sum
+  - If `subarray_sum` GREATER than `max_sum`
+    - Reassign `max_sum` to `subarray_sum`
+- Return `max_sum` 
+=end
+
+def max_sequence(arr)
+  return 0 if arr.all? { |val| val < 0 }
+
+  max_sum = 0
+  0.upto(arr.size - 1) do |first_idx|
+    first_idx.upto(arr.size - 1) do |second_idx|
+      subarray = arr[first_idx..second_idx]
+      subarray_sum = subarray.sum
+      max_sum = subarray_sum if subarray_sum > max_sum
+    end
+  end
+  max_sum
 end
 
 p max_sequence([]) == 0
