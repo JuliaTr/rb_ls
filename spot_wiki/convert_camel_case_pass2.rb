@@ -70,16 +70,38 @@ p kebabize('myCamelCasedString') == 'my-camel-cased-string'
 p kebabize('myCamelHas3Humps') == 'my-camel-has-humps' 
 
 p kebabize('myCCamel Cased3String') == 'my-c-camel-cased-string'
+# All test cases return `true`.
 
 
 
+## With more test cases
+def kebabize(str)
+  result = []
+  temp = ''
 
-# p kebabize('myCamelCasedString') == 'my-camel-cased-string' 
-# p kebabize('myCamelHas3Humps') == 'my-camel-has-humps' 
+  str.each_char do |char|
+    if !char.match?(/[a-zA-Z]/)
+      next
+    elsif char == char.upcase && !temp.empty?
+      result << temp
+      temp = ''
+    end
 
-# p kebabize('myCCamel Cased3String') == 'my-c-camel-cased-string'
-# p kebabize("G4twyfe") #== "gtwyfe"
-# p kebabize("Mznpk4r19uov7dxihaf8y5J62ceqt") #== "mznpkruovdxihafy-jceqt"
-# p kebabize("51ho4nsGzrdek8M39B") == "hons-gzrdek-m-b"
-# p kebabize("dslegzoPYtkbhvuf96qxcj1r2W83a7") == "dslegzo-p-ytkbhvufqxcjr-wa"
-# p kebabize("tGpvah4wl3I9qJm8sdy2") == "t-gpvahwl-iq-jmsdy"
+    temp << char.downcase
+  end
+
+  result << temp
+
+  result.join('-')
+end
+
+p kebabize('myCamelCasedString') == 'my-camel-cased-string' 
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps' 
+
+p kebabize('myCCamel Cased3String') == 'my-c-camel-cased-string'
+p kebabize("G4twyfe") == "gtwyfe"
+p kebabize("Mznpk4r19uov7dxihaf8y5J62ceqt") == "mznpkruovdxihafy-jceqt"
+p kebabize("51ho4nsGzrdek8M39B") == "hons-gzrdek-m-b"
+p kebabize("dslegzoPYtkbhvuf96qxcj1r2W83a7") == "dslegzo-p-ytkbhvufqxcjr-wa"
+p kebabize("tGpvah4wl3I9qJm8sdy2") == "t-gpvahwl-iq-jmsdy"
+# All test cases return `true`.
