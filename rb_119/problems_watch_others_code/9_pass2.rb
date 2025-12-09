@@ -68,6 +68,7 @@ index
 def find_even_index(arr)
   index = 0
   left = []
+  right = []
 
   loop do
     right = arr[index + 1..-1]
@@ -78,7 +79,7 @@ def find_even_index(arr)
     index += 1
   end
 
-  left.sum == arr[index + 1..-1].sum ? index : -1
+  left.sum == right.sum ? index : -1
 end
 
 p find_even_index([1, 2, 3, 4, 3, 2, 1]) == 3
