@@ -23,6 +23,43 @@ Idea1:
 - Output hash values
 =end
 
+## Refactored:
+words = ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+          'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+          'flow', 'neon']
+
+def sort_string_chars(str)
+  str.chars.sort
+end
+
+def create_hash(arr)
+  hash = {}
+  arr.each { |array| hash[array] = [] }
+  hash
+end
+
+def group_anagrams(arr)
+  sorted = arr.map { |word| sort_string_chars(word) }
+  unique = sorted.uniq
+  hash = create_hash(unique)
+
+  arr.each do |word|
+    hash[sort_string_chars(word)] << word if unique.include?(sort_string_chars(word))
+  end
+
+  hash.values.each { |array| p array }
+end
+
+group_anagrams(words)
+# Output:
+# ["demo", "dome", "mode"]
+# ["none", "neon"]
+# ["tied", "diet", "edit", "tide"]
+# ["evil", "live", "veil", "vile"]
+# ["fowl", "wolf", "flow"]
+
+
+
 ## Solution
 words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
           'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
