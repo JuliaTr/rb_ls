@@ -24,7 +24,7 @@ Idea1:
 =end
 
 ## Refactored:
-words = ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
           'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
           'flow', 'neon']
 
@@ -85,3 +85,57 @@ group_anagrams(words)
 # ["tied", "diet", "edit", "tide"]
 # ["evil", "live", "veil", "vile"]
 # ["fowl", "wolf", "flow"]
+
+
+
+## Possible solution:
+words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+          'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+          'flow', 'neon']
+
+result = {}
+
+words.each do |word|
+  key = word.split('').sort.join
+
+  if result.has_key?(key)
+    result[key].push(word)
+  else
+    result[key] = [word]
+  end
+end
+
+p result
+# {"demo"=>["demo", "dome", "mode"], "enno"=>["none", "neon"], 
+# "deit"=>["tied", "diet", "edit", "tide"], 
+# "eilv"=>["evil", "live", "veil", "vile"], 
+# "flow"=>["fowl", "wolf", "flow"]}
+
+result.each_value { |val| p val }
+=begin
+["demo", "dome", "mode"]
+["none", "neon"]
+["tied", "diet", "edit", "tide"]
+["evil", "live", "veil", "
+=end
+
+
+
+## Experiments:
+words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+          'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+          'flow', 'neon']
+
+result = {}
+
+words.each do |word|
+  key = word.split('').sort.join
+
+  if result.has_key?(key)
+  else
+    result[key] = [word]
+  end
+  break
+end
+
+p result   # {"demo"=>["demo"]}
