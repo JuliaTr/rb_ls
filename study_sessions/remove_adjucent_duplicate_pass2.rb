@@ -92,11 +92,11 @@ def substrings(str)
   result = []
 
   0.upto(str.size - 1) do |index|
-    if index == 0 && str[index] != str[index + 1]
-      result << str[index]
-    elsif str[index] != str[index + 1] &&
-          str[index] != str[index - 1]
-      result << str[index]
+    current_item = str[index]
+    
+    if (index == 0 || current_item != str[index - 1]) &&
+        current_item != str[index + 1]
+      result << current_item
     end
   end
 
