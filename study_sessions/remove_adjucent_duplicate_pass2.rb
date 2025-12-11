@@ -41,7 +41,7 @@ Idea1: ---
 - Return `result`
 
 
-Idea2:
+Idea2: ---
 "aaybbyz"
 
 - Generate substrings with 1-elements and with pairs
@@ -88,12 +88,13 @@ same = false
 break if `true`
 =end
 
+## Solution (Idea3):
 def substrings(str)
   result = []
 
   0.upto(str.size - 1) do |index|
     current_item = str[index]
-    
+
     if (index == 0 || current_item != str[index - 1]) &&
         current_item != str[index + 1]
       result << current_item
@@ -125,3 +126,57 @@ p remove_duplicates("aderg") == "aderg"
 p remove_duplicates("azxxzy") == "ay"
 p remove_duplicates("abbaca") == "ca"
 # All test cases return `true`.
+
+
+
+
+=begin
+Idea4:
+Modify input string. Return the same.
+
+- Create new array of unique characters
+- Iterate over each character of unique characters
+- Check if current doubled char exist in input string
+- Substitute current doubled char
+
+=end
+
+def remove_duplicates(str)
+  str_chars = str.chars
+  
+  loop do
+    str_chars.uniq.each do |char|
+      doubled = char * 2
+      if str.include?(doubled)
+        str = str.sub!(doubled, '')
+      end
+    end
+
+    break unless str_chars.any?{ |char| str.include?(char * 2) }
+  end
+
+  str
+end
+
+p remove_duplicates("aaybbyz") == "z"
+p remove_duplicates("a") == "a"
+p remove_duplicates("abbca") == "aca"
+p remove_duplicates("aabbcc") == ""
+p remove_duplicates("aderg") == "aderg"
+p remove_duplicates("azxxzy") == "ay"
+p remove_duplicates("abbaca") == "ca"
+# All test cases return `true`.
+
+
+
+## Experiments:
+
+''.size   # 0
+' '.size  # 1
+
+=begin
+irb(main):003:0> "aaca".delete("a")
+=> "c"
+irb(main):002:0> "aaca".delete("aa")
+=> "c"
+=end
