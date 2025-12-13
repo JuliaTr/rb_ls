@@ -63,33 +63,33 @@ p longest_vowel_substring('miaoued') == 5
 
 
 
-# ## Alternative:
-# def longest_vowel_substring(str)
-#   lengths = []
-#   substring_length = 0
-#   temp = ''
+## Alternative:
+def longest_vowel_substring(str)
+  lengths = []
+  substring_length = 0
+  temp = ''
 
-#   str.each_char.with_index do |char, index|
-#     if 'aeiou'.include?(char)
-#       temp << char
-#     elsif index != 0 && !'aeiou'.include?(char) && !temp.empty?
-#       substring_length = temp.length
-#       lengths << substring_length
-#       temp = ''
-#     end
-#   end
+  str.each_char.with_index do |char, index|
+    if 'aeiou'.include?(char)
+      temp << char
+    elsif index != 0 && !'aeiou'.include?(char) && !temp.empty?
+      substring_length = temp.length
+      lengths << substring_length
+      temp = ''
+    end
+  end
 
-#   substring_length = temp.length
-#   lengths << substring_length
+  substring_length = temp.length
+  lengths << substring_length
 
-#   lengths.empty? ? 0 : lengths.max
-# end
+  lengths.empty? ? 0 : lengths.max
+end
 
-# p longest_vowel_substring('cwm') == 0
-# p longest_vowel_substring('many') == 1
-# p longest_vowel_substring('launchschoolstudents') == 2
-# p longest_vowel_substring('eau') == 3
-# p longest_vowel_substring('beauteous') == 3
-# p longest_vowel_substring('sequoia') == 4
-# p longest_vowel_substring('miaoued') == 5
-# # All test cases return `true`.
+p longest_vowel_substring('cwm') == 0
+p longest_vowel_substring('many') == 1
+p longest_vowel_substring('launchschoolstudents') == 2
+p longest_vowel_substring('eau') == 3
+p longest_vowel_substring('beauteous') == 3
+p longest_vowel_substring('sequoia') == 4
+p longest_vowel_substring('miaoued') == 5
+# All test cases return `true`.
