@@ -1,10 +1,25 @@
+# easy
+
 =begin
 Create a method that takes a string argument and returns the 
 character that occurs most often in the string. If there are
 multiple characters with the same greatest frequency, return the 
 one that appears first in the string. When counting characters, 
 consider uppercase and lowercase versions to be the same.
+
+_______________________________________________________________
+
+- Create tally (hash with frequencies)
+- Sort by value in descending order -> nested array
+- Return the first nested array -> second value
 =end
+
+def most_common_char(str)
+  str.chars
+     .map(&:downcase)
+     .tally
+     .max_by { |_, val| val }[0]
+end
 
 p most_common_char('Mississippi') == 'i'
 p most_common_char('Happy birthday!') == 'h'
