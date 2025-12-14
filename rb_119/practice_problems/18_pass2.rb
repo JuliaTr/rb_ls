@@ -22,8 +22,6 @@ Idea1:
 - Put integers to the left array
 - Compare sum
 
-Idea2:
-- Compare 
 =end
 
 =begin
@@ -79,3 +77,88 @@ p equal_sum_index([0, 2, 4, 4, 2, 3, 2]) == -1
 # return value is 0.
 p equal_sum_index([0, 20, 10, -60, 5, 25]) == 0
 # All test cases return `true`
+
+
+
+## Alternative:
+def equal_sum_index(arr)
+  (0...arr.size).each do |index|
+    left_side = arr[0...index]
+    right_side = arr[index + 1..-1]
+
+    return index if left_side.sum == right_side.sum
+  end
+
+  -1
+end
+
+p equal_sum_index([1, 2, 4, 4, 2, 3, 2]) == 3
+p equal_sum_index([7, 99, 51, -48, 0, 4]) == 1
+p equal_sum_index([17, 20, 5, -60, 10, 25]) == 0
+p equal_sum_index([0, 2, 4, 4, 2, 3, 2]) == -1
+
+# The following test case could return 0 or 3. Since we're
+# supposed to return the smallest correct index, the correct
+# return value is 0.
+p equal_sum_index([0, 20, 10, -60, 5, 25]) == 0
+# All test cases return `true`
+
+
+
+## Experiments:
+def equal_sum_index(arr)
+  (0...arr.size).each do |index|
+    left_side = arr[0...index]
+    p left_side
+
+    right_side = arr[index + 1..-1]
+    p right_side
+  end
+end
+
+p equal_sum_index([1, 2, 4, 4, 2, 3, 2]) == 3
+=begin
+[]
+[2, 4, 4, 2, 3, 2]
+[1]
+[4, 4, 2, 3, 2]
+[1, 2]
+[4, 2, 3, 2]
+[1, 2, 4]
+[2, 3, 2]
+[1, 2, 4, 4]
+[3, 2]
+[1, 2, 4, 4, 2]
+[2]
+[1, 2, 4, 4, 2, 3]
+[]
+0...7
+=end
+
+
+
+def equal_sum_index(arr)
+  (0...arr.size).each do |index|
+    p left_side = arr[0...index]
+  end
+end
+
+p equal_sum_index([1, 2, 4, 4, 2, 3, 2])
+=begin
+[]
+[1]
+[1, 2]
+[1, 2, 4]
+[1, 2, 4, 4]
+[1, 2, 4, 4, 2]
+[1, 2, 4, 4, 2, 3]
+0...7
+
+
+irb(main):001:0> arr = [1, 2, 3]
+=> [1, 2, 3]
+irb(main):002:0> arr[0...0]
+=> []
+irb(main):003:0> arr[0...1]
+=> [1]
+=end
