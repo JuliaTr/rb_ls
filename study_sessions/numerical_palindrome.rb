@@ -20,6 +20,11 @@ Single digit numbers will NOT be considered numerical palindromes.
 
 _________________________________________
 
+High-level:
+- Start from `num` and check each next number incremented by 1
+if it's a palindrome. If yes, add it to a new array. Stop checking
+when array length is the same as `s`. 
+
 loop
 - If `num` is palindrome
   - push to array
