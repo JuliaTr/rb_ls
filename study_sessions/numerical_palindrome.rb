@@ -27,6 +27,33 @@ loop
 
 =end
 
+## More readable:
+def is_palindrome?(int)
+  int > 9 && int.to_s == int.to_s.reverse
+end
+
+def palindrome(num, s)
+  arr = []
+  current_num = num
+
+  loop do
+    arr << current_num if is_palindrome?(current_num)
+    break if arr.size == s
+    current_num += 1 
+  end
+
+  arr
+end
+
+p palindrome(6, 4) == [11, 22, 33, 44]
+p palindrome(75, 1) == [77]
+p palindrome(101, 2) == [101, 111]
+p palindrome(20, 0) == []
+p palindrome(0, 4) == [11, 22, 33, 44]
+# All test cases return `true`
+
+
+
 ## Solution:
 def palindrome(num, s)
   arr = []
