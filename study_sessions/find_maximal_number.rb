@@ -72,3 +72,55 @@ puts delete_digit(152) == 52
 puts delete_digit(1001) == 101
 puts delete_digit(10) == 1
 # All test cases return `true`
+
+
+
+# Without `#combination` method:
+def delete_digit(num)
+  arr = num.to_s
+
+  combinations = (0...arr.length).map do |idx|
+    # Characters with current `idx` are skipped
+
+    before = arr[0...idx]     # chars before current `idx`
+    # p before
+
+    after = arr[idx + 1..-1]  # chars from current `idx + 1`
+    # p after
+
+    combination = before + after
+    combination.to_i
+    # (arr[0...idx] + arr[idx + 1..-1]).to_i  (short path)
+  end
+
+  combinations.max
+end
+
+# TEST CASES
+puts delete_digit(791983) == 91983
+=begin
+Iteration 1:
+idx = 0
+arr[idx] = 7 (skipped)
+""
+"91983"
+
+Iteration 2:
+idx = 1
+arr[idx] = 9 (skipped)
+"7"
+"1983"
+
+"79"
+"983"
+
+"791"
+"83"
+
+"7919"
+"3"
+
+"79198"
+""
+true
+=end
