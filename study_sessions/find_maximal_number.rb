@@ -164,3 +164,14 @@ arr[idx] = 9 (skipped)
 ""        # arr[idx + 1..-1]
 true
 =end
+
+=begin
+irb(main):001:0> arr = [1, 2, 3]
+=> [1, 2, 3]
+irb(main):002:0> arr[0...0]
+=> []
+irb(main):003:0> arr[0...1]
+=> [1]
+irb(main):004:0> [] + [2, 3]
+=> [2, 3]
+=end
