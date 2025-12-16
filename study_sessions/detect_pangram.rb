@@ -24,12 +24,29 @@ Idea1:
 Idea2:
 - Create alphabet
 - Iterate over each character in input string and determine
-  if it is a letter and included in alphaber. If not, return `false`
+  if it is a letter and included in alphabet. If not, return `false`
 - If all letters are included, return `true`
 =end
 
+## Refactored
+def is_pangram(str)
+  downcased = str.downcase
+
+  ('a'..'z').each do |alpha_char|
+    return false unless downcased.include?(alpha_char)
+  end
+
+  true
+end
+
+p (is_pangram('The quick brown fox jumps over the lazy dog.') == true)
+p (is_pangram('This is not a pangram.') == false)
+# All test cases return `true`
+
+
+
 ## Solution
-ALPHABET = 'abcdefghijklmnopqqrstuvwxyz'
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz'   # easy to make a typo
 
 def is_pangram(str)
   downcased = str.chars.map(&:downcase)
@@ -42,5 +59,5 @@ def is_pangram(str)
 end
 
 p (is_pangram('The quick brown fox jumps over the lazy dog.') == true)
-p is_pangram('This is not a pangram.') == false
+p (is_pangram('This is not a pangram.') == false)
 # All test cases return `true`
