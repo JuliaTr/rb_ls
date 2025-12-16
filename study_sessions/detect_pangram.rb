@@ -15,6 +15,8 @@ True if it is, False if not. Ignore numbers and punctuation.
 
 ___________________________________
 
+Are all characters from `'a'` to `'z'` present in input string?
+
 Idea1:
 - Create alphabet
 - Iterate over each character in alphabet determine if it is
@@ -27,6 +29,18 @@ Idea2:
   if it is a letter and included in alphabet. If not, return `false`
 - If all letters are included, return `true`
 =end
+
+## More idiomatic
+def is_pangram(str)
+  downcased = str.downcase  # data preparation
+  ('a'..'z').all? { |char| downcased.include?(char) }  # logic validation
+end
+
+p (is_pangram('The quick brown fox jumps over the lazy dog.') == true)
+p (is_pangram('This is not a pangram.') == false)
+# All test cases return `true`
+
+
 
 ## Refactored
 def is_pangram(str)
