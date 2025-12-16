@@ -13,6 +13,34 @@ _________________________________________________________
 - Sort combinations by descending order
 =end
 
+
+## Alternative:
+# Refactored, `#max` method:
+def combinations(num)
+  combinations = []
+  arr = num.to_s.chars
+
+  arr.combination(arr.size - 1) do |combination| 
+    combinations << combination.join.to_i
+  end
+
+  combinations
+end
+
+def delete_digit(num)
+  combinations(num).max
+end
+
+# TEST CASES
+puts delete_digit(791983) == 91983
+puts delete_digit(152) == 52
+puts delete_digit(1001) == 101
+puts delete_digit(10) == 1
+# All test cases return `true`
+
+
+
+## Solutions:
 def combinations(num)
   combinations = []
 
@@ -43,3 +71,4 @@ puts delete_digit(791983) == 91983
 puts delete_digit(152) == 52
 puts delete_digit(1001) == 101
 puts delete_digit(10) == 1
+# All test cases return `true`
