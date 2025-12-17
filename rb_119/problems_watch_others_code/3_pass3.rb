@@ -52,10 +52,45 @@ If not, return -1
 - same digits -> -1
 =end
 
+## Simplified logic:
+def combinations(num)
+  arr = num.to_s.chars
+  arr.permutation(arr.size).map do |permutation| 
+    permutation.join.to_i
+  end
+end
+
+# `#find`
+def next_bigger_num(num)
+  return -1 if num.to_s.size == 1 || num.digits.uniq.size == 1
+  
+  # Remove duplicates from combinations. Sort
+  sorted_combinations = combinations(num).uniq.sort
+
+  # Find the first number in the sorted array that is greater than `num`
+  next_num = sorted_combinations.find { |item| item > num }
+
+  # `#find` returns `nil` if nothing found
+  next_num || -1
+end
+
+p next_bigger_num(132) == 213
+
+p next_bigger_num(9) == -1 
+p next_bigger_num(12) == 21
+p next_bigger_num(513) == 531
+p next_bigger_num(2017) == 2071
+p next_bigger_num(111) == -1
+p next_bigger_num(531) == -1
+p next_bigger_num(123456789) == 123456798
+# All test cases return `true`
+
+
+
 ## Improved logic
 def combinations(num)
   arr = num.to_s.chars
-  combinations = arr.permutation(arr.size).map do |permutation| 
+  arr.permutation(arr.size).map do |permutation| 
     permutation.join.to_i
   end
 end
