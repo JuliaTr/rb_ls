@@ -45,7 +45,6 @@ Algo:
     - if its index is the same as index the same letter in alphabet
       - Increment `count`
   - Return `count`
-
 =end
 
 ## Idiomatic solution:
@@ -104,5 +103,22 @@ puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
 
 
 
-## Alternative 1:
+## Alternative idiomatic:
+# High-level:
+# Calculate the character's distance from 'a'. Compare it to its 
+# index.
+# `#ord`
 
+def solve(arr)
+  arr.map do |word|
+    word.downcase.each_char.with_index.count do |char, idx|
+      char.ord - 'a'.ord == idx
+    end
+  end
+end
+
+puts solve(["abode", "ABc", "xyzD"]) == [4, 3, 1]
+puts solve(["abide", "ABc", "xyz"]) == [4, 3, 0]
+puts solve(["IAMDEFANDJKL", "thedefgh", "xyzDEFghijabc"]) == [6, 5, 7]
+puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
+# All test cases return `true`.
