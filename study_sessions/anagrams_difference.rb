@@ -133,6 +133,40 @@ str2 size - selected characters size
 
 =end
 
+## Simplified logic:
+def anagram_difference(str1, str2)
+  hash1 = str1.chars.tally
+  hash2 = str2.chars.tally
+
+  unique_chars = (str1 + str2).chars.uniq
+  count = 0
+  unique_chars.each do |char|
+    if hash1[char].nil? 
+      count += hash2[char]
+    elsif hash2[char].nil?
+      count += hash1[char]
+    else
+      count += (hash1[char] - hash2[char]).abs
+    end
+  end
+  count
+end
+
+p anagram_difference('banana', 'bandana') == 1
+
+p anagram_difference('', '') == 0
+p anagram_difference('a', '') == 1
+p anagram_difference('', 'a') == 1
+p anagram_difference('ab', 'a') == 1
+p anagram_difference('ab', 'ba') == 0
+p anagram_difference('ab', 'cd') == 4
+p anagram_difference('aab', 'a') == 2
+p anagram_difference('a', 'aab') == 2
+p anagram_difference('codewars', 'hackerrank') == 10
+# All test cases return `true`.
+
+
+
 ## Improved logic (Idea2):
 def anagram_difference(str1, str2)
   hash1 = str1.chars.tally
