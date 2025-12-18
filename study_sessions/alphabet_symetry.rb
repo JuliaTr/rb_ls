@@ -59,7 +59,6 @@ def solve(arr)
   end
 end
 
-puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
 puts solve(["abode", "ABc", "xyzD"]) == [4, 3, 1]
 puts solve(["abide", "ABc", "xyz"]) == [4, 3, 0]
 puts solve(["IAMDEFANDJKL", "thedefgh", "xyzDEFghijabc"]) == [6, 5, 7]
@@ -81,7 +80,6 @@ def solve(arr)
   end
 end
 
-puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
 puts solve(["abode", "ABc", "xyzD"]) == [4, 3, 1]
 puts solve(["abide", "ABc", "xyz"]) == [4, 3, 0]
 puts solve(["IAMDEFANDJKL", "thedefgh", "xyzDEFghijabc"]) == [6, 5, 7]
