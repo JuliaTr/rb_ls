@@ -48,7 +48,27 @@ Algo:
 
 =end
 
-## Solution
+## More idiomatic solution:
+def solve(arr)
+  alphabet = ('a'..'z').to_a
+
+  arr.map do |word|
+    word.each_char.with_index.count do |char, idx|
+      char.downcase == alphabet[idx]
+    end
+  end
+end
+
+puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
+puts solve(["abode", "ABc", "xyzD"]) == [4, 3, 1]
+puts solve(["abide", "ABc", "xyz"]) == [4, 3, 0]
+puts solve(["IAMDEFANDJKL", "thedefgh", "xyzDEFghijabc"]) == [6, 5, 7]
+puts solve(["encode", "abc", "xyzD", "ABmD"]) == [1, 3, 1, 3]
+# All test cases return `true`.
+
+
+
+## Solution:
 def solve(arr)
   alphabet = ('a'..'z').to_a
 
