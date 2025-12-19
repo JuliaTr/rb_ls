@@ -69,3 +69,26 @@ p even_sum_pairs([1, 2, 3, 4, 5]) == [[1, 1], [1, 3], [1, 5], [2, 2], [2, 4], [3
 p even_sum_pairs([4, 3, 6, 7]) == [[3, 3], [3, 7], [4, 4], [4, 6], [6, 6], [7, 7]]
 p even_sum_pairs([]) == []
 # All test cases return `true`.
+
+
+
+
+## Experiments:
+arr = [[3, 1], [4, 2]]
+
+result = arr.map do |subarray|
+  subarray.sort
+end
+
+p result  # [[1, 3], [2, 4]]
+
+
+
+arr = [[4, 2], [3, 1]]
+arr.sort  # [[3, 1], [4, 2]]
+
+
+
+arr = [[4, 2], [3, 1]]
+p arr.sort.map { |subarray| subarray.sort }
+# [[1, 3], [2, 4]]
