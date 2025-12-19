@@ -133,21 +133,23 @@ str2 size - selected characters size
 
 =end
 
-## Simplified logic:
+## Simplified structure:
+# `#fetch`
 def anagram_difference(str1, str2)
+  # Create 2 tally hashes
   hash1 = str1.chars.tally
   hash2 = str2.chars.tally
 
+  # Create an array of unique characters
   unique_chars = (str1 + str2).chars.uniq
+
+  # For each character, find its count in in `hash1` and 
+  # its count in `hash2`
   count = 0
   unique_chars.each do |char|
-    if hash1[char].nil? 
-      count += hash2[char]
-    elsif hash2[char].nil?
-      count += hash1[char]
-    else
-      count += (hash1[char] - hash2[char]).abs
-    end
+    # Increment `count` by absolute difference between `hash1[char]`
+    # values and `hash2[char]` values.
+    count += (hash1.fetch(char, 0) - hash2.fetch(char, 0)).abs
   end
   count
 end
@@ -228,3 +230,10 @@ puts(anagram_difference('aab', 'a') == 2)
 puts(anagram_difference('a', 'aab') == 2)
 puts(anagram_difference('codewars', 'hackerrank') == 10)
 # All test cases return `true`.
+
+
+## Experiments:
+=begin
+irb(main):001:0> nil.to_i
+=> 0
+=end
