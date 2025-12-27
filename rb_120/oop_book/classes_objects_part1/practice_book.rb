@@ -116,14 +116,39 @@
 
 
 
-## Accessor Methods
+# ## Accessor Methods
+# # with getter method
+# class GoodDog
+#   def initialize(name)
+#     @name = name
+#   end
+
+#   def get_name   # getter method
+#     @name
+#   end
+
+#   def speak
+#     "#{@name} says arf!"
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky")
+# puts sparky.speak      # Sparky says arf!
+# puts sparky.get_name   # Sparky
+
+
+# with setter method
 class GoodDog
   def initialize(name)
     @name = name
   end
 
-  def get_name   # getter method
+  def get_name
     @name
+  end
+
+  def set_name=(name)    # setter methods
+    @name = name
   end
 
   def speak
@@ -132,5 +157,7 @@ class GoodDog
 end
 
 sparky = GoodDog.new("Sparky")
-puts sparky.speak      # Sparky says arf!
-puts sparky.get_name   # Sparky
+puts sparky.speak        # Sparky says arf!
+puts sparky.get_name     # Sparky
+sparky.set_name = "Spartacus"
+puts sparky.get_name     # Spartacus
