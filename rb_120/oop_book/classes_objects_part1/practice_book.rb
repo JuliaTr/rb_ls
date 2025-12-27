@@ -137,18 +137,44 @@
 # puts sparky.get_name   # Sparky
 
 
-# with setter method
+# # with setter method
+# class GoodDog
+#   def initialize(name)
+#     @name = name
+#   end
+
+#   def get_name
+#     @name
+#   end
+
+#   def set_name=(name)    # setter methods
+#     @name = name
+#   end
+
+#   def speak
+#     "#{@name} says arf!"
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky")
+# puts sparky.speak        # Sparky says arf!
+# puts sparky.get_name     # Sparky
+# sparky.set_name = "Spartacus"
+# puts sparky.get_name     # Spartacus
+
+
+
 class GoodDog
   def initialize(name)
     @name = name
   end
 
-  def get_name
+  def name         # This was renamed from "get_name" 
     @name
   end
 
-  def set_name=(name)    # setter methods
-    @name = name
+  def name=(n)    # This was renamed from "set_name="
+    @name = n
   end
 
   def speak
@@ -158,6 +184,6 @@ end
 
 sparky = GoodDog.new("Sparky")
 puts sparky.speak        # Sparky says arf!
-puts sparky.get_name     # Sparky
-sparky.set_name = "Spartacus"
-puts sparky.get_name     # Spartacus
+puts sparky.name         # Sparky
+sparky.name = "Spartacus"
+puts sparky.name         # Spartacus
