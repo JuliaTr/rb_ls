@@ -164,17 +164,52 @@
 
 
 
+# class GoodDog
+#   def initialize(name)
+#     @name = name
+#   end
+
+#   def name         # This was renamed from "get_name" 
+#     @name
+#   end
+
+#   def name=(n)    # This was renamed from "set_name="
+#     @name = n
+#   end
+
+#   def speak
+#     "#{@name} says arf!"
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky")
+# puts sparky.speak        # Sparky says arf!
+# puts sparky.name         # Sparky
+# sparky.name = "Spartacus"
+# puts sparky.name         # Spartacus
+
+
+
+# class Dog
+#   def name=(n)
+#     @name = n     # returns what was passed to the argument
+#     "Laddiwboy"   # value is ignored
+#   end
+# end
+
+# sparky = Dog.new()
+# p sparky.name = "Sparky"      # returns `"Sparky"`
+# puts(sparky.name = "Sparky")
+# # Sparky
+
+
+
+# with `attr_accessor` (creates a method for `getter` and `setter`)
 class GoodDog
+  attr_accessor :name  # creates the method name for `getter` and `setter`
+
   def initialize(name)
     @name = name
-  end
-
-  def name         # This was renamed from "get_name" 
-    @name
-  end
-
-  def name=(n)    # This was renamed from "set_name="
-    @name = n
   end
 
   def speak
@@ -183,7 +218,7 @@ class GoodDog
 end
 
 sparky = GoodDog.new("Sparky")
-puts sparky.speak        # Sparky says arf!
-puts sparky.name         # Sparky
+puts sparky.speak
+puts sparky.name
 sparky.name = "Spartacus"
-puts sparky.name         # Spartacus
+puts sparky.name
