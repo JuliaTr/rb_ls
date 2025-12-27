@@ -260,9 +260,52 @@
 # # Spartacus weighs 45 lbs and is 24 inches tall.
 
 
-## Experiments:
+# ## Experiments:
+# class GoodDog
+#   attr_accessor :height, :weight  # `:name` is absent
+
+#   def initialize(n, h, w)
+#     @name = n
+#     @height = h
+#     @weight = w
+#   end
+
+#   def speak
+#     "#{name} says arf!"
+#   end
+
+#   def change_info(n, h, w)
+#     @name = n
+#     @height = h
+#     @weight = w
+#   end
+
+#   def info
+#     "#{name} weighs #{weight} and is #{height} tall."
+#   end
+# end
+
+# sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+# puts sparky.info
+
+# puts sparky.name
+
+# sparky.change_info('Spartacus', '24 inches', '45 lbs')
+# puts sparky.info
+
+# =begin
+# undefined local variable or method `name' for 
+# #<GoodDog:0x000000010e6a38f8 @name="Sparky", 
+# @height="12 inches", @weight="10 lbs"> (NameError)
+
+#     "#{name} weighs #{weight} and is #{height} tall."
+#        ^^^^
+# Did you mean?  @name
+# =end
+
+
 class GoodDog
-  attr_accessor :height, :weight  # `:name` is absent
+  attr_accessor :name, :height, :weight
 
   def initialize(n, h, w)
     @name = n
@@ -275,9 +318,9 @@ class GoodDog
   end
 
   def change_info(n, h, w)
-    @name = n
-    @height = h
-    @weight = w
+    name = n
+    height = h
+    weight = w
   end
 
   def info
@@ -288,20 +331,14 @@ end
 sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
 puts sparky.info
 
-puts sparky.name
-
-sparky.change_info('Spartacus', '24 inches', '45 lbs')
+sparky.change_info('Spartecus', '24 inches', '45 lbs')
 puts sparky.info
 
 =begin
-undefined local variable or method `name' for 
-#<GoodDog:0x000000010e6a38f8 @name="Sparky", 
-@height="12 inches", @weight="10 lbs"> (NameError)
-
-    "#{name} weighs #{weight} and is #{height} tall."
-       ^^^^
-Did you mean?  @name
+Sparky weighs 10 lbs and is 12 inches tall.
+Sparky weighs 10 lbs and is 12 inches tall.
 =end
+
 
 
 # with `self`
