@@ -204,21 +204,104 @@
 
 
 
-# with `attr_accessor` (creates a method for `getter` and `setter`)
-class GoodDog
-  attr_accessor :name  # creates the method name for `getter` and `setter`
+# # with `attr_accessor` (creates a method for `getter` and `setter`)
+# class GoodDog
+#   attr_accessor :name  # creates the method name for `getter` and `setter`
 
-  def initialize(name)
-    @name = name
+#   def initialize(name)
+#     @name = name
+#   end
+
+#   def speak
+#     "#{@name} says arf!"
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky")
+# puts sparky.speak
+# puts sparky.name
+# sparky.name = "Spartacus"
+# puts sparky.name
+
+
+
+# class GoodDog
+#   attr_accessor :name, :height, :weight
+
+#   def initialize(n, h, w)
+#     @name = n
+#     @height = h
+#     @weight = w
+#   end
+
+#   def speak
+#     "#{name} says arf!"
+#   end
+
+#   def change_info(n, h, w)
+#     @name = n
+#     @height = h
+#     @weight = w
+#   end
+
+#   def info
+#     "#{@name} weighs #{weight} and is #{height} tall."
+#   end
+# end
+
+# sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+# puts sparky.info
+# # Sparky weighs 10 lbs and is 12 inches tall.
+
+# puts sparky.name  # Sparky
+
+# sparky.change_info('Spartacus', '24 inches', '45 lbs')
+# puts sparky.info
+# # Spartacus weighs 45 lbs and is 24 inches tall.
+
+
+## Experiments:
+class GoodDog
+  attr_accessor :height, :weight  # `:name` is absent
+
+  def initialize(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
   end
 
   def speak
-    "#{@name} says arf!"
+    "#{name} says arf!"
+  end
+
+  def change_info(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def info
+    "#{name} weighs #{weight} and is #{height} tall."
   end
 end
 
-sparky = GoodDog.new("Sparky")
-puts sparky.speak
+sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+puts sparky.info
+
 puts sparky.name
-sparky.name = "Spartacus"
-puts sparky.name
+
+sparky.change_info('Spartacus', '24 inches', '45 lbs')
+puts sparky.info
+
+=begin
+undefined local variable or method `name' for 
+#<GoodDog:0x000000010e6a38f8 @name="Sparky", 
+@height="12 inches", @weight="10 lbs"> (NameError)
+
+    "#{name} weighs #{weight} and is #{height} tall."
+       ^^^^
+Did you mean?  @name
+=end
+
+
+# with `self`
