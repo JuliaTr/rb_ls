@@ -132,3 +132,76 @@ end
 bar = Bar.new
 puts bar       # I am a Bar object!
 puts bar.xyz   # {:a=>1, :b=>2}
+
+
+
+
+## More about `self`
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    self.name   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def change_info(n, h, w)
+    self.name   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def info
+    "#{self.name} weighs #{self.weight} and is #{self.height} tall."
+  end
+
+  def what_is_self
+    self
+  end
+end
+
+sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+p sparky.what_is_self
+=begin
+#<GoodDog:0x0000000109624260 @name="Sparky", 
+@height="12 inches", @weight="10 lbs">
+=end
+
+
+
+class MyAwesomeClass
+  def self.this_is_a_class_method
+  end
+end
+
+
+
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    self.name   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def change_info(n, h, w)
+    self.game   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def info
+    "#{self.info} weighs #{self.weight} and is #{self.height} tall."
+  end
+
+  puts self
+end
+
+sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+p sparky
+=begin
+#<GoodDog:0x0000000109533e78 @name="Sparky", @height="12 
+inches", @weight="10 lbs">
+=end
