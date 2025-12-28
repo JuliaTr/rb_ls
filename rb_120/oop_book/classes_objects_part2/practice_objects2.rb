@@ -1,51 +1,54 @@
-# ## Class Methods
-# class GoodDog
-#   def self.what_am_I     # Class method definition
-#     "I'm a GoodDog class!"
-#   end
-# end
+## Class Methods
+class GoodDog
+  def self.what_am_I     # Class method definition
+    "I'm a GoodDog class!"
+  end
+end
 
-# p GoodDog.what_am_I  # "I'm a GoodDog class!"
-
-
-
-# ## Class Variables
-# class GoodDog
-#   @@number_of_dogs = 0
-
-#   def initialize
-#     @@number_of_dogs += 1
-#   end
-
-#   def self.total_number_of_dogs
-#     @@number_of_dogs
-#   end
-# end
-
-# puts GoodDog.total_number_of_dogs    # 0
-
-# dog1 = GoodDog.new
-# dog2 = GoodDog.new
-
-# puts GoodDog.total_number_of_dogs    # 2
+p GoodDog.what_am_I  # "I'm a GoodDog class!"
 
 
 
-# ## Constants
-# class GoodDog
-#   DOG_YEARS = 7
 
-#   attr_accessor :name, :age
+## Class Variables
+class GoodDog
+  @@number_of_dogs = 0
 
-#   def initialize(n, a)
-#     self.name = n
-#     self.age = a * DOG_YEARS
-#   end
-# end
+  def initialize
+    @@number_of_dogs += 1
+  end
 
-# sparky = GoodDog.new("Sparky", 4)
-# puts sparky.age       # 28
-# puts sparky           # #<GoodDog:0x0000000107045508>
+  def self.total_number_of_dogs
+    @@number_of_dogs
+  end
+end
+
+puts GoodDog.total_number_of_dogs    # 0
+
+dog1 = GoodDog.new
+dog2 = GoodDog.new
+
+puts GoodDog.total_number_of_dogs    # 2
+
+
+
+
+## Constants
+class GoodDog
+  DOG_YEARS = 7
+
+  attr_accessor :name, :age
+
+  def initialize(n, a)
+    self.name = n
+    self.age = a * DOG_YEARS
+  end
+end
+
+sparky = GoodDog.new("Sparky", 4)
+puts sparky.age       # 28
+puts sparky           # #<GoodDog:0x0000000107045508>
+
 
 
 # to_s
@@ -86,3 +89,46 @@ irb(main):005:0> age = 28
 irb(main):006:0> "This dog's name is #{name} and it is #{age} in dog years."
 => "This dog's name is Sparky and it is 28 in dog years."
 =end
+
+
+
+# Overriding `#to_s`
+class Foo
+  def to_s
+    42
+  end
+end
+
+foo = Foo.new
+puts foo               # #<Foo:0x000000010b805438>
+puts "foo is #{foo}"   # foo is #<Foo:0x000000010b805438>
+
+
+
+class Foo
+  def to_s
+    "42"
+  end
+end
+
+foo = Foo.new
+puts foo               # 42
+puts "foo is #{foo}"   # foo is 42
+
+
+
+class Bar
+  attr_reader :xyz
+
+  def initialize
+    @xyz = { a: 1, b: 2 }
+  end
+
+  def to_s
+    'I am a Bar object!'
+  end
+end
+
+bar = Bar.new
+puts bar       # I am a Bar object!
+puts bar.xyz   # {:a=>1, :b=>2}
