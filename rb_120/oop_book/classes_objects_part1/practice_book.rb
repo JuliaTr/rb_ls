@@ -206,7 +206,7 @@ puts(sparky.name = "Sparky")
 
 # with `attr_accessor` (creates a method for `getter` and `setter`)
 class GoodDog
-  attr_accessor :name  # creates the method name for `getter` and `setter`
+  attr_accessor :name  # creates method names for `getter` and `setter`
 
   def initialize(name)
     @name = name
@@ -218,10 +218,11 @@ class GoodDog
 end
 
 sparky = GoodDog.new("Sparky")
-puts sparky.speak
-puts sparky.name
+puts sparky.speak   # Sparky says arf!
+puts sparky.name    # Sparky
+
 sparky.name = "Spartacus"
-puts sparky.name
+puts sparky.name    # Spartacus
 
 
 
