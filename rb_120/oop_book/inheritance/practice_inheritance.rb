@@ -264,27 +264,54 @@
 
 
 
-## Private, Protected, and Public
-class GoodDog
-  DOG_YEARS = 7
+# ## Private, Protected, and Public
+# class GoodDog
+#   DOG_YEARS = 7
 
-  attr_accessor :name, :age
+#   attr_accessor :name, :age
 
-  def initialize(n, a)
-    self.name = n
-    self.age = a
+#   def initialize(n, a)
+#     self.name = n
+#     self.age = a
+#   end
+
+#   private
+
+#   def human_years
+#     age * DOG_YEARS
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky", 4)
+# sparky.human_years
+# =begin
+# private method `human_years' called for #<GoodDog:0x0000000105713bc0 
+# @name="Sparky", @age=4> (NoMethodError)
+# =end
+
+
+class Person
+  def initialize(age)
+    @age = age
   end
 
-  private
-
-  def human_years
-    age * DOG_YEARS
+  def older?(other_person)
+    age > other_person.age
   end
+
+  protected
+
+  attr_reader :age
 end
 
-sparky = GoodDog.new("Sparky", 4)
-sparky.human_years
+malory = Person.new(64)
+sterling = Person.new(42)
+
+p malory.older?(sterling)   # true
+p sterling.older?(malory)   # false
+
+malory.age 
 =begin
-private method `human_years' called for #<GoodDog:0x0000000105713bc0 
-@name="Sparky", @age=4> (NoMethodError)
+protected method `age' called for #<Person:0x0000000103363ce8 
+@age=64> (NoMethodError)
 =end
