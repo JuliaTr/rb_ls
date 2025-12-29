@@ -1,325 +1,325 @@
-# ## Class Inheritance
-# class Animal
-#   def speak
-#     "Hello!"
-#   end
-# end
+## Class Inheritance
+class Animal
+  def speak
+    "Hello!"
+  end
+end
 
-# class GoodDog < Animal
-# end
+class GoodDog < Animal
+end
 
-# class Cat < Animal
-# end
+class Cat < Animal
+end
 
-# sparky = GoodDog.new
-# paws = Cat.new
-# puts sparky.speak   # Hello!
-# puts paws.speak     # Hello!
+sparky = GoodDog.new
+paws = Cat.new
+puts sparky.speak   # Hello!
+puts paws.speak     # Hello!
 
 
 
-# class Animal
-#   def speak
-#     "Hello!"
-#   end
-# end
+class Animal
+  def speak
+    "Hello!"
+  end
+end
 
-# class GoodDog < Animal
-#   attr_accessor :name
+class GoodDog < Animal
+  attr_accessor :name
 
-#   def initialize(n)
-#     self.name = n
-#   end
+  def initialize(n)
+    self.name = n
+  end
 
-#   def speak
-#     "#{self.name} says arf!"
-#   end
-# end
+  def speak
+    "#{self.name} says arf!"
+  end
+end
 
-# class Cat < Animal
-# end
+class Cat < Animal
+end
 
-# sparky = GoodDog.new("Sparky")
-# paws = Cat.new
+sparky = GoodDog.new("Sparky")
+paws = Cat.new
 
-# puts sparky.speak     # Sparky says arf!
-# puts paws.speak       # Hello!
+puts sparky.speak     # Sparky says arf!
+puts paws.speak       # Hello!
 
 
 
 
-# ## Super
-# class Animal
-#   def speak
-#     "Hello!"
-#   end
-# end
+## Super
+class Animal
+  def speak
+    "Hello!"
+  end
+end
 
-# class GoodDog < Animal
-#   def speak
-#     super + " from GoodDog class"
-#   end
-# end
+class GoodDog < Animal
+  def speak
+    super + " from GoodDog class"
+  end
+end
 
-# sparky = GoodDog.new
-# p sparky.speak       # "Hello! from GoodDog class"
+sparky = GoodDog.new
+p sparky.speak       # "Hello! from GoodDog class"
 
 
 
-# class Animal
-#   attr_accessor :name
+class Animal
+  attr_accessor :name
 
-#   def initialize(name)
-#     @name = name
-#   end
-# end
+  def initialize(name)
+    @name = name
+  end
+end
 
-# class GoodDog < Animal
-#   def initialize(color)
-#     super
-#     @color = color
-#   end
-# end
+class GoodDog < Animal
+  def initialize(color)
+    super
+    @color = color
+  end
+end
 
-# bruno = GoodDog.new("brown")
-# p bruno
-# # #<GoodDog:0x0000000109f74ef0 @name="brown", @color="brown">
+bruno = GoodDog.new("brown")
+p bruno
+# #<GoodDog:0x0000000109f74ef0 @name="brown", @color="brown">
 
 
-# class BadDog < Animal
-#   def initialize(age, name)
-#     super(name)
-#     @age = age
-#   end
-# end
+class BadDog < Animal
+  def initialize(age, name)
+    super(name)
+    @age = age
+  end
+end
 
-# p BadDog.new(2, "bear")
-# # #<BadDog:0x000000010ffc4c10 @name="bear", @age=2>
+p BadDog.new(2, "bear")
+# #<BadDog:0x000000010ffc4c10 @name="bear", @age=2>
 
 
 
-# class Animal
-#   def initialize
-#   end
-# end
-
-# class Bear < Animal
-#   def initialize(color)
-#     super()
-#     @color = color
-#   end
-# end
-
-# bear = Bear.new("black")
-# p bear
-# # #<Bear:0x000000010c7f4dd0 @color="black">
-
-
-
-
-# ## Mixing in Modules
-# module Swimmable
-#   def swim
-#     "I'm swimming!"
-#   end
-# end
-
-# class Animal; end
-
-# class Fish < Animal
-#   include Swimmable   # mixing in Swimmable module
-# end
-
-# class Mammal < Animal
-# end
-
-# class Cat < Mammal
-# end
-
-# class Dog < Mammal
-#   include Swimmable  # mixing in Swimmable module
-# end
-
-# sparky = Dog.new
-# neemo  = Fish.new
-# paws   = Cat.new
-
-# p sparky.swim    # "I'm swimming!"
-# p neemo.swim     # "I'm swimming!"
-# p paws.swim  
-# =begin    
-# undefined method `swim' for #<Cat:0x000000010d0b4448> 
-# (NoMethodError)
-# =end
-
-
-
-
-# ## Method Lookup Path
-# module Walkable
-#   def walk
-#     "I'm walking."
-#   end
-# end
-
-# module Swimmable
-#   def swim
-#     "I'm swimming."
-#   end
-# end
-
-# module Climbable
-#   def climb
-#     "I'm climbing."
-#   end
-# end
-
-# class Animal
-#   include Walkable  # (3)
-
-#   def speak
-#     "I'm an animal, and I speak!"
-#   end
-# end
-
-# puts "---Animal method lookup---"
-# puts Animal.ancestors
-# =begin
-# ---Animal method lookup---
-# Animal
-# Walkable
-# Object
-# Kernel
-# BasicObject
-# =end
-
-# fido = Animal.new
-# p fido.speak   # "I'm an animal, and I speak!"
-# p fido.walk    # "I'm walking."
-# p fido.swim
-# =begin
-#  undefined method `swim' for #<Animal:0x000000010d4a40d0> 
-#  (NoMethodError)
-# =end
+class Animal
+  def initialize
+  end
+end
+
+class Bear < Animal
+  def initialize(color)
+    super()
+    @color = color
+  end
+end
+
+bear = Bear.new("black")
+p bear
+# #<Bear:0x000000010c7f4dd0 @color="black">
+
+
+
+
+## Mixing in Modules
+module Swimmable
+  def swim
+    "I'm swimming!"
+  end
+end
+
+class Animal; end
+
+class Fish < Animal
+  include Swimmable   # mixing in Swimmable module
+end
+
+class Mammal < Animal
+end
+
+class Cat < Mammal
+end
+
+class Dog < Mammal
+  include Swimmable  # mixing in Swimmable module
+end
+
+sparky = Dog.new
+neemo  = Fish.new
+paws   = Cat.new
+
+p sparky.swim    # "I'm swimming!"
+p neemo.swim     # "I'm swimming!"
+p paws.swim  
+=begin    
+undefined method `swim' for #<Cat:0x000000010d0b4448> 
+(NoMethodError)
+=end
+
+
+
+
+## Method Lookup Path
+module Walkable
+  def walk
+    "I'm walking."
+  end
+end
+
+module Swimmable
+  def swim
+    "I'm swimming."
+  end
+end
+
+module Climbable
+  def climb
+    "I'm climbing."
+  end
+end
+
+class Animal
+  include Walkable  # (3)
+
+  def speak
+    "I'm an animal, and I speak!"
+  end
+end
+
+puts "---Animal method lookup---"
+puts Animal.ancestors
+=begin
+---Animal method lookup---
+Animal
+Walkable
+Object
+Kernel
+BasicObject
+=end
+
+fido = Animal.new
+p fido.speak   # "I'm an animal, and I speak!"
+p fido.walk    # "I'm walking."
+p fido.swim
+=begin
+ undefined method `swim' for #<Animal:0x000000010d4a40d0> 
+ (NoMethodError)
+=end
 
-# class GoodDog < Animal
-#   include Swimmable  # (2)
-#   include Climbable  # (1)
-# end
+class GoodDog < Animal
+  include Swimmable  # (2)
+  include Climbable  # (1)
+end
 
-# puts "---GoodDog method lookup---"
-# puts GoodDog.ancestors
-# =begin
-# ---GoodDog method lookup---
-# GoodDog
-# Climbable  (1)
-# Swimmable  (2)
-# Animal
-# Walkable   (3)
-# Object
-# Kernel
-# BasicObject
-# =end
+puts "---GoodDog method lookup---"
+puts GoodDog.ancestors
+=begin
+---GoodDog method lookup---
+GoodDog
+Climbable  (1)
+Swimmable  (2)
+Animal
+Walkable   (3)
+Object
+Kernel
+BasicObject
+=end
 
 
 
 
-# ## More Modules
-# module Mammal
-#   class Dog
-#     def speak(sound)
-#       p "#{sound}"
-#     end
-#   end
+## More Modules
+module Mammal
+  class Dog
+    def speak(sound)
+      p "#{sound}"
+    end
+  end
 
-#   class Cat
-#     def say_name(name)
-#       p "#{name}"
-#     end
-#   end
-# end
+  class Cat
+    def say_name(name)
+      p "#{name}"
+    end
+  end
+end
 
-# buddy = Mammal::Dog.new
-# kitty = Mammal::Cat.new
-# buddy.speak('Arf!')       # "Arf!"
-# kitty.say_name('kitty')   # "kitty"
+buddy = Mammal::Dog.new
+kitty = Mammal::Cat.new
+buddy.speak('Arf!')       # "Arf!"
+kitty.say_name('kitty')   # "kitty"
 
 
 
-# module Conversions
-#   def self.farenheit_to_celsium(num)
-#     (num - 32) * 5 / 9
-#   end
-# end
+module Conversions
+  def self.farenheit_to_celsium(num)
+    (num - 32) * 5 / 9
+  end
+end
 
-# value = Conversions.farenheit_to_celsium(32)
-# p value   # 0
+value = Conversions.farenheit_to_celsium(32)
+p value   # 0
 
-# value = Conversions.farenheit_to_celsium(80)
-# p value   # 26
+value = Conversions.farenheit_to_celsium(80)
+p value   # 26
 
-# value = Conversions::farenheit_to_celsium(32)
-# p value   # 0
+value = Conversions::farenheit_to_celsium(32)
+p value   # 0
 
 
 
 
-# ## Private, Protected, and Public
-# class GoodDog
-#   DOG_YEARS = 7
+## Private, Protected, and Public
+class GoodDog
+  DOG_YEARS = 7
 
-#   attr_accessor :name, :age
+  attr_accessor :name, :age
 
-#   def initialize(n, a)
-#     self.name = n
-#     self.age = a
-#   end
+  def initialize(n, a)
+    self.name = n
+    self.age = a
+  end
 
-#   private
+  private
 
-#   def human_years
-#     age * DOG_YEARS
-#   end
-# end
+  def human_years
+    age * DOG_YEARS
+  end
+end
 
-# sparky = GoodDog.new("Sparky", 4)
-# sparky.human_years
-# =begin
-# private method `human_years' called for #<GoodDog:0x0000000105713bc0 
-# @name="Sparky", @age=4> (NoMethodError)
-# =end
+sparky = GoodDog.new("Sparky", 4)
+sparky.human_years
+=begin
+private method `human_years' called for #<GoodDog:0x0000000105713bc0 
+@name="Sparky", @age=4> (NoMethodError)
+=end
 
 
-# class Person
-#   def initialize(age)
-#     @age = age
-#   end
+class Person
+  def initialize(age)
+    @age = age
+  end
 
-#   def older?(other_person)
-#     age > other_person.age
-#   end
+  def older?(other_person)
+    age > other_person.age
+  end
 
-#   protected
+  protected
 
-#   attr_reader :age
-# end
+  attr_reader :age
+end
 
-# malory = Person.new(64)
-# sterling = Person.new(42)
+malory = Person.new(64)
+sterling = Person.new(42)
 
-# p malory.older?(sterling)   # true
-# p sterling.older?(malory)   # false
+p malory.older?(sterling)   # true
+p sterling.older?(malory)   # false
 
-# malory.age 
-# =begin
-# protected method `age' called for #<Person:0x0000000103363ce8 
-# @age=64> (NoMethodError)
-# =end
+malory.age 
+=begin
+protected method `age' called for #<Person:0x0000000103363ce8 
+@age=64> (NoMethodError)
+=end
 
 
 
 
-## Accidental Method Overriding
+# ## Accidental Method Overriding
 class Parent
   def say_hi
     p "Hi from Parent."
@@ -340,7 +340,36 @@ child.say_hi            # "Hi from Child."
 son = Child.new
 son.send :say_hi          # "Hi from Child."
 
+class Child
+  def say_hi
+    p "Hi from Child."
+  end
 
+  def send
+    p "send from Child..."
+  end
+end
 
+lad = Child.new
+lad.send :say_hi
+=begin
+`send': wrong number of arguments (given 1, expected 0) 
+(ArgumentError)
+=end
 
+c = Child.new
+p c.instance_of? Child   # true
+p c.instance_of? Parent  # false
 
+class Child
+  def instance_of?
+    p "I'm a fake instance"
+  end
+end
+
+heir = Child.new
+heir.instance_of? Child
+=begin
+wrong number of arguments (given 1, expected 0) 
+(ArgumentError)
+=end
