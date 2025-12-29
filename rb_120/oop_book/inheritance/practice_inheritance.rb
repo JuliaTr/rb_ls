@@ -117,38 +117,106 @@
 
 
 
-## Mixing in Modules
-module Swimmable
-  def swim
-    "I'm swimming!"
+# ## Mixing in Modules
+# module Swimmable
+#   def swim
+#     "I'm swimming!"
+#   end
+# end
+
+# class Animal; end
+
+# class Fish < Animal
+#   include Swimmable   # mixing in Swimmable module
+# end
+
+# class Mammal < Animal
+# end
+
+# class Cat < Mammal
+# end
+
+# class Dog < Mammal
+#   include Swimmable  # mixing in Swimmable module
+# end
+
+# sparky = Dog.new
+# neemo  = Fish.new
+# paws   = Cat.new
+
+# p sparky.swim    # "I'm swimming!"
+# p neemo.swim     # "I'm swimming!"
+# p paws.swim  
+# =begin    
+# undefined method `swim' for #<Cat:0x000000010d0b4448> 
+# (NoMethodError)
+# =end
+
+
+
+
+## Method Lookup Path
+module Walkable
+  def walk
+    "I'm walking."
   end
 end
 
-class Animal; end
-
-class Fish < Animal
-  include Swimmable   # mixing in Swimmable module
+module Swimmable
+  def swim
+    "I'm swimming."
+  end
 end
 
-class Mammal < Animal
+module Climbable
+  def climb
+    "I'm climbing."
+  end
 end
 
-class Cat < Mammal
+class Animal
+  include Walkable  # (3)
+
+  def speak
+    "I'm an animal, and I speak!"
+  end
 end
 
-class Dog < Mammal
-  include Swimmable  # mixing in Swimmable module
-end
-
-sparky = Dog.new
-neemo  = Fish.new
-paws   = Cat.new
-
-p sparky.swim    # "I'm swimming!"
-p neemo.swim     # "I'm swimming!"
-p paws.swim  
-=begin    
-undefined method `swim' for #<Cat:0x000000010d0b4448> 
-(NoMethodError)
+puts "---Animal method lookup---"
+puts Animal.ancestors
+=begin
+---Animal method lookup---
+Animal
+Walkable
+Object
+Kernel
+BasicObject
 =end
 
+fido = Animal.new
+p fido.speak   # "I'm an animal, and I speak!"
+p fido.walk    # "I'm walking."
+p fido.swim
+=begin
+ undefined method `swim' for #<Animal:0x000000010d4a40d0> 
+ (NoMethodError)
+=end
+
+class GoodDog < Animal
+  include Swimmable  # (2)
+  include Climbable  # (1)
+end
+
+puts "---GoodDog method lookup---"
+puts GoodDog.ancestors
+=begin
+---GoodDog method lookup---
+GoodDog
+Climbable  (1)
+Swimmable  (2)
+Animal
+Walkable   (3)
+Object
+Kernel
+BasicObject
+=end
