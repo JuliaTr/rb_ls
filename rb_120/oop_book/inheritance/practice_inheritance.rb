@@ -290,28 +290,57 @@
 # =end
 
 
-class Person
-  def initialize(age)
-    @age = age
+# class Person
+#   def initialize(age)
+#     @age = age
+#   end
+
+#   def older?(other_person)
+#     age > other_person.age
+#   end
+
+#   protected
+
+#   attr_reader :age
+# end
+
+# malory = Person.new(64)
+# sterling = Person.new(42)
+
+# p malory.older?(sterling)   # true
+# p sterling.older?(malory)   # false
+
+# malory.age 
+# =begin
+# protected method `age' called for #<Person:0x0000000103363ce8 
+# @age=64> (NoMethodError)
+# =end
+
+
+
+
+## Accidental Method Overriding
+class Parent
+  def say_hi
+    p "Hi from Parent."
   end
-
-  def older?(other_person)
-    age > other_person.age
-  end
-
-  protected
-
-  attr_reader :age
 end
 
-malory = Person.new(64)
-sterling = Person.new(42)
+p Parent.superclass    # Object
 
-p malory.older?(sterling)   # true
-p sterling.older?(malory)   # false
+class Child < Parent
+  def say_hi
+    p "Hi from Child."
+  end
+end
 
-malory.age 
-=begin
-protected method `age' called for #<Person:0x0000000103363ce8 
-@age=64> (NoMethodError)
-=end
+child = Child.new
+child.say_hi            # "Hi from Child."
+
+son = Child.new
+son.send :say_hi          # "Hi from Child."
+
+
+
+
+
