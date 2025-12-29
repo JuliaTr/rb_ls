@@ -48,18 +48,41 @@
 
 
 
-## Super
+# ## Super
+# class Animal
+#   def speak
+#     "Hello!"
+#   end
+# end
+
+# class GoodDog < Animal
+#   def speak
+#     super + " from GoodDog class"
+#   end
+# end
+
+# sparky = GoodDog.new
+# p sparky.speak       # "Hello! from GoodDog class"
+
+
+
 class Animal
-  def speak
-    "Hello!"
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
   end
 end
 
 class GoodDog < Animal
-  def speak
-    super + " from GoodDog class"
+  def initialize(color)
+    super
+    @color = color
   end
 end
 
-sparky = GoodDog.new
-p sparky.speak       # "Hello! from GoodDog class"
+bruno = GoodDog.new("brown")
+p bruno
+# #<GoodDog:0x0000000109f74ef0 @name="brown", @color="brown">
+
+
