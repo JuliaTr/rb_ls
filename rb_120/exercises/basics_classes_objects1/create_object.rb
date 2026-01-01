@@ -7,3 +7,4 @@ class Cat
 end
 
 kitty = Cat.new
+p kitty   # #<Cat:0x00000001063e5cb8>
