@@ -26,3 +26,26 @@ kitty.generic_greeting
 undefined method `generic_greeting' 
 for #<Cat:0x000000010cfa5b10> (NoMethodError)
 =end
+
+
+
+## Further exploration
+=begin
+What happens if you run `kitty.class.generic_greeting`? Can you 
+explain this result?
+=end
+class Cat
+  def self.generic_greeting
+    puts "Hello! I'm a cat!"
+  end
+end
+
+kitty = Cat.new
+p kitty.class                  # Cat
+kitty.class.generic_greeting   # Hello! I'm a cat!
+
+=begin
+Line 44, `kitty.class.generic_greeting` outputs `Hello! I'm  a cat!`.
+This has happened because `::generic_greeting` is a class method 
+being invoked on return value of `kitty.class`, which is `Cat`.
+=end
