@@ -24,7 +24,7 @@ p cat1.color              # "Black"
 puts Cat.ancestors
 =begin
 Cat
-Animal
+Animal   # Ruby finds `#color` here
 Object
 Kernel
 BasicObject
