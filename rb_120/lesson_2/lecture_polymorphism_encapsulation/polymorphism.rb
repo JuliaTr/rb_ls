@@ -74,3 +74,50 @@ floating_animals.each { |animal| animal.float }
 float
 float
 =end
+
+
+
+module Floatable
+  def float
+    puts "float"
+  end
+end
+
+class Animal
+  def move
+    puts "doesn't move"
+  end
+end
+
+class Fish < Animal
+  include Floatable
+
+  def move
+    puts "swim"
+  end
+end
+
+class Cat < Animal
+  def move
+    puts "walk"
+  end
+end
+
+class Sponge < Animal; end
+
+class Coral < Animal
+  include Floatable
+end
+
+# A boat is not a type of animal, but it can float
+class Boat
+  include Floatable
+end
+
+floating_things = [Fish.new, Coral.new, Boat.new]
+floating_things.each { |thing| thing.float }
+=begin
+float
+float
+float
+=end
