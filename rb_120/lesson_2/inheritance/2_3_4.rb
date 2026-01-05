@@ -58,3 +58,37 @@ p dave.speak    # "bark!"
 
 p bud.run       # "running!"
 p bud.swim      # "can't swim"
+
+=begin
+Pet
+  run (method)
+  jump (method)
+  
+  Cat
+    speak (method)
+
+  Dog
+    speak (method)
+    fetch (method)
+    swim (method)
+
+    Bulldog
+      swim (method)
+=end
+
+
+p "---------Pet class lookip path-----------------"
+p Pet.ancestors
+# [Pet, Object, Kernel, BasicObject]
+
+p "---------Cat class lookip path-----------------"
+p Cat.ancestors
+# [Cat, Pet, Object, Kernel, BasicObject]
+
+p "---------Dog class lookip path-----------------"
+p Dog.ancestors
+# [Dog, Pet, Object, Kernel, BasicObject]
+
+p "---------Bulldog class lookip path-----------------"
+p Bulldog.ancestors
+# [Bulldog, Dog, Pet, Object, Kernel, BasicObject]
