@@ -42,39 +42,74 @@
 
 
 
+# class Person
+#   attr_accessor :name, :pet
+
+#   def initialize(name)
+#     @name = name   # technically a collaborator object
+#   end
+# end
+
+# class Dog
+#   def speak
+#     'bark!'
+#   end
+
+#   def fetch
+#     'fetching!'
+#   end
+
+#   def swim
+#     'swimming!'
+#   end
+# end
+
+# class Bulldog < Dog
+# end
+
+# bob = Person.new("Robert")
+# bud = Bulldog.new
+
+# # Collaborator object
+# bob.pet = bud
+
+# p bob.pet              #<Bulldog:0x00000001065f5148>
+# p bob.pet.class        # Bulldog
+
+# p bob.pet.speak        # "bark!"
+# p bob.pet.fetch        # "fetching!"
+
+
+
+
 class Person
-  attr_accessor :name, :pet
+  attr_accessor :name, :pets
 
   def initialize(name)
-    @name = name   # technically a collaborator object
+    @name = name
+    @pets = []
   end
 end
 
-class Dog
-  def speak
-    'bark!'
-  end
-
-  def fetch
-    'fetching!'
-  end
-
-  def swim
-    'swimming!'
-  end
+class Bulldog
 end
 
-class Bulldog < Dog
+class Cat
 end
 
 bob = Person.new("Robert")
+
+kitty = Cat.new
 bud = Bulldog.new
 
-# Collaborator object
-bob.pet = bud
+bob.pets << kitty
+bob.pets << bud
 
-p bob.pet              #<Bulldog:0x00000001065f5148>
-p bob.pet.class        # Bulldog
+p bob.pets  # [#<Cat:0x0000000100a64ab8>, #<Bulldog:0x0000000100a64a18>]
 
-p bob.pet.speak        # "bark!"
-p bob.pet.fetch        # "fetching!"
+p bob.pets.jump
+=begin
+undefined method `jump' for 
+[#<Cat:0x0000000109a44a98>, #<Bulldog:0x0000000109a449f8>]:Array 
+(NoMethodError)
+=end
