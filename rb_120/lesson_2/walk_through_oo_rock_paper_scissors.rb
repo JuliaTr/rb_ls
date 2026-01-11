@@ -1,10 +1,34 @@
 # Step 1
 class Player
-  attr_accessor :move
+  attr_accessor :move, :name
 
   def initialize(player_type = :human)
     @player_type = player_type
     @move = nil
+
+    # Step 4:
+    set_name 
+  end
+
+  # Step 4:
+  def set_name
+    if human?
+      n = ''
+      loop do
+        puts "What's your name?"
+        # `n` is a local variable name
+        n = gets.chomp
+        break unless n.empty?
+        # to prevent empty strings
+        puts "Sorry, must enter a value."
+      end
+
+      self.name = n
+    else
+      # for the computer
+      # setter method `name` is invoked on `self`
+      self.name = ['R2D2', 'Hal', 'Chappie', 'Sonny', 'Number 5'].sample
+    end
   end
 
   def choose
@@ -47,28 +71,28 @@ class RPSGame
     puts "Thanks for playing Rock, Paper, Scissors. Good bye!"
   end
 
-  # Step 2
+  # Step 2:
   def display_winner
-    puts "You chose #{human.move}."
-    puts "The computer chose #{computer.move}."
+    puts "#{human.name} chose #{human.move}."
+    puts "#{computer.name} chose #{computer.move}."
 
     case human.move
     when 'rock'
       puts "It's a tie" if computer.move == 'rock'
-      puts "You won!" if computer.move == 'scissors'
-      puts "Computer won!" if computer.move == 'paper'
+      puts "#{human.name} won!" if computer.move == 'scissors'
+      puts "#{computer.name} won!" if computer.move == 'paper'
     when 'paper'
       puts "It's a tie" if computer.move == 'paper'
-      puts "You won!" if computer.move == 'rock'
-      puts "Computer won!" if computer.move == 'scissors'
+      puts "#{human.name} won!" if computer.move == 'rock'
+      puts "#{computer.name} won!" if computer.move == 'scissors'
     when 'scissors'
       puts "It's a tie" if computer.move == 'scissors'
-      puts "You won!" if computer.move == 'paper'
-      puts "Computer won!" if computer.move == 'rock'
+      puts "#{human.name} won!" if computer.move == 'paper'
+      puts "#{computer.name} won!" if computer.move == 'rock'
     end
   end
 
-  # Step 3
+  # Step 3:
   def play_again?
     answer = nil
     loop do
@@ -96,3 +120,18 @@ class RPSGame
 end
 
 RPSGame.new.play
+
+=begin
+$ ruby walk_through_oo_rock_paper_scissors.rb
+What's your name?
+Yuliia
+Welcome to Rock, Paper, Scissors!
+Please choose rock, paper, scissors:
+paper
+Yuliia chose paper.
+Hal chose rock.
+Yuliia won!
+Would you like to play again? (y/n)
+n
+Thanks for playing Rock, Paper, Scissors. Good bye!
+=end
