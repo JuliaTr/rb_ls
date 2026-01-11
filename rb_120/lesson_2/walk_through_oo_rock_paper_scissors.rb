@@ -43,7 +43,7 @@ class Player
 
       self.move = choice
     else
-      self.move = ['rock', 'paper, scissors'].sample
+      self.move = ['rock', 'paper', 'scissors'].sample
     end
   end
 
