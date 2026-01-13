@@ -59,7 +59,7 @@ undefined method `walk' for #<Person:0x000000010b074660
 Expected:
 
 Mike strolls forward
-Kitty sounders forward
+Kitty sounters forward
 Flash runs forward
 =end
 
@@ -100,7 +100,7 @@ class Cat
   private
 
   def gait
-    "sounders"
+    "sounters"
   end
 end
 
@@ -131,7 +131,7 @@ flash.walk
 
 =begin
 Mike strolls forward
-Kitty sounders forward
+Kitty sounters forward
 Flash runs forward
 =end
 
@@ -162,7 +162,7 @@ class Cat
   end
 
   def gait
-    "sounders"
+    "sounters"
   end
 
   def walk
@@ -199,6 +199,60 @@ flash.walk
 Works as expected:
 
 Mike strolls forward
-Kitty sounders forward
+Kitty sounters forward
 Flash runs forward
 =end
+
+
+
+## Experiments:
+# private method is called ouside of the class definition
+class Person
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  private
+
+  def gait
+    "strolls"
+  end
+
+  def walk
+    "#{name} #{gait} forward"
+  end
+end
+
+mike = Person.new("Mike")
+mike.walk
+
+=begin
+private method `walk' called for #<Person:0x000000010ffd37b0
+@name="Mike"> (NoMethodError)
+=end
+
+
+
+# Can call private method inside a class definition
+class Cat
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def walk
+    puts "#{name} #{gait} forward"
+  end
+
+  private
+
+  def gait
+    "saunters"
+  end
+end
+
+kitty = Cat.new("Kitty")
+kitty.walk  # Kitty saunters forward
