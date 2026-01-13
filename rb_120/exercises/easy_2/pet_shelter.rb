@@ -62,6 +62,9 @@ class Shelter
 
   def adopt(owner, pet)
     owner.add_pet(pet)
+
+    # If there is no entry for this `owner.name` yet (i.e. it's `nil`),
+    # store `owner` there. Otherwise, leave the existing owner as is.
     @owners[owner.name] ||= owner
   end
 
