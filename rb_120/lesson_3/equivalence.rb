@@ -51,17 +51,36 @@
 
 
 
+# class Person
+#   attr_accessor :name
+# end
+
+# bob = Person.new
+# bob.name = "bob"
+
+# bob2 = Person.new
+# bob2.name = "bob"
+
+# p bob == bob2          # false
+
+# bob_copy = bob
+# p bob == bob_copy      # true
+
+
+
+
 class Person
   attr_accessor :name
+
+  def ==(other)
+    name == other.name    # rely on `String#==`
+  end
 end
 
 bob = Person.new
-bob.name = "bob"
+bob.name = 'bob'
 
 bob2 = Person.new
-bob2.name = "bob"
+bob2.name = 'bob'
 
-p bob == bob2          # false
-
-bob_copy = bob
-p bob == bob_copy      # true
+p bob == bob2         # true
