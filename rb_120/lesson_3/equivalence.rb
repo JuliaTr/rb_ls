@@ -25,13 +25,27 @@
 
 
 
+# str1 = "something"
+# str2 = "something"
+
+# str1 = str1 + " else"
+# p str1                  # "something else"
+
+# p str1 == str2          # false
+
+
+
 str1 = "something"
 str2 = "something"
+str1_copy = str1
 
-str1 = str1 + " else"
-p str1                  # "something else"
+# compare values
+p str1 == str2             # true
+p str1 == str1_copy        # true
+p str2 == str1_copy        # true
 
-p str1 == str2          # false
-
-
+# compare objects
+p str1.equal? str2         # false
+p str1.equal? str1_copy    # true
+p str2.equal? str1_copy    # false
 
