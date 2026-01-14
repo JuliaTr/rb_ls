@@ -17,8 +17,21 @@
 
 
 
+# str1 = "something"
+# str2 = "something"
+
+# p str1.class         # String
+# p str2.class         # String
+
+
+
 str1 = "something"
 str2 = "something"
 
-p str1.class         # String
-p str2.class         # String
+str1 = str1 + " else"
+p str1                  # "something else"
+
+p str1 == str2          # false
+
+
+
