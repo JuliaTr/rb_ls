@@ -1,4 +1,4 @@
-## The `==` method
+## The `==` method:
 str1 = "something"
 str2 = "something"
 p str1 == str2      # true
@@ -130,7 +130,7 @@ p int1.object_id == int2.object_id     # true
 
 
 
-## `===`
+## `===` method:
 
 num = 25
 
