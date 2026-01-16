@@ -44,7 +44,7 @@
 #   end
 
 #   def describe_type
-#     puts "I am a #{type} of Bees Wax"
+#     puts "I am a #{type} of Bees Wax"   # we have getter
 #   end
 # end
 
@@ -62,25 +62,46 @@
 
 
 
-## Experiments
+# ## Experiments
+# class BeesWax
+#   def initialize(type)
+#     @type = type
+#   end
+
+#   def type
+#     @type
+#   end
+
+#   def type=(t)
+#     @type = t
+#   end
+
+#   def describe_type
+#     puts "I am a #{type} of Bees Wax"  # we have getter
+#   end
+# end
+
+# wax1 = BeesWax.new('yellow')
+# wax1.describe_type  #  am a yellow of Bees Wax
+
+
+
 class BeesWax
   def initialize(type)
     @type = type
   end
 
-  def type
-    @type
-  end
-
-  def type=(t)
-    @type = t
-  end
-
   def describe_type
-    puts "I am a #{type} of Bees Wax"
+    puts "I'm a #{type} of Bees Wax"
   end
 end
 
 wax1 = BeesWax.new('yellow')
-wax1.describe_type  #  am a yellow of Bees Wax
+wax1.describe_type
+=begin
+undefined local variable or method `type' for #<BeesWax:0x0000000109814ea8 
+@type="yellow"> (NameError)
+=end
+
+
 
