@@ -32,3 +32,26 @@ is found nowhere in the lookup chain.
 
 If the method is nowhere in the chain, ruby raises a `NoMethodError`.
 =end
+
+
+
+## Experiments:
+module Taste
+  def flovor(flavor)
+    puts "#{flavor}"
+  end
+end
+
+class Orange
+  include Taste
+end
+
+class HotSauce
+  include Taste
+end
+
+p Orange.new.temperature
+=begin
+undefined method `temperature' for #<Orange:0x0000000103395400> 
+(NoMethodError)
+=end
