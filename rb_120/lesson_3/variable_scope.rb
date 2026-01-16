@@ -14,15 +14,26 @@
 
 
 
-class Person
-  def initialize(n)
-    @name = n
-  end
+# class Person
+#   def initialize(n)
+#     @name = n   # initialized
+#   end
 
+#   def get_name
+#     @name       # accessible
+#   end
+# end
+
+# bob = Person.new('bob')
+# p bob.get_name    # "bob"
+
+
+
+class Person
   def get_name
-    @name
+    @name       # not accessible; initialized anywhere
   end
 end
 
-bob = Person.new('bob')
-p bob.get_name    # "bob"
+bob = Person.new
+p bob.get_name    # nil
