@@ -167,3 +167,16 @@ end
 
 puts Person.new.greet
 # uninitialized constant Person::GREETINGS (NameError)
+
+
+
+
+class Person
+  def self.greetings
+    Computer::GREETINGS.join(', ')
+  end
+
+  def greet
+    Computer::GREETINGS.sample
+  end
+end
