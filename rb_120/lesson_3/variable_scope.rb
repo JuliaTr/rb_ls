@@ -55,33 +55,63 @@
 
 
 
-## Class Variable Scope
+# ## Class Variable Scope
+
+# class Person
+#   @@total_people = 0
+
+#   def self.total_people
+#     @@total_people
+#   end
+
+#   def initialize
+#     @@total_people += 1
+#   end
+
+#   def total_people
+#     @@total_people
+#   end
+# end
+
+# p Person.total_people        # 0
+# Person.new
+# Person.new
+# p Person.total_people        # 2
+
+# bob = Person.new
+# p bob.total_people           # 3
+
+# joe = Person.new
+# p joe.total_people           # 4
+
+# p Person.total_people        # 4
+
+
+
+
+
+## Constant Variable Scope
 
 class Person
-  @@total_people = 0
+  GREETINGS = ['Hello', 'Hi', 'Hey']
 
-  def self.total_people
-    @@total_people
+  def self.greetings
+    GREETINGS.join(', ')
   end
 
-  def initialize
-    @@total_people += 1
-  end
-
-  def total_people
-    @@total_people
+  def greet
+    GREETINGS.sample
   end
 end
 
-p Person.total_people        # 0
-Person.new
-Person.new
-p Person.total_people        # 2
+puts Person.greetings
+puts Person.new.greet
 
-bob = Person.new
-p bob.total_people           # 3
-
-joe = Person.new
-p joe.total_people           # 4
-
-p Person.total_people        # 4
+=begin
+$ ruby variable_scope.rb
+Hello, Hi, Hey
+Hey
+$ ruby variable_scope.rb
+Hello, Hi, Hey
+Hi
+=end
