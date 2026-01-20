@@ -41,3 +41,20 @@ class Goodbye < Greeting
 end
 
 Hello.hi    # Hello
+
+
+
+## Experiments
+class Greeting
+  def greet(message)
+    put message
+  end
+end
+
+class Hello < Greeting
+  def self.hi
+    greet("Hello")
+  end
+end
+
+Hello.hi # undefined method `greet' for Hello:Class (NoMethodError)
