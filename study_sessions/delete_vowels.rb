@@ -22,34 +22,58 @@ Loop over each value in input string
 Delete vowels after three in that copy
 
 Algo:
-- Create a copy -> convert to array
+- Create an empty string `result`
 - `count` = 0
 - Loop over each value in input string
-  - If character downcased is vowel `/aeiouy/`
+  - If character is vowel `/aeiouy/`
     - `count` increment by 1
   - If `count` is GREATER 3 
     - Delete character from copy
-- Return array joined into string
+- Return `result`
 
 "eyelash2!!!"
            ^
 =end
 
+## Refactored
 def three_vowels(str)
-  str2 = ''
+  result = ''
+  count = 0
+
+  str.each_char do |char|
+    count += 1 if char.match?(/[aeiouy]/i)  # case-insensitive regex
+
+    if !char.match?(/[aeiouy]/i) || count < 4
+      result << char
+    end
+  end
+
+  result
+end
+
+puts three_vowels("tropical") == "tropical"
+puts three_vowels("tropicalia") == "tropical"
+puts three_vowels("BliMp123") == "BliMp123"
+puts three_vowels("eyelash2!!!") == "eyelsh2!!!"
+# All test cases return `true`
+
+
+
+## Solution:
+def three_vowels(str)
+  result = ''
   count = 0
   str.each_char do |char|
-    if !char.downcase.match?(/[aeiouy]/)
-      str2 << char
-      
-    elsif char.downcase.match?(/[aeiouy]/) && count < 3
+    if !char.match?(/[aeiouy]/i)  # case-insensitive regex
+      result << char
+    elsif char.match?(/[aeiouy]/i) && count < 3
       count += 1
-      str2 << char
+      result << char
     end
 
-    str2 << char if count > 3 && !char.downcase.match?(/[aeiouy]/)
+    result << char if count > 3 && !char.match?(/[aeiouy]/i)
   end
-  str2
+  result
 end
 
 puts three_vowels("tropical") == "tropical"
