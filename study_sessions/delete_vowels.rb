@@ -35,6 +35,32 @@ Algo:
            ^
 =end
 
+## Alternative
+def three_vowels(str)
+  result = ''
+  count = 0
+
+  str.each_char do |char|
+    if char.match?(/[aeiouy]/i)
+      count += 1
+      result << char if count <= 3
+    else
+      result << char
+    end
+  end
+
+  result
+end
+
+puts three_vowels("tropical") == "tropical"
+puts three_vowels("tropicalia") == "tropical"
+puts three_vowels("BliMp123") == "BliMp123"
+puts three_vowels("eyelash2!!!") == "eyelsh2!!!"
+# All test cases return `true`
+
+
+
+
 ## Refactored
 def three_vowels(str)
   result = ''
@@ -56,6 +82,7 @@ puts three_vowels("tropicalia") == "tropical"
 puts three_vowels("BliMp123") == "BliMp123"
 puts three_vowels("eyelash2!!!") == "eyelsh2!!!"
 # All test cases return `true`
+
 
 
 
