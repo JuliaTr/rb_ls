@@ -20,7 +20,7 @@ class WheeledVehicle
   include Moveable
 
   def initialize(tire_array, km_traveled_per_liter, liters_of_fuel_capacity)
-    tires = tire_array
+    @tires = tire_array
     self.fuel_efficiency = km_traveled_per_liter
     self.fuel_capacity = liters_of_fuel_capacity
   end
