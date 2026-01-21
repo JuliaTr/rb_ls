@@ -102,7 +102,7 @@ end
 class Catamaran
   include Moveable
 
-  attr_reader :propelier_count, :hull_count
+  attr_reader :propeller_count, :hull_count
 
   def initialize(num_propellers, num_hulls, km_traveled_per_liter, liters_of_fuel_capacity)
     # `self` is prepended to reference setter methods `fuel_capacity`,
