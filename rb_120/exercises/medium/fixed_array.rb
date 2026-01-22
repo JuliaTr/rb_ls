@@ -32,9 +32,28 @@ class FixedArray
   end
 
   def to_s
+    # `to_a` is getter
+    # `to_s` is Ruby built-in `Array#to_s` method
     to_a.to_s
   end
 end
+
+=begin
+`to_a` "gets" a representation of the object's state -- in this case, 
+a regular array version of our `FixedArray`. It provides read-only
+access to the object's data in a specific format.
+
+The call `to_a.to_s` is a method chain:
+1. `to_a` is called on the `Fixed#Array` object (`self`). This executes 
+    our custom method, which returns a new `Array` object (the clone 
+    of `@array`).
+2. `.to_s` is called on the *result* of `to_a` -- that new `Array` 
+    object. Because the receiver of the call is now an `Array`, Ruby
+    uses the built-in `Array#to_s` method to get the string representation.
+
+`FixedArray#to_s`: "First, turn me into a regular array, then use the
+standard way an array turns itself into a string."
+=end
 
 fixed_array = FixedArray.new(5)
 puts fixed_array[3] == nil
@@ -82,6 +101,18 @@ rescue IndexError
 end
 # The above code should output `true` 16 times.
 # All test cases return `true`.
+
+=begin
+1. The `[]=` method is called with `index = 7` and `value = 3`.
+2. `self[index]` is executed.
+3. Ruby understands this as a call to the custom `[](index)` getter
+  method on the current `FixedArray` instance.
+4. Inside our `[]` method, `@array.fetch(7)` is executed.
+5. Since the index `7` is out of bounds for `@array`, `fetch` correctly
+  raises an `IndexError`.
+6. The `rescue` block catches the `IndexError`, and `puts true` is executed.
+=end
+
 
 
 
