@@ -24,10 +24,6 @@ class FixedArray
     #  wrote in `#[]` before assigning"
     # Getther method `[](index)` runs.
     self[index]                  # the same as `self.[](index)`
-    
-    # # Without `self` Ruby sees it as **creating a new `Array` literal**,
-    # # no method call, no error 
-    # [index]
     @array[index] = value
   end
 
@@ -112,6 +108,102 @@ irb(main):005:0> a[1] = 'a'
 => "a"
 irb(main):006:0> a.fetch(1)
 => "a"
+
+
+irb(main):009:0> [7]
+=> [7]
 =end
 
 
+
+# without `self[index]` -- `[index]` instead: 
+class FixedArray
+  def initialize(max_size)
+    @array = Array.new(max_size)
+  end
+
+  def [](index)
+    @array.fetch(index)
+  end
+
+  def []=(index, value)
+    # Without `self` Ruby sees `[]` as **creating a new
+    # `Array` literal**, no method call, no error. It is a special 
+    # case exactly with `[]`, even though we can call getter methods
+    # without `self`.
+    [index]   # issue is here
+    @array[index] = value
+  end
+
+  def to_a
+    @array.clone
+  end
+
+  def to_s
+    to_a.to_s
+  end
+end
+
+fixed_array = FixedArray.new(5)
+puts fixed_array[3] == nil
+puts fixed_array.to_a == [nil] * 5
+
+fixed_array[3] = 'a'
+puts fixed_array[3] == 'a'
+puts fixed_array.to_a == [nil, nil, nil, 'a', nil]
+
+fixed_array[1] = 'b'
+puts fixed_array == 'b'
+puts fixed_array.to_a == [nil, 'b', nil, 'a', nil]
+
+fixed_array[1] = 'c'
+puts fixed_array[1] == 'c'
+puts fixed_array.to_a == [nil, 'c', nil, 'a', nil]
+
+fixed_array[4] = 'd'
+puts fixed_array[4] == 'd'
+puts fixed_array.to_a == [nil, 'c', nil, 'a', 'd']
+puts fixed_array.to_s == `[nil, "c", nil, "a", "d"]`
+
+puts fixed_array[-1] == 'd'
+puts fixed_array[-4] == 'c'
+
+begin
+  fixed_array[6]
+  puts false
+rescue IndexError
+  puts true
+end
+
+begin
+  fixed_array[-7] = 3
+  puts false
+rescue IndexError
+  puts true
+end
+
+begin
+  fixed_array[7] = 3
+  puts false           # outputs `false`
+rescue IndexError
+  puts true
+end
+# Everything else prints `true`.
+
+=begin
+Test case `fixed_array[7] = 3` fails, because (from LSBot):
+1. The `[]=` method is called with `index = 7` and `value = 3`
+2. The line `[index]` is executed.
+3. Ruby sees `[7]` and thinks we want to create a brand new array
+  containing the integer `7`. It does this, and then immediately
+  discards the new array because it isn't assigned to anything.
+4. No `IndexError` is raised. Creating an array `[7]` is valid 
+  operation.
+5. `@array[7] = 3`, executes. This uses the standard `Array#[]=`
+  method on the instance variable `@array`. When this method is used
+  with an out-of-bounds index, it extends the array and fills the gaps
+  with `nil`. The `@array` is improperly modified, and the fixed-sized
+  constraint is broken.
+6. Since no `IndexError` was raised, the `rescue` block is skipped,
+  and `puts false` is executed.
+=end
