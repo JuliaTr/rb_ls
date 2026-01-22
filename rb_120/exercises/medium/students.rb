@@ -58,5 +58,19 @@ end
 
 ## Alternative solution:
 # without `Undergraduate#initialize`:
+class Student
+  def initalize(name, year)
+    @name = name
+    @yaer = year
+  end
+end
 
+class Graduate < Student
+  def initialize(name, year, parking)
+    super(name, year)
+    @parking = parking
+  end
+end
 
+class Undergraduate < Student
+end
