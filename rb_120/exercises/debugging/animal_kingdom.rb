@@ -26,6 +26,7 @@ class Bird < Animal
 end
 
 class FlightlessBird < Bird
+  # Will work without `FlightlessBird@initialize` method
   def initialize(diet, superpower)
     super
   end
@@ -50,3 +51,15 @@ unicornfish = Fish.new(:herbivore, 'breathe underwater')
 penguin = FlightlessBird.new(:carnivore, 'drink sea water')
 robin = SongBird.new(:omnivore, 'sing', 'chirp chirr chirp chirp chirrrr')
 
+
+## Further exploration:
+=begin
+*Is the `FlightlessBird#initialize` method necessary? Why or why not?*
+
+Answer:
+The `FlightlessBird#initialize` method isn't necessary because 
+`FlightlessBird` class inherits from `Bird` class, which inherits
+from `Animal` class, which has `#initialize` method with the same 
+parameters (lines 5-8). Also, `super` without parameters accepts 
+all arguments from the `#initialize` method.
+=end
