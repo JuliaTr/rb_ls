@@ -50,7 +50,7 @@ end
 
 class Undergraduate < Student
   def initialize(name, year)
-    super
+    super  # it behaves like `super(name, year)`
   end
 end
 
