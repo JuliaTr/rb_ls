@@ -22,12 +22,12 @@ class Student
 end
 
 class Graduate
-  def initalize(name, year, parking)
+  def initialize(name, year, parking)
   end
 end
 
 class Undergraduate
-  def initalize(name, year)
+  def initialize(name, year)
   end
 end
 
@@ -42,7 +42,7 @@ class Student
 end
 
 class Graduate < Student
-  def initalize(name, year, parking)
+  def initialize(name, year, parking)
     super(name, year)
     @parking = parking 
   end
@@ -74,3 +74,33 @@ end
 
 class Undergraduate < Student
 end
+
+
+
+
+## Experiments:
+class Student
+  def initialize(name, year)
+    @name = name
+    @year = year
+  end
+end
+
+class Undergraduate < Student
+  def initialize  # issue here
+    super         # issue here
+  end
+end
+
+# If an instance have states, which is indicated in the problem 
+# description, than `initialize` should take a parameter, even if
+# `super` is used to inherit all states from the parent class.
+
+
+
+
+## Further exploration:
+=begin
+Can you think of a way to use super() in another Student related 
+class?
+=end
