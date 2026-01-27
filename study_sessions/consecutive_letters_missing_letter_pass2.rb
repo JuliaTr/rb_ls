@@ -38,6 +38,35 @@ Output: nested array
 
 =end
 
+## More idiomatic:
+ALPHABET = ('a'..'z').to_a
+
+def find_subarray(arr)
+  start_index = ALPHABET.index(arr.first)
+  end_index = ALPHABET.index(arr.last)
+  ALPHABET[start_index..end_index]
+end
+
+def determine_missing_letter(arr)
+  return [] if arr.empty?
+
+  arr_downcased = arr.map(&:downcase)
+
+  subarray = find_subarray(arr_downcased)
+  missing = (subarray - arr_downcased).first
+
+  arr.first == arr.first.downcase ? missing.upcase : missing
+end
+
+p determine_missing_letter(['a','b','c','d','f']) == 'E'
+p determine_missing_letter(['o','q','r','s']) == 'P'
+p determine_missing_letter(['H','J','K','L']) == 'i'
+p determine_missing_letter([]) == []
+# All test cases return `true`.
+
+
+
+
 ## Alternative:
 # with `Array#index`:
 ALPHABET = ('a'..'z').to_a
@@ -71,6 +100,7 @@ p determine_missing_letter(['o','q','r','s']) == 'P'
 p determine_missing_letter(['H','J','K','L']) == 'i'
 p determine_missing_letter([]) == []
 # All test cases return `true`.
+
 
 
 
