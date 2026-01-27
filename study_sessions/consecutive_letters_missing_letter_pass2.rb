@@ -38,8 +38,41 @@ Output: nested array
 
 =end
 
-## Alternative 
-# 
+## Alternative:
+# with `Array#index`:
+ALPHABET = ('a'..'z').to_a
+
+def find_subarray(arr)
+  first = arr[0].downcase
+  last = arr.last.downcase
+  ALPHABET[ALPHABET.index(first)..ALPHABET.index(last)]
+end
+
+def find_missing_char(arr, subarray)
+  0.upto(arr.size - 1) do |index|
+    return subarray[index] unless arr[index].downcase == subarray[index]
+  end
+end
+
+def determine_missing_letter(arr)
+  return [] if arr.empty?
+
+  # Find subarray:
+  subarray = find_subarray(arr)
+  
+  # Find missing char:
+  missing = find_missing_char(arr, subarray)
+
+  arr.all? { |char| char == char.downcase } ? missing.upcase : missing
+end
+
+p determine_missing_letter(['a','b','c','d','f']) == 'E'
+p determine_missing_letter(['o','q','r','s']) == 'P'
+p determine_missing_letter(['H','J','K','L']) == 'i'
+p determine_missing_letter([]) == []
+# All test cases return `true`.
+
+
 
 ## Refactored:
 def find_subarray(alphabet, arr_downcased)
@@ -65,7 +98,10 @@ def determine_missing_letter(arr)
   alphabet = ('a'..'z').to_a
   arr_downcased = arr.map(&:downcase)
 
+  # Find subarray:
   subarray = find_subarray(alphabet, arr_downcased)
+
+  # Find missing character:
   char_missing = find_missing_char(subarray, arr_downcased)
 
   arr.all? { |char| char == char.downcase } ? char_missing.upcase : char_missing.downcase 
@@ -86,6 +122,7 @@ def determine_missing_letter(arr)
 
   alphabet = ('a'..'z').to_a
 
+  # Find subarray:
   subarray = nil
   0.upto(alphabet.size - 1) do |index1|
     0.upto(alphabet.size - 1) do |index2|
@@ -96,6 +133,7 @@ def determine_missing_letter(arr)
     end
   end
 
+  # Find missing character
   char_missing = nil
   subarray.each do |char|
     unless arr.map(&:downcase).include?(char)
