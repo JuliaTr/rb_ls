@@ -1,3 +1,5 @@
+# On Step 2 - Setup `Board` and `Square` classes
+
 class Board
   # Step 2:
   INITIAL_MARKER = " "  # need to change value
