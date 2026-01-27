@@ -59,7 +59,7 @@ class Player
 end
 
 class TTTGame
-  # Step 1:
+  # Step 1 - Display a board:
   def display_welcome_message
     puts 'Welcome to Tic Tac Toe!'
     puts ''
