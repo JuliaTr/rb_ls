@@ -88,7 +88,7 @@ class TTTGame
       second_player_moves
       break if someone_won? || board_full?
     end
-    # display_board
+    # display_result
     display_goodbye_message
   end
 end
