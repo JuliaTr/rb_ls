@@ -109,7 +109,7 @@ class TTTGame
       # break if someone_won? || board_full?
       break
     end
-    # display_board
+    # display_result
     display_goodbye_message
   end
 end
