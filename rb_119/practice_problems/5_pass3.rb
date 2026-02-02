@@ -7,6 +7,33 @@ characters, consider uppercase and lowercase versions to be the
 same.
 =end
 
+## Refactored:
+def most_common_char(str)
+  arr = str.downcase.chars
+  letters = arr.select { |char| char.match?(/[a-z]/) }
+  hash = letters.tally
+
+  max_val = hash.values.max
+  arr.each do |char|
+    return char if char.match?(/[a-z]/) && hash[char] == max_val 
+  end
+end
+
+p most_common_char('Hello World') == 'l'
+p most_common_char('Mississippi') == 'i'
+p most_common_char('Happy birthday!') == 'h'
+p most_common_char('aaaaaAAAA') == 'a'
+
+my_str = 'Peter Piper picked a peck of pickled peppers.'
+p most_common_char(my_str) == 'p'
+
+my_str = 'Peter Piper repicked a peck of repickled peppers. He did!'
+p most_common_char(my_str) == 'e'
+# The above tests should each print true.
+
+
+
+## Solution:
 def most_common_char(str)
   # All chars
   arr = str.downcase.chars
