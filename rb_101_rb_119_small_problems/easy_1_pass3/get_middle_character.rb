@@ -36,9 +36,27 @@ Algo:
 
 =end
 
+# Option 1:
+# using a range of indexes (`str[start..finish]`)
 def center_of(str)
   center_index = str.size / 2
   str.size.odd? ? str[center_index] : str[center_index - 1..center_index]
+end
+
+p center_of('I love Ruby') == 'e'
+p center_of('Launch School') == ' '
+p center_of('Launch') == 'un'
+p center_of('Launchschool') == 'hs'
+p center_of('x') == 'x'
+# All test cases return `true`.
+
+
+
+# Option 2:
+# using a start index and a length (`str[start, length]`)
+def center_of(str)
+  center_index = str.size / 2
+  str.size.odd? ? str[center_index] : str[center_index - 1, 2]
 end
 
 p center_of('I love Ruby') == 'e'
