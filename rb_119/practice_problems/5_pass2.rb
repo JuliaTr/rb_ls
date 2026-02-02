@@ -14,6 +14,15 @@ _______________________________________________________________
 - Return the first nested array -> second value
 =end
 
+=begin
+This solution without checking the lowest index in the input
+
+"If there are multiple characters with the same greatest 
+frequency, return the one that appears first in the string."
+
+The condition above wasn't fulilled.
+=end
+
 def most_common_char(str)
   str.chars
      .map(&:downcase)
