@@ -56,6 +56,7 @@ p even_substrings('143232') == 12
 
 
 
+
 ## Alternative
 # without nested loop
 =begin
@@ -124,3 +125,20 @@ p even_substrings('2718281') == 16
 p even_substrings('13579') == 0
 p even_substrings('143232') == 12
 # All test cases return `true`
+
+
+
+
+## Experiments
+str = 'abcd'
+str.each_char.with_index do |char, idx|
+  substrings = (0..idx).map { |start| str[start..idx] }
+  puts "idx=#{idx}, char=#{char}, substrings=#{substrings.inspect}, count=#{idx + 1}"
+end
+
+=begin
+idx=0, char=a, substrings=["a"], count=1
+idx=1, char=b, substrings=["ab", "b"], count=2
+idx=2, char=c, substrings=["abc", "bc", "c"], count=3
+idx=3, char=d, substrings=["abcd", "bcd", "cd", "d"], count=4
+=end
