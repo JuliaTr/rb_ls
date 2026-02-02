@@ -28,23 +28,18 @@ stringy(6) == '101010'
 '10'
 =end
 
-## Solution:
+## Refactored:
 def stringy(number)
   str = ''
 
-  number.times do
-    if str.empty? || str[-1] == '0'
-      str << '1'
-    else
-      str << '0'
-    end
+  number.times do 
+    digit = str.empty? || str[-1] == '0' ? '1' : '0'
+    str << digit
   end
 
   str
 end
 
-p stringy(3) # "101"
-
 puts stringy(6) == '101010'
 puts stringy(9) == '101010101'
 puts stringy(4) == '1010'
@@ -53,21 +48,46 @@ puts stringy(7) == '1010101'
 
 
 
+# ## Solution:
+# def stringy(number)
+#   str = ''
 
-## Possile solution:
-def stringy(size)
-  numbers = []
+#   number.times do
+#     if str.empty? || str[-1] == '0'
+#       str << '1'
+#     else
+#       str << '0'
+#     end
+#   end
 
-  size.times do |index|
-    number = index.even? ? 1 : 0
-    numbers << number
-  end
+#   str
+# end
 
-  numbers.join
-end
+# p stringy(3) # "101"
 
-puts stringy(6) == '101010'
-puts stringy(9) == '101010101'
-puts stringy(4) == '1010'
-puts stringy(7) == '1010101'
-# All test cases return `true`.
+# puts stringy(6) == '101010'
+# puts stringy(9) == '101010101'
+# puts stringy(4) == '1010'
+# puts stringy(7) == '1010101'
+# # All test cases return `true`.
+
+
+
+
+# ## Possile solution:
+# def stringy(size)
+#   numbers = []
+
+#   size.times do |index|
+#     number = index.even? ? 1 : 0
+#     numbers << number
+#   end
+
+#   numbers.join
+# end
+
+# puts stringy(6) == '101010'
+# puts stringy(9) == '101010101'
+# puts stringy(4) == '1010'
+# puts stringy(7) == '1010101'
+# # All test cases return `true`.
