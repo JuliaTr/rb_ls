@@ -28,6 +28,15 @@ High-level:
 
 =end
 
+=begin
+This solution without checking the lowest index in the input
+
+"If there are multiple characters with the same greatest 
+frequency, return the one that appears first in the string."
+
+the condition above wasn't fulilled.
+=end
+
 def occurrences(str)
   hash = Hash.new(0)
   str.each_char { |char| hash[char.downcase] += 1 }
