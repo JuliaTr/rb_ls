@@ -31,15 +31,16 @@ Identify which number is even
 '14', '1432', '4', '432', '32','2'
 =end
 
+
 ## Solution:
 def even_substrings(str)
   count = 0
 
   str.each_char.with_index do |_, first|
     first.upto(str.size - 1) do |second|
-      substring = str[first..second].to_i
+      number = str[first..second].to_i
 
-      count += 1 if (substring % 2).zero?
+      count += 1 if (number % 2).zero?
     end
   end
 
@@ -48,6 +49,77 @@ end
 
 p even_substrings('1432') == 6
 p even_substrings('3145926') == 16
+p even_substrings('2718281') == 16
+p even_substrings('13579') == 0
+p even_substrings('143232') == 12
+# All test cases return `true`
+
+
+
+## Alternative
+# without nested loop
+=begin
+Logic:
+- Every substring that ends at an even digit is an even number.
+- At index `idx`, if the digit is even, there are exactly `idx + 1` such substrings.
+- Therefore we do `count += idx + 1`, when ever `char.to_i.even?`
+=end
+def even_substrings(str)
+  count = 0
+
+  str.each_char.with_index do |char, idx|
+    digit = char.to_i
+    count += idx + 1 if digit.even?
+  end
+
+  count
+end
+
+p even_substrings('1432') == 6
+=begin
+Break down:
+Iteration 1:
+digit = 1
+idx  => 0
+
+Iteration 2:
+digit = 4
+idx  => 1
+2 = 1 + 1
+....
+
+
+At `idx = 3` (character '2'):
+Substrings ending here:
+- str[0..3] -> '1432'
+- str[1..3] -> '432'
+- str[2..3] -> '32'
+- str[3..3] -> '2'
+That's 4 substrings, and `3 + 1 == 4`
+=end
+
+p even_substrings('3145926') == 16
+=begin
+'314'
+At `idx = 2` (character '4'):
+Substrings ending here:
+- str[0..2] -> '314'
+- str[1..2] -> '14'
+- str[2..2] -> '4'
+That's 3 substrings, and `2 + 1 == 3`
+
+'314592'
+At `idx = 5` (character '2'):
+Substrings ending here:
+- str[0..5] -> '314592'
+- str[1..5] -> '14592'
+- str[2..5] -> '4592'
+- str[3..5] -> '592'
+- str[4..5] -> '92'
+- str[5..5] -> '2'
+That's 6 substrings, and `5 + 1 == 6`
+=end
+
 p even_substrings('2718281') == 16
 p even_substrings('13579') == 0
 p even_substrings('143232') == 12
