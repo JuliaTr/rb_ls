@@ -39,7 +39,14 @@ Nouns (classes): preschool, children, teacher, class assistant,
        food, lunch
 Verbs: help, watch, teach, learn, play, supervise, expel, clean
        serve, eat
+
+
+If we had extra requirements in the problem description:
+All kids start confused. When they're helped with their schoolwork,
+they become not confused.
 =end
+
+
 
 ## Step 3 - Collaborationship relationship:
 module Supervise
@@ -89,8 +96,28 @@ alice = Person.new(preschool)
 preschool << alice
 =end
 
+# # Option 1:
+# class CareTaker < Person
+#   def initialize(kid)
+#     @kid = kid
+#   end
+
+#   def help_school_work
+#     @kid.understanding = "unconfused"
+#   end
+# end 
+
+# (either way is fine):
+
+# Option 2:
 class CareTaker < Person
-  def help_school_work; end
+  def help_school_work(kid)
+    # We give access to each kid individually to change this 
+    # `understanding` property, not a `Kid` class as a whole.
+    # `kid` must be a `Kid` object
+    kid.understanding=("unconfused")  # a setter method is invoked
+  end
+
   def watch_palyground; end
 end
 
@@ -112,7 +139,17 @@ class Janitor < Person; end
 
 class CafeteriaWorker < Person; end
 
-class Kid < Person; end
+class Kid < Person
+  # With extra reqs:
+
+  # To modify `understanding` state outside of the class
+  attr_accessor :understanding
+
+  def initialize
+    # Representing state for this kid
+    @understanding = "confused"
+  end 
+end
 
 
 
