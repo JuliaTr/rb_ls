@@ -28,8 +28,8 @@ Inheritance relashiopship:
 
 ## Step 2:
 Verbs (behaviours): teach, help kids, help with school work,
-      watch playground
-
+      watch playground, eat lunch, supervise
+Define modules.
 
 
 My option:
@@ -42,12 +42,12 @@ Verbs: help, watch, teach, learn, play, supervise, expel, clean
 =end
 
 ## Step 2:
+module Supervise
+  def supervise; end
+end
+
 class Preschool; end
 
-=begin
-Comparing with `module`, class can have states and behaviours
-and collaboration between objects.
-=end
 class Person 
   def eat_lunch; end
 end
@@ -58,6 +58,8 @@ class CareTaker < Person
 end
 
 class Teacher < CareTaker
+  include Supervise
+
   def teach; end
 end
 
@@ -65,7 +67,9 @@ class Assistant < CareTaker
   def help_kids; end
 end
 
-class Principal < Person; end
+class Principal < Person
+  include Supervise
+end
 
 class Janitor < Person; end
 
@@ -73,6 +77,15 @@ class CafeteriaWorker < Person; end
 
 class Kid < Person; end
 
+=begin
+                 People
+
+          /     \         \      \
+  Caretaker  Principal  Janitor  CafeteriaWorker
+  /      \
+Teacher  Assistant
+
+=end
 
 
 
