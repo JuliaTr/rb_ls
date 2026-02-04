@@ -27,7 +27,7 @@ class Penguin < Bird
 end
 
 pingu = Penguin.new
-pingu.fly
+pingu.fly    # NoMethodError
 
 # Penguin > Migratory > Aquatic > Bird > Animal > Object > Kernel 
 #         > BasicObject
