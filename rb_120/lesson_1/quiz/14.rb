@@ -1,32 +1,34 @@
-# =begin
-# Which of the following class definitions will let us run this 
-# code and get the same result?
-# =end
+=begin
+Which of the following class definitions will let us run this 
+code and get the same result?
+=end
 
-# ## Works as expected:
+## Works as expected:
 
-# # Option 1:
-# class Person
-#   attr_accessor :name
-# end
+# Option 1:
+class Person
+  attr_accessor :name
+end
 
-# kate = Person.new
-# kate.name = 'Kate'
-# p kate.name   # "Kate"
+kate = Person.new
+kate.name = 'Kate'
+p kate.name   # "Kate"
 
 
-# # Option 2:
-# class Person
-#   attr_writer :name
 
-#   def name
-#     @name
-#   end
-# end
+# Option 2:
+class Person
+  attr_writer :name
 
-# kate = Person.new
-# kate.name = 'Kate'
-# p kate.name # "Kate"
+  def name
+    @name
+  end
+end
+
+kate = Person.new
+kate.name = 'Kate'
+p kate.name # "Kate"
+
 
 
 # Option 3:
@@ -43,3 +45,18 @@ kate.name = 'Kate'
 p kate.name  # "Kate"
 
 
+
+# Option 4:
+class Person
+  def name
+    @name
+  end
+
+  def name=(name)
+    @name = name
+  end
+end
+
+kate = Person.new
+kate.name = 'Kate'
+p kate.name  # "Kate"
