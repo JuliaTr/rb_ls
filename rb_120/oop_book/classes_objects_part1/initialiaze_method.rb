@@ -63,3 +63,34 @@ account = BankAccount.new
 =begin
 Every time a new `BankAccount` object is created, its 
 `@account` instance variable is automatically set to `0`.
+=end
+
+
+
+
+## Experiments
+# Won't work as expected:
+class GoodDog
+  @@number_of_dogs = 0
+
+  def initialize
+    # Nothing happens to the count on creation anymore
+  end
+
+  def self.total_number_of_dogs
+    @@number_of_dogs += 1  # This is incorrect logic
+    @@number_of_dogs
+  end
+end
+
+puts GoodDog.total_number_of_dogs 
+# => 1. We haven't even made a dog yet!
+
+dog1 = GoodDog.new
+dog2 = GoodDog.new
+
+puts GoodDog.total_number_of_dogs 
+# => 2. This seems right, but it's a coincidence.
+
+puts GoodDog.total_number_of_dogs
+# => 3. We still only have two dogs.
