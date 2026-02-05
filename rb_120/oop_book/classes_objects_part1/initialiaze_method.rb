@@ -15,14 +15,43 @@
 
 
 
-## Use `initialize` without parameters
+# ## Use `initialize` without parameters
 
-# To perform action on creation
+# # To perform action on creation
+# class GoodDog
+#   def initialize
+#     puts "This object was initialized!"
+#   end
+# end
+
+# sparky = GoodDog.new
+# # This object was initialized!
+
+
+
+# To update class-level data
 class GoodDog
+  @@number_of_dogs = 0
+
   def initialize
-    puts "This object was initialized!"
+    @@number_of_dogs += 1
+  end
+
+  def self.total_number_of_dogs
+    @@number_of_dogs
   end
 end
 
-sparky = GoodDog.new
-# This object was initialized!
+puts GoodDog.total_number_of_dogs # 0
+
+dog1 = GoodDog.new
+dog2 = GoodDog.new
+
+puts GoodDog.total_number_of_dogs # 2
+
+
+
+# When object has a default or no initial state
+# class BankAccount
+
+# end 
