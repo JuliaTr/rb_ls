@@ -34,6 +34,7 @@ class GoodDog
   @@number_of_dogs = 0
 
   def initialize
+    # This code runs automatically every time GoodDog.new is called.
     @@number_of_dogs += 1
   end
 
@@ -48,6 +49,16 @@ dog1 = GoodDog.new
 dog2 = GoodDog.new
 
 puts GoodDog.total_number_of_dogs # 2
+
+=begin
+The total number of dogs increases by one *exactly when
+a new dog is created*.
+
+Event: A new object is created.
+Method: `initialize`
+Event: We want to know the current total.
+Method: `self.total_number_of_dogs`
+=end
 
 
 
@@ -94,3 +105,11 @@ puts GoodDog.total_number_of_dogs
 
 puts GoodDog.total_number_of_dogs
 # => 3. We still only have two dogs.
+
+=begin
+The count only increases when we ask for the total, not when
+we create a dog.
+
+The `self.total_method` now has a side effect: it changes the
+data it's supposed to be reporting on.
+=end
