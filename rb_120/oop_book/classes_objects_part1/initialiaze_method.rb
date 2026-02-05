@@ -1,31 +1,31 @@
-# # (not from the book)
+# (not from the book)
 
-# ## Use `initialize` with parameters
-# class GoodDog
-#   def initialize(name)
-#     @name = name
-#   end
-# end
+## Use `initialize` with parameters
+class GoodDog
+  def initialize(name)
+    @name = name
+  end
+end
 
-# sparky = GoodDog.new("Sparky") 
-# # "Sparky" is passed to the initialize method
+sparky = GoodDog.new("Sparky") 
+# "Sparky" is passed to the initialize method
 
-# p sparky # #<GoodDog:0x000000010ac25ac8 @name="Sparky">
-
-
+p sparky # #<GoodDog:0x000000010ac25ac8 @name="Sparky">
 
 
-# ## Use `initialize` without parameters
 
-# # To perform action on creation
-# class GoodDog
-#   def initialize
-#     puts "This object was initialized!"
-#   end
-# end
 
-# sparky = GoodDog.new
-# # This object was initialized!
+## Use `initialize` without parameters
+
+# To perform action on creation
+class GoodDog
+  def initialize
+    puts "This object was initialized!"
+  end
+end
+
+sparky = GoodDog.new
+# This object was initialized!
 
 
 
@@ -52,6 +52,14 @@ puts GoodDog.total_number_of_dogs # 2
 
 
 # When object has a default or no initial state
-# class BankAccount
+class BankAccount
+  def initialize
+    @account = 0 # set default initial state
+  end
+end
 
-# end 
+account = BankAccount.new
+
+=begin
+Every time a new `BankAccount` object is created, its 
+`@account` instance variable is automatically set to `0`.
