@@ -36,3 +36,24 @@ p uppercase?('FOUR SCORE') == true
 p uppercase?('4SCORE!') == true
 p uppercase?('') == true
 # All test cases return `true`.
+
+
+
+# Option 2:
+def uppercase?(str)
+  return true if str.empty?
+
+  str.each_char do |char|
+    return false if char.match?(/[a-z]/)
+  end
+
+  true
+end
+
+p uppercase?('t') == false
+p uppercase?('T') == true
+p uppercase?('Four Score') == false
+p uppercase?('FOUR SCORE') == true
+p uppercase?('4SCORE!') == true
+p uppercase?('') == true
+# All test cases return `true`.
