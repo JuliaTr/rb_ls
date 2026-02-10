@@ -12,7 +12,7 @@ Rule:
 
 
 High-level:
-- Find occurences
+- Find occurrences
 - Return number of keys - value is greater than 1
 
 Algo:
@@ -29,7 +29,9 @@ Algo:
 
 =end
 
-def count(str)
+## Solution:
+# Option 1:
+def count_duplicates(str)
   arr = str.downcase.chars
   hash = arr.tally
 
@@ -40,10 +42,28 @@ def count(str)
   count
 end
 
-p count("abcde") #-> 0 # no characters repeats more than once
-p count("aabbcde") #-> 2 # 'a' and 'b'
-p count("aabBcde") #-> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
-p count("indivisibility") #-> 1 # 'i' occurs six times
-p count("Indivisibilities") #-> 2 # 'i' occurs seven times and 's' occurs twice
-p count("aA11") #-> 2 # 'a' and '1'
-p count("ABBA") #-> 2 # 'A' and 'B' each occur twice
+p count_duplicates("abcde") #-> 0 # no characters repeats more than once
+p count_duplicates("aabbcde") #-> 2 # 'a' and 'b'
+p count_duplicates("aabBcde") #-> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+p count_duplicates("indivisibility") #-> 1 # 'i' occurs six times
+p count_duplicates("Indivisibilities") #-> 2 # 'i' occurs seven times and 's' occurs twice
+p count_duplicates("aA11") #-> 2 # 'a' and '1'
+p count_duplicates("ABBA") #-> 2 # 'A' and 'B' each occur twice
+# Works as expected.
+
+
+
+# Option 2:
+def count_duplicates(str)
+  occurrences = str.downcase.chars.tally
+  occurrences.count { |_, val| val > 1 }
+end
+
+p count_duplicates("abcde") #-> 0 # no characters repeats more than once
+p count_duplicates("aabbcde") #-> 2 # 'a' and 'b'
+p count_duplicates("aabBcde") #-> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+p count_duplicates("indivisibility") #-> 1 # 'i' occurs six times
+p count_duplicates("Indivisibilities") #-> 2 # 'i' occurs seven times and 's' occurs twice
+p count_duplicates("aA11") #-> 2 # 'a' and '1'
+p count_duplicates("ABBA") #-> 2 # 'A' and 'B' each occur twice
+# Works as expected.
