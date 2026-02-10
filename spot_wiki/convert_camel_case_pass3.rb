@@ -73,6 +73,32 @@ p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 
 
 ## Further exploration:
+# Alternative 2:
+def kebabize(str)
+  result = ''
+
+  str.each_char do |char|
+    next unless char.match?(/[a-zA-Z]/)
+
+   if char.match?(/[A-Z]/) && !result.empty?
+      result << '-' + char.downcase
+    else
+      result << char.downcase
+    end
+  end
+
+  result
+end
+
+p kebabize('KebabizeThis') == 'kebabize-this'
+
+p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+# All test cases return `true`.
+
+
+
+
 # Refactored:
 def kebabize(str)
   result = ''
@@ -125,7 +151,8 @@ p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 # All test cases return `true`.
 
 
-# Alternative:
+
+# Alternative 1:
 def kebabize(str)
   result = ''
   str.each_char do |char|
@@ -149,6 +176,8 @@ p kebabize('KebabizeThis') == 'kebabize-this'
 p kebabize('myCamelCasedString') == 'my-camel-cased-string'
 p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 # All test cases return `true`.
+
+
 
 
 # with `String#gsub`:
