@@ -72,6 +72,24 @@ p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 
 
 
+## with `String#gsub`:
+def kebabize(str)
+  # Remove non-alphabetic characters.
+  alpha_only_str = str.gsub(/[^a-zA-Z]/, '')
+
+  # Find each uppercase letter and replace.
+  alpha_only_str.gsub(/[A-Z]/) { |letter| "-#{letter.downcase}" }
+end
+
+p kebabize('KebabizeThis') == 'kebabize-this'
+
+p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+# All test cases return `true`.
+
+
+
+
 ## Further exploration:
 # Alternative 2:
 def kebabize(str)
@@ -176,9 +194,3 @@ p kebabize('KebabizeThis') == 'kebabize-this'
 p kebabize('myCamelCasedString') == 'my-camel-cased-string'
 p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 # All test cases return `true`.
-
-
-
-
-# with `String#gsub`:
-
