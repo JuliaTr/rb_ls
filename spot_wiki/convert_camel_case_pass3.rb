@@ -82,7 +82,7 @@ def kebabize(str)
     elsif char.match?(/[A-Z]/)
       result << char.downcase
     elsif char.match?(/[a-z]/)
-      result << char
+      result << char.downcase
     end
   end
   result
@@ -124,6 +124,31 @@ p kebabize('myCamelCasedString') == 'my-camel-cased-string'
 p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 # All test cases return `true`.
 
+
+# Alternative:
+def kebabize(str)
+  result = ''
+  str.each_char do |char|
+    if char.match?(/[A-Z]/)
+      result << if result.empty? 
+                  char.downcase
+                else
+                  '-' + char.downcase
+                end
+    end
+
+    if char.match?(/[a-z]/)
+      result << char
+    end
+  end
+  result
+end
+
+p kebabize('KebabizeThis') == 'kebabize-this'
+
+p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+# All test cases return `true`.
 
 
 # with `String#gsub`:
