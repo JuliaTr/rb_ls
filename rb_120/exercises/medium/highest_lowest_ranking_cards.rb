@@ -43,13 +43,14 @@ class Card
   def value
     # Converts named ranks (Jack, Queen, Ace) to appropriate values
     # and uses the numeric value for numbered cards (2-10) as the value.
+    # If `key` in `fetch(key, default_value)` (from documentation)
+    # is not found and no blocks is given, reutrns `default_value`.
     VALUES.fetch(rank, rank)
   end
 
   def <=>(obj)
     value <=> obj.value
   end
-
 end
 
 cards = [Card.new(2, 'Hearts'),
@@ -95,4 +96,15 @@ true
 true
 true
 true
+=end
+
+
+
+## Experiments:
+=begin
+irb(main):005:0> VALUES = { 'Jack' => 11, 'Queen' => 12, 'King' => 13, 'Ace' => 
+14 }
+=> {"Jack"=>11, "Queen"=>12, "King"=>13, "Ace"=>14}                       
+irb(main):007:0> VALUES.fetch('Ace', 'Ace')
+=> 14
 =end
