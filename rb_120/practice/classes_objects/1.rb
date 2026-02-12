@@ -4,13 +4,13 @@ class Person
   attr_accessor :name
 
   def initialize(n)
-    @name = n
+    @name = n            # object's state is set
   end
 end
 
 bob = Person.new('bob')
-bob.name = 'Robert'  # object's state is modified
-puts bob.name # Robert
+bob.name = 'Robert'      # object's state is modified
+puts bob.name # Robert   (object's state is accessed)
 
 =begin
 Rerwitten explanation:
