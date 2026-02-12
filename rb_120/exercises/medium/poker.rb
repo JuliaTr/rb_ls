@@ -98,50 +98,62 @@ class PokerHand
 
   private
 
+  # Five cards of the same suit
   def flush?
-    # Five cards of the same suit
     suit = @cards.first.suit
+
+    # Compare the suit of the first card to the suits of all the
+    # other cards.
     @cards.all? { |card| card.suit == suit }
   end
 
+  # Five cards in sequence (for example, 4, 5, 6, 7, 8)
   def straight?
-    # Five cards in sequence (for example, 4, 5, 6, 7, 8)
+    # The count for each rank in the hand must be `1`. If any
+    # ranks have one or more duplicates, the hand cann't be a straight.
     return false if @rank_count.any? { |_, count| count > 1 }
 
+    # If the lowest ranking card and highest ranking card have values
+    # that differ by exactly 4. `Enumerable#min`, `Enumerable#max`
+    # is used to determine the lowest and highest ranking cards. 
+    # `min` and `max` both use `Card#<=>` to compare cards.
     @cards.min.value == @cards.max.value - 4
   end
 
   def n_of_a_kind?(number)
+    # Returns `true` if there's exactly one rank in the hand that
+    # occurs exactly `number` times.
     @rank_count.one? { |_, count| count == number }
   end
 
-   def straight_flush?
-    # Five cards of the same suit in sequence
+  # Five cards of the same suit in sequence
+  def straight_flush?
     flush? && straight?
   end
 
+  # Five are A, K, Q, J, 10; it is a Royal Flush
   def royal_flush?
-    # (if those five are A, K, Q, J, 10; it is a Royal Flush)
+    # The lowest ranking card should be `10`
     straight_flush? && @cards.min.rank == 10
   end
 
+  # Four cards of the same rank and any one other card
   def four_of_a_kind?
-    # Four cards of the same rank and any one other card
     n_of_a_kind?(4)
   end
 
+  # Three cards of one rank and two of another
   def full_house?
-    # Three cards of one rank and two of another
     n_of_a_kind?(3) && n_of_a_kind?(2)
   end
 
+  # Three cards of the same rank
   def three_of_a_kind?
-    # Three cards of the same rank
     n_of_a_kind?(3)
   end
 
+  # Two cards of one rank and two cards of another
   def two_pair?
-    # Two cards of one rank and two cards of another
     @rank_count.select { |_, count| count == 2 }.size == 2
   end
 
