@@ -13,6 +13,32 @@ bob.name = 'Robert'  # object's state is modified
 puts bob.name # Robert
 
 =begin
+Rerwitten explanation:
+
+Output is `Robert`.
+
+On line 11, a new `Person` object is instantiated. The `initialize`
+method (lines 6-8) is called with `'bob'` as the argument, 
+setting the instance variable `@name` to `'bob'` (line 7). The 
+local variable `bob` now points to this object.
+
+On line 4, `attr_accessor :name` creates two mwthod: a getter method
+(`name`) and a setter method (`name=`). These methods allow us 
+to read and write to the `@name` instance variable from outside
+the class.
+
+On line 12, `bob.name = 'Robert` is syntactic suger for 
+`bob.name=('Robert')`. It calls the setter method `name=`, which
+changes the value of the `@name` instance variable from `'bob'` to
+`'Robert'`.
+
+On line 13, the getter method `name` is called on the `bob` object.
+The method retrieves the current value of `@name`, which is `'Robert'`,
+and `puts` outputs it to the console.
+=end
+
+
+=begin
 Output is `Robert`.
 
 On line 11, an object of a `Person` class is created. An argument 
