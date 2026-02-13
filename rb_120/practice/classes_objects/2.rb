@@ -9,10 +9,13 @@ class Person
   end
 
   def name
+    # Combines two getter methods and strips whitespaces
     "#{first_name} #{last_name}".strip
   end
 
   def name=(full_name)
+    # Calls another method to parse the input and update two
+    # separate instance variables
     parse_full_name(full_name)
   end
 
@@ -82,4 +85,17 @@ This demnostrate classes and objects, calling the getter and the
 setter methods with `attr_accessor` (read/write) and 
 `attr_reader` (read-only) access to an object's state, encapsulation
 with `private` method concepts. 
+=end
+
+
+
+=begin
+`name` and `name=` are custom getter and setter because their 
+**primary purpose and interface** are designed to manage access
+to a conceptual property of the object. 
+- Their intent is to manage a property, meaning they exist to provide access to the "full name"
+property. 
+- They follow the accessor naming convention. 
+- They abstract the implementation, meaning that they hide the fact that the name
+is stored as two separate parts.
 =end
