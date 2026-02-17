@@ -42,7 +42,35 @@ Algo:
 
 =end
 
-def sumOfNumbers(str)
+## Refactored:
+def sum_of_numbers(str)
+  arr = []
+  temp = ''
+
+  # Append a non-digit to ensure the last number is captured
+  (str + ' ').each_char do |char|
+    if ('0'..'9').include?(char)
+      temp << char
+    elsif !temp.empty?
+      arr << temp
+      temp = ''
+    end
+  end
+
+  arr.map(&:to_i).sum
+end
+
+p sum_of_numbers("HI") == 0
+p sum_of_numbers("HE2LL3O W1OR5LD") == 11
+p sum_of_numbers("L12aun3ch Sch3ool45") == 63
+p sum_of_numbers("The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog") == 3635
+# All test cases return `true`.
+
+
+
+
+## Solution:
+def sum_of_numbers(str)
   arr = []
   temp = ''
 
@@ -59,8 +87,8 @@ def sumOfNumbers(str)
   arr.map(&:to_i).sum
 end
 
-p sumOfNumbers("HI") == 0
-p sumOfNumbers("HE2LL3O W1OR5LD") == 11
-p sumOfNumbers("L12aun3ch Sch3ool45") == 63
-p sumOfNumbers("The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog") == 3635
+p sum_of_numbers("HI") == 0
+p sum_of_numbers("HE2LL3O W1OR5LD") == 11
+p sum_of_numbers("L12aun3ch Sch3ool45") == 63
+p sum_of_numbers("The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog") == 3635
 # All test cases return `true`.
