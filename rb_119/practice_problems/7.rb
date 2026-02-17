@@ -1,5 +1,3 @@
-# took 10 mins
-
 =begin
 Create a method that takes an array of integers as an argument 
 and returns the number of identical pairs of integers in that 
@@ -43,16 +41,28 @@ High-level:
   7 / 2 = 3
 =end
 
+## Refactored:
 def pairs(arr)
   arr.tally
-     .select { |_, val| val > 1 }  # creates intermediate data structure
      .values
-     # Each value is divided by 2 and sums up
-     .sum { |val| val / 2 }
+     .sum { |count| count / 2 }
 end
 
-p pairs([3, 1, 4, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7]) == 3
-p pairs([2, 7, 1, 8, 2, 8, 1, 8, 2, 8, 4]) == 4
+p pairs([3, 1, 4, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7]) #== 3
+p pairs([2, 7, 1, 8, 2, 8, 1, 8, 2, 8, 4]) #== 4
+=begin
+arr.tally.value -> [3, 1, 2, 4, 1]
+
+count / 2:
+3 / 2 -> 1
+1 / 2 -> 0
+2 / 2 -> 1
+4 / 2 -> 2
+1 / 2 -> 0
+
+1 + 1 + 2 = 4
+=end
+
 p pairs([]) == 0
 p pairs([23]) == 0
 p pairs([997, 997]) == 1
@@ -61,11 +71,13 @@ p pairs([7, 7, 7, 7, 7, 7, 7]) == 3
 
 
 
-## Experiment:
+
 def pairs(arr)
   arr.tally
+     .select { |_, val| val > 1 }  # creates intermediate data structure
      .values
-     .sum { |count| count / 2 }
+     # Each value is divided by 2 and sums up
+     .sum { |val| val / 2 }
 end
 
 p pairs([3, 1, 4, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7]) == 3
