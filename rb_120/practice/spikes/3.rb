@@ -20,7 +20,8 @@ Verbs: pull teeth, straighten teeth, graduated, place implants,
        fill teeth
 =end
 
-
+# Interface inheritance: unrelated classes `OralSurgeon` and
+# `GeneralDentist` have the ability to `pull`.
 module Pullable
   def pull(tooth)
     puts "Pulling #{tooth.class}!"
@@ -39,8 +40,12 @@ class DentalOffice
   end
 end
 
+# Class inheritance: `OralSurgeon`, `Orthodontist`, `GeneralDentist`
+# are `Dentist`. This demonstrates "is-a" relationship.
 class Dentist
   def initialize(education, office)
+    # All dentists are associated with the same office and 
+    # educational institution.
     @education = education
     @office = office
   end
@@ -77,7 +82,12 @@ office = DentalOffice.new('Dental People Inc.')
 education = DentalSchool.new
 
 # There're 2 oral surgeons, 2 orthodontists, 1 general dentist.
-# All of these aforementioned specialties are dentists. 
+# All of these aforementioned specialties are dentists.
+
+# Single `DentalOffice` and `DentalSchool` objects were instantiated
+# and passed to each `Dentist` instance upon instantiation. 
+# `Dentist` has a `DentalOffice` to know where they work. This
+# demonstrates "has-a" relationship implemented through aggregation.
 surgeon1 = OralSurgeon.new(education, office)
 surgeon2 = OralSurgeon.new(education, office)
 orthodontist1 = Orthodontist.new(education, office)
@@ -109,6 +119,11 @@ tooth = Tooth.new
 implant = Implant.new
 
 # Both general dentists and oral surgeons can pull teeth.
+
+# Collaboration with passing an object `Tooth` (`tooth`) and 
+# `Implant` (`implant`) as a method argument. Dentists, `tooth`,
+# `tmplant`are working together to accomplish a task. `tooth` and 
+# `implant` are temporary collaborator object.
 general_dentist.pull(tooth) # Pulling Tooth!
 surgeon1.pull(tooth)        # Pulling Tooth!
 surgeon2.pull(tooth)        # Pulling Tooth!
