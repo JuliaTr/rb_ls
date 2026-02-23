@@ -9,11 +9,10 @@ You may also assume that each string contains nothing but
 words and spaces.
 =end
 
+## Refactored
 def swap(str)
-  arr = str.split
-
-  swapped = arr.map do |word|
-    word[0], word[-1] = word[-1], word[0] if word.size > 1
+  swapped = str.split.map do |word|
+    word[0], word[-1] = word[-1], word[0]
     word
   end
 
@@ -24,3 +23,34 @@ p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
 p swap('Abcde') == 'ebcdA'
 p swap('a') == 'a'
 # All test cases return `true`.
+
+
+
+# ## Solution
+# def swap(str)
+#   arr = str.split
+
+#   swapped = arr.map do |word|
+#     word[0], word[-1] = word[-1], word[0] if word.size > 1
+#     word
+#   end
+
+#   swapped.join(' ')
+# end
+
+# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+# p swap('Abcde') == 'ebcdA'
+# p swap('a') == 'a'
+# # All test cases return `true`.
+
+
+
+# ## Experiments
+# def swap(str)
+#   str.split.map do |word|
+#     word[0], word[-1] = word[-1], word[0]
+#   end
+# end
+
+# p swap('Oh what a wonderful day it is')
+# [["h", "O"], ["t", "w"], ["a", "a"], ["l", "w"], ["y", "d"], ["t", "i"], ["s", "i"]]
