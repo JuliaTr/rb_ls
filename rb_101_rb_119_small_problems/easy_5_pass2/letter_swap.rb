@@ -9,20 +9,20 @@ You may also assume that each string contains nothing but
 words and spaces.
 =end
 
-## Refactored
-def swap(str)
-  swapped = str.split.map do |word|
-    word[0], word[-1] = word[-1], word[0]
-    word
-  end
+# ## Refactored
+# def swap(str)
+#   swapped = str.split.map do |word|
+#     word[0], word[-1] = word[-1], word[0]
+#     word
+#   end
 
-  swapped.join(' ')
-end
+#   swapped.join(' ')
+# end
 
-p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-p swap('Abcde') == 'ebcdA'
-p swap('a') == 'a'
-# All test cases return `true`.
+# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+# p swap('Abcde') == 'ebcdA'
+# p swap('a') == 'a'
+# # All test cases return `true`.
 
 
 
@@ -45,12 +45,12 @@ p swap('a') == 'a'
 
 
 
-# ## Experiments
-# def swap(str)
-#   str.split.map do |word|
-#     word[0], word[-1] = word[-1], word[0]
-#   end
-# end
+## Experiments
+def swap(str)
+  str.split.map do |word|
+    word[0], word[-1] = word[-1], word[0]
+  end
+end
 
-# p swap('Oh what a wonderful day it is')
+p swap('Oh what a wonderful day it is')
 # [["h", "O"], ["t", "w"], ["a", "a"], ["l", "w"], ["y", "d"], ["t", "i"], ["s", "i"]]
