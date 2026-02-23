@@ -9,39 +9,39 @@ You may also assume that each string contains nothing but
 words and spaces.
 =end
 
-# ## Refactored
-# def swap(str)
-#   swapped = str.split.map do |word|
-#     word[0], word[-1] = word[-1], word[0]
-#     word
-#   end
+## Refactored
+def swap(str)
+  swapped = str.split.map do |word|
+    word[0], word[-1] = word[-1], word[0]
+    word
+  end
 
-#   swapped.join(' ')
-# end
+  swapped.join(' ')
+end
 
-# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-# p swap('Abcde') == 'ebcdA'
-# p swap('a') == 'a'
-# # All test cases return `true`.
+p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+p swap('Abcde') == 'ebcdA'
+p swap('a') == 'a'
+# All test cases return `true`.
 
 
 
-# ## Solution
-# def swap(str)
-#   arr = str.split
+## Solution
+def swap(str)
+  arr = str.split
 
-#   swapped = arr.map do |word|
-#     word[0], word[-1] = word[-1], word[0] if word.size > 1
-#     word
-#   end
+  swapped = arr.map do |word|
+    word[0], word[-1] = word[-1], word[0] if word.size > 1
+    word
+  end
 
-#   swapped.join(' ')
-# end
+  swapped.join(' ')
+end
 
-# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-# p swap('Abcde') == 'ebcdA'
-# p swap('a') == 'a'
-# # All test cases return `true`.
+p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+p swap('Abcde') == 'ebcdA'
+p swap('a') == 'a'
+# All test cases return `true`.
 
 
 
