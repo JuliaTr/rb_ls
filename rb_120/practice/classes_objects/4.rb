@@ -1,38 +1,7 @@
-# Predict output
-
-
-
-## Experiments
-class Person
-  attr_writer :name
-
-  def initialize(name)
-    @name = name
-  end
-end
-
-bob = Person.new("Robert Smith")
-p bob #<Person:0x00000001078b5558 @name="Robert Smith">
-puts bob.inspect #<Person:0x0000000108f95638 @name="Robert Smith">
-
-puts bob #<Person:0x000000010d585558>
-
-puts "The person's name is: #{bob}"
-# The person's name is #<Person:0x00000001078b5558>
-puts "The person't name is " + bob.to_s
-# The person't name is #<Person:0x000000010af05590>
-
-
-
-
-
-
-
-
-
+# # Predict output
 
 # class Person
-#   attr_reader :name
+#   attr_writer :name
 
 #   def initialize(name)
 #     @name = name
@@ -40,8 +9,48 @@ puts "The person't name is " + bob.to_s
 # end
 
 # bob = Person.new("Robert Smith")
-# # puts "The person's name is: #{bob}" # Robert Smith
-# p bob.name
-# puts "The person's name is: #{bob.name}" # ....<Person:0098...@name="Robert Smith">
+# puts "The person's name is: #{bob}"
 
-# # The person's name is: Robert Smith
+# =begin
+
+# =end
+
+
+## Bug fix:
+# Option 1:
+class Person
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Robert Smith")
+puts "The person's name is: #{bob.name}"
+# The person's name is: Robert Smith
+
+
+# Option 2:
+
+
+
+# ## Experiments
+# class Person
+#   attr_writer :name
+
+#   def initialize(name)
+#     @name = name
+#   end
+# end
+
+# bob = Person.new("Robert Smith")
+# p bob #<Person:0x000000010af05590 @name="Robert Smith">
+# puts bob.inspect #<Person:0x000000010af05590 @name="Robert Smith">
+
+# puts bob #<Person:0x000000010af05590>
+
+# puts "The person's name is: #{bob}"
+# # The person's name is #<Person:0x000000010af05590>
+# puts "The person't name is " + bob.to_s
+# # The person't name is #<Person:0x000000010af05590>
