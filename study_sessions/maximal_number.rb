@@ -25,7 +25,6 @@ Idea2:
 - sort in descending order
 - return first substr
 
-
 Algo
 - empty arr `arr`
 - Convert number to str
@@ -47,6 +46,29 @@ a = [9, 1, 9, 8, 3]
 
 =end
 
+## Refactored and more idiomatic
+def delete_digit(number)
+  str = number.to_s
+
+  # Iterate over a range of indices:
+  arr = (0...str.size).map do |index|
+    temp_str = str.dup  # Create a copy to modify
+    temp_str.slice!(index)
+    temp_str.to_i
+  end
+
+  arr.max
+end
+
+puts delete_digit(791983) == 91983
+puts delete_digit(152) == 52
+puts delete_digit(1001) == 101
+puts delete_digit(10) == 1
+# All test cases print `true`
+
+
+
+## Solution
 def delete_digit(number)
   arr = []
   str = number.to_s
