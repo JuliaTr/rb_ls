@@ -29,6 +29,7 @@ module Supervisable
   end
 end
 
+# This is an example of aggregation.
 class Preschool
   attr_reader :staff
 
@@ -169,7 +170,7 @@ class_students.add_student_to_class(student2)
 class_students.add_student_to_class(student3)
 class_students.add_student_to_class(student4)
 
-puts "Preshool's class include:"
+puts "Preschool's class include:"
 class_students.students.each do |student|
   puts "- #{student}"
 end
