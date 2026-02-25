@@ -65,12 +65,35 @@ puts unique_string_characters("xyz", "zxy") == "" #
 
 
 
+## Solution with helper (Idea1):
+def mutate_result!(one, another, result)
+  one.each_char { |char| result << char unless another.include?(char) }
+end
+
+def unique_string_characters(str1, str2)
+  result = ''
+
+  mutate_result!(str1, str2, result)
+  mutate_result!(str2, str1, result)
+
+  result
+end
+
+puts unique_string_characters("xyab", "xzca") == "ybzc" # true
+puts unique_string_characters("a", "z") == "az" # true
+puts unique_string_characters("abcd", "de") == "abce" # true
+puts unique_string_characters("abc", "abba") == "c" # true
+puts unique_string_characters("xyz", "zxy") == "" # 
+# All test cases print `true`
+
+
+
 ## Solution for Idea1:
 def unique_string_characters(str1, str2)
   result = ''
 
-  str1.each_char { |char| result << char if !str2.include?(char) }
-  str2.each_char { |char| result << char if !str1.include?(char) }
+  str1.each_char { |char| result << char unless str2.include?(char) }
+  str2.each_char { |char| result << char unless str1.include?(char) }
 
   result
 end
