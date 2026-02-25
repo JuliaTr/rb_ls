@@ -25,15 +25,15 @@ Idea1:
 
 
 Helper:
-- Iterate over each char in str
+- Iterate over each char in each input str
   - If char NOT in another str
-    - Push char to `str`
+    - Push char to `result`
 
 Algo:
-- Create `str`
+- Create `result`
 - Helper for str1
 - Helper for str2
-- Return `str`
+- Return `result`
 
 
 Idea2:
@@ -63,6 +63,24 @@ puts unique_string_characters("abc", "abba") == "c" # true
 puts unique_string_characters("xyz", "zxy") == "" # 
 # All test cases print `true`
 
+
+
+## Solution for Idea1:
+def unique_string_characters(str1, str2)
+  result = ''
+
+  str1.each_char { |char| result << char if !str2.include?(char) }
+  str2.each_char { |char| result << char if !str1.include?(char) }
+
+  result
+end
+
+puts unique_string_characters("xyab", "xzca") == "ybzc" # true
+puts unique_string_characters("a", "z") == "az" # true
+puts unique_string_characters("abcd", "de") == "abce" # true
+puts unique_string_characters("abc", "abba") == "c" # true
+puts unique_string_characters("xyz", "zxy") == "" # 
+# All test cases print `true`
 
 
 
