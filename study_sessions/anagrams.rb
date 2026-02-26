@@ -24,7 +24,33 @@ Idea1:
 - Select keys, which values are the same as sorted_str
 =end
 
-## Solution
+## Simplified logic:
+# Direct selection
+def anagrams(str, arr)
+  sorted_str = str.downcase.chars.sort.join
+
+  arr.select do |word|
+    sorted_word = word.downcase.chars.sort.join
+    sorted_str == sorted_word
+  end
+end
+
+p anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada'])
+# ['aabb', 'bbaa']
+
+p anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer'])
+# ['carer', 'racer']
+
+p anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'Racer'])
+# ['carer', 'Racer']
+
+p anagrams('laser', ['lazing', 'lazy',  'lacer'])
+# []
+
+
+
+
+## Solution:
 def build_hash(arr)
   hash = {}
   arr.each do |word|
