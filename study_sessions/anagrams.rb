@@ -24,17 +24,18 @@ Idea1:
 - Select keys, which values are the same as sorted_str
 =end
 
+## Solution
 def build_hash(arr)
   hash = {}
   arr.each do |word|
-    sorted_word = word.chars.map(&:downcase).sort.join
+    sorted_word = word.downcase.chars.sort.join
     hash[word] = sorted_word
   end
   hash
 end
 
 def anagrams(str, arr)
-  sorted_str = str.chars.sort.join
+  sorted_str = str.downcase.chars.sort.join
   hash = build_hash(arr)
   hash.select { |_, val| val == sorted_str }.keys
 end
