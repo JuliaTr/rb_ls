@@ -17,6 +17,43 @@ High-level:
 - Count how many of all of them (sum)
 - Subtract sum from total of all numbers 
 =end
+
+## Simplified logic for the main method:
+def descending?(number)
+  num_to_chars = number.to_s.chars
+  sorted = num_to_chars.sort do |a, b|
+    b <=> a
+  end
+
+  sorted == num_to_chars
+end
+
+def ascending?(number)
+  num_to_chars = number.to_s.chars
+  num_to_chars.sort == num_to_chars
+end
+
+def bouncy_count(arr)
+  non_bouncy_count = 0
+  arr.each do |number|
+    if ascending?(number) || descending?(number)
+      non_bouncy_count += 1
+    end
+  end
+
+  arr.size - non_bouncy_count
+end
+
+p bouncy_count([]) == 0
+p bouncy_count([11, 0, 345, 21]) == 0
+p bouncy_count([121, 4114]) == 2
+p bouncy_count([176, 442, 80701644]) == 2
+# All test cases return `true`.
+
+
+
+
+## Solution:
 def descending?(num)
   sorted = num.digits.sort do |a, b|
     b <=> a
@@ -25,7 +62,7 @@ def descending?(num)
   sorted.map(&:to_s).join == num.to_s
 end
 
-def acsending?(num)
+def ascending?(num)
   num.digits.sort.map(&:to_s).join == num.to_s
 end
 
@@ -34,7 +71,7 @@ def bouncy_count(arr)
   arr.each do |num|
     count += 1 if num.to_s.size < 3
 
-    if num.to_s.size > 2 && (acsending?(num) || descending?(num))
+    if num.to_s.size > 2 && (ascending?(num) || descending?(num))
       count += 1
     end
   end
