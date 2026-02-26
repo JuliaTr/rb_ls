@@ -37,11 +37,11 @@ def division_stringified(num1, num2)
   to_str_reversed.reverse!
 end
 
-p division_stringified(2, 3) #== "1"
-p division_stringified(5, 2) #== "3"
-p division_stringified(7, 3) #== "2"
-p division_stringified(6874, 67) #== "103"
-p division_stringified(503394930, 43) #== "11,706,859"
-p division_stringified(1, 10) #== "0"
-p division_stringified(100000, 1) #== "100,000"
+p division_stringified(2, 3) == "1"
+p division_stringified(5, 2) == "3"
+p division_stringified(7, 3) == "2"
+p division_stringified(6874, 67) == "103"
+p division_stringified(503394930, 43) == "11,706,859"
+p division_stringified(1, 10) == "0"
+p division_stringified(100000, 1) == "100,000"
 # All test cases return `true`
