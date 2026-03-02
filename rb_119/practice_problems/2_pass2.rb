@@ -46,6 +46,14 @@ p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
 p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
 # All test cases return `true`
 
+=begin
+- `arr.each_cons(5)` returns an enumerator that yields all consecutive
+5-element subarrays
+- `.map(&:sum)` - called on enumerator. Transforms each subarray
+into its sum, returning an array of sums
+- `.min` is called on the array of sums to find the smallest value
+=end
+
 
 
 
