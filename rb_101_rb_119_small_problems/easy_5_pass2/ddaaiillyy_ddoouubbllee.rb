@@ -7,7 +7,7 @@ Write a method that takes a string argument and returns a new string that contai
 Idea1:
 - Build new str
 - Loop over input
-- Check if last char is already in a new str.
+- Check if char is already is last in a new str.
 - If not, add
 - If yes, next
 
@@ -23,6 +23,29 @@ Idea1:
   'ddaaiillyy ddoouubbllee'
 =end
 
+
+## More direct logic
+def crunch(str)
+  result = ''
+
+  str.each_char do |char|
+    result << char unless result[-1] == char
+  end
+
+  result
+end
+
+p crunch('ddaaiillyy ddoouubbllee') == 'daily double'
+p crunch('4444abcabccba') == '4abcabcba'
+p crunch('ggggggggggggggg') == 'g'
+p crunch('a') == 'a'
+p crunch('') == ''
+# All test cases return `true`.
+
+
+
+
+## Solution
 def crunch(str)
   return '' if str.empty?
 
@@ -42,3 +65,25 @@ p crunch('4444abcabccba') == '4abcabcba'
 p crunch('ggggggggggggggg') == 'g'
 p crunch('a') == 'a'
 p crunch('') == ''
+# All test cases return `true`.
+
+
+
+
+## Possible solution
+def crunch(text)
+  index = 0
+  crunch_text = ''
+  while index <= text.length - 1
+    crunch_text << text[index] unless text[index] == text[index + 1]
+    index += 1
+  end
+  crunch_text
+end
+
+p crunch('ddaaiillyy ddoouubbllee') == 'daily double'
+p crunch('4444abcabccba') == '4abcabcba'
+p crunch('ggggggggggggggg') == 'g'
+p crunch('a') == 'a'
+p crunch('') == ''
+# All test cases return `true`.
