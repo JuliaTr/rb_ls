@@ -49,6 +49,34 @@ p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
 
 
 
+## Generate only 5 element subarrays
+def minimum_sum(arr)
+  return nil if arr.size < 5
+
+  sub_5_sums = []
+  start_idx = 0
+  last_idx = 4
+
+  while arr[last_idx]
+    sub_5_sums << arr[start_idx..last_idx].sum
+    start_idx += 1
+    last_idx += 1
+  end
+
+  sub_5_sums.min
+end
+
+p minimum_sum([1, 2, 3, 4]) == nil
+p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
+p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
+p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
+p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
+# All test cases return `true`
+
+
+
+
+
 ## Refactored
 # Option 1:
 def minimum_sum(arr)
