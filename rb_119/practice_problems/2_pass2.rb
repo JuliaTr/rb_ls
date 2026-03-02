@@ -30,6 +30,25 @@ Idea1:
 
 =end
 
+## More idiomatic
+def minimum_sum(arr)
+  return nil if arr.size < 5
+
+  arr.each_cons(5).map(&:sum).min
+end
+
+p minimum_sum([1, 2, 3, 4]) == nil
+p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
+# arr.each_cons(5).map(&:sum) => [15, 9]
+
+p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
+p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
+p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
+# All test cases return `true`
+
+
+
+
 ## Refactored
 # Option 1:
 def minimum_sum(arr)
@@ -55,60 +74,61 @@ p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
 
 
 
-# # Option 2:
-# def substrings(arr)
-#   substrings = []
 
-#   (0...arr.size).each do |idx|
-#     substring = arr.slice(idx, 5)
+# Option 2:
+def substrings(arr)
+  substrings = []
 
-#     # Push only substring with size of 5 elements
-#     substrings << substring if substring.size == 5
-#   end
+  (0...arr.size).each do |idx|
+    substring = arr.slice(idx, 5)
 
-#   substrings
-# end
+    # Push only substring with size of 5 elements
+    substrings << substring if substring.size == 5
+  end
 
-# def minimum_sum(arr)
-#   return nil if arr.size < 5
+  substrings
+end
 
-#   # Nested array with substrings with size of 5
-#   substrings = substrings(arr)
+def minimum_sum(arr)
+  return nil if arr.size < 5
 
-#   substrings.map(&:sum).min
-# end
+  # Nested array with substrings with size of 5
+  substrings = substrings(arr)
 
-# p minimum_sum([1, 2, 3, 4]) == nil
-# p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
-# p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
-# p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
-# p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
-# # All test cases return `true`
+  substrings.map(&:sum).min
+end
+
+p minimum_sum([1, 2, 3, 4]) == nil
+p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
+p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
+p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
+p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
+# All test cases return `true`
 
 
 
 
-# ## Solution
-# def substrings(arr)
-#   substrings = []
-#   (0...arr.size).each do |idx|
-#     substrings << arr.slice(idx, 5)
-#   end
-#   substrings
-# end
+## Solution
+def substrings(arr)
+  substrings = []
+  (0...arr.size).each do |idx|
+    substrings << arr.slice(idx, 5)
+  end
+  substrings
+end
 
-# def minimum_sum(arr)
-#   return nil if arr.size < 5
+def minimum_sum(arr)
+  return nil if arr.size < 5
 
-#   substrings = substrings(arr)
-#   selected = substrings.select { |subarrays| subarrays.size == 5 }
+  substrings = substrings(arr)
+  selected = substrings.select { |subarrays| subarrays.size == 5 }
 
-#   selected.map(&:sum).sort[0]
-# end
+  selected.map(&:sum).sort[0]
+end
 
-# p minimum_sum([1, 2, 3, 4]) == nil
-# p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
-# p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
-# p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
-# p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
-# # All test cases return `true`
+p minimum_sum([1, 2, 3, 4]) == nil
+p minimum_sum([1, 2, 3, 4, 5, -5]) == 9
+p minimum_sum([1, 2, 3, 4, 5, 6]) == 15
+p minimum_sum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) == 16
+p minimum_sum([-1, -5, -3, 0, -1, 2, -4]) == -10
+# All test cases return `true`
