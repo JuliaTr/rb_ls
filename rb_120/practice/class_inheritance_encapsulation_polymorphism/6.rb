@@ -1,3 +1,5 @@
+# Class inheritance
+
 =begin
 Description​​: Create an Animal class with a constructor that 
 takes a name. It should have an eat method that returns a 
