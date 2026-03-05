@@ -14,10 +14,21 @@ end
 
 bob = Person.new("Robert Smith")
 puts bob  # My name is Robert Smith.
+p bob.to_s # "My name is Robert Smith."
 
 
 
 ## Experiments:
+class Person
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Robert Smith")
+puts "My name is #{bob.name}."
 
 
 
