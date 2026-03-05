@@ -18,7 +18,7 @@ person.change_name
 puts person.name  # John
 
 =begin
-The output is `John`.
+The output is `John` (line 18).
 
 On line 16, a new `Person` object is instantiated. 
 The `initialize` method, defined on lines 7-9, is called 
