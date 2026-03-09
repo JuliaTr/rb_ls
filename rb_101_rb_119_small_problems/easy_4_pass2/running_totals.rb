@@ -58,35 +58,41 @@ looking at index 2 of the array `[14, 11, 7, 15, 20]` is
 
 
 # `Enumerable#reduce` (`reduce(initial) { |memo, obj| ... }`):
-# p running_total([2, 5, 13]) #== [2, 7, 20]
-=begin
-0
-[2]
-=end
-
-# p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
-# p running_total([3]) == [3]
-# p running_total([]) == []
-# # All test cases return `true`.
-
-
-# break down
+# Option 1:
 def running_total(arr)
   arr.reduce([]) do |result, value|
     last_total = result.last || 0
-    p last_total
-
     result << last_total + value
-
-    break result
   end
 end
 
-p running_total([2, 5, 13]) #== [2, 7, 20]
-=begin
-0
-[2]
-=end
+p running_total([2, 5, 13]) == [2, 7, 20]
+p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
+p running_total([3]) == [3]
+p running_total([]) == []
+# All test cases return `true`.
+
+
+# # Option1: break down
+# def running_total(arr)
+#   arr.reduce([]) do |result, value|
+#     p result.last # nil
+
+#     last_total = result.last || 0
+#     p last_total  # 0
+
+#     result << last_total + value
+
+#     break result  # [2]
+#   end
+# end
+
+# p running_total([2, 5, 13]) #== [2, 7, 20]
+# =begin
+# nil
+# 0
+# [2]
+# =end
 
 
 
