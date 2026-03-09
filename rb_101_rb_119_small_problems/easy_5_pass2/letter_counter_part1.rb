@@ -48,3 +48,9 @@ p word_sizes('Hey diddle diddle, the cat and the fiddle!') == { 3 => 5, 6 => 1, 
 p word_sizes("What's up doc?") == { 6 => 1, 2 => 1, 4 => 1 }
 p word_sizes('') == {}
 # All test cases return `true`.
+
+
+
+
+## Experiments:
+p({4=>1, 5=>1, 3=>1, 6=>1} == {3=>1, 4=>1, 5=>1, 6=>1}) # true
