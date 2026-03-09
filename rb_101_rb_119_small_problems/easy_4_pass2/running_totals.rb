@@ -57,23 +57,23 @@ looking at index 2 of the array `[14, 11, 7, 15, 20]` is
 
 
 
-# `Enumerable#reduce` (`reduce(initial) { |memo, obj| ... }`):
-# Option 1:
-def running_total(arr)
-  arr.reduce([]) do |result, value|
-    last_total = result.last || 0
-    result << last_total + value
-  end
-end
+# # `Enumerable#reduce` (`reduce(initial) { |memo, obj| ... }`):
+# # Option 1:
+# def running_total(arr)
+#   arr.reduce([]) do |result, value|
+#     last_total = result.last || 0
+#     result << last_total + value
+#   end
+# end
 
-p running_total([2, 5, 13]) == [2, 7, 20]
-p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
-p running_total([3]) == [3]
-p running_total([]) == []
-# All test cases return `true`.
+# p running_total([2, 5, 13]) == [2, 7, 20]
+# p running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
+# p running_total([3]) == [3]
+# p running_total([]) == []
+# # All test cases return `true`.
 
 
-# # Option1: break down
+# # Option1: (break down)
 # def running_total(arr)
 #   arr.reduce([]) do |result, value|
 #     p result.last # nil
@@ -87,13 +87,57 @@ p running_total([]) == []
 #   end
 # end
 
-# p running_total([2, 5, 13]) #== [2, 7, 20]
+# p running_total([2, 5, 13])
 # =begin
 # nil
 # 0
 # [2]
 # =end
 
+
+
+# Option 2: (break down)
+def running_total(arr)
+  arr.reduce([[], 0]) do |(result, sum), value|
+    p result
+    p sum
+    p value
+
+    new_sum = sum + value
+    p new_sum
+
+    p [result + [new_sum], new_sum]
+  end.first
+end
+
+running_total([2, 5, 13]) #== [2, 7, 20]
+=begin
+# For `2`:
+[]
+0
+2
+
+2               0 + 2
+[[2], 2]        [[] + [2], 2]
+
+
+# For `5`
+[2]
+2
+5
+
+7              2 + 5
+[[2, 7], 7]
+
+
+# For `7`:
+[2, 7]
+7
+13
+
+20
+[[2, 7, 20], 20]
+=end
 
 
 
