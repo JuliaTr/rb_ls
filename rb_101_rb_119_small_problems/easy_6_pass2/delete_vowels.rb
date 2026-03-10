@@ -15,4 +15,26 @@ p remove_vowels(%w(ABC AEIOU XYZ)) == ['BC', '', 'XYZ']
 
 
 
+## Experiments:
+# Doesn't work
+def remove_vowels(arr)
+  arr.map do |word|
+    # returns new object with deleted chars
+    word.delete('aeiouAEIOU')
+    word  # unchanged
+  end
+end
+p remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)
+p remove_vowels(%w(green YELLOW black white)) == %w(grn YLLW blck wht)
+p remove_vowels(%w(ABC AEIOU XYZ)) == ['BC', '', 'XYZ']
 
+
+
+=begin
+irb(main):014:0> str = 'a.'
+=> "a."
+irb(main):015:0> str.delete('a')
+=> "."
+irb(main):016:0> str
+=> "a."
+=end
