@@ -29,6 +29,30 @@ p alphabetic_number_sort((0..19).to_a) == [
 
 
 
+## Refactored option 2:
+WORDS = %w(zero one two three four five six seven 
+          eight nine ten eleven twelve thirteen fourteen 
+          fifteen sixteen seventeen eighteen nineteen)
+
+def build_hash
+  WORDS.each_with_object({}).with_index do |(word, hash), idx|
+    hash[idx] = word
+  end
+end
+
+def alphabetic_number_sort(arr)
+  hash = build_hash
+  arr.sort_by { |element| hash[element] }
+end
+
+p alphabetic_number_sort((0..19).to_a) == [
+  8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17,
+  6, 16, 10, 13, 3, 12, 2, 0
+] # true
+
+
+
+
 # Option 2:
 # Genrate key-value pairs:
 WORDS = %w(zero one two three four five six seven 
