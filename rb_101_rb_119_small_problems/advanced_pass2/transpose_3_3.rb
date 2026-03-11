@@ -12,20 +12,29 @@ produce a new matrix and leave the original matrix
 unchanged.
 =end
 
+## More flexible:
+def create_columns(matrix)
+  new_matrix = []
+  matrix[0].size.times { new_matrix << [] }
+  new_matrix
+end
 
-## Refactored Option 1:
 def transpose(matrix)
-  col1 = []
-  col2 = []
-  col3 = []
+  # Create columns
+  new_matrix = create_columns(matrix)
 
-  matrix.each do |row|
-    col1 << row[0]
-    col2 << row[1]
-    col3 << row[2]
+  # Put item in each column
+  #       .
+  # [[], [], []]
+  idx = 0
+  new_matrix.each do |column|
+    matrix.each do |row|
+      column << row[idx]
+    end
+    idx += 1
   end
 
-  [col1, col2, col3]
+  new_matrix
 end
 
 matrix = [
@@ -39,6 +48,35 @@ new_matrix = transpose(matrix)
 p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
 p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
 # All test cases return `true`.
+
+
+
+# ## Refactored Option 1:
+# def transpose(matrix)
+#   col1 = []
+#   col2 = []
+#   col3 = []
+
+#   matrix.each do |row|
+#     col1 << row[0]
+#     col2 << row[1]
+#     col3 << row[2]
+#   end
+
+#   [col1, col2, col3]
+# end
+
+# matrix = [
+#   [1, 5, 8],
+#   [4, 7, 2],
+#   [3, 9, 6]
+# ]
+
+# new_matrix = transpose(matrix)
+
+# p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+# p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# # All test cases return `true`.
 
 
 
