@@ -12,20 +12,20 @@ produce a new matrix and leave the original matrix
 unchanged.
 =end
 
-# Option 1:
+
+## Refactored Option 1:
 def transpose(matrix)
   col1 = []
   col2 = []
   col3 = []
-  new_matrix = [col1, col2, col3]
 
-  matrix.each do |row| 
+  matrix.each do |row|
     col1 << row[0]
     col2 << row[1]
     col3 << row[2]
   end
 
-  new_matrix
+  [col1, col2, col3]
 end
 
 matrix = [
@@ -43,23 +43,55 @@ p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
 
 
 
-# Option 2:
-def transpose(matrix)
-  new_matrix = [
-    [matrix[0][0], matrix[1][0], matrix[2][0]],
-    [matrix[0][1], matrix[1][1], matrix[2][1]], 
-    [matrix[0][2], matrix[1][2], matrix[2][2]]
-  ]
-end
+# ## Solution
+# # Option 1:
+# def transpose(matrix)
+#   col1 = []
+#   col2 = []
+#   col3 = []
+#   new_matrix = [col1, col2, col3]
 
-matrix = [
-  [1, 5, 8],
-  [4, 7, 2],
-  [3, 9, 6]
-]
+#   matrix.each do |row| 
+#     col1 << row[0]
+#     col2 << row[1]
+#     col3 << row[2]
+#   end
 
-new_matrix = transpose(matrix)
+#   new_matrix
+# end
 
-p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
-p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
-# All test cases return `true`.
+# matrix = [
+#   [1, 5, 8],
+#   [4, 7, 2],
+#   [3, 9, 6]
+# ]
+
+# new_matrix = transpose(matrix)
+
+# p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+# p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# # All test cases return `true`.
+
+
+
+
+# # Option 2:
+# def transpose(matrix)
+#   new_matrix = [
+#     [matrix[0][0], matrix[1][0], matrix[2][0]],
+#     [matrix[0][1], matrix[1][1], matrix[2][1]], 
+#     [matrix[0][2], matrix[1][2], matrix[2][2]]
+#   ]
+# end
+
+# matrix = [
+#   [1, 5, 8],
+#   [4, 7, 2],
+#   [3, 9, 6]
+# ]
+
+# new_matrix = transpose(matrix)
+
+# p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+# p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# # All test cases return `true`.
