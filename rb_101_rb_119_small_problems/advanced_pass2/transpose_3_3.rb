@@ -12,7 +12,38 @@ produce a new matrix and leave the original matrix
 unchanged.
 =end
 
-# Option 2
+# Option 1:
+def transpose(matrix)
+  col1 = []
+  col2 = []
+  col3 = []
+  new_matrix = [col1, col2, col3]
+
+  matrix.each do |row| 
+    col1 << row[0]
+    col2 << row[1]
+    col3 << row[2]
+  end
+
+  new_matrix
+end
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+new_matrix = transpose(matrix)
+
+p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# All test cases return `true`.
+
+
+
+
+# Option 2:
 def transpose(matrix)
   new_matrix = [
     [matrix[0][0], matrix[1][0], matrix[2][0]],
@@ -31,3 +62,4 @@ new_matrix = transpose(matrix)
 
 p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
 p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# All test cases return `true`.
