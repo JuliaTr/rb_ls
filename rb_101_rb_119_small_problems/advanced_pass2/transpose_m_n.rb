@@ -49,6 +49,41 @@ p transpose([[1]]) == [[1]]
 
 
 
+# new_matrix = [
+#   [matrix[0][0], matrix[1][0], matrix[2][0]],
+#   [matrix[0][1], matrix[1][1], matrix[2][1]], 
+#   [matrix[0][2], matrix[1][2], matrix[2][2]]
+# ]
+
+## Alternative
+def transpose(matrix)
+  rows = matrix.size # number of elements in each row in new matrix
+  cols = matrix.first.size # number of rows in new matrix
+  result = Array.new(cols) { [] }
+
+  # For each index of subarray in new matrix
+  (0...cols).each do |col_idx|
+    # For each index of element is subarray in new matrix
+    (0...rows).each do |row_idx|
+      # Push elements from each row in input matrix to each 
+      # subarray in new matrix
+      result[col_idx] << matrix[row_idx][col_idx]
+    end
+  end
+
+  result
+end
+
+p transpose([[1, 2, 3, 4]]) == [[1], [2], [3], [4]]
+p transpose([[1], [2], [3], [4]]) == [[1, 2, 3, 4]]
+p transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]) ==
+  [[1, 4, 3], [2, 3, 7], [3, 2, 8], [4, 1, 6], [5, 0, 2]]
+p transpose([[1]]) == [[1]]
+# All test cases return `true`.
+
+
+
+
 ## Possible solution
 def transpose(matrix)
   result = []
