@@ -6,6 +6,69 @@ this method. The return value should be the same Array object.
 You may not use `Array#reverse` or `Array#reverse!`.
 =end
 
+## Refactored:
+def reverse!(list)
+  list_size = list.size
+
+  return list if list_size <= 1
+
+  # Start with the index before the last one so that the values
+  # will move to the left in the right order.
+  counter = list_size - 2
+  list_size.times do
+    list << list.slice!(counter)
+    counter -= 1
+  end
+
+  list
+end
+
+list = [1, 2]
+result = reverse!(list)
+p result == [2, 1]
+p list == [2, 1]
+p list.object_id == result.object_id
+
+list = [1, 1, 2]
+result = reverse!(list)
+p result == [2, 1, 1]
+p list == [2, 1, 1]
+p list.object_id == result.object_id
+
+list = ['a', 'b', 'a']
+result = reverse!(list)
+p result == ['a', 'b', 'a']
+p list == ['a', 'b', 'a']
+p list.object_id == result.object_id
+
+
+list = [1, 2, 3, 4]
+result = reverse!(list)
+p result == [4, 3, 2, 1]
+p list == [4, 3, 2, 1]
+p list.object_id == result.object_id
+
+list = [1, 2, 3, 4, 1]
+result = reverse!(list)
+p result == [1, 4, 3, 2, 1]
+p list == [1, 4, 3, 2, 1]
+p list.object_id == result.object_id
+
+list = %w(a b e d c)
+p reverse!(list) == ["c", "d", "e", "b", "a"]
+p list == ["c", "d", "e", "b", "a"]
+
+list = ['abc']
+p reverse!(list) == ["abc"]
+p list == ["abc"]
+
+list = []
+p reverse!(list) == []
+p list == []
+# All test cases print `true`.
+
+
+
 ## Improved solution
 def reverse!(list)
   if list.empty? || list.size == 1 ||
@@ -15,6 +78,7 @@ def reverse!(list)
   end
 
   counter = list.size - 2
+  # List size is changing
   list.size.times do
     list << list.slice!(counter)
     counter -= 1
@@ -69,39 +133,79 @@ p list == []
 
 
 
-# ## Solution:
-# def reverse!(list)
-#   counter = -2
-#   first_to_move = list[counter]
+## Solution:
+def reverse!(list)
+  counter = -2
+  first_to_move = list[counter]
 
-#   until first_to_move == list[1]
-#     list << list.slice!(counter)
-#     counter -= 1
-#   end
+  until first_to_move == list[1]
+    list << list.slice!(counter)
+    counter -= 1
+  end
 
-#   list
-# end
+  list
+end
 
-# list = [1, 2, 3, 4]
-# result = reverse!(list)
-# p result == [4, 3, 2, 1] # true
-# p list == [4, 3, 2, 1] # true
-# p list.object_id == result.object_id # true
+list = [1, 2, 3, 4]
+result = reverse!(list)
+p result == [4, 3, 2, 1] # true
+p list == [4, 3, 2, 1] # true
+p list.object_id == result.object_id # true
 
-# list = [1, 2, 3, 4, 1]
-# result = reverse!(list)
-# p result == [1, 4, 3, 2, 1] # true
-# p list == [1, 4, 3, 2, 1] # true
-# p list.object_id == result.object_id # true
+list = [1, 2, 3, 4, 1]
+result = reverse!(list)
+p result == [1, 4, 3, 2, 1] # true
+p list == [1, 4, 3, 2, 1] # true
+p list.object_id == result.object_id # true
 
-# list = %w(a b e d c)
-# p reverse!(list) == ["c", "d", "e", "b", "a"] # true
-# p list == ["c", "d", "e", "b", "a"] # true
+list = %w(a b e d c)
+p reverse!(list) == ["c", "d", "e", "b", "a"] # true
+p list == ["c", "d", "e", "b", "a"] # true
 
-# list = ['abc']
-# p reverse!(list) == ["abc"] # true
-# p list == ["abc"] # true
+list = ['abc']
+p reverse!(list) == ["abc"] # true
+p list == ["abc"] # true
 
-# list = []
-# p reverse!(list) == [] # true
-# p list == [] # true
+list = []
+p reverse!(list) == [] # true
+p list == [] # true
+
+
+
+## Possible solution:
+def reverse!(array)
+  left_index = 0
+  right_index = -1
+
+  while left_index < array.size / 2
+    array[left_index], array[right_index] = array[right_index], array[left_index]
+    left_index += 1
+    right_index -= 1
+  end
+
+  array
+end
+
+list = [1, 2, 3, 4]
+result = reverse!(list)
+p result == [4, 3, 2, 1] # true
+p list == [4, 3, 2, 1] # true
+p list.object_id == result.object_id # true
+
+list = [1, 2, 3, 4, 1]
+result = reverse!(list)
+p result == [1, 4, 3, 2, 1] # true
+p list == [1, 4, 3, 2, 1] # true
+p list.object_id == result.object_id # true
+
+list = %w(a b e d c)
+p reverse!(list) == ["c", "d", "e", "b", "a"] # true
+p list == ["c", "d", "e", "b", "a"] # true
+
+list = ['abc']
+p reverse!(list) == ["abc"] # true
+p list == ["abc"] # true
+
+list = []
+p reverse!(list) == [] # true
+p list == [] # true
