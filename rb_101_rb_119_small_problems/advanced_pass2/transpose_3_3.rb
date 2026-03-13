@@ -12,7 +12,28 @@ produce a new matrix and leave the original matrix
 unchanged.
 =end
 
-## Concise (hard-coding):
+## Concise (for "square matrix"):
+def transpose(matrix)
+  first_row = matrix.first
+  first_row.zip(*matrix[1..])  # with any number of rows
+end
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+new_matrix = transpose(matrix)
+
+p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+# All test cases return `true`.
+
+
+
+
+## Concise (hard-coding for matrix 3x3):
 def transpose(matrix)
   matrix[0].zip(matrix[1], matrix[2])
 end
