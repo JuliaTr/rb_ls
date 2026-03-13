@@ -28,17 +28,17 @@ a
 staggered_case('ALL_CAPS') == 'AlL_CaPs'
 =end
 
-## Solution
+## Refactored
 def staggered_case(str)
   new_str = ''
 
   str.each_char.with_index do |char, idx|
-    if char.match?(/[a-zA-Z]/) && idx.even?
-      new_str << char.upcase
-    elsif char.match?(/[a-zA-Z]/) && idx.odd?
-      new_str << char.downcase
-    elsif char.match?(/[^a-zA-Z]/)
+    if char.match?(/[^a-zA-Z]/)
       new_str << char
+    elsif idx.even?
+      new_str << char.upcase
+    else
+      new_str << char.downcase
     end
   end
 
@@ -49,3 +49,27 @@ p staggered_case('I Love Launch School!') == 'I LoVe lAuNcH ScHoOl!'
 p staggered_case('ALL_CAPS') == 'AlL_CaPs'
 p staggered_case('ignore 77 the 444 numbers') == 'IgNoRe 77 ThE 444 NuMbErS'
 # All test cases return `true`.
+
+
+
+# ## Solution
+# def staggered_case(str)
+#   new_str = ''
+
+#   str.each_char.with_index do |char, idx|
+#     if char.match?(/[a-zA-Z]/) && idx.even?
+#       new_str << char.upcase
+#     elsif char.match?(/[a-zA-Z]/) && idx.odd?
+#       new_str << char.downcase
+#     elsif char.match?(/[^a-zA-Z]/)
+#       new_str << char
+#     end
+#   end
+
+#   new_str
+# end
+
+# p staggered_case('I Love Launch School!') == 'I LoVe lAuNcH ScHoOl!'
+# p staggered_case('ALL_CAPS') == 'AlL_CaPs'
+# p staggered_case('ignore 77 the 444 numbers') == 'IgNoRe 77 ThE 444 NuMbErS'
+# # All test cases return `true`.
