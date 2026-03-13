@@ -20,7 +20,10 @@ p sum_of_sums([1, 2, 3, 4, 5]) == 35
 
 ## Solution
 def sum_of_sums(arr)
+  # Leading substrings
   subsequences = arr.map.with_index { |_, idx| arr[0..idx] }
+
+  # Sum of sums
   subsequences.map { |subarr| subarr.inject(:+) }.sum
 end
 
