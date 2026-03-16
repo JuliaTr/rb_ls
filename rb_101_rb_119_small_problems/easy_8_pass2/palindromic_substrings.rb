@@ -85,3 +85,48 @@ p palindromes('knitting cassettes') == [
   'nittin', 'itti', 'tt', 'ss', 'settes', 'ette', 'tt'
 ]
 # All test cases print `true`.
+
+
+
+
+## Solution with helper methods
+def leading_substrings(string)
+  result = []
+
+  0.upto(string.size - 1) do |index|
+    result << string[0..index]
+  end
+
+  result
+end
+
+def substrings(str)
+  substrings = []
+
+  (0...str.size).each do |start_index|
+    this_substring = str[start_index..-1]
+    substrings.concat(leading_substrings(this_substring)) 
+  end
+
+  substrings
+end
+
+def palindromes(str)
+  substrings = substrings(str)
+
+  substrings.select do |substring| 
+    substring.reverse == substring if substring.size > 1
+  end
+end
+
+p palindromes('abcd') == []
+p palindromes('madam') == ['madam', 'ada']
+p palindromes('hello-madam-did-madam-goodbye') == [
+  'll', '-madam-', '-madam-did-madam-', 'madam', 'madam-did-madam', 'ada',
+  'adam-did-mada', 'dam-did-mad', 'am-did-ma', 'm-did-m', '-did-', 'did',
+  '-madam-', 'madam', 'ada', 'oo'
+]
+p palindromes('knitting cassettes') == [
+  'nittin', 'itti', 'tt', 'ss', 'settes', 'ette', 'tt'
+]
+# All test cases print `true`.
