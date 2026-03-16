@@ -6,16 +6,30 @@ consist of only letters and spaces. Spaces should be included
 only when more than one word is present.
 =end
 
+## Refactored
+# Option 1 (`map`):
 def reverse_words(str)
-  reversed = []
-
-  str.split.each do |word|
-    reversed << (word.size >= 5 ? word.reverse : word)
-  end
-
-  reversed.join(' ')
+  str.split.map { |word| word.size >= 5 ? word.reverse : word }
+           .join(' ')
 end
 
 puts reverse_words('Professional')          # => lanoisseforP
 puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
 puts reverse_words('Launch School')         # => hcnuaL loohcS
+
+
+
+# ## Solution
+# def reverse_words(str)
+#   reversed = []
+
+#   str.split.each do |word|
+#     reversed << (word.size >= 5 ? word.reverse : word)
+#   end
+
+#   reversed.join(' ')
+# end
+
+# puts reverse_words('Professional')          # => lanoisseforP
+# puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
+# puts reverse_words('Launch School')         # => hcnuaL loohcS
