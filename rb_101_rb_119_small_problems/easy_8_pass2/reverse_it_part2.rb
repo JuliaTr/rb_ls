@@ -16,20 +16,69 @@ end
 puts reverse_words('Professional')          # => lanoisseforP
 puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
 puts reverse_words('Launch School')         # => hcnuaL loohcS
+# Works as expected.
 
 
 
-# ## Solution
-# def reverse_words(str)
-#   reversed = []
 
-#   str.split.each do |word|
-#     reversed << (word.size >= 5 ? word.reverse : word)
-#   end
+# Option 2 (`each_with_object`):
+def reverse_words(str)
+  arr = str.split.each_with_object([]) do |word, arr|
+    arr <<  if word.size >= 5
+              word.reverse
+            else
+              word
+            end
+  end
+  arr.join(' ')
+end
 
-#   reversed.join(' ')
-# end
+puts reverse_words('Professional')          # => lanoisseforP
+puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
+puts reverse_words('Launch School')         # => hcnuaL loohcS
+# Works as expected.
 
-# puts reverse_words('Professional')          # => lanoisseforP
-# puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
-# puts reverse_words('Launch School')         # => hcnuaL loohcS
+
+
+
+
+## Solution
+def reverse_words(str)
+  reversed = []
+
+  str.split.each do |word|
+    reversed << (word.size >= 5 ? word.reverse : word)
+  end
+
+  reversed.join(' ')
+end
+
+puts reverse_words('Professional')          # => lanoisseforP
+puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
+puts reverse_words('Launch School')         # => hcnuaL loohcS
+# Works as expected.
+
+
+
+
+## Possible solution:
+def reverse_words(string)
+  words = []
+
+  string.split.each do |word|
+    word.reverse! if word.size >= 5
+    words << word
+  end
+
+  words.join(' ')
+end
+
+=begin
+We don't have to modify `word` in place, because we never use 
+`reverse!` return value. So we may use `reverse`.
+=end
+
+puts reverse_words('Professional')          # => lanoisseforP
+puts reverse_words('Walk around the block') # => Walk dnuora the kcolb
+puts reverse_words('Launch School')         # => hcnuaL loohcS
+# Works as expected.
