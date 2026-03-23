@@ -8,12 +8,9 @@ implementation.
 =end
 
 ## Solution
-
-# Option 2
+# Option 1
 def rotate_array(arr)
-  new_arr = arr.map { |element| element }
-  first_el = new_arr.shift
-  new_arr + [first_el]
+  arr[1..-1] + [arr[0]]
 end
 
 p rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
@@ -21,5 +18,24 @@ p rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
 p rotate_array(['a']) == ['a']
 
 x = [1, 2, 3, 4]
-p rotate_array(x) == [2, 3, 4, 1]   # => true
-x == [1, 2, 3, 4]                 # => true
+p rotate_array(x) == [2, 3, 4, 1]
+p x == [1, 2, 3, 4]                 
+# All test cases print `true`.
+
+
+
+# # Option 2
+# def rotate_array(arr)
+#   new_arr = arr.map { |element| element }
+#   first_el = new_arr.shift
+#   new_arr + [first_el]
+# end
+
+# p rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
+# p rotate_array(['a', 'b', 'c']) == ['b', 'c', 'a']
+# p rotate_array(['a']) == ['a']
+
+# x = [1, 2, 3, 4]
+# p rotate_array(x) == [2, 3, 4, 1]
+# p x == [1, 2, 3, 4]                 
+# # All test cases print `true`.
